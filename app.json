@@ -2,7 +2,7 @@
   "expo": {
     "name": "Dimon Connect",
     "slug": "dimon-connect",
-    "version": "1.0.0","platforms": ["ios", "android"],
+    "version": "1.0.0","platforms": ["ios", "android","Web" ],
 
     "orientation": "portrait",
     "icon": "./assets/dimon_logo.png",
@@ -14,13 +14,13 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": { "supportsTablet": true },
-    "android": {
+    "android","web" : {
       "package": "com.dimon.connect",
       "versionCode": 1,
       "permissions": ["USE_BIOMETRIC", "INTERNET"]
     },
     "plugins": [
-      ["expo-build-properties", { "android": { "compileSdkVersion": 34, "targetSdkVersion": 34 } }]
+      ["expo-build-properties", { "android","Web": { "compileSdkVersion": 34, "targetSdkVersion": 34 } }]
     ]
   }
 }
