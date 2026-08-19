@@ -21,7 +21,7 @@
         "NSFaceIDUsageDescription": "Usar Face ID para iniciar sesión"
       }
     },
-    "android": {
+    "android":"web" {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#1E40AF"
@@ -36,6 +36,6 @@
       "favicon": "./assets/favicon.png",
       "bundler": "metro"
     },
-    "platforms": ["ios", "android"]
+    "platforms": ["ios", "android","web"]
   }
 }
