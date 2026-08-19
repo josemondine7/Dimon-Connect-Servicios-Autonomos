@@ -2,25 +2,40 @@
   "expo": {
     "name": "Dimon Connect",
     "slug": "dimon-connect",
-    "version": "1.0.0","platforms": ["ios", "android","Web" ],
-
+    "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/dimon_logo.png",
-    "userInterfaceStyle": "dark",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/dimon_logo.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#3454CC"
+      "backgroundColor": "#1E40AF"
     },
-    "assetBundlePatterns": ["**/*"],
-    "ios": { "supportsTablet": true },
-    "android","web" : {
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.dimon.connect",
+      "infoPlist": {
+        "NSFaceIDUsageDescription": "Usar Face ID para iniciar sesión"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#1E40AF"
+      },
       "package": "com.dimon.connect",
-      "versionCode": 1,
-      "permissions": ["USE_BIOMETRIC", "INTERNET"]
+      "permissions": [
+        "USE_BIOMETRIC",
+        "INTERNET"
+      ]
     },
-    "plugins": [
-      ["expo-build-properties", { "android","Web": { "compileSdkVersion": 34, "targetSdkVersion": 34 } }]
-    ]
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "platforms": ["ios", "android", "web"]
   }
 }
