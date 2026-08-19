@@ -2,7 +2,8 @@
   "expo": {
     "name": "Dimon Connect",
     "slug": "dimon-connect",
-    "version": "1.0.0",
+    "version": "1.0.0","platforms": ["ios", "android", "web"],
+
     "orientation": "portrait",
     "icon": "./assets/diamond_logo.png",
     "userInterfaceStyle": "dark",
