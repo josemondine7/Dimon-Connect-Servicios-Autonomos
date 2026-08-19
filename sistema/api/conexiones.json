@@ -1,0 +1,23 @@
+{
+  "conexiones": [
+    {"de": "TU", "a": "Lira", "tipo": "ORDEN_Y_RESPUESTA", "traductor": "ACTIVO"},
+    {"de": "Lira", "a": "TODOS_JEFES_DE_EQUIPO", "tipo": "COORDINACION", "traductor": "ACTIVO"},
+    {"de": "Equipo Diseño", "a": "Equipo Gráficas", "tipo": "ESTETICA_Y_DETALLES", "traductor": "ACTIVO"},
+    {"de": "Equipo Gráficas", "a": "Equipo Animación", "tipo": "IMAGEN_A_MOVIMIENTO", "traductor": "ACTIVO"},
+    {"de": "Equipo Animación", "a": "Equipo Funcionalidad", "tipo": "MOVIMIENTO_A_ACCION", "traductor": "ACTIVO"},
+    {"de": "Equipo Funcionalidad", "a": "Equipo Códigos", "tipo": "ACCION_A_INSTRUCCION", "traductor": "ACTIVO"},
+    {"de": "Equipo Códigos", "a": "Equipo Desarrollo", "tipo": "LOGICA_CONSTRUCTIVA", "traductor": "ACTIVO"},
+    {"de": "Equipo Desarrollo", "a": "Equipo Matemáticas", "tipo": "CALCULOS_Y_MEDIDAS", "traductor": "ACTIVO"},
+    {"de": "Equipo Matemáticas", "a": "Todos los equipos", "tipo": "PRECISION_TOTAL", "traductor": "ACTIVO"},
+    {"de": "Equipo Memoria Activa", "a": "Equipo Almacenamiento", "tipo": "DATO_A_GUARDADO", "traductor": "ACTIVO"},
+    {"de": "Equipo Almacenamiento", "a": "Equipo Archivo", "tipo": "ORGANIZACION_SEGURA", "traductor": "ACTIVO"},
+    {"de": "Equipo Voz", "a": "Equipo Conversación", "tipo": "AUDIO_Y_SIGNIFICADO", "traductor": "ACTIVO"},
+    {"de": "Equipo Acceso", "a": "Equipo Seguridad", "tipo": "VERIFICACION_Y_PROTECCION", "traductor": "ACTIVO"},
+    {"de": "Equipo Conexiones", "a": "Equipo Herramientas", "tipo": "RECURSOS_Y_CANALES", "traductor": "ACTIVO"},
+    {"de": "Equipo Logística", "a": "TODOS_EQUIPOS", "tipo": "RUTA_Y_PRIORIDAD", "traductor": "ACTIVO"},
+    {"de": "Equipo Marketing", "a": "Equipo Psicología Social", "tipo": "MENSAJE_Y_RECEPCION", "traductor": "ACTIVO"},
+    {"de": "Equipo Legal", "a": "Equipo Administración", "tipo": "CUMPLIMIENTO_Y_RECURSOS", "traductor": "ACTIVO"},
+    {"de": "Cualquier Equipo", "a": "Su propio Traductor", "tipo": "DENTRO_DEL_EQUIPO", "traductor": "SIEMPRE_ACTIVO"}
+  ],
+  "funcion_mensajero": "LLEVAR_EXACTO_LO_QUE_SE_ENVIA, NUNCA_ALTERAR, NUNCA_PERDER, CAMINO_MAS_CORTO_Y_SEGURO"
+}

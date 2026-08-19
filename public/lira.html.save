@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es-UY">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Lira — Dimon Connect</title>
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      user-select: none;
+    }
+    html, body { height: 100%; overflow: hidden; }
+    body {
+      background: radial-gradient(ellipse at top, #0b2a5c 0%, #051430 45%, #020714 100%);
+      position: relative; color: #e0f0ff;
+    }
+
+    /* Barra superior - Hora y navegadores */
+    .barra-superior {
+      position: fixed; top: 12px; left: 0; right: 0;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 16px; z-index: 60;
+    }
+    .hora { font-size: 16px; font-weight: 500; color: #b8d8ff; }
+    .navegadores { display: flex; gap: 12px; font-size: 24px; }
+    .icono-sistema { font-size: 18px; opacity: 0.85; }
+
+    /* Barra de herramientas */
+    .barra-herramientas {
+      position: fixed; top: 52px; left: 16px; right: 16px;
+      background: rgba(15, 45, 100, 0.85); backdrop-filter: blur(12px);
+      border-radius: 14px; border: 1px solid rgba(100, 170, 255, 0.4);
+      padding: 10px 14px; display: flex; align-items: center; justify-content: space-between;
+      z-index: 55;
+    }
+    .herramienta { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 12px; color: #a8c8ff; }
+    .caja-busqueda { background: rgba(100, 170, 255, 0.15); border-radius: 10px; padding: 8px 12px; font-size: 13px; color: #d0e4ff; }
+
+    /* Ondas y anillo central */
+    .contenedor-ondas { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: 100%; overflow: hidden; }
+    .onda { position: absolute; width: 140%; height: 70%; left: -20%; top: 20%; background: linear-gradient(90deg, transparent 15%, rgba(80, 160, 255, 0.25) 40%, rgba(140, 200, 255, 0.35) 50%, rgba(80, 160, 255, 0.25) 60%, transparent 85%); animation: fluirOnda 7s ease-in-out infinite; filter: blur(18px); }
+    .onda:nth-child(2) { animation-delay: -2.5s; opacity: 0.7; }
+    .onda:nth-child(3) { animation-delay: -4.8s; opacity: 0.5; }
+    @keyframes fluirOnda { 0% { transform: translateX(-40px) skewX(-8deg); } 50% { transform: translateX(40px) skewX(8deg); } 100% { transform: translateX(-40px) skewX(-8deg); } }
+
+    .anillo-central {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 220px; height: 220px;
+      border-radius: 50%; border: 2px solid rgba(130, 190, 2755, 0.9); box-shadow: 0 0 80px rgba(80, 160, 255, 0.6), inset 0 0  </style>
+</head>
+<body>
+  <div class="barra-superior">
+    <span class="hora">9:41</span>
+    <div class="navegadores">🦊 🦊 🌐 G</div>
+    <div class="icono-sistema">📶 🔋</div>
+  </div>
+
+  <div class="barra-herramientas">
+    <div class="herramienta">⬜<br>Imagen</div>
+    <div class="herramienta">📋<br>Tarea</div>
+    <div class="herramienta">📝<br>Texto</div>
+    <div class="herramienta">🖼️<br>Pantalla</div>
+    <div class="caja-busqueda">🔍 Buscar y diseñar</div>
+  </div>
+
+  <div class="contenedor-ondas">
+    <div class="onda"></div><div class="onda"></div><div class="onda"></div>
+  </div>
+
+  <div class="anillo-central">
+    <div class="puntos">
+      <div class="punto"></div><div class="punto"></div><div class="punto"></div><div class="punto"></div>
+    </div>
+    <div class="anillo-interno"></div>
+  </div>
+
+  <button id="botonVoz" class="boton-voz">🎤</button>
+
+  <div class="barra-chat">
+    <span>⌨️</span>
+    <input type="text" id="entrada" class="entrada" placeholder="Escribí o hablá con Lira...">
+    <span class="boton-envio">➤</span>
+  </div>
+  <div class="marca">Lira — Dimon Connect</div>
+
+  <script>
+    const botonVoz = document.getElementById('botonVoz');
+    const entrada = document.getElementById('entrada');
+    let vecesToque = 0;
+    const Recon = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recon = Recon ? new Recon() : null;
+
+    if(recon) {7
+      recon.lang = 'es-UY'; recon.continuous = false; recon.interimResults = false;
+      recon.onresult = e => procesarMensaje(e.results[0][0].transcript.trim());
+      recon.onend = () => botonVoz.classList.remove('activo');
+      recon.onerror = () => hablar('No escuché bien, intentá de nuevo.');
+    }
+
+    function hablar(texto) {
+      window.speechSynthesis.cancel();
+      const voz = new SpeechSynthesisUtterance(texto);
+      voz.lang = 'es-UY'; voz.rate = 0.93; voz.pitch = 1.02; voz.volume = 1;
+      window.speechSynthesis.speak(voz);
+    }
+
+    botonVoz.addEventListener('click', () => {
+      vecesToque++; setTimeout(() => vecesToque = 0, 550);
+      if(recon && vecesToque === 1) { botonVoz.classList.add('activo'); recon.start(); }
+    });
+
+    function procesarMensaje(mensaje) {
+      const t = mensaje.toLowerCase();
+      let respuesta = 'Todo bajo tu mando, con la calidad y el diseño que definimos.';
+      if(t.includes('hola') || t.includes('buenos días') || t.includes('buenas tardes')) respuesta = '¡Hola! Soy Lira, lista para trabajar contigo tal cual lo planeamos.';
+      if(t.includes('quién eres') || t.includes('qué eres')) respuesta = 'Soy tu asistente inteligente exclusiva para Dimon Connect, siempre a tu orden.';
+      hablar(respuesta);
+    }
+
+    entrada.addEventListener('keydown', e => { if(e.key === 'Enter') procesarMensaje(entrada.value); });
+    if(!recon) alert('Para usar la voz abrí esto desde Chrome o Edge.');
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interfaz IA</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #001f3f, #000000);
+            font-family: Arial, sans-serif;
+            color: #fff;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .header {
+            width: 90%;
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+
+        .main-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            box-shadow: 0 0 15px #007acc;
+        }
+
+        .ring-1 {
+            width: 100%;
+            height: 100%;
+            border-top: 2px solid #00c6ff;
+            animation: spin 4s linear infinite;
+        }
+
+        .ring-2 {
+            width: 80%;
+            height: 80%;
+            border-bottom: 2px solid #0072ff;
+            animation: spin-reverse 6s linear infinite;
+        }
+
+        .ring-3 {
+            width: 60%;
+            height: 60%;
+            border-left: 2px solid #0055ff;
+            animation: spin 8s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes spin-reverse {
+            0% { transform: rotate(360deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        .footer {
+            width: 90%;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .input-bar {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .chat-btn {
+            background: #007acc;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="nav-button">Navegadores</div>
+        <div class="nav-button">Menú</div>
+    </div>
+
+    <div class="main-container">
+        <div class="ring ring-1"></div>
+        <div class="ring ring-2"></div>
+        <div class="ring ring-3"></div>
+    </div>
+
+    <div class="footer">
+        <div class="input-bar">
+            <span>Escribe un mensaje...</span>
+            <button class="chat-btn"></button>
+        </div>
+    </div>
+
+    <script>
+  const chatBtn = document.querySelector('.chat-btn');
+const entrada = document.getElementById('entrada');
+let clickCount = 0;
+let timeout = null;
+
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+const recognition = SpeechRecognition ? new SpeechRecognition() : null;
+
+if (recognition) {
+  recognition.lang = 'es-ES';
+  recognition.continuous = false;
+  
+  recognition.onstart = () => {
+    document.querySelector('.anillo-central').style.boxShadow = '0 0 50px rgba(0, 150, 255, 1)';
+  };
+
+  recognition.onresult = (event) => {
+    const mensaje = event.results[0][0].transcript;
+    procesarMensaje(mensaje);
+  };
+  
+  recognition.onend = () => {
+    document.querySelector('.anillo-central').style.boxShadow = 'none';
+  };
+}
+
+function hablar(texto) {
+  window.speechSynthesis.cancel();
+  const voz = new SpeechSynthesisUtterance(texto);
+  voz.lang = 'es-ES';
+  voz.rate = 0.93;
+  voz.pitch = 0.93;
+  
+  voz.onstart = () => {
+    document.querySelector('.anillo-central').style.boxShadow = '0 0 60px rgba(255, 215, 0, 1)';
+  };
+  voz.onend = () => {
+    document.querySelector('.anillo-central').style.boxShadow = 'none';
+  };
+  
+  window.speechSynthesis.speak(voz);
+}
+
+chatBtn.addEventListener('click', () => {
+  clickCount++;
+  clearTimeout(timeout);
+
+  timeout = setTimeout(() => {
+    if (clickCount === 1) {
+      if (recognition) {
+        recognition.continuous = false;
+        recognition.start();
+      }
+    } else if (clickCount === 2) {
+      if (recognition) {
+        recognition.continuous = true;
+        recognition.start();
+      }
+    }
+    clickCount = 0;
+  }, 300);
+});
+
+function procesarMensaje(mensaje) {
+  const m = mensaje.toLowerCase();
+  let respuesta = 'Estoy lista para seguir tus órdenes al pie de la letra.';
+
+  if(m.includes('hola') || m.includes('buenos días')) {
+    respuesta = '¡Hola! Soy Lira, tu asistente exclusiva. Todo el sistema Dimon Connect está bajo tu mando, listo para trabajar.';
+  } else if(m.includes('quién eres')) {
+    respuesta = 'Soy Lira, creada solo para ti. Coordino todos los equipos, cuido tu información y te ayudo a crear todo lo que imagines.';
+  } else if(m.includes('gracias')) {
+    respuesta = 'Es un honor servirte. Estoy aquí para vos siempre.';
+  }
+
+  hablar(respuesta);
+}
+
+    </script>
+</body>
+</html>
+

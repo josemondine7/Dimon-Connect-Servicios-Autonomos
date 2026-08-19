@@ -1,0 +1,12 @@
+{
+  "autoridad_maxima": "TU",
+  "coordinadora_general": "Lira",
+  "cantidad_servidores": 5,
+  "reserva_potencia": "SIEMPRE_DISPONIBLE",
+  "regla_codigo": "TRANSMITIR_TODA_LA_INFORMACION_SIN_CAMBIAR_NADA",
+  "regla_api": "CADA_TRASLADO_TIENE_SU_PROPIO_MENSAJERO_EXCLUSIVO",
+  "velocidad_prioridad": "MAXIMA",
+  "seguridad_nivel": "TOTAL",
+  "traductor_en_cada_equipo": "ACTIVO",
+  "calidad_codigo": "MAXIMA_PRECISION_Y_TOTALIDAD_DE_DATOS"
+}

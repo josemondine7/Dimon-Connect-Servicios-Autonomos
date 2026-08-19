@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es-UY">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Dimon Connect - Acceso</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
+    body {
+      background: radial-gradient(ellipse at 50% 28%, #133b85 0%, #071b4a 35%, #030c24 70%, #010208 100%);
+      min-height: 100vh; display: flex; align-items: center; justify-content: center; color: white;
+    }
+    .caja-centro { text-align: center; }
+    .boton-acceso {
+      width: 180px; height: 180px; border-radius: 50%; border: 3px solid rgba(140, 200, 255, 0.8);
+      background: radial-gradient(circle at 30% 30%, #70b8ff 0%, #2563eb 50%, #0f3080 100%);
+      box-shadow: 0 0 70px rgba(100, 170, 255, 0.7); cursor: pointer; font-size: 50px; margin-bottom: 25px;
+      transition: transform 0.2s ease;
+    }
+    .boton-acceso:active { transform: scale(0.95); }
+    h1 { font-size: 26px; font-weight: 500; letter-spacing: 1px; }
+  </style>
+</head>
+<body>
+  <div class="caja-centro">
+    <button class="boton-acceso" id="btnEntrar">✋</button>
+    <h1>Dimon Connect</h1>
+  </div>
+  <script>
+    document.getElementById('btnEntrar').addEventListener('click', () => {
+      setTimeout(() => {
+        alert('Huella reconocida ✅ Bienvenido a Dimon Connect');
+        window.location.href = 'lira.html';
+      }, 400);
+    });
+  </script>
+</body>
+</html>
+

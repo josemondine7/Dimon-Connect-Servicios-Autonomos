@@ -1,0 +1,25 @@
+{
+  "expo": {
+    "name": "Dimon Connect",
+    "slug": "dimon-connect",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/diamond_logo.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/diamond_logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#3454CC"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": { "supportsTablet": true },
+    "android": {
+      "package": "com.dimon.connect",
+      "versionCode": 1,
+      "permissions": ["USE_BIOMETRIC", "INTERNET"]
+    },
+    "plugins": [
+      ["expo-build-properties", { "android": { "compileSdkVersion": 34, "targetSdkVersion": 34 } }]
+    ]
+  }
+}

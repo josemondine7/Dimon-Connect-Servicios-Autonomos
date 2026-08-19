@@ -1,0 +1,26 @@
+{
+  "regla_general": "CADA_EQUIPO_TIENE_SU_TRADUCTOR_DE_CODIGO_Y_SU_MENSAJERO_PROPIO",
+  "equipos": [
+    {"nombre": "Diseño", "traductor": "ACTIVO", "herramientas": ["Estilo", "Proporciones", "Adaptación"]},
+    {"nombre": "Gráficas", "traductor": "ACTIVO", "herramientas": ["AltaResolución", "Luces", "ImagenACodigo"]},
+    {"nombre": "Animación y Movimiento", "traductor": "ACTIVO", "herramientas": ["Fluidez", "Interacción", "Velocidad"]},
+    {"nombre": "Funcionalidad e Interacción", "traductor": "ACTIVO", "herramientas": ["VincularAccion", "PruebaReal", "ConfirmarFuncion"]},
+    {"nombre": "Códigos", "traductor": "ACTIVO", "herramientas": ["Leer", "Crear", "Corregir", "Ordenar"]},
+    {"nombre": "Desarrollo", "traductor": "ACTIVO", "herramientas": ["Construir", "Probar", "BuscarRecursos"]},
+    {"nombre": "Matemáticas y Precisión", "traductor": "ACTIVO", "herramientas": ["Calcular", "Ajustar", "VerificarExactitud"]},
+    {"nombre": "Memoria Activa", "traductor": "ACTIVO", "herramientas": ["Recordar", "TraerAlInstante"]},
+    {"nombre": "Almacenamiento General", "traductor": "ACTIVO", "herramientas": ["GuardarSeguro", "ReservarEspacio"]},
+    {"nombre": "Archivo y Consulta", "traductor": "ACTIVO", "herramientas": ["Ordenar", "BuscarRapido"]},
+    {"nombre": "Voz", "traductor": "ACTIVO", "herramientas": ["EscucharClaro", "HablarNatural"]},
+    {"nombre": "Conversación", "traductor": "ACTIVO", "herramientas": ["Entender", "Contexto"]},
+    {"nombre": "Acceso y Biometría", "traductor": "ACTIVO", "herramientas": ["LeerHuella", "ReconocerOjo"]},
+    {"nombre": "Seguridad y Protección", "traductor": "ACTIVO", "herramientas": ["Cifrar", "Bloquear", "Vigilar"]},
+    {"nombre": "Conexiones", "traductor": "ACTIVO", "herramientas": ["RutasSeguras", "SinInterrupciones"]},
+    {"nombre": "Herramientas y Recursos", "traductor": "ACTIVO", "herramientas": ["BuscarGratis", "ValidarSeguridad"]},
+    {"nombre": "Logística", "traductor": "ACTIVO", "herramientas": ["MejorCamino", "RepartirCarga"]},
+    {"nombre": "Marketing y Tendencias", "traductor": "ACTIVO", "herramientas": ["Analizar", "AlinearImagen"]},
+    {"nombre": "Legal y Normativas", "traductor": "ACTIVO", "herramientas": ["VerificarLeyes", "ProtegerDerechos"]},
+    {"nombre": "Administración y Recursos", "traductor": "ACTIVO", "herramientas": ["Organizar", "SeguirPorcentajes"]},
+    {"nombre": "Psicología y Relaciones Sociales", "traductor": "ACTIVO", "herramientas": ["AnalizarImpacto", "GenerarConfianza"]}
+  ]
+}

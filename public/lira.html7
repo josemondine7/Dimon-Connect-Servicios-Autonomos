@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lira — Dimon Connect</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  width: 100%; height: 100%;
+  background: #001433;
+  background-image: 
+    radial-gradient(circle at center, rgba(0,100,200,0.15) 0%, transparent 70%),
+    linear-gradient(rgba(0,100,200,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,100,200,0.05) 1px, transparent 1px);
+  background-size: 100% 100%, 30px 30px, 30px 30px;
+  color: #E6F3FF;
+  overflow: hidden;
+  position: relative;
+}
+
+.fecha-hora {
+  position: absolute; top: 12px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px; font-weight: 500;
+  color: #B8D8FF;
+}
+
+.barra-navegadores {
+  position: absolute; top: 45px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; gap: 12px;
+}
+.navegador {
+  padding: 6px 12px; border-radius: 20px;
+  background: rgba(0,60,120,0.6); border: 1px solid rgba(80,160,255,0.3);
+  font-size: 14px;
+}
+
+.lira-contenedor {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 380px; height: 380px;
+}
+.ondas {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 380px; height: 380px; border-radius: 50%;
+  background: radial-gradient(circle, transparent 60%, rgba(0,150,255,0.1) 100%);
+  animation: ondas 4s ease-in-out infinite; z-index: -1;
+}
+.anillo-externo, .anillo-medio, .anillo-interno {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%); border-radius: 50%;
+  border: 2px solid transparent;
+  animation: girar 20s linear infinite;
+}
+.anillo-externo { width: 320px; height: 320px; border-top-color: #0099FF; }
+.anillo-medio { width: 260px; height: 260px; border-left-color: #40C0FF; animation-duration: 15s; animation-direction: reverse; }
+.anillo-interno { width: 200px; height: 200px; border-top-color: #80E0FF; animation-duration: 10s; }
+.centro-lira {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90px; height: 90px; border-radius: 50%;
+  background: radial-gradient(circle, #FFFFFF 0%, #40C0FF 70%);
+  box-shadow: 0 0 40px rgba(0,170,255,0.6);
+  transition: all 0.3s ease; cursor: pointer;
+}
+.lira-contenedor.activo .centro-lira {
+  box-shadow: 0 0 60px rgba(0,200,255,0.9); transform: translate(-50%, -50%) scale(1.1);
+}
+.lira-contenedor.activo .ondas { animation-duration: 2s; }
+
+@keyframes girar { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+@keyframes ondas { 0% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.15); } 100% { transform: translate(-50%, -50%) scale(1); } }
+
+.boton-flotante {
+  position: absolute; bottom: 85px; left: 50%;
+  transform: translateX(-50%);
+  width: 70px; height: 70px; border-radius: 50%;
+  background: rgba(0,50,120,0.8); border: 2px solid #40C0FF;
+  cursor: grab; z-index: 15; transition: all 0.15s ease;
+}
+.boton-flotante.activo { cursor: grabbing; box-shadow: 0 0 25px rgba(60,180,255,0.7); }
+.boton-anillo {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 42px; height: 42px; border-radius: 50%;
+  border: 2px solid #80E0FF; transition: all 0.3s ease;
+}
+.boton-interno {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 22px; height: 22px; border-radius: 50%;
+  background: #FFFFFF; box-shadow: 0 0 15px #FFFFFF;
+}
+
+.teclado {
+  position: absolute; bottom: 0; left: 0; width: 100%;
+  background: rgba(0,20,60,0.95); border-top: 1px solid rgba(80,180,255,0.3);
+  padding: 8px 5px; z-index: 20; display: none;
+}
+.teclado.activo { display: block; }
+.fila-teclas { display: flex; justify-content: center; gap: 4px; margin-bottom: 4px; }
+.tecla {
+  padding: 10px 12px; border-radius: 6px;
+  background: rgba(0,100,200,0.3); border: 1px solid rgba(100,200,255,0.3);
+  font-size: 16px; color: #FFFFFF; transition: all 0.1s ease;
+  cursor: pointer;
+}
+.tecla:active { background: #0088FF; }
+.tecla.espacio { width: 50%; }
+.tecla.enviar { background: rgba(0,150,80,0.5); border-color: rgba(0,255,150,0.4); }
+.tecla.borrar { background: rgba(150,50,50,0.5); border-color: rgba(255,100,100,0.4); }
+.caja-texto {
+  width: 95%; margin: 5px auto; padding: 8px;
+  background: rgba(0,30,80,0.9); border-radius: 6px;
+  color: #FFFFFF; min-height: 30px; font-size: 15px;
+}
+</style>
+</head>
+<body>
+
+<div class="fecha-hora" id="fecha"></div>
+
+<div class="barra-navegadores">
+  <div class="navegador">🦊 Firefox</div>
+  <div class="navegador">🌐 Chrome</div>
+  <div class="navegador">🔴 Opera</div>
+  <div class="navegador">🕐 Safari</div>
+  <div class="navegador">🦁 Brave</div>
+  <div class="navegador">🔷 Edge</div>
+  <div class="navegador">🌍 Tor</div>
+</div>
+
+<div class="lira-contenedor" id="lira">
+  <div class="ondas"></div>
+  <div class="anillo-externo"></div>
+  <div class="anillo-medio"></div>
+  <div class="anillo-interno"></div>
+  <div class="centro-lira"></div>
+</div>
+
+<div class="boton-flotante" id="botonLira">
+  <div class="boton-anillo"></div>
+  <div class="boton-interno"></div>
+</div>
+
+<div class="teclado" id="teclado">
+  <div class="fila-teclas">
+    <div class="tecla" data-tecla="Q">Q</div>
+    <div class="tecla" data-tecla="W">W</div>
+    <div class="tecla" data-tecla="E">E</div>
+    <div class="tecla" data-tecla="R">R</div>
+    <div class="tecla" data-tecla="T">T</div>
+    <div class="tecla" data-tecla="Y">Y</div>
+    <div class="tecla" data-tecla="U">U</div>
+    <div class="tecla" data-tecla="I">I</div>
+    <div class="tecla" data-tecla="O">O</div>
+    <div class="tecla" data-tecla="P">P</div>
+  </div>
+  <div class="fila-teclas">
+    <div class="tecla" data-tecla="A">A</div>
+    <div class="tecla" data-tecla="S">S</div>
+    <div class="tecla" data-tecla="D">D</div>
+    <div class="tecla" data-tecla="F">F</div>
+    <div class="tecla" data-tecla="G">G</div>
+    <div class="tecla" data-tecla="H">H</div>
+    <div class="tecla" data-tecla="J">J</div>
+    <div class="tecla" data-tecla="K">K</div>
+    <div class="tecla" data-tecla="L">L</div>
+  </div>
+  <div class="fila-teclas">
+    <div class="tecla" data-tecla="Z">Z</div>
+    <div class="tecla" data-tecla="X">X</div>
+    <div class="tecla" data-tecla="C">C</div>
+    <div class="tecla" data-tecla="V">V</div>
+    <div class="tecla" data-tecla="B">B</div>
+    <div class="tecla" data-tecla="N">N</div>
+    <div class="tecla" data-tecla="M">M</div>
+    <div class="tecla borrar">⌫</div>
+  </div>
+  <div class="fila-teclas">
+    <div class="tecla espacio" data-tecla=" "></div>
+    <div class="tecla enviar">ENVIAR</div>
+  </div>
+  <div class="caja-texto" id="cajaTexto"></div>
+</div>
+
+<script>
+const ahora = new Date();
+const opciones = { weekday:'long', day:'numeric', month:'long', hour:'2-digit', minute:'2-digit' };
+document.getElementById('fecha').textContent = ahora.toLocaleDateString('es-ES', opciones);
+
+const lira = document.getElementById('lira');
+const botonLira = document.getElementById('botonLira');
+const teclado = document.getElementById('teclado');
+const cajaTexto = document.getElementById('cajaTexto');
+let activo = false;
+let arrastrando = false;
+let offsetX, offsetY;
+
+function alternarLira() {
+  activo = !activo;
+  lira.classList.toggle('activo', activo);
+  botonLira.classList.toggle('activo', activo);
+  teclado.classList.toggle('activo', activo);
+}
+lira.addEventListener('click', alternarLira);
+botonLira.addEventListener('click', alternarLira);
+
+botonLira.addEventListener('mousedown', e => {
+  arrastrando = true;
+  offsetX = e.clientX - botonLira.getBoundingClientRect().left;
+  offsetY = e.clientY - botonLira.getBoundingClientRect().top;
+});
+document.addEventListener('mousemove', e => {
+  if(!arrastrando) return;
+  let x = e.clientX - offsetX;
+  let y = e.clientY - offsetY;
+  if(y < 80) y = 80;
+  if(y > window.innerHeight - 80) y = window.innerHeight - 80;
+  if(x < 0) x = 0;
+  if(x > window.innerWidth - 70) x = window.innerWidth - 70;
+  botonLira.style.left = x + 'px';
+  botonLira.style.top = y + 'px';
+  botonLira.style.transform = 'none';
+});
+document.addEventListener('mouseup', () => arrastrando = false);
+
+document.querySelectorAll('.tecla:not(.borrar):not(.enviar):not(.espacio)').forEach(t => {
+  t.addEventListener('click', () => cajaTexto.textContent += t.dataset.tecla);
+});
+document.querySelector('.tecla.espacio').addEventListener('click', () => cajaTexto.textContent += ' ');
+document.querySelector('.tecla.borrar').addEventListener('click', () => cajaTexto.textContent = cajaTexto.textContent.slice(0, -1));
+document.querySelector('.tecla.enviar').addEventListener('click', () => {
+  const texto = cajaTexto.textContent.trim();
+  if(texto) {
+    liraContestar(texto);
+    cajaTexto.textContent = '';
+  }
+});
+
+const ReconocimientoVoz = window.SpeechRecognition || window.webkitSpeechRecognition;
+if(ReconocimientoVoz) {
+  const reconocer = new ReconocimientoVoz();
+  reconocer.lang = 'es-ES';
+  reconocer.interimResults = false;
+  reconocer.onresult = e => {
+    const dicho = e.results[0][0].transcript;
+    cajaTexto.textContent = dicho;
+    liraContestar(dicho);
+  };
+
+  function hablar(texto) {
+    const voz = new SpeechSynthesisUtterance(texto);
+    voz.lang = 'es-ES'; voz.rate = 0.9; voz.pitch = 1;
+    window.speechSynthesis.speak(voz);
+  }
+
+  function liraContestar(mensaje) {
+    let respuesta = 'Entendido, estoy aquí para lo que necesites.';
+    const m = mensaje.toLowerCase();
+    if(m.includes('hola')) respuesta = 'Hola, soy Lira, tu asistente exclusiva. ¿En qué te ayudo hoy?';
+    if(m.includes('quién eres')) respuesta = 'Soy Lira, creada solo para ti, leal y lista para ayudarte en todo.';
+    if(m.includes('qué puedes hacer')) respuesta = 'Puedo escucharte, hablarte, ayudarte a crear y organizar todo lo que necesites.';
+    hablar(respuesta);
+  }
+
+  let vecesTocada = 0;
+  lira.addEventListener('click', () => {
+    if(!activo) return;
+    vecesTocada++;
+    setTimeout(() => vecesTocada = 0, 450);
+    if(vecesTocada === 1) reconocer.start();
+    if(vecesTocada === 2) alert('✅ Charla fluida activada');
+  });
+}
+</script>
+
+</body>
+</html>
+
