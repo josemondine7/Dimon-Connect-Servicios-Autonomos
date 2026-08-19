@@ -21,7 +21,7 @@ export default function HomeScreen() {
       />
 
       <Image
-        source={require('../assets/diamond_logo.png')}
+        source={require('../assets/dimon_logo.png')}
         style={styles.mapOverlay}
         resizeMode="cover"
       />
@@ -38,7 +38,7 @@ export default function HomeScreen() {
 
         <View style={styles.logoContainer}>
           <Image
-            source={require('../assets/diamond_logo.png')}
+            source={require('../assets/dimon_logo.png')}
             style={styles.logoImage}
             resizeMode="contain"
           />
