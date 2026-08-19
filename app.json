@@ -5,10 +5,10 @@
     "version": "1.0.0","platforms": ["ios", "android"],
 
     "orientation": "portrait",
-    "icon": "./assets/diamond_logo.png",
+    "icon": "./assets/dimon_logo.png",
     "userInterfaceStyle": "dark",
     "splash": {
-      "image": "./assets/diamond_logo.png",
+      "image": "./assets/dimon_logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#3454CC"
     },
