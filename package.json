@@ -33,5 +33,5 @@
   "devDependencies": {
     "@expo/cli": "^57.0.16",
     "expo-build-properties": "^57.0.12"
-  }
+  }, 
 }
