@@ -9,7 +9,7 @@
     "web": "expo start --web",
 "export:web": "expo export:web", 
 
- "build" :"npx expo export:web"
+ "build":"npx expo export --platform web --output-dir dist"
 
   },
   "dependencies": {
