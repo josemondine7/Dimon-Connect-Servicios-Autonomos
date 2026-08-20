@@ -9,7 +9,7 @@
     "web": "expo start --web",
 "export:web": "expo export:web", 
 
- "build":"npx expo export -p web"
+ "build":"expo export -p web"
 
   },
   "dependencies": {
