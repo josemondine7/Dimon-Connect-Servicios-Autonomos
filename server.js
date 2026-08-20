@@ -4,11 +4,11 @@ const app = express();
 const PORT = process.env.PORT || 10000;
 
 // Servir archivos desde la carpeta "público"
-app.use(express.static(path.join(__dirname, 'público')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Ruta principal → abre índice.html
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'público', 'índice.html'));
+  res.sendFile(path.join(__dirname, 'public', 'índice.html'));
 });
 
 app.listen(PORT, () => {
