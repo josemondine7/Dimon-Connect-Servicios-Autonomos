@@ -7,9 +7,9 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-"export:web": "expo export--platform all", 
+"export:web": "expo export":"web", 
 
- "build" :"npx expo export--platform all"
+ "build" :"npx expo export":"web"
 
   },
   "dependencies": {
