@@ -4,7 +4,7 @@
 // ==================================================
 
 // 📋 INFORMACIÓN OFICIAL — PÚBLICA Y TRANSPARENTE
-const ASOCIACION = {
+const plataforma = {
   nombre: "Dimon Connect",
   tipo: "Plataforma Mundial de Servicios Autónomos",
   pais: "Uruguay",
@@ -43,8 +43,8 @@ const ENV = {
 
 // ⚙️ CONFIGURACIÓN GENERAL
 const config = {
-  appName: ASOCIACION.nombre,
-  version: ASOCIACION.version,
+  appName: plataforma .nombre,
+  version: plataforma.version,
   region: "global",
   idiomaDefault: "es",
   asistenteVoz: true,
@@ -63,9 +63,9 @@ const config = {
   },
   servidor: {
     url: ENV.RENDER_URL,
-    dominio: ASOCIACION.dominio
+    dominio: plataforma.dominio
   },
-  asociacion: ASOCIACION
+  asociacion: plataforma
 };
 
 // 📱 PANTALLAS DE LA APLICACIÓN
@@ -92,7 +92,7 @@ const PANTALLAS = {
   Transacciones: {
     id: "transacciones",
     columnas: ["Fecha", "Servicio", "Monto", "Estado", "Comisión"],
-    reglasComision: ASOCIACION.pagos
+    reglasComision: plataforma.pagos
   },
   ChatLira: {
     id: "chat-lira",
@@ -103,10 +103,10 @@ const PANTALLAS = {
   },
   Reglas: {
     id: "reglas",
-    contenido: ASOCIACION
+    contenido: plataforma
   }
 };
 
 // Exportar para uso completo de la aplicación
-module.exports = { config, PANTALLAS, ASOCIACION };
+module.exports = { config, PANTALLAS, plataforma };
 https://www.canva.com/design/DAHS4hrqMR0/n83vPCgnKMKIMRtbgvcfPg/view?embed
