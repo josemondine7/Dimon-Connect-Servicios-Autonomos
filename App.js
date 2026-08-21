@@ -109,3 +109,4 @@ const PANTALLAS = {
 
 // Exportar para uso completo de la aplicación
 module.exports = { config, PANTALLAS, ASOCIACION };
+https://www.canva.com/design/DAHS4hrqMR0/n83vPCgnKMKIMRtbgvcfPg/view?embed
