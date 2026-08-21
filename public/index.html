@@ -1,67 +1,76 @@
-<  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Dimon Connect - Servicios Autónomos</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: sans-serif; }
-        .contenedor-principal { position: relative; width: 100%; }
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            background: #0D47A1;
+        }
+        .contenedor-total {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .canva-contenedor {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .canva-contenedor iframe {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border: none;
+        }
         .boton-capa {
             position: absolute;
-            z-index: 10;
+            z-index: 100;
             text-decoration: none;
             display: block;
             cursor: pointer;
-            background: transparent;
-            border: none;
-            width: 320px;
-            height: 80px;
+            width: 80%;
+            height: 75px;
             left: 50%;
             transform: translateX(-50%);
-        }
-        .boton-1 { top: 38%; }
-        .boton-2 { top: 50%; }
-        .boton-3 { top: 62%; }
-        .buscador-capa {
-            position: absolute;
-            z-index: 10;
-            width: 320px;
-            height: 50px;
-            left: 50%;
-            transform: translateX(-50%);
-            top: 28%;
             background: transparent;
             border: none;
-            pointer-events: none;
         }
-        .enlaces-inferiores {
-            position: absolute;
-            z-index: 10;
-            bottom: 20px;
-            left: 0;
-            right: 0;
-            text-align: center;
-        }
-        .enlaces-inferiores a {
-            color: white;
-            text-decoration: none;
-            margin: 0 8px;
-            font-size: 13px;
-        }
+        .boton-1 { top: 36%; }
+        .boton-2 { top: 48%; }
+        .boton-3 { top: 60%; }
     </style>
 </head>
 <body>
-<div class="contenedor-principal">
- div style="position: relative; width: 100%; height: 0; padding-top: 100.0000%;
- padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
- border-radius: 8px; will-change: transform;">
-  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-    src="https://www.canva.com/design/DAHS4hrqMR0/n83vPCgnKMKIMRtbgvcfPg/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-  </iframe>
+
+<div class="contenedor-total">
+
+    <div class="canva-contenedor">
+        <iframe loading="lazy" 
+            src="https://www.canva.com/design/DAHS4hrqMR0/n83vPCgnKMKIMRtbgvcfPg/view?embed" 
+            allowfullscreen="allowfullscreen" 
+            allow="fullscreen">
+        </iframe>
+    </div>
+
+    <a href="buscar.html" class="boton-capa boton-1"></a>
+    <a href="ofrecer.html" class="boton-capa boton-2"></a>
+    <a href="ofertas.html" class="boton-capa boton-3"></a>
+
 </div>
-<a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAHS4hrqMR0&#x2F;n83vPCgnKMKIMRtbgvcfPg&#x2F;view?utm_content=DAHS4hrqMR0&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">Diseño</a> de Jose Mondine
-</div>
+
 </body>
 </html>
