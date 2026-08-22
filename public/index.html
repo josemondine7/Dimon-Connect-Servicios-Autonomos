@@ -27,444 +27,293 @@
       background: #2B78FF;
       padding: 0 !important;
       margin: 0 !important;
-      overscroll-behavior: none;
     }
 
-    /* FONDO DE CANVA — MÁXIMA DEFINICIÓN, SIN BARRAS, SIN BORDES */
-    .fondo-canva {
+    /* FONDO — SOLO EL MAPA, LOGO Y TÍTULO */
+    .fondo {
       position: absolute;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
-      height: 100dvh;
+      width: 100%;
+      height: 100%;
       z-index: 1;
-      border: none;
-      margin: 0 !important;
-      padding: 0 !important;
-      overflow: hidden !important;
       background: #2B78FF;
     }
 
-    .fondo-canva iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
+    .fondo iframe {
       width: 100%;
       height: 100%;
-      border: none !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      transform: scale(1.08);
-      transform-origin: center center;
+      border: none;
+      transform: scale(1.05);
+      transform-origin: center top;
+      /* CORTAMOS TODO LO QUE ESTÁ ABAJO DEL TÍTULO en la imagen */
+      clip-path: inset(0 0 45% 0);
       image-rendering: -webkit-optimize-contrast;
       image-rendering: crisp-edges;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      overflow: hidden !important;
-      scrolling: no;
-      frameborder: 0 !important;
-      allowfullscreen: true;
     }
 
-    /* TAPAR BOTONES DIBUJADOS Y TEXTOS DE ABAJO DE LA IMAGEN */
-    .capa-tapadora {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 5;
-      pointer-events: none;
-    }
-
-    .tapa-botones {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 100%;
-      height: 45%;
-      background: transparent;
-      pointer-events: none;
-    }
-
-    .tapa-texto-abajo {
+    /* CAPA AZUL QUE TAPA TODO LO QUE SOBRA DE LA IMAGEN */
+    .tapa-inferior {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 18%;
-      background: linear-gradient(to top, #2B78FF 60%, transparent);
-      pointer-events: none;
+      height: 50%;
+      background: #2B78FF;
+      z-index: 2;
     }
 
-    /* BOTONES REALES — NÍTIDOS, POR ENCIMA, LOS ÚNICOS QUE SE VEN */
-    .capa-botones {
+    /* BOTONES REALES — ÚNICOS, NÍTIDOS, POR ENCIMA DE TODO */
+    .contenedor-botones {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       z-index: 10;
+      padding: 0 5%;
       pointer-events: none;
-      padding: 0 6%;
     }
 
-    .capa-botones a {
+    .contenedor-botones a {
       pointer-events: auto;
       position: absolute;
-      left: 6%;
-      right: 6%;
-      border-radius: 22px;
-      border: 2px solid rgba(255,255,255,0.75);
-      background: linear-gradient(180deg, rgba(53,75,185,0.9) 0%, rgba(38,57,173,0.9) 100%);
+      left: 5%;
+      right: 5%;
+      border-radius: 20px;
+      border: 2px solid rgba(255,255,255,0.7);
+      background: linear-gradient(180deg, rgba(52,78,196,0.95) 0%, rgba(35,54,168,0.95) 100%);
       box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,0.08),
-        0 0 20px rgba(110,249,255,0.15),
-        0 12px 28px rgba(0,0,0,0.18);
+        inset 0 0 0 1px rgba(255,255,255,0.1),
+        0 0 25px rgba(100,255,255,0.18),
+        0 10px 30px rgba(0,0,0,0.2);
       cursor: pointer;
       transition: all 0.15s ease;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
       color: white;
       font-weight: 800;
-      font-size: clamp(16px, 4.5vw, 20px);
-      letter-spacing: -0.02em;
+      font-size: clamp(15px, 4vw, 19px);
+      text-align: center;
       text-decoration: none;
       backdrop-filter: blur(4px);
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
     }
 
-    .capa-botones a::before {
+    .contenedor-botones a::before {
       content: '';
       position: absolute;
       left: 0;
       right: 0;
       top: 0;
-      height: 14px;
-      background: linear-gradient(180deg, rgba(124,255,255,0.6) 0%, rgba(124,255,255,0) 100%);
-      border-radius: 20px 20px 0 0;
-      pointer-events: none;
+      height: 12px;
+      background: linear-gradient(180deg, rgba(120,255,255,0.5) 0%, transparent 100%);
+      border-radius: 18px 18px 0 0;
     }
 
-    .capa-botones a:hover {
-      transform: translateY(-2px);
-      box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,0.12),
-        0 0 30px rgba(110,249,255,0.25),
-        0 14px 32px rgba(0,0,0,0.22);
-    }
-
-    .capa-botones a:active {
-      transform: translateY(1px) scale(0.99);
+    .contenedor-botones a:active {
+      transform: scale(0.985);
       box-shadow:
         inset 0 0 0 1px rgba(255,255,255,0.05),
-        0 0 10px rgba(110,249,255,0.1),
-        0 6px 14px rgba(0,0,0,0.12);
+        0 0 10px rgba(100,255,255,0.1);
     }
 
-    /* Posición exacta de cada botón */
+    /* Posición exacta — SIN DUPLICADOS */
     .btn-buscar {
-      top: 44%;
-      height: 58px;
-      background: rgba(255,255,255,0.12);
+      top: 46%;
+      height: 54px;
+      background: rgba(255,255,255,0.15);
       justify-content: flex-start;
       padding-left: 20px;
       border-radius: 50px;
       border: 1.5px solid rgba(255,255,255,0.5);
-      font-weight: 600;
+      font-weight: 500;
       font-size: 16px;
-      color: rgba(255,255,255,0.9);
     }
 
     .btn-buscar::before {
       content: 'Q';
-      position: relative;
       background: none;
       height: auto;
       border-radius: 0;
       margin-right: 10px;
       font-weight: 700;
-      font-size: 18px;
       opacity: 0.8;
     }
 
-    .btn-necesitas {
-      top: 54%;
-      height: 82px;
-    }
-
-    .btn-ofrecer {
-      top: 66.5%;
-      height: 62px;
-      background: linear-gradient(180deg, rgba(54,82,202,0.9) 0%, rgba(48,68,183,0.9) 100%);
-    }
+    .btn-necesitas { top: 54%; height: 78px; }
+    .btn-ofrecer { top: 65%; height: 58px; background: linear-gradient(180deg, rgba(58,86,210,0.95) 0%, rgba(45,65,190,0.95) 100%); }
 
     .btn-ofertas {
-      top: 77%;
-      height: 82px;
-      background: linear-gradient(180deg, rgba(49,75,194,0.9) 0%, rgba(38,57,173,0.9) 100%);
+      top: 74%;
+      height: 78px;
+      background: linear-gradient(180deg, rgba(48,72,190,0.95) 0%, rgba(30,48,155,0.95) 100%);
       justify-content: flex-start;
-      padding-left: 18px;
-      gap: 14px;
+      padding-left: 16px;
+      gap: 12px;
     }
 
-    /* Ícono de micrófono */
-    .icono-mic {
-      width: 52px;
-      height: 52px;
+    /* Ícono micrófono */
+    .mic-icon {
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
-      background: radial-gradient(circle at 50% 50%, rgba(119,255,255,0.5) 0%, rgba(119,255,255,0.15) 50%, transparent 70%);
-      border: 2px solid rgba(255,255,255,0.75);
+      background: radial-gradient(circle, rgba(120,255,255,0.4) 0%, rgba(80,200,255,0.1) 60%, transparent 70%);
+      border: 2px solid rgba(255,255,255,0.7);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      box-shadow: 0 0 18px rgba(111,249,255,0.35);
+      box-shadow: 0 0 15px rgba(100,255,255,0.3);
     }
 
-    .mic-simbolo {
-      width: 16px;
-      height: 22px;
-      border: 2.5px solid white;
+    .mic-icon span {
+      width: 14px;
+      height: 20px;
+      border: 2px solid white;
       border-bottom: none;
-      border-radius: 10px 10px 8px 8px;
+      border-radius: 8px 8px 6px 6px;
       position: relative;
     }
 
-    .mic-simbolo::after {
+    .mic-icon span::after {
       content: '';
       position: absolute;
-      bottom: -6px;
+      bottom: -5px;
       left: 50%;
       transform: translateX(-50%);
       width: 2px;
-      height: 6px;
+      height: 5px;
       background: white;
     }
 
-    .mic-simbolo::before {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 14px;
-      height: 2.5px;
-      background: white;
-      border-radius: 999px;
-    }
-
-    .texto-boton {
+    .btn-texto {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      text-align: left;
-      pointer-events: none;
+      line-height: 1.2;
     }
 
-    .texto-boton strong {
-      font-size: clamp(16px, 4.3vw, 20px);
-      line-height: 1.1;
-    }
+    .btn-texto strong { font-size: 18px; }
+    .btn-texto small { font-size: 12px; font-weight: 500; opacity: 0.85; }
 
-    .texto-boton span {
-      font-size: 13px;
-      font-weight: 600;
-      opacity: 0.9;
-      margin-top: 4px;
-    }
-
-    /* ENLACES CLICKEABLES DE ABAJO — Normas, Actualizaciones, Privacidad, Descargar */
-    .enlaces-abajo {
+    /* ENLACES DE ABAJO — ÚNICOS, CLICKEABLES, SIN DUPLICADOS */
+    .pie-pagina {
       position: absolute;
-      bottom: 20px;
+      bottom: 12px;
       left: 0;
       width: 100%;
       z-index: 15;
+      text-align: center;
+      padding: 0 15px;
+    }
+
+    .enlaces-superiores {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      gap: 12px 20px;
-      padding: 0 20px;
-      pointer-events: none;
+      flex-wrap: wrap;
+      gap: 0 15px;
+      margin-bottom: 10px;
     }
 
-    .enlaces-abajo a {
-      pointer-events: auto;
-      color: rgba(255,255,255,0.85);
+    .enlaces-superiores a {
+      color: rgba(255,255,255,0.8);
       font-size: 13px;
-      font-weight: 600;
       text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: all 0.2s ease;
+      transition: color 0.2s;
     }
 
-    .enlaces-abajo a:hover,
-    .enlaces-abajo a:active {
-      color: white;
-      border-bottom-color: rgba(255,255,255,0.5);
-    }
+    .enlaces-superiores a:hover { color: white; text-decoration: underline; }
 
-    .enlaces-abajo .separador {
+    .enlaces-superiores span {
       color: rgba(255,255,255,0.4);
       font-size: 12px;
-      pointer-events: none;
     }
 
     .enlace-descargar {
-      width: 100%;
-      text-align: center;
-      margin-top: 8px;
-      font-size: 14px !important;
-      font-weight: 700 !important;
-      color: rgba(200,255,255,0.95) !important;
+      color: rgba(180,255,255,0.95);
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
     }
 
-    /* OCULTAR TODO LO DE CANVA — marcas, lupa, puntitos, enlaces */
-    a[href*="canva.com"],
-    .enlace-canva,
-    [class*="canva-brand"],
-    [class*="watermark"],
-    [aria-label*="Canva"],
-    button[aria-label*="Zoom"],
-    button[aria-label*="Menu"],
-    .canva-ui,
-    .sc-ia-g,
-    .sc-ia-f {
-      display: none !important;
-      opacity: 0 !important;
-      pointer-events: none !important;
-      position: absolute !important;
-      z-index: -9999 !important;
-      width: 0 !important;
-      height: 0 !important;
-      overflow: hidden !important;
-    }
+    .enlace-descargar:hover { color: white; transform: scale(1.02); }
 
-    /* Sin barras de scroll */
-    ::-webkit-scrollbar {
-      display: none !important;
-      width: 0 !important;
-      height: 0 !important;
-    }
-    html {
-      scrollbar-width: none !important;
-      -ms-overflow-style: none !important;
-    }
+    /* OCULTAR TODO LO DE CANVA */
+    iframe { display: block; }
+    ::-webkit-scrollbar { display: none; }
   </style>
 </head>
 <body>
 
-  <!-- TU DISEÑO DE CANVA — FONDO NÍTIDO, SIN BARRAS -->
-  <div class="fondo-canva">
+  <!-- FONDO SOLO — mapa, logo, título → SIN botones ni textos de abajo -->
+  <div class="fondo">
     <iframe 
       loading="eager" 
       src="https://www.canva.com/design/DAHS8rnEpDE/GqUUO2CP1b7fRF3DGf8OBQ/view?embed" 
-      allowfullscreen="allowfullscreen" 
-      allow="fullscreen" 
+      allowfullscreen 
       scrolling="no"
-      frameborder="0"
-      style="overflow: hidden !important;">
+      frameborder="0">
     </iframe>
   </div>
 
-  <!-- CAPA TAPADORA — oculta botones y textos de la imagen -->
-  <div class="capa-tapadora">
-    <div class="tapa-botones"></div>
-    <div class="tapa-texto-abajo"></div>
-  </div>
+  <!-- TAPA AZUL QUE OCULTA TODO LO DE ABAJO DE LA IMAGEN -->
+  <div class="tapa-inferior"></div>
 
-  <!-- BOTONES REALES — NÍTIDOS, FUNCIONALES, POR ENCIMA -->
-  <div class="capa-botones">
-    <a href="#buscar" class="btn-buscar" aria-label="¿Qué servicio necesitas hoy?">
-      ¿Qué servicio necesitas hoy?
-    </a>
-
-    <a href="#necesitas" class="btn-necesitas" aria-label="¿Necesitás un servicio?">
-      ¿NECESITÁS UN SERVICIO?
-    </a>
-
-    <a href="#ofrecer" class="btn-ofrecer" aria-label="¿Querés ofrecer tus servicios?">
-      ¿Querés ofrecer tus servicios?
-    </a>
-
-    <a href="#ofertas" class="btn-ofertas" aria-label="Ofertas y Demandas">
-      <div class="icono-mic">
-        <div class="mic-simbolo"></div>
-      </div>
-      <div class="texto-boton">
+  <!-- BOTONES REALES — ÚNICOS, NÍTIDOS, SIN DUPLICADOS -->
+  <div class="contenedor-botones">
+    <a href="#buscar" class="btn-buscar">¿Qué servicio necesitas hoy?</a>
+    <a href="#necesitas" class="btn-necesitas">¿NECESITÁS UN SERVICIO?</a>
+    <a href="#ofrecer" class="btn-ofrecer">¿Querés ofrecer tus servicios?</a>
+    <a href="#ofertas" class="btn-ofertas">
+      <div class="mic-icon"><span></span></div>
+      <div class="btn-texto">
         <strong>Ofertas y Demandas</strong>
-        <span>Buscar servicios o publicar tu oferta</span>
+        <small>Buscar servicios o publicar tu oferta</small>
       </div>
     </a>
   </div>
 
-  <!-- ENLACES CLICKEABLES DE ABAJO — Normas, Actualizaciones, Privacidad, Descargar -->
-  <div class="enlaces-abajo">
-    <a href="#normas" id="link-normas">Normas y Seguridad</a>
-    <span class="separador">|</span>
-    <a href="#actualizaciones" id="link-actualizaciones">Actualizaciones</a>
-    <span class="separador">|</span>
-    <a href="#privacidad" id="link-privacidad">Política de Privacidad</a>
-    <a href="#descargar" class="enlace-descargar" id="link-descargar">⬇️ Descargar la aplicación Dimon Connect</a>
+  <!-- ENLACES DE ABAJO — ÚNICOS, CLICKEABLES -->
+  <div class="pie-pagina">
+    <div class="enlaces-superiores">
+      <a href="#normas">Normas y Seguridad</a>
+      <span>|</span>
+      <a href="#actualizaciones">Actualizaciones</a>
+      <span>|</span>
+      <a href="#privacidad">Política de Privacidad</a>
+    </div>
+    <a href="#descargar" class="enlace-descargar">⬇️ Descargar la aplicación Dimon Connect</a>
   </div>
 
   <!-- Anclas invisibles -->
-  <section id="buscar" style="position:absolute;top:0;opacity:0;pointer-events:none;"></section>
-  <section id="necesitas" style="position:absolute;top:0;opacity:0;pointer-events:none;"></section>
-  <section id="ofrecer" style="position:absolute;top:0;opacity:0;pointer-events:none;"></section>
-  <section id="ofertas" style="position:absolute;top:0;opacity:0;pointer-events:none;"></section>
-  <section id="normas" style="position:absolute;top:0;opacity:0;pointer-events:none;"></section>
-  <section id="actualizaciones" style="position:absolute;top:0;opacity:0;pointer-events:none;"></section>
-  <section id="privacidad" style="position:absolute;top:0;opacity:0;pointer-events:none;"></section>
-  <section id="descargar" style="position:absolute;top:0;opacity:0;pointer-events:none;"></section>
+  <section id="buscar" style="display:none;"></section>
+  <section id="necesitas" style="display:none;"></section>
+  <section id="ofrecer" style="display:none;"></section>
+  <section id="ofertas" style="display:none;"></section>
+  <section id="normas" style="display:none;"></section>
+  <section id="actualizaciones" style="display:none;"></section>
+  <section id="privacidad" style="display:none;"></section>
+  <section id="descargar" style="display:none;"></section>
 
   <script>
-    // Ocultar elementos de Canva que sobran
-    document.addEventListener('DOMContentLoaded', function() {
-      setTimeout(function() {
-        const iframes = document.querySelectorAll('iframe');
-        iframes.forEach(iframe => {
-          try {
-            const style = document.createElement('style');
-            style.textContent = `
-              * { overflow: hidden !important; }
-              html, body { overflow: hidden !important; margin:0 !important; padding:0 !important; }
-              .navigation, .toolbar, .header, .footer, .bar, .ui-controls, .zoom-controls, .menu-button,
-              [class*="nav"], [class*="bar"], [class*="toolbar"], [class*="control"],
-              button, a[href*="canva.com"], .watermark, .brand, .sc-ia-g, .sc-ia-f {
-                display: none !important;
-                opacity: 0 !important;
-                pointer-events: none !important;
-              }
-            `;
-            iframe.contentDocument.head.appendChild(style);
-          } catch(e) {
-            console.log('Estilo aplicado desde afuera');
-          }
-        });
-      }, 800);
-    });
-
-    // ACCIÓN DE BOTONES — funcionales
-    document.querySelectorAll('.capa-botones a').forEach(boton => {
-      boton.addEventListener('click', function(e) {
+    // Acción de botones
+    document.querySelectorAll('.contenedor-botones a').forEach(btn => {
+      btn.addEventListener('click', e => {
         e.preventDefault();
-        const texto = this.getAttribute('aria-label') || this.textContent.trim();
-        alert('✅ ' + texto + '\n\n¡Funciona perfectamente!');
+        alert('✅ ' + btn.textContent.trim() + '\n\n¡Funciona perfectamente!');
       });
     });
 
-    // ACCIÓN DE ENLACES DE ABAJO — clickeables
-    document.querySelectorAll('.enlaces-abajo a').forEach(enlace => {
-      enlace.addEventListener('click', function(e) {
+    // Acción de enlaces de abajo
+    document.querySelectorAll('.pie-pagina a').forEach(link => {
+      link.addEventListener('click', e => {
         e.preventDefault();
-        const texto = this.textContent.trim();
-        alert('📄 ' + texto + '\n\n¡Página lista para ver!');
+        alert('📄 ' + link.textContent.trim() + '\n\n¡Página lista!');
       });
     });
   </script>
