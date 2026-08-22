@@ -4,39 +4,46 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dimon Connect — Servicios Autónomos</title>
+
+  <!-- Font similar to the screenshot -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --bg1:#2d73ff;
-      --bg2:#2f6df0;
-      --bg3:#245ddf;
-      --bg4:#1f51cf;
-      --panel:#2d45b8;
-      --panel2:#314fca;
-      --panel3:#2740b3;
-      --cyan:#73f6ff;
-      --cyan2:#b5fdff;
+      --bg1:#2f74ff;
+      --bg2:#2d6cef;
+      --bg3:#245ee0;
+      --bg4:#214fcd;
+
+      --panel1:#354bb9;
+      --panel2:#3044b7;
+      --panel3:#2639ad;
+
+      --text-dark:#10205e;
+      --cyan:#5cecff;
+      --cyan2:#bffcff;
       --white:#ffffff;
-      --text:#10205e;
+
       --stroke:rgba(255,255,255,.78);
-      --soft:rgba(255,255,255,.14);
       --shadow:0 16px 40px rgba(0,0,0,.24);
-      --radius:28px;
-      --maxw:420px;
+      --maxw:430px;
     }
 
     *{ box-sizing:border-box; }
-    html,body{
+
+    html, body{
       margin:0;
       min-height:100%;
-      background: linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 30%, var(--bg3) 68%, var(--bg4) 100%);
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at 50% 8%, rgba(255,255,255,.12), transparent 28%),
+        linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 30%, var(--bg3) 70%, var(--bg4) 100%);
+      font-family:"Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:geometricPrecision;
       color:var(--white);
-      -webkit-font-smoothing: antialiased;
-      text-rendering: geometricPrecision;
-    }
-
-    body{
-      min-height:100vh;
+      overflow-x:hidden;
     }
 
     a{
@@ -45,158 +52,139 @@
     }
 
     .app{
-      min-height:100vh;
+      min-height:100dvh;
       width:100%;
       display:flex;
       justify-content:center;
       align-items:stretch;
-      overflow-x:hidden;
       background:
-        radial-gradient(circle at 50% 10%, rgba(255,255,255,.12), transparent 32%),
-        linear-gradient(180deg, #2f73ff 0%, #2d68ee 28%, #2358d8 72%, #1f4ecd 100%);
+        radial-gradient(circle at 50% 10%, rgba(255,255,255,.10), transparent 32%),
+        linear-gradient(180deg, #2f74ff 0%, #2d6cef 30%, #245ee0 72%, #214fcd 100%);
     }
 
     .screen{
       width:100%;
-      max-width: min(100vw, var(--maxw));
-      min-height:100vh;
+      max-width:min(100vw, var(--maxw));
+      min-height:100dvh;
       position:relative;
-      padding: 14px 16px 18px;
       overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      padding:14px 16px 18px;
       background:
-        radial-gradient(circle at 50% 8%, rgba(255,255,255,.10), transparent 28%),
+        radial-gradient(circle at 50% 6%, rgba(255,255,255,.12), transparent 28%),
         linear-gradient(180deg, #2f74ff 0%, #2d6cef 30%, #245ee0 72%, #214fcd 100%);
     }
 
-    @media (min-width: 700px){
+    @media (min-width:700px){
       .app{
         align-items:center;
-        padding: 24px 0;
+        padding:24px 0;
       }
       .screen{
-        min-height: calc(100vh - 48px);
-        border-radius: 28px;
-        box-shadow: var(--shadow);
+        min-height:calc(100dvh - 48px);
+        border-radius:28px;
+        box-shadow:var(--shadow);
       }
     }
 
+    .main{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+    }
+
+    /* TOP MAP */
     .world{
-      position:relative;
-      height: 300px;
-      margin-top: 2px;
-      margin-bottom: -18px;
-      filter: drop-shadow(0 0 8px rgba(118, 255, 255, .22));
+      height:305px;
+      margin:2px 0 -16px;
+      opacity:.96;
+      filter:drop-shadow(0 0 8px rgba(118,255,255,.20));
+      pointer-events:none;
+      user-select:none;
     }
 
     .world svg{
       width:100%;
       height:100%;
       display:block;
-      opacity:.96;
     }
 
+    /* BRAND */
     .brand{
       position:relative;
-      z-index:3;
+      z-index:2;
       text-align:center;
-      margin-top:-20px;
-      margin-bottom: 8px;
+      margin-top:-18px;
     }
 
     .logo{
-      width: 82px;
-      height: 82px;
-      margin: 0 auto 8px;
-      position:relative;
-      filter: drop-shadow(0 8px 18px rgba(0,0,0,.26));
-    }
-
-    .diamond{
-      position:absolute;
-      inset:0;
-      margin:auto;
-      width: 62px;
-      height: 62px;
-      transform: rotate(45deg);
-      border-radius: 10px;
-      background: linear-gradient(135deg, #101f63 0%, #2148b0 42%, #6af0ff 100%);
-      box-shadow: inset 0 0 0 2px rgba(255,255,255,.1);
-    }
-
-    .diamond::before{
-      content:"";
-      position:absolute;
-      inset:11px;
-      border-radius: 8px;
-      background: linear-gradient(135deg, #111d56 0%, #1d7fff 48%, #9af8ff 100%);
-      transform: rotate(0deg);
-    }
-
-    .diamond::after{
-      content:"";
-      position:absolute;
-      inset: 24px;
-      background: #0e225d;
-      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-      box-shadow: 0 0 0 1px rgba(255,255,255,.08);
+      width:84px;
+      height:84px;
+      margin:0 auto 6px;
+      display:grid;
+      place-items:center;
+      filter:drop-shadow(0 8px 18px rgba(0,0,0,.26));
     }
 
     .brand h1{
       margin:0;
-      font-size: clamp(28px, 7.5vw, 36px);
+      font-size:clamp(30px, 7.5vw, 36px);
       line-height:1;
-      font-weight: 800;
-      letter-spacing: -0.06em;
-      color: var(--text);
-      text-shadow: 0 1px 0 rgba(255,255,255,.15);
+      font-weight:800;
+      letter-spacing:-.06em;
+      color:var(--text-dark);
+      text-shadow:0 1px 0 rgba(255,255,255,.08);
     }
+
     .brand h1 .cyan{
-      color:#5ef0ff;
+      color:var(--cyan);
     }
 
     .brand p{
-      margin: 6px 0 0;
-      font-size: clamp(13px, 3.6vw, 16px);
-      font-weight: 500;
-      color: rgba(255,255,255,.92);
-      text-shadow: 0 1px 0 rgba(0,0,0,.12);
+      margin:6px 0 0;
+      font-size:clamp(13px, 3.6vw, 16px);
+      font-weight:500;
+      color:rgba(255,255,255,.92);
+      text-shadow:0 1px 0 rgba(0,0,0,.12);
     }
 
+    /* SEARCH */
     .search{
-      margin-top: 18px;
-      height: 52px;
-      border-radius: 999px;
-      border: 2px solid rgba(255,255,255,.75);
-      background: rgba(26,72,196,.28);
+      margin-top:18px;
+      height:52px;
+      border-radius:999px;
+      border:2px solid rgba(255,255,255,.74);
+      background:rgba(26,72,196,.28);
       display:flex;
       align-items:center;
-      gap: 10px;
-      padding: 0 16px;
+      gap:10px;
+      padding:0 16px;
       box-shadow:
-        0 0 18px rgba(110, 249, 255, .08),
-        inset 0 0 0 1px rgba(255,255,255,.04);
+        0 0 18px rgba(110,249,255,.08),
+        inset 0 0 0 1px rgba(255,255,255,.03);
     }
 
     .search .icon{
-      width: 18px;
-      height: 18px;
-      border: 2px solid #fff;
-      border-radius: 50%;
+      width:18px;
+      height:18px;
+      border:2px solid #fff;
+      border-radius:50%;
       position:relative;
       flex:0 0 auto;
-      opacity:.97;
+      opacity:.98;
     }
+
     .search .icon::after{
       content:"";
       position:absolute;
-      width: 9px;
-      height: 2px;
+      width:9px;
+      height:2px;
       background:#fff;
       border-radius:2px;
       right:-6px;
       bottom:-4px;
-      transform: rotate(45deg);
-      transform-origin:center;
+      transform:rotate(45deg);
     }
 
     .search input{
@@ -205,44 +193,48 @@
       outline:none;
       background:transparent;
       color:#fff;
-      font-size: clamp(14px, 3.8vw, 16px);
+      font-size:clamp(14px, 3.8vw, 16px);
       font-weight:600;
-      letter-spacing: -.01em;
-    }
-    .search input::placeholder{
-      color: rgba(255,255,255,.96);
+      letter-spacing:-.01em;
+      -webkit-appearance:none;
+      appearance:none;
     }
 
+    .search input::placeholder{
+      color:rgba(255,255,255,.96);
+    }
+
+    /* ACTIONS */
     .actions{
-      margin-top: 14px;
+      margin-top:14px;
       display:grid;
-      gap: 10px;
+      gap:10px;
     }
 
     .cta{
       position:relative;
       display:block;
       width:100%;
-      border-radius: 22px;
-      border: 2px solid rgba(255,255,255,.75);
+      border-radius:22px;
+      border:2px solid rgba(255,255,255,.75);
       overflow:hidden;
       text-align:center;
       box-shadow:
         inset 0 0 0 1px rgba(255,255,255,.08),
         0 12px 28px rgba(0,0,0,.18);
-      transition: transform .16s ease, filter .16s ease, box-shadow .16s ease;
-      user-select:none;
-      -webkit-tap-highlight-color: transparent;
+      transition:transform .16s ease, filter .16s ease, box-shadow .16s ease;
+      -webkit-tap-highlight-color:transparent;
+      isolation:isolate;
     }
 
     .cta:hover{
-      transform: translateY(-1px);
-      filter: brightness(1.03);
+      transform:translateY(-1px);
+      filter:brightness(1.03);
     }
 
     .cta:active{
-      transform: translateY(1px) scale(.995);
-      filter: brightness(.98);
+      transform:translateY(1px) scale(.996);
+      filter:brightness(.98);
     }
 
     .cta::before{
@@ -251,139 +243,136 @@
       left:0;
       right:0;
       top:0;
-      height: 14px;
-      background: linear-gradient(180deg, rgba(125,255,255,.98), rgba(125,255,255,.15));
+      height:14px;
+      background:linear-gradient(180deg, rgba(124,255,255,.98), rgba(124,255,255,.18));
       opacity:.95;
-      filter: blur(.2px);
+      z-index:0;
+      pointer-events:none;
+    }
+
+    .cta > *{
+      position:relative;
+      z-index:1;
     }
 
     .cta.primary{
-      min-height: 78px;
-      background: linear-gradient(180deg, #354bb9 0%, #293eb0 100%);
+      min-height:78px;
+      background:linear-gradient(180deg, #354bb9 0%, #293eb0 100%);
     }
 
     .cta.secondary{
-      min-height: 52px;
-      background: linear-gradient(180deg, #3652ca 0%, #3044b7 100%);
+      min-height:52px;
+      background:linear-gradient(180deg, #3652ca 0%, #3044b7 100%);
     }
 
     .cta.demand{
-      min-height: 88px;
-      background: linear-gradient(180deg, #314bc2 0%, #2639ad 100%);
+      min-height:88px;
+      background:linear-gradient(180deg, #314bc2 0%, #2639ad 100%);
       display:flex;
       align-items:center;
       justify-content:flex-start;
       text-align:left;
-      padding: 14px 14px 14px 13px;
-      gap: 12px;
+      padding:14px 14px 14px 13px;
+      gap:12px;
     }
 
     .cta-content{
-      position:relative;
-      z-index:1;
       width:100%;
-      padding: 18px 12px 14px;
+      padding:18px 12px 14px;
     }
 
     .cta.primary .cta-content{
-      padding-top: 20px;
+      padding-top:20px;
     }
 
     .cta.secondary .cta-content{
-      padding-top: 12px;
-      padding-bottom: 12px;
+      padding-top:12px;
+      padding-bottom:12px;
     }
 
     .cta strong{
       display:block;
-      font-size: clamp(16px, 4.3vw, 20px);
-      line-height: 1.05;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
+      font-size:clamp(16px, 4.3vw, 20px);
+      line-height:1.05;
+      font-weight:800;
+      color:#fff;
+      letter-spacing:-.02em;
+    }
+
+    .cta.primary strong{
+      text-transform:uppercase;
     }
 
     .cta.secondary strong{
-      font-size: clamp(15px, 4vw, 18px);
       text-transform:none;
+      font-size:clamp(15px, 4vw, 18px);
     }
 
     .cta span{
       display:block;
-      margin-top: 7px;
-      font-size: clamp(12px, 3.4vw, 15px);
+      margin-top:7px;
+      font-size:clamp(12px, 3.4vw, 15px);
       font-weight:500;
-      color: rgba(255,255,255,.95);
+      color:rgba(255,255,255,.95);
     }
 
+    /* MIC ICON */
     .mic-circle{
       flex:0 0 auto;
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
+      width:52px;
+      height:52px;
+      border-radius:50%;
       position:relative;
       display:grid;
       place-items:center;
       background:
-        radial-gradient(circle at 50% 50%, rgba(119,255,255,.8) 0%, rgba(119,255,255,.26) 47%, rgba(255,255,255,.05) 68%, rgba(255,255,255,.03) 100%);
+        radial-gradient(circle at 50% 50%, rgba(119,255,255,.80) 0%, rgba(119,255,255,.27) 47%, rgba(255,255,255,.06) 69%, rgba(255,255,255,.03) 100%);
       box-shadow:
         0 0 18px rgba(111,249,255,.42),
         inset 0 0 0 2px rgba(255,255,255,.72);
-      z-index:1;
+      filter:drop-shadow(0 0 10px rgba(122,255,255,.18));
     }
+
     .mic-circle::before{
       content:"";
       position:absolute;
-      inset: -1px;
+      inset:-1px;
       border-radius:50%;
-      border: 8px solid rgba(115,246,255,.15);
-      filter: blur(1px);
+      border:8px solid rgba(115,246,255,.14);
+      filter:blur(1px);
     }
+
     .mic{
+      width:16px;
+      height:22px;
+      border:2.5px solid #fff;
+      border-top-width:3px;
+      border-bottom-left-radius:10px;
+      border-bottom-right-radius:10px;
+      border-top-left-radius:8px;
+      border-top-right-radius:8px;
       position:relative;
-      width: 16px;
-      height: 22px;
-      border: 2.5px solid #fff;
-      border-top-width: 3px;
-      border-bottom-left-radius: 10px;
-      border-bottom-right-radius: 10px;
-      border-top-left-radius: 8px;
-      border-top-right-radius: 8px;
-      background: transparent;
+      background:transparent;
     }
-    .mic::before{
-      content:"";
-      position:absolute;
-      left:50%;
-      top:-7px;
-      transform:translateX(-50%);
-      width: 9px;
-      height: 14px;
-      border: 2.5px solid #fff;
-      border-bottom:none;
-      border-top-left-radius: 999px;
-      border-top-right-radius: 999px;
-      clip-path: inset(0 0 50% 0);
-      display:none;
-    }
+
     .mic-stem{
       position:absolute;
       left:50%;
       bottom:-6px;
       transform:translateX(-50%);
-      width: 2px;
-      height: 6px;
+      width:2px;
+      height:6px;
       background:#fff;
-      border-radius: 2px;
+      border-radius:2px;
     }
+
     .mic-base{
       position:absolute;
       left:50%;
       bottom:-10px;
       transform:translateX(-50%);
-      width: 14px;
-      height: 2.5px;
+      width:14px;
+      height:2.5px;
       background:#fff;
       border-radius:999px;
     }
@@ -391,37 +380,39 @@
     .cta.demand .cta-content{
       padding:0;
     }
+
     .cta.demand .title{
-      font-size: clamp(16px, 4.3vw, 20px);
-      font-weight: 800;
-      line-height: 1.05;
+      margin:0;
+      font-size:clamp(16px, 4.3vw, 20px);
+      font-weight:800;
+      line-height:1.05;
       color:#fff;
-      margin: 0;
       letter-spacing:-.02em;
     }
+
     .cta.demand .desc{
-      margin-top: 7px;
-      font-size: clamp(12px, 3.4vw, 15px);
+      margin-top:7px;
+      font-size:clamp(12px, 3.4vw, 15px);
       font-weight:500;
-      color: rgba(255,255,255,.95);
+      color:rgba(255,255,255,.95);
     }
 
+    /* FOOTER */
     .footer{
-      margin-top: 16px;
+      margin-top:auto;
+      padding-top:16px;
       text-align:center;
-      padding-bottom: 2px;
-      position:relative;
       z-index:2;
     }
 
     .footer-links{
       display:flex;
       justify-content:space-between;
-      gap: 8px;
+      gap:8px;
       align-items:center;
-      font-size: 10px;
-      line-height: 1.2;
-      color: rgba(255,255,255,.92);
+      font-size:10px;
+      line-height:1.2;
+      color:rgba(255,255,255,.92);
       white-space:nowrap;
     }
 
@@ -433,89 +424,45 @@
 
     .download{
       display:block;
-      margin-top: 8px;
-      font-size: 10px;
-      color: rgba(255,255,255,.92);
+      margin-top:8px;
+      font-size:10px;
+      color:rgba(255,255,255,.92);
     }
 
     .brandmark{
-      margin-top: 6px;
+      margin-top:6px;
       text-align:right;
-      font-size: 12px;
-      font-weight: 700;
+      font-size:12px;
+      font-weight:700;
       opacity:.98;
       color:#fff;
     }
 
     .home-indicator{
-      margin: 10px auto 0;
-      width: 186px;
-      height: 3px;
+      margin:10px auto 0;
+      width:186px;
+      height:3px;
       border-radius:999px;
-      background: rgba(255,255,255,.28);
+      background:rgba(255,255,255,.28);
     }
 
-    .section-target{
-      scroll-margin-top: 20px;
-      padding: 22px 16px;
-      max-width: 900px;
-      margin: 0 auto;
-      color:#fff;
-    }
-
-    .section-target h2{
-      margin: 0 0 8px;
-      font-size: 22px;
-      font-weight: 800;
-    }
-    .section-target p{
-      margin: 0;
-      opacity:.92;
-      line-height:1.5;
-    }
-
-    .viewport-fit{
-      min-height: 100dvh;
-      display:flex;
-      flex-direction:column;
-    }
-
-    .grow{
-      flex:1 1 auto;
-    }
-
-    @media (min-width: 430px){
-      .world{ height: 320px; }
-      .cta.demand{ min-height: 92px; }
-    }
-
-    @media (min-width: 700px){
-      :root{ --maxw: 430px; }
+    @media (max-width:360px){
       .screen{
-        padding: 16px 18px 18px;
+        padding-left:14px;
+        padding-right:14px;
       }
-    }
-
-    @media (min-width: 900px){
-      .app{
-        padding: 0 18px;
-      }
-      .screen{
-        width: min(100%, 450px);
-      }
-    }
-
-    @media (max-width: 360px){
       .footer-links{
-        font-size: 9px;
+        font-size:9px;
       }
     }
   </style>
 </head>
+
 <body>
-  <div class="app">
-    <main class="screen viewport-fit" role="main" aria-label="Pantalla principal Dimon Connect">
-      <div class="grow">
+  <main class="app">
+    <section class="screen" aria-label="Pantalla principal Dimon Connect">
+      <div class="main">
+        <!-- MAPA DEL MUNDO -->
         <div class="world" aria-hidden="true">
           <svg viewBox="0 0 1080 520" preserveAspectRatio="xMidYMid slice">
             <defs>
@@ -528,65 +475,98 @@
               </filter>
             </defs>
 
-            <rect width="1080" height="520" fill="transparent"/>
+            <g filter="url(#dotGlow)" fill="#bffcff" opacity="0.96">
+              <!-- North America -->
+              <circle cx="120" cy="142" r="3"/><circle cx="142" cy="132" r="3"/><circle cx="164" cy="124" r="3"/><circle cx="186" cy="116" r="3"/>
+              <circle cx="208" cy="110" r="3"/><circle cx="230" cy="106" r="3"/><circle cx="252" cy="102" r="3"/><circle cx="274" cy="100" r="3"/>
+              <circle cx="296" cy="104" r="3"/><circle cx="316" cy="112" r="3"/><circle cx="332" cy="124" r="3"/><circle cx="344" cy="138" r="3"/>
+              <circle cx="332" cy="150" r="3"/><circle cx="312" cy="156" r="3"/><circle cx="292" cy="162" r="3"/><circle cx="272" cy="166" r="3"/>
+              <circle cx="252" cy="170" r="3"/><circle cx="232" cy="173" r="3"/><circle cx="212" cy="170" r="3"/><circle cx="192" cy="164" r="3"/>
+              <circle cx="172" cy="158" r="3"/><circle cx="152" cy="150" r="3"/><circle cx="132" cy="146" r="3"/>
+              <circle cx="118" cy="176" r="3"/><circle cx="138" cy="178" r="3"/><circle cx="158" cy="180" r="3"/><circle cx="178" cy="183" r="3"/>
+              <circle cx="198" cy="186" r="3"/><circle cx="218" cy="189" r="3"/><circle cx="238" cy="191" r="3"/><circle cx="258" cy="192" r="3"/>
+              <circle cx="278" cy="191" r="3"/><circle cx="298" cy="188" r="3"/><circle cx="318" cy="182" r="3"/>
 
-            <g filter="url(#dotGlow)" fill="#b8fbff" opacity="0.95">
-              <circle cx="125" cy="145" r="3"/><circle cx="145" cy="135" r="3"/><circle cx="165" cy="125" r="3"/><circle cx="185" cy="118" r="3"/>
-              <circle cx="205" cy="110" r="3"/><circle cx="225" cy="106" r="3"/><circle cx="245" cy="102" r="3"/><circle cx="265" cy="98" r="3"/>
-              <circle cx="285" cy="104" r="3"/><circle cx="305" cy="112" r="3"/><circle cx="320" cy="122" r="3"/><circle cx="332" cy="134" r="3"/>
-              <circle cx="314" cy="146" r="3"/><circle cx="296" cy="151" r="3"/><circle cx="278" cy="156" r="3"/><circle cx="260" cy="160" r="3"/>
-              <circle cx="242" cy="165" r="3"/><circle cx="224" cy="168" r="3"/><circle cx="206" cy="165" r="3"/><circle cx="188" cy="160" r="3"/>
-              <circle cx="170" cy="155" r="3"/><circle cx="152" cy="150" r="3"/>
-              <circle cx="122" cy="175" r="3"/><circle cx="142" cy="176" r="3"/><circle cx="162" cy="178" r="3"/><circle cx="182" cy="181" r="3"/>
-              <circle cx="202" cy="184" r="3"/><circle cx="222" cy="188" r="3"/><circle cx="242" cy="190" r="3"/><circle cx="262" cy="191" r="3"/>
-              <circle cx="282" cy="189" r="3"/><circle cx="302" cy="186" r="3"/><circle cx="322" cy="180" r="3"/>
-              <circle cx="286" cy="225" r="3"/><circle cx="300" cy="232" r="3"/><circle cx="314" cy="240" r="3"/><circle cx="327" cy="248" r="3"/>
-              <circle cx="339" cy="258" r="3"/><circle cx="332" cy="272" r="3"/><circle cx="324" cy="286" r="3"/><circle cx="317" cy="300" r="3"/>
-              <circle cx="309" cy="316" r="3"/><circle cx="300" cy="334" r="3"/><circle cx="292" cy="350" r="3"/><circle cx="286" cy="370" r="3"/>
-              <circle cx="278" cy="390" r="3"/><circle cx="268" cy="407" r="3"/>
-              <circle cx="497" cy="92" r="3"/><circle cx="516" cy="88" r="3"/><circle cx="535" cy="86" r="3"/><circle cx="554" cy="86" r="3"/>
-              <circle cx="573" cy="88" r="3"/><circle cx="592" cy="91" r="3"/><circle cx="611" cy="96" r="3"/><circle cx="629" cy="102" r="3"/>
-              <circle cx="612" cy="115" r="3"/><circle cx="593" cy="118" r="3"/><circle cx="575" cy="121" r="3"/><circle cx="556" cy="120" r="3"/>
-              <circle cx="538" cy="118" r="3"/><circle cx="520" cy="114" r="3"/><circle cx="503" cy="108" r="3"/>
-              <circle cx="551" cy="140" r="3"/><circle cx="566" cy="145" r="3"/><circle cx="581" cy="152" r="3"/><circle cx="596" cy="161" r="3"/>
-              <circle cx="609" cy="173" r="3"/><circle cx="616" cy="188" r="3"/><circle cx="615" cy="205" r="3"/><circle cx="611" cy="222" r="3"/>
-              <circle cx="606" cy="239" r="3"/><circle cx="599" cy="255" r="3"/><circle cx="592" cy="272" r="3"/><circle cx="582" cy="289" r="3"/>
-              <circle cx="571" cy="305" r="3"/><circle cx="558" cy="318" r="3"/><circle cx="547" cy="308" r="3"/><circle cx="540" cy="292" r="3"/>
-              <circle cx="535" cy="274" r="3"/><circle cx="532" cy="256" r="3"/><circle cx="531" cy="238" r="3"/><circle cx="534" cy="219" r="3"/>
-              <circle cx="538" cy="202" r="3"/><circle cx="542" cy="185" r="3"/><circle cx="545" cy="168" r="3"/>
-              <circle cx="657" cy="105" r="3"/><circle cx="677" cy="108" r="3"/><circle cx="697" cy="112" r="3"/><circle cx="717" cy="116" r="3"/>
-              <circle cx="737" cy="120" r="3"/><circle cx="757" cy="124" r="3"/><circle cx="777" cy="129" r="3"/><circle cx="797" cy="133" r="3"/>
-              <circle cx="817" cy="138" r="3"/><circle cx="837" cy="144" r="3"/><circle cx="857" cy="149" r="3"/><circle cx="877" cy="150" r="3"/>
-              <circle cx="897" cy="146" r="3"/><circle cx="917" cy="142" r="3"/><circle cx="937" cy="138" r="3"/><circle cx="957" cy="136" r="3"/>
-              <circle cx="977" cy="132" r="3"/>
+              <!-- Central America / South America -->
+              <circle cx="286" cy="225" r="3"/><circle cx="300" cy="232" r="3"/><circle cx="314" cy="240" r="3"/><circle cx="326" cy="248" r="3"/>
+              <circle cx="338" cy="258" r="3"/><circle cx="332" cy="272" r="3"/><circle cx="324" cy="286" r="3"/><circle cx="316" cy="300" r="3"/>
+              <circle cx="308" cy="316" r="3"/><circle cx="300" cy="334" r="3"/><circle cx="292" cy="352" r="3"/><circle cx="284" cy="370" r="3"/>
+              <circle cx="276" cy="388" r="3"/><circle cx="266" cy="404" r="3"/><circle cx="258" cy="420" r="3"/><circle cx="250" cy="436" r="3"/>
+
+              <!-- Europe -->
+              <circle cx="498" cy="90" r="3"/><circle cx="518" cy="87" r="3"/><circle cx="538" cy="85" r="3"/><circle cx="558" cy="85" r="3"/>
+              <circle cx="578" cy="87" r="3"/><circle cx="598" cy="91" r="3"/><circle cx="618" cy="96" r="3"/><circle cx="636" cy="102" r="3"/>
+              <circle cx="620" cy="116" r="3"/><circle cx="602" cy="120" r="3"/><circle cx="584" cy="122" r="3"/><circle cx="566" cy="121" r="3"/>
+              <circle cx="548" cy="118" r="3"/><circle cx="530" cy="114" r="3"/><circle cx="512" cy="108" r="3"/>
+
+              <!-- Africa -->
+              <circle cx="552" cy="142" r="3"/><circle cx="566" cy="146" r="3"/><circle cx="580" cy="152" r="3"/><circle cx="594" cy="160" r="3"/>
+              <circle cx="608" cy="170" r="3"/><circle cx="616" cy="184" r="3"/><circle cx="618" cy="200" r="3"/><circle cx="616" cy="216" r="3"/>
+              <circle cx="612" cy="232" r="3"/><circle cx="607" cy="248" r="3"/><circle cx="600" cy="264" r="3"/><circle cx="592" cy="280" r="3"/>
+              <circle cx="582" cy="296" r="3"/><circle cx="570" cy="308" r="3"/><circle cx="558" cy="318" r="3"/><circle cx="548" cy="306" r="3"/>
+              <circle cx="540" cy="290" r="3"/><circle cx="535" cy="274" r="3"/><circle cx="532" cy="258" r="3"/><circle cx="531" cy="242" r="3"/>
+              <circle cx="532" cy="226" r="3"/><circle cx="534" cy="210" r="3"/><circle cx="538" cy="194" r="3"/><circle cx="542" cy="178" r="3"/>
+
+              <!-- Asia -->
+              <circle cx="658" cy="106" r="3"/><circle cx="678" cy="109" r="3"/><circle cx="698" cy="113" r="3"/><circle cx="718" cy="117" r="3"/>
+              <circle cx="738" cy="121" r="3"/><circle cx="758" cy="125" r="3"/><circle cx="778" cy="130" r="3"/><circle cx="798" cy="135" r="3"/>
+              <circle cx="818" cy="140" r="3"/><circle cx="838" cy="145" r="3"/><circle cx="858" cy="149" r="3"/><circle cx="878" cy="150" r="3"/>
+              <circle cx="898" cy="146" r="3"/><circle cx="918" cy="142" r="3"/><circle cx="938" cy="138" r="3"/><circle cx="958" cy="135" r="3"/>
+              <circle cx="978" cy="132" r="3"/>
               <circle cx="668" cy="148" r="3"/><circle cx="688" cy="151" r="3"/><circle cx="708" cy="154" r="3"/><circle cx="728" cy="157" r="3"/>
               <circle cx="748" cy="160" r="3"/><circle cx="768" cy="163" r="3"/><circle cx="788" cy="166" r="3"/><circle cx="808" cy="170" r="3"/>
               <circle cx="828" cy="175" r="3"/><circle cx="848" cy="180" r="3"/><circle cx="868" cy="186" r="3"/><circle cx="888" cy="193" r="3"/>
-              <circle cx="908" cy="201" r="3"/><circle cx="928" cy="208" r="3"/><circle cx="948" cy="215" r="3"/>
-              <circle cx="687" cy="198" r="3"/><circle cx="707" cy="201" r="3"/><circle cx="727" cy="204" r="3"/><circle cx="747" cy="207" r="3"/>
-              <circle cx="767" cy="210" r="3"/><circle cx="787" cy="214" r="3"/><circle cx="807" cy="218" r="3"/><circle cx="827" cy="222" r="3"/>
-              <circle cx="847" cy="228" r="3"/><circle cx="867" cy="234" r="3"/><circle cx="887" cy="240" r="3"/><circle cx="907" cy="246" r="3"/>
-              <circle cx="927" cy="252" r="3"/><circle cx="947" cy="258" r="3"/><circle cx="967" cy="264" r="3"/>
+              <circle cx="908" cy="200" r="3"/><circle cx="928" cy="208" r="3"/><circle cx="948" cy="215" r="3"/><circle cx="968" cy="222" r="3"/>
+              <circle cx="688" cy="198" r="3"/><circle cx="708" cy="201" r="3"/><circle cx="728" cy="204" r="3"/><circle cx="748" cy="207" r="3"/>
+              <circle cx="768" cy="210" r="3"/><circle cx="788" cy="214" r="3"/><circle cx="808" cy="218" r="3"/><circle cx="828" cy="222" r="3"/>
+              <circle cx="848" cy="228" r="3"/><circle cx="868" cy="234" r="3"/><circle cx="888" cy="240" r="3"/><circle cx="908" cy="246" r="3"/>
+              <circle cx="928" cy="252" r="3"/><circle cx="948" cy="258" r="3"/><circle cx="968" cy="264" r="3"/>
+
+              <!-- Oceania -->
               <circle cx="794" cy="310" r="3"/><circle cx="814" cy="304" r="3"/><circle cx="834" cy="300" r="3"/><circle cx="854" cy="302" r="3"/>
-              <circle cx="874" cy="308" r="3"/><circle cx="894" cy="316" r="3"/><circle cx="914" cy="324" r="3"/><circle cx="834" cy="330" r="3"/>
-              <circle cx="854" cy="336" r="3"/><circle cx="874" cy="342" r="3"/>
+              <circle cx="874" cy="308" r="3"/><circle cx="894" cy="316" r="3"/><circle cx="914" cy="324" r="3"/>
+              <circle cx="834" cy="330" r="3"/><circle cx="854" cy="336" r="3"/><circle cx="874" cy="342" r="3"/>
             </g>
           </svg>
         </div>
 
-        <section class="brand" aria-label="Marca">
+        <!-- BRAND -->
+        <section class="brand" aria-label="Marca Dimon Connect">
           <div class="logo" aria-hidden="true">
-            <div class="diamond"></div>
+            <svg width="84" height="84" viewBox="0 0 84 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="outerGrad" x1="14" y1="14" x2="70" y2="70" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#0d1f5f"/>
+                  <stop offset="0.45" stop-color="#234ab3"/>
+                  <stop offset="1" stop-color="#6af2ff"/>
+                </linearGradient>
+                <linearGradient id="innerGrad" x1="26" y1="26" x2="58" y2="58" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#101b58"/>
+                  <stop offset="0.45" stop-color="#1d7fff"/>
+                  <stop offset="1" stop-color="#9af8ff"/>
+                </linearGradient>
+              </defs>
+
+              <g transform="translate(42 42) rotate(45)">
+                <rect x="-24" y="-24" width="48" height="48" rx="8" fill="url(#outerGrad)"/>
+                <rect x="-15" y="-15" width="30" height="30" rx="6" fill="url(#innerGrad)"/>
+                <path d="M0 -18L18 0L0 18L-18 0Z" fill="#0b1d54" opacity=".35"/>
+                <path d="M0 -11L11 0L0 11L-11 0Z" fill="#68f3ff" opacity=".86"/>
+              </g>
+            </svg>
           </div>
+
           <h1>Dimon <span class="cyan">Connect</span></h1>
           <p>Servicios Autónomos</p>
         </section>
 
-        <form class="search" onsubmit="return false" role="search" aria-label="Buscar servicio">
+        <!-- SEARCH -->
+        <form class="search" role="search" onsubmit="return false" aria-label="Buscar servicio">
           <span class="icon" aria-hidden="true"></span>
           <input type="text" placeholder="¿Qué servicio necesitas hoy?" aria-label="¿Qué servicio necesitas hoy?" />
         </form>
 
+        <!-- BUTTONS -->
         <section class="actions" aria-label="Acciones principales">
           <a class="cta primary" href="#servicios" aria-label="Necesitás un servicio">
             <div class="cta-content">
@@ -603,10 +583,11 @@
 
           <a class="cta demand" href="#ofertas-demandas" aria-label="Ofertas y Demandas">
             <div class="mic-circle" aria-hidden="true">
-              <div class="mic">
-                <div class="mic-stem"></div>
-                <div class="mic-base"></div>
-              </div>
+              <svg class="mic" viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="6.25" y="3.5" width="11.5" height="18" rx="5.75" stroke="white" stroke-width="2.5"/>
+                <path d="M12 21.5V26.5" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M8 28.5H16" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
             </div>
             <div class="cta-content">
               <div class="title">Ofertas y Demandas</div>
@@ -614,39 +595,29 @@
             </div>
           </a>
         </section>
-
-        <footer class="footer" aria-label="Pie de página">
-          <nav class="footer-links" aria-label="Enlaces de información">
-            <a href="#normas">Normas y Seguridad</a>
-            <a href="#actualizaciones">Actualizaciones</a>
-            <a href="#privacidad">Política de Privacidad</a>
-          </nav>
-          <a class="download" href="#descargar">Descargar la aplicación Dimon Connect</a>
-          <div class="brandmark">Dola AI</div>
-          <div class="home-indicator" aria-hidden="true"></div>
-        </footer>
       </div>
 
-      <section id="servicios" class="section-target" style="display:none;"></section>
-      <section id="ofrecer" class="section-target" style="display:none;"></section>
-      <section id="ofertas-demandas" class="section-target" style="display:none;"></section>
-      <section id="normas" class="section-target" style="display:none;"></section>
-      <section id="actualizaciones" class="section-target" style="display:none;"></section>
-      <section id="privacidad" class="section-target" style="display:none;"></section>
-      <section id="descargar" class="section-target" style="display:none;"></section>
-    </main>
-  </div>
+      <!-- FOOTER -->
+      <footer class="footer" aria-label="Pie de página">
+        <nav class="footer-links" aria-label="Enlaces informativos">
+          <a href="#normas">Normas y Seguridad</a>
+          <a href="#actualizaciones">Actualizaciones</a>
+          <a href="#privacidad">Política de Privacidad</a>
+        </nav>
+        <a class="download" href="#descargar">Descargar la aplicación Dimon Connect</a>
+        <div class="brandmark">Dola AI</div>
+        <div class="home-indicator" aria-hidden="true"></div>
+      </footer>
 
-  <script>
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', (e) => {
-        const target = document.querySelector(link.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-  </script>
+      <!-- Hidden anchors for click targets -->
+      <section id="servicios" style="height:1px;"></section>
+      <section id="ofrecer" style="height:1px;"></section>
+      <section id="ofertas-demandas" style="height:1px;"></section>
+      <section id="normas" style="height:1px;"></section>
+      <section id="actualizaciones" style="height:1px;"></section>
+      <section id="privacidad" style="height:1px;"></section>
+      <section id="descargar" style="height:1px;"></section>
+    </section>
+  </main>
 </body>
 </html>
