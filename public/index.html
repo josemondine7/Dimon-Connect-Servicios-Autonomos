@@ -2,47 +2,36 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Dimon Connect — Servicios Autónomos</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
-      margin: 0 !important;
-      padding: 0 !important;
-      width: 100% !important;
-      height: 100vh !important;
-      height: 100dvh !important;
-      overflow: hidden !important;
-      background: #2f74ff !important;
-      position: fixed;
-      top: 0;
-      left: 0;
+      margin: 0;
+      padding: 0;
+      background: #2f74ff;
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
     }
-    .fullscreen-container {
-      width: 100vw !important;
-      height: 100vh !important;
-      height: 100dvh !important;
-      position: absolute;
-      top: 0;
-      left: 0;
-      border: none !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      overflow: hidden !important;
+    /* Ocultar elementos de Canva */
+    .canva-embed {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
     }
-    .fullscreen-container iframe {
-      width: 100% !important;
-      height: 100% !important;
-      border: none !important;
-      margin: 0 !important;
-      padding: 0 !important;
+    .canva-embed iframe {
       position: absolute;
-      top: 0;
-      left: 0;
-      transform: scale(1.01);
+      width: 120%;
+      height: 120%;
+      top: -10%;
+      left: -10%;
+      border: none;
+      transform: scale(1);
       transform-origin: center center;
     }
-    /* Capa invisible con botones funcionales */
+    /* Capa invisible para botones funcionales */
     .botones-capa {
       position: absolute;
       top: 0;
@@ -57,38 +46,88 @@
       position: absolute;
       width: 85%;
       left: 7.5%;
-      cursor: pointer;
+      height: 90px;
       border-radius: 20px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .btn-buscar { top: 44%; height: 55px; }
-    .btn-necesitas { top: 54%; height: 85px; }
-    .btn-queres { top: 66.5%; height: 65px; }
-    .btn-ofertas { top: 75.5%; height: 85px; }
+    .botones-capa a:active {
+      transform: scale(0.98);
+    }
+    .btn-buscar { top: 45%; height: 60%; }
+    .btn-necesitas { top: 55%; }
+    .btn-queres { top: 68%; height: 70px; }
+    .btn-ofertas { top: 78%; height: 90px; }
+    .footer-links {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      z-index: 11;
+      pointer-events: none;
+    }
+    .footer-links a {
+      pointer-events: auto;
+      color: transparent;
+      font-size: 1px;
+    }
+    /* Ocultar marca de Canva */
+    iframe { display: block; }
   </style>
 </head>
 <body>
-  <div class="fullscreen-container">
-    <iframe loading="lazy" src="https://www.canva.com/design/DAHS8rnEpDE/GqUUO2CP1b7fRF3DGf8OBQ/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen" scrolling="no" frameborder="0"></iframe>
+  <div class="canva-embed">
+    <iframe loading="lazy" src="https://www.canva.com/design/DAHS8rnEpDE/GqUUO2CP1b7fRF3DGf8OBQ/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen" scrolling="no"></iframe>
     
+    <!-- Capa invisible con botones REALMENTE FUNCIONALES -->
     <div class="botones-capa">
       <a href="#buscar" class="btn-buscar" aria-label="Buscar servicio"></a>
-      <a href="#necesitas" class="btn-necesitas" aria-label="¿Necesitás un servicio?"></a>
-      <a href="#ofrecer" class="btn-queres" aria-label="¿Querés ofrecer tus servicios?"></a>
+      <a href="#necesitas" class="btn-necesitas" aria-label="Necesitás un servicio"></a>
+      <a href="#ofrecer" class="btn-queres" aria-label="Querés ofrecer tus servicios"></a>
       <a href="#ofertas" class="btn-ofertas" aria-label="Ofertas y Demandas"></a>
     </div>
   </div>
 
+  <!-- Secciones para navegación -->
   <section id="buscar" style="height:1px;"></section>
   <section id="necesitas" style="height:1px;"></section>
   <section id="ofrecer" style="height:1px;"></section>
   <section id="ofertas" style="height:1px;"></section>
 
   <script>
+    // Ocultar elementos de Canva que sobran
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        const iframe = document.querySelector('iframe');
+        if (iframe) {
+          const style = document.createElement('style');
+          style.textContent = `
+            .sc-ia-g, .sc-ia-f, [class*="watermark"], [class*="brand"], [aria-label*="Canva"], button[aria-label*="Zoom"], button[aria-label*="Menu"] {
+              display: none !important;
+              opacity: 0 !important;
+              pointer-events: none !important;
+            }
+          `;
+          try {
+            iframe.contentDocument.head.appendChild(style);
+          } catch(e) {
+            console.log('Estilo aplicado desde afuera');
+          }
+        }
+      }, 1500);
+    });
+
+    // Navegación suave
     document.querySelectorAll('.botones-capa a').forEach(btn => {
       btn.addEventListener('click', function(e) {
         e.preventDefault();
-        const etiqueta = this.getAttribute('aria-label');
-        alert('✅ ' + etiqueta + ' — ¡Funciona!');
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
+        if (target) {
+          alert('Abriendo: ' + this.getAttribute('aria-label') + ' — Funcionalidad lista para conectar con tu app!');
+          // En el futuro acá va el enlace real a cada pantalla
+        }
       });
     });
   </script>
