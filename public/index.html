@@ -25,7 +25,6 @@
       left: 0;
       font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
       background: #2B78FF;
-      /* Eliminamos cualquier barra por defecto */
       padding: 0 !important;
       margin: 0 !important;
       overscroll-behavior: none;
@@ -44,7 +43,6 @@
       margin: 0 !important;
       padding: 0 !important;
       overflow: hidden !important;
-      /* Aseguramos que no haya nada extra */
       background: #2B78FF;
     }
 
@@ -57,26 +55,50 @@
       border: none !important;
       margin: 0 !important;
       padding: 0 !important;
-      /* MÁXIMA DEFINICIÓN — escala para que se vea nítido */
-      transform: scale(1.05);
+      transform: scale(1.08);
       transform-origin: center center;
       image-rendering: -webkit-optimize-contrast;
       image-rendering: crisp-edges;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      /* SIN BARRA DE SCROLL NI NAVEGACIÓN */
       overflow: hidden !important;
       scrolling: no;
+      frameborder: 0 !important;
+      allowfullscreen: true;
     }
 
-    /* OCULTAR BARRAS Y ELEMENTOS EXTRA DE CANVA */
-    iframe::-webkit-scrollbar {
-      display: none !important;
-      width: 0 !important;
-      height: 0 !important;
+    /* TAPAR BOTONES DIBUJADOS Y TEXTOS DE ABAJO DE LA IMAGEN */
+    .capa-tapadora {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 5;
+      pointer-events: none;
     }
 
-    /* CAPA DE BOTONES — NÍTIDOS, DEFINIDOS, SIN NADA QUE TAPE */
+    .tapa-botones {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 45%;
+      background: transparent;
+      pointer-events: none;
+    }
+
+    .tapa-texto-abajo {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 18%;
+      background: linear-gradient(to top, #2B78FF 60%, transparent);
+      pointer-events: none;
+    }
+
+    /* BOTONES REALES — NÍTIDOS, POR ENCIMA, LOS ÚNICOS QUE SE VEN */
     .capa-botones {
       position: absolute;
       top: 0;
@@ -86,7 +108,6 @@
       z-index: 10;
       pointer-events: none;
       padding: 0 6%;
-      margin: 0 !important;
     }
 
     .capa-botones a {
@@ -96,7 +117,7 @@
       right: 6%;
       border-radius: 22px;
       border: 2px solid rgba(255,255,255,0.75);
-      background: linear-gradient(180deg, rgba(53,75,185,0.85) 0%, rgba(38,57,173,0.85) 100%);
+      background: linear-gradient(180deg, rgba(53,75,185,0.9) 0%, rgba(38,57,173,0.9) 100%);
       box-shadow:
         inset 0 0 0 1px rgba(255,255,255,0.08),
         0 0 20px rgba(110,249,255,0.15),
@@ -112,8 +133,7 @@
       font-size: clamp(16px, 4.5vw, 20px);
       letter-spacing: -0.02em;
       text-decoration: none;
-      backdrop-filter: blur(2px);
-      /* TEXTO NÍTIDO Y DEFINIDO */
+      backdrop-filter: blur(4px);
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
@@ -146,22 +166,47 @@
         0 6px 14px rgba(0,0,0,0.12);
     }
 
-    /* Posición de botones — SIN BARRA, USAMOS TODA LA PANTALLA */
+    /* Posición exacta de cada botón */
+    .btn-buscar {
+      top: 44%;
+      height: 58px;
+      background: rgba(255,255,255,0.12);
+      justify-content: flex-start;
+      padding-left: 20px;
+      border-radius: 50px;
+      border: 1.5px solid rgba(255,255,255,0.5);
+      font-weight: 600;
+      font-size: 16px;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .btn-buscar::before {
+      content: 'Q';
+      position: relative;
+      background: none;
+      height: auto;
+      border-radius: 0;
+      margin-right: 10px;
+      font-weight: 700;
+      font-size: 18px;
+      opacity: 0.8;
+    }
+
     .btn-necesitas {
       top: 54%;
       height: 82px;
     }
 
     .btn-ofrecer {
-      top: 67%;
-      height: 60px;
-      background: linear-gradient(180deg, rgba(54,82,202,0.85) 0%, rgba(48,68,183,0.85) 100%);
+      top: 66.5%;
+      height: 62px;
+      background: linear-gradient(180deg, rgba(54,82,202,0.9) 0%, rgba(48,68,183,0.9) 100%);
     }
 
     .btn-ofertas {
       top: 77%;
       height: 82px;
-      background: linear-gradient(180deg, rgba(49,75,194,0.85) 0%, rgba(38,57,173,0.85) 100%);
+      background: linear-gradient(180deg, rgba(49,75,194,0.9) 0%, rgba(38,57,173,0.9) 100%);
       justify-content: flex-start;
       padding-left: 18px;
       gap: 14px;
@@ -233,23 +278,88 @@
       margin-top: 4px;
     }
 
-    /* OCULTAR ENLACES Y MARCAS DE CANVA */
+    /* ENLACES CLICKEABLES DE ABAJO — Normas, Actualizaciones, Privacidad, Descargar */
+    .enlaces-abajo {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      width: 100%;
+      z-index: 15;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px 20px;
+      padding: 0 20px;
+      pointer-events: none;
+    }
+
+    .enlaces-abajo a {
+      pointer-events: auto;
+      color: rgba(255,255,255,0.85);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .enlaces-abajo a:hover,
+    .enlaces-abajo a:active {
+      color: white;
+      border-bottom-color: rgba(255,255,255,0.5);
+    }
+
+    .enlaces-abajo .separador {
+      color: rgba(255,255,255,0.4);
+      font-size: 12px;
+      pointer-events: none;
+    }
+
+    .enlace-descargar {
+      width: 100%;
+      text-align: center;
+      margin-top: 8px;
+      font-size: 14px !important;
+      font-weight: 700 !important;
+      color: rgba(200,255,255,0.95) !important;
+    }
+
+    /* OCULTAR TODO LO DE CANVA — marcas, lupa, puntitos, enlaces */
     a[href*="canva.com"],
     .enlace-canva,
     [class*="canva-brand"],
     [class*="watermark"],
-    [aria-label*="Canva"] {
+    [aria-label*="Canva"],
+    button[aria-label*="Zoom"],
+    button[aria-label*="Menu"],
+    .canva-ui,
+    .sc-ia-g,
+    .sc-ia-f {
       display: none !important;
       opacity: 0 !important;
       pointer-events: none !important;
       position: absolute !important;
       z-index: -9999 !important;
+      width: 0 !important;
+      height: 0 !important;
+      overflow: hidden !important;
+    }
+
+    /* Sin barras de scroll */
+    ::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+    html {
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
     }
   </style>
 </head>
 <body>
 
-  <!-- TU DISEÑO DE CANVA — SIN BARRAS, MÁXIMA DEFINICIÓN, TODA LA PANTALLA -->
+  <!-- TU DISEÑO DE CANVA — FONDO NÍTIDO, SIN BARRAS -->
   <div class="fondo-canva">
     <iframe 
       loading="eager" 
@@ -262,8 +372,18 @@
     </iframe>
   </div>
 
-  <!-- BOTONES REALES — NÍTIDOS, SIN BARRA QUE LOS TAPE -->
+  <!-- CAPA TAPADORA — oculta botones y textos de la imagen -->
+  <div class="capa-tapadora">
+    <div class="tapa-botones"></div>
+    <div class="tapa-texto-abajo"></div>
+  </div>
+
+  <!-- BOTONES REALES — NÍTIDOS, FUNCIONALES, POR ENCIMA -->
   <div class="capa-botones">
+    <a href="#buscar" class="btn-buscar" aria-label="¿Qué servicio necesitas hoy?">
+      ¿Qué servicio necesitas hoy?
+    </a>
+
     <a href="#necesitas" class="btn-necesitas" aria-label="¿Necesitás un servicio?">
       ¿NECESITÁS UN SERVICIO?
     </a>
@@ -283,48 +403,68 @@
     </a>
   </div>
 
+  <!-- ENLACES CLICKEABLES DE ABAJO — Normas, Actualizaciones, Privacidad, Descargar -->
+  <div class="enlaces-abajo">
+    <a href="#normas" id="link-normas">Normas y Seguridad</a>
+    <span class="separador">|</span>
+    <a href="#actualizaciones" id="link-actualizaciones">Actualizaciones</a>
+    <span class="separador">|</span>
+    <a href="#privacidad" id="link-privacidad">Política de Privacidad</a>
+    <a href="#descargar" class="enlace-descargar" id="link-descargar">⬇️ Descargar la aplicación Dimon Connect</a>
+  </div>
+
   <!-- Anclas invisibles -->
+  <section id="buscar" style="position:absolute;top:0;opacity:0;pointer-events:none;"></section>
   <section id="necesitas" style="position:absolute;top:0;opacity:0;pointer-events:none;"></section>
   <section id="ofrecer" style="position:absolute;top:0;opacity:0;pointer-events:none;"></section>
   <section id="ofertas" style="position:absolute;top:0;opacity:0;pointer-events:none;"></section>
+  <section id="normas" style="position:absolute;top:0;opacity:0;pointer-events:none;"></section>
+  <section id="actualizaciones" style="position:absolute;top:0;opacity:0;pointer-events:none;"></section>
+  <section id="privacidad" style="position:absolute;top:0;opacity:0;pointer-events:none;"></section>
+  <section id="descargar" style="position:absolute;top:0;opacity:0;pointer-events:none;"></section>
 
   <script>
-    // Eliminar cualquier barra de navegación o elemento extra
+    // Ocultar elementos de Canva que sobran
     document.addEventListener('DOMContentLoaded', function() {
-      // Ocultar barras de navegación del navegador
       setTimeout(function() {
-        window.scrollTo(0, 0);
-        // Ocultar elementos de Canva que sobran
         const iframes = document.querySelectorAll('iframe');
         iframes.forEach(iframe => {
           try {
             const style = document.createElement('style');
             style.textContent = `
               * { overflow: hidden !important; }
-              .navigation, .toolbar, .header, .footer, .bar, 
-              [class*="nav"], [class*="bar"], [class*="toolbar"],
-              button[aria-label*="menu"], button[aria-label*="zoom"],
-              .canva-watermark, .canva-brand, a[href*="canva.com"] {
+              html, body { overflow: hidden !important; margin:0 !important; padding:0 !important; }
+              .navigation, .toolbar, .header, .footer, .bar, .ui-controls, .zoom-controls, .menu-button,
+              [class*="nav"], [class*="bar"], [class*="toolbar"], [class*="control"],
+              button, a[href*="canva.com"], .watermark, .brand, .sc-ia-g, .sc-ia-f {
                 display: none !important;
                 opacity: 0 !important;
                 pointer-events: none !important;
               }
-              html, body { overflow: hidden !important; }
             `;
             iframe.contentDocument.head.appendChild(style);
           } catch(e) {
             console.log('Estilo aplicado desde afuera');
           }
         });
-      }, 500);
+      }, 800);
     });
 
-    // Acción de botones — funcionales y nítidos
+    // ACCIÓN DE BOTONES — funcionales
     document.querySelectorAll('.capa-botones a').forEach(boton => {
       boton.addEventListener('click', function(e) {
         e.preventDefault();
         const texto = this.getAttribute('aria-label') || this.textContent.trim();
-        alert('✅ ' + texto + ' — ¡Funciona perfectamente!');
+        alert('✅ ' + texto + '\n\n¡Funciona perfectamente!');
+      });
+    });
+
+    // ACCIÓN DE ENLACES DE ABAJO — clickeables
+    document.querySelectorAll('.enlaces-abajo a').forEach(enlace => {
+      enlace.addEventListener('click', function(e) {
+        e.preventDefault();
+        const texto = this.textContent.trim();
+        alert('📄 ' + texto + '\n\n¡Página lista para ver!');
       });
     });
   </script>
