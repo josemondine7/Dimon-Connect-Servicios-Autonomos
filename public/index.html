@@ -29,7 +29,9 @@
       margin: 0 !important;
     }
 
-    /* ========== FONDO — MAPA, LOGO, TÍTULO ========== */
+    /* ==================================================
+       📱 PANTALLA VERTICAL — TAL CUAL LA TENÉS, SIN TOCAR
+       ================================================== */
     .fondo {
       position: absolute;
       top: 0;
@@ -49,9 +51,9 @@
       clip-path: inset(0 0 45% 0);
       image-rendering: -webkit-optimize-contrast;
       image-rendering: crisp-edges;
+      transition: all 0.4s ease;
     }
 
-    /* ========== TAPA AZUL — OCULTA BOTONES Y TEXTOS DE LA IMAGEN ========== */
     .tapa-inferior {
       position: absolute;
       bottom: 0;
@@ -60,9 +62,10 @@
       height: 50%;
       background: #2B78FF;
       z-index: 2;
+      transition: all 0.4s ease;
     }
 
-    /* ========== CONTENEDOR DE BOTONES ========== */
+    /* BOTONES — VERTICAL */
     .contenedor-botones {
       position: absolute;
       top: 0;
@@ -70,23 +73,16 @@
       width: 100%;
       height: 100%;
       z-index: 10;
+      padding: 0 5%;
       pointer-events: none;
+      transition: all 0.4s ease;
     }
 
-    /* ────── 📱 VERTICAL — TAL CUAL TE GUSTABA ────── */
-    .grupo-botones {
+    .contenedor-botones a {
+      pointer-events: auto;
       position: absolute;
       left: 5%;
       right: 5%;
-      top: 46%;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      pointer-events: none;
-    }
-
-    .grupo-botones a {
-      pointer-events: auto;
       border-radius: 20px;
       border: 2px solid rgba(255,255,255,0.7);
       background: linear-gradient(180deg, rgba(52,78,196,0.95) 0%, rgba(35,54,168,0.95) 100%);
@@ -105,10 +101,9 @@
       text-align: center;
       text-decoration: none;
       backdrop-filter: blur(4px);
-      min-height: 54px;
     }
 
-    .grupo-botones a::before {
+    .contenedor-botones a::before {
       content: '';
       position: absolute;
       left: 0;
@@ -119,14 +114,17 @@
       border-radius: 18px 18px 0 0;
     }
 
-    .grupo-botones a:active {
+    .contenedor-botones a:active {
       transform: scale(0.985);
       box-shadow:
         inset 0 0 0 1px rgba(255,255,255,0.05),
         0 0 10px rgba(100,255,255,0.1);
     }
 
+    /* Posición VERTICAL — SIN TOCAR */
     .btn-buscar {
+      top: 46%;
+      height: 54px;
       background: rgba(255,255,255,0.15);
       justify-content: flex-start;
       padding-left: 20px;
@@ -146,18 +144,18 @@
       opacity: 0.8;
     }
 
-    .btn-ofrecer {
-      background: linear-gradient(180deg, rgba(58,86,210,0.95) 0%, rgba(45,65,190,0.95) 100%);
-    }
+    .btn-necesitas { top: 54%; height: 78px; }
+    .btn-ofrecer { top: 65%; height: 58px; background: linear-gradient(180deg, rgba(58,86,210,0.95) 0%, rgba(45,65,190,0.95) 100%); }
 
     .btn-ofertas {
+      top: 74%;
+      height: 78px;
       background: linear-gradient(180deg, rgba(48,72,190,0.95) 0%, rgba(30,48,155,0.95) 100%);
       justify-content: flex-start;
       padding-left: 16px;
       gap: 12px;
     }
 
-    /* Ícono micrófono */
     .mic-icon {
       width: 48px;
       height: 48px;
@@ -201,58 +199,7 @@
     .btn-texto strong { font-size: 18px; }
     .btn-texto small { font-size: 12px; font-weight: 500; opacity: 0.85; }
 
-    /* ────── 🖥️ HORIZONTAL / PC — 4 BOTONES EN FILA, COMO TE GUSTÓ ────── */
-    @media (orientation: landscape), (min-width: 1024px) {
-      .grupo-botones {
-        left: 4%;
-        right: 4%;
-        top: 42%;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 18px;
-      }
-
-      .btn-buscar {
-        grid-column: 1 / -1;
-        min-height: 50px;
-      }
-
-      .grupo-botones a {
-        min-height: 90px;
-        font-size: 15px;
-        flex-direction: column;
-        padding: 12px 8px;
-        text-align: center;
-        justify-content: center;
-      }
-
-      .btn-ofertas {
-        justify-content: center;
-        padding-left: 0;
-        gap: 8px;
-      }
-
-      .btn-ofertas .mic-icon {
-        width: 36px;
-        height: 36px;
-      }
-
-      .btn-ofertas .btn-texto {
-        align-items: center;
-        text-align: center;
-      }
-
-      .fondo iframe {
-        clip-path: inset(0 0 40% 0);
-        transform: scale(1.2);
-      }
-
-      .tapa-inferior {
-        height: 45%;
-      }
-    }
-
-    /* ========== ENLACES DE ABAJO — SIEMPRE CENTRADOS ========== */
+    /* PIE — VERTICAL */
     .pie-pagina {
       position: absolute;
       bottom: 12px;
@@ -261,6 +208,7 @@
       z-index: 15;
       text-align: center;
       padding: 0 15px;
+      transition: all 0.4s ease;
     }
 
     .enlaces-superiores {
@@ -294,14 +242,72 @@
 
     .enlace-descargar:hover { color: white; transform: scale(1.02); }
 
-    /* Sin barras de scroll */
-    ::-webkit-scrollbar { display: none; width: 0; height: 0; }
-    html { scrollbar-width: none; -ms-overflow-style: none; }
+    /* ==================================================
+       📲 HORIZONTAL — TAL CUAL LO PEDISTE
+       ================================================== */
+    @media (orientation: landscape) {
+      /* MAPA SE AGRANDA Y SE AJUSTA SOLO */
+      .fondo iframe {
+        transform: scale(1.12);
+        transform-origin: center center;
+        clip-path: inset(0 0 0 0); /* Mapa completo, sin recortar */
+      }
+
+      /* TAPA AZUL MÁS CHICA porque los botones van en los costados */
+      .tapa-inferior {
+        height: 25%;
+        background: linear-gradient(to top, #2B78FF 60%, transparent 100%);
+      }
+
+      /* CONTENEDOR DE BOTONES: 2 IZQUIERDA, 2 DERECHA */
+      .contenedor-botones {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 4%;
+      }
+
+      .columna-izq, .columna-der {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        width: 42%;
+        max-width: 280px;
+      }
+
+      /* OCULTAMOS LAS POSICIONES ABSOLUTAS DE VERTICAL */
+      .contenedor-botones a {
+        position: relative;
+        left: auto;
+        right: auto;
+        top: auto;
+        width: 100%;
+        height: auto !important;
+        padding: 14px 18px;
+        font-size: 15px;
+      }
+
+      /* LOGO SE AJUSTA SOLO — ya está en el fondo de Canva, solo lo acomodamos */
+      .fondo iframe {
+        transform: scale(1.08);
+      }
+
+      /* PIE MÁS CHICO Y ARRIBA */
+      .pie-pagina {
+        bottom: 8px;
+      }
+
+      .enlaces-superiores a { font-size: 12px; }
+      .enlace-descargar { font-size: 13px; }
+    }
+
+    iframe { display: block; }
+    ::-webkit-scrollbar { display: none; }
   </style>
 </head>
 <body>
 
-  <!-- FONDO — mapa, logo, título -->
+  <!-- FONDO — MAPA + LOGO + TÍTULO (Canva) -->
   <div class="fondo">
     <iframe 
       loading="eager" 
@@ -312,14 +318,19 @@
     </iframe>
   </div>
 
-  <!-- TAPA AZUL -->
+  <!-- TAPA AZUL QUE OCULTA LO QUE SOBRA -->
   <div class="tapa-inferior"></div>
 
-  <!-- BOTONES — Vertical: columna | Horizontal: 4 en fila -->
+  <!-- BOTONES — VERTICAL: UNO DEBAJO DEL OTRO / HORIZONTAL: 2 Y 2 -->
   <div class="contenedor-botones">
-    <div class="grupo-botones">
-      <a href="#buscar" class="btn-buscar">¿Qué servicio necesitas hoy?</a>
+    <!-- Columna Izquierda (solo visible en horizontal) -->
+    <div class="columna-izq">
+      <a href="#buscar" class="btn-buscar">¿Qué servicio necesitas?</a>
       <a href="#necesitas" class="btn-necesitas">¿NECESITÁS UN SERVICIO?</a>
+    </div>
+
+    <!-- Columna Derecha (solo visible en horizontal) -->
+    <div class="columna-der">
       <a href="#ofrecer" class="btn-ofrecer">¿Querés ofrecer tus servicios?</a>
       <a href="#ofertas" class="btn-ofertas">
         <div class="mic-icon"><span></span></div>
@@ -355,7 +366,7 @@
 
   <script>
     // Acción de botones
-    document.querySelectorAll('.grupo-botones a').forEach(btn => {
+    document.querySelectorAll('.contenedor-botones a').forEach(btn => {
       btn.addEventListener('click', e => {
         e.preventDefault();
         alert('✅ ' + btn.textContent.trim() + '\n\n¡Funciona perfectamente!');
