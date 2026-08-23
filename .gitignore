@@ -1,9 +1,20 @@
-node_modules/
-.expo/
+# ==============================================
+# DIMON CONNECT — ARCHIVOS PRIVADOS
+# ESTO NO SE SUBE NUNCA A GITHUB
+# ==============================================
+
+# Claves secretas y contraseñas
 .env
-dist/
-build/
-*.log
+.env.local
+.env.*
+
+# Dependencias de servidor
+node_modules/
+
+# Archivos temporales
 .DS_Store
-*.sql
-acta-sucesion*.pdf
+*.log
+npm-debug.log*
+
+# Archivos de entorno
+*.env
