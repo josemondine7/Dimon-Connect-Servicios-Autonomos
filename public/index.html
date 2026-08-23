@@ -11,23 +11,22 @@
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
     html, body { height: 100%; overflow: hidden; }
 
-    /* ===== TU DISEÑO COMPLETO DE CANVA — FONDO DE PANTALLA ===== */
+    /* ===== TU DISEÑO COMPLETO DE CANVA — FONDO ===== */
     .fondo-canva {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
       z-index: 0;
-      background: #2f74ff; /* Color de respaldo mientras carga */
+      background: #2f74ff;
     }
     .fondo-canva iframe {
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
       border: none;
-      transform-origin: center center;
     }
 
-    /* ===== CONTENEDOR DE BOTONES — ARRIBA DE TU DISEÑO ===== */
+    /* ===== CONTENEDOR DE BOTONES ===== */
     .contenedor-botones {
       position: relative;
       z-index: 1;
@@ -43,25 +42,16 @@
 
     /* ===== BARRA DE BÚSQUEDA ===== */
     .busqueda-info {
-      width: 100%;
-      max-width: 440px;
-      display: flex;
-      align-items: center;
+      width: 100%; max-width: 440px;
+      display: flex; align-items: center;
       background: rgba(255,255,255,0.95);
       border-radius: 50px;
       padding: 0.9rem 1.2rem;
       box-shadow: 0 4px 20px rgba(0,0,0,0.15), 0 0 0 2px rgba(0,210,255,0.3);
       margin-bottom: 0.5rem;
     }
-    .busqueda-info .lupa {
-      font-size: 1.3rem;
-      color: #2f74ff;
-      margin-right: 0.8rem;
-    }
-    .busqueda-info input {
-      border: none; outline: none; background: transparent;
-      font-size: 1rem; color: #333; width: 100%; font-weight: 500;
-    }
+    .busqueda-info .lupa { font-size: 1.3rem; color: #2f74ff; margin-right: 0.8rem; }
+    .busqueda-info input { border: none; outline: none; background: transparent; font-size: 1rem; color: #333; width: 100%; font-weight: 500; }
     .busqueda-info input::placeholder { color: #888; }
 
     /* ===== BOTONES ===== */
@@ -81,10 +71,7 @@
     }
     .btn-dimon:active { transform: scale(0.97); }
 
-    .btn-microfono {
-      display: flex; align-items: center; justify-content: flex-start;
-      gap: 1rem; padding-left: 1.2rem;
-    }
+    .btn-microfono { display: flex; align-items: center; justify-content: flex-start; gap: 1rem; padding-left: 1.2rem; }
     .icono-mic {
       width: 46px; height: 46px; border-radius: 50%;
       background: linear-gradient(135deg, #00e5ff, #7b61ff);
@@ -128,7 +115,7 @@
     }
     .resultado-busqueda h3 { margin-bottom: 1rem; color: #67f1ff; }
 
-    /* ===== 🔄 GIRAR EL CELULAR — SE AJUSTA SOLO ===== */
+    /* ===== GIRAR — HORIZONTAL / PC ===== */
     @media (orientation: landscape) {
       .contenedor-botones {
         padding: 1rem 2rem 5vh;
@@ -144,7 +131,6 @@
       }
       .busqueda-info { grid-area: busqueda; max-width: 500px; }
       .btn-dimon { max-width: 100%; width: 100%; padding: 1rem; font-size: 1rem; }
-      .fondo-canva iframe { /* Se ajusta solo */ }
       .pie { font-size: 0.75rem; padding: 0.5rem; }
     }
 
@@ -175,8 +161,8 @@
     <button class="btn-dimon btn-microfono" style="grid-area: boton3;" onclick="abrirTodo()">
       <div class="icono-mic">🎤</div>
       <div class="btn-texto">
-        Ofertas y Demandas
-        <small>Buscar servicios o publicar tu oferta</small>
+        Asistente de voz
+        <small>Próximamente disponible</small>
       </div>
     </button>
 
@@ -187,7 +173,7 @@
     <a href="#" onclick="abrirInfo('normas')">Normas y Seguridad</a> |
     <a href="#" onclick="abrirInfo('actualizaciones')">Actualizaciones</a> |
     <a href="#" onclick="abrirInfo('privacidad')">Política de Privacidad</a>
-    <a href="#" class="descargar">⬇️ Descargar la aplicación Dimon Connect</a>
+    <a href="#" class="descargar">⬇️ Descargar aplicación</a>
   </div>
 
   <!-- ============== PANTALLAS INTERNAS ============== -->
@@ -219,9 +205,9 @@
 
   <div id="pantalla-todo" class="pantalla">
     <button class="btn-volver" onclick="cerrarPantalla()">← Volver</button>
-    <h2>Ofertas y Demandas</h2>
+    <h2>Próximamente</h2>
     <div style="color:white; text-align:center; padding:2rem;">
-      <p style="opacity:0.85;">Acá vas a ver todas las publicaciones. Próximamente activamos el listado completo.</p>
+      <p style="font-size:1.1rem; margin-bottom:1rem;">El asistente de voz estará disponible en la próxima actualización.</p>
     </div>
   </div>
 
@@ -251,7 +237,7 @@
       else if (clave.includes('privacidad') || clave.includes('datos')) resultado = baseInfo.privacidad;
       else if (clave.includes('cómo funciona') || clave.includes('funciona')) resultado = baseInfo.funcion;
       else if (clave.includes('requisitos') || clave.includes('necesito')) resultado = baseInfo.requisitos;
-      else resultado = { titulo: '🔍 No lo encontré', texto: 'Probá: cuánto se cobra, es gratis, normas, privacidad, cómo funciona, requisitos.' };
+      else resultado = { titulo: '🔍 No lo encontré', texto: 'Probá buscar: cuánto se cobra, es gratis, normas, privacidad, cómo funciona, requisitos.' };
       mostrarBusqueda(resultado);
     }
 
@@ -267,7 +253,7 @@
     function abrirInfo(tipo) {
       if (tipo === 'normas') mostrarBusqueda(baseInfo.normas);
       else if (tipo === 'privacidad') mostrarBusqueda(baseInfo.privacidad);
-      else if (tipo === 'actualizaciones') mostrarBusqueda({titulo: '🔄 Actualizaciones', texto: 'Versión 1.0 — Pantalla principal, búsqueda de información, publicación de servicios y demandas. Próximamente: chat y listado completo.'});
+      else if (tipo === 'actualizaciones') mostrarBusqueda({titulo: '🔄 Actualizaciones', texto: 'Versión 1.0 — Pantalla principal con diseño de Canva, búsqueda de información, publicación de servicios y demandas. Gira solo en celular y PC. Próximamente: chat y listado completo.'});
     }
     function cerrarPantalla() { document.querySelectorAll('.pantalla').forEach(p => p.classList.remove('activa')); }
   </script>
