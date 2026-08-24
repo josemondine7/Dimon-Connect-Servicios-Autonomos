@@ -1,261 +1,42 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Dimon Connect — Servicios Autónomos</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
-    html, body { height: 100%; overflow: hidden; }
-
-    /* ===== TU DISEÑO COMPLETO DE CANVA — FONDO ===== */
-    .fondo-canva {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: 0;
-      background: #2f74ff;
-    }
-    .fondo-canva iframe {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      border: none;
-    }
-
-    /* ===== CONTENEDOR DE BOTONES ===== */
-    .contenedor-botones {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      padding: 1rem 1.5rem 6vh;
-      gap: 1rem;
-    }
-
-    /* ===== BARRA DE BÚSQUEDA ===== */
-    .busqueda-info {
-      width: 100%; max-width: 440px;
-      display: flex; align-items: center;
-      background: rgba(255,255,255,0.95);
-      border-radius: 50px;
-      padding: 0.9rem 1.2rem;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15), 0 0 0 2px rgba(0,210,255,0.3);
-      margin-bottom: 0.5rem;
-    }
-    .busqueda-info .lupa { font-size: 1.3rem; color: #2f74ff; margin-right: 0.8rem; }
-    .busqueda-info input { border: none; outline: none; background: transparent; font-size: 1rem; color: #333; width: 100%; font-weight: 500; }
-    .busqueda-info input::placeholder { color: #888; }
-
-    /* ===== BOTONES ===== */
-    .btn-dimon {
-      width: 100%; max-width: 440px;
-      padding: 1.2rem 1.5rem;
-      font-size: 1.15rem; font-weight: 700;
-      color: white;
-      background: linear-gradient(180deg, rgba(37,64,214,0.95), rgba(26,46,158,0.95));
-      border: 2px solid rgba(255,255,255,0.4);
-      border-radius: 18px;
-      cursor: pointer;
-      box-shadow: 0 0 25px rgba(0, 210, 255, 0.25), inset 0 1px 0 rgba(255,255,255,0.2);
-      transition: all 0.2s ease;
-      text-align: center;
-      backdrop-filter: blur(4px);
-    }
-    .btn-dimon:active { transform: scale(0.97); }
-
-    .btn-microfono { display: flex; align-items: center; justify-content: flex-start; gap: 1rem; padding-left: 1.2rem; }
-    .icono-mic {
-      width: 46px; height: 46px; border-radius: 50%;
-      background: linear-gradient(135deg, #00e5ff, #7b61ff);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.3rem; flex-shrink: 0;
-      box-shadow: 0 0 12px rgba(0, 229, 255, 0.5);
-    }
-    .btn-texto { text-align: left; line-height: 1.4; }
-    .btn-texto small { font-size: 0.8rem; font-weight: 500; opacity: 0.8; display: block; }
-
-    /* ===== PIE ===== */
-    .pie {
-      position: fixed; bottom: 0; left: 0;
-      width: 100%; padding: 0.8rem;
-      text-align: center; font-size: 0.8rem;
-      color: rgba(255,255,255,0.8);
-      z-index: 1;
-      background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
-    }
-    .pie a { color: rgba(255,255,255,0.9); text-decoration: none; margin: 0 0.4rem; }
-    .descargar { color: #00e5ff; text-decoration: none; display: block; margin-top: 0.3rem; font-weight: 600; font-size: 0.85rem; }
-
-    /* ===== PANTALLAS INTERNAS ===== */
-    .pantalla {
-      position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: linear-gradient(135deg, #2f74ff, #245ee0);
-      z-index: 10; display: none; flex-direction: column;
-      padding: 2rem 1.2rem; overflow-y: auto;
-    }
-    .pantalla.activa { display: flex; }
-    .btn-volver {
-      background: none; border: none; color: white; font-size: 1rem;
-      padding: 1rem 0; cursor: pointer; opacity: 0.85; margin-bottom: 1rem;
-    }
-    h2 { color: white; font-size: 1.5rem; text-align: center; margin-bottom: 2rem; font-weight: 800; }
-    .resultado-busqueda {
-      background: rgba(255,255,255,0.1); border-radius: 12px;
-      padding: 1.5rem; color: white;
-      max-width: 500px; margin: 0 auto; line-height: 1.6;
-    }
-    .resultado-busqueda h3 { margin-bottom: 1rem; color: #67f1ff; }
-
-    /* ===== GIRAR — HORIZONTAL / PC ===== */
-    @media (orientation: landscape) {
-      .contenedor-botones {
-        padding: 1rem 2rem 5vh;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas:
-          "busqueda busqueda"
-          "boton1 boton2"
-          "boton3 boton4";
-        gap: 1rem;
-        align-content: center;
-        justify-items: center;
-      }
-      .busqueda-info { grid-area: busqueda; max-width: 500px; }
-      .btn-dimon { max-width: 100%; width: 100%; padding: 1rem; font-size: 1rem; }
-      .pie { font-size: 0.75rem; padding: 0.5rem; }
-    }
-
-    @media (min-width: 900px) and (orientation: landscape) {
-      .contenedor-botones { max-width: 900px; margin: 0 auto; }
-      .btn-dimon { font-size: 1.1rem; padding: 1.2rem; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dimon Connect</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,5 95,50 50,95 5,50' fill='%231E40AF'/></svg>">
 </head>
 <body>
+    <div class="pantalla-inicio">
+        <div class="logo-contenedor">
+            <svg class="logo-rombo" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="grad-rombo" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#1E40AF"/>
+                        <stop offset="100%" stop-color="#06B6D4"/>
+                    </linearGradient>
+                </defs>
+                <polygon points="60,10 110,60 60,110 10,60" fill="url(#grad-rombo)" stroke="#0F172A" stroke-width="2"/>
+            </svg>
+            <h1 class="logo-texto">Dimon Connect</h1>
+        </div>
 
-  <!-- ===== TU DISEÑO COMPLETO DE CANVA — ROMBO, MAPA, DIMON CONNECT ===== -->
-  <div class="fondo-canva">
-    <iframe loading="lazy" src="https://www.canva.com/design/DAHS8rnEpDE/GqUUO2CP1b7fRF3DGf8OBQ/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
-  </div>
+        <p class="mensaje-principal">Acá encontrás la persona justa para lo que necesitás.</p>
+        <p class="mensaje-secundario">Personas que saben. Personas que ayudan. Confianza de verdad.</p>
 
-  <!-- ===== BOTONES ARRIBA DE TU DISEÑO ===== -->
-  <div class="contenedor-botones">
+        <div class="botones-principales">
+            <button class="boton boton-primario" onclick="irABuscar()">
+                Necesito ayuda
+            </button>
+            <button class="boton boton-secundario" onclick="irAOfrecer()">
+                Ofrezco mi trabajo
+            </button>
+        </div>
 
-    <!-- 🔍 BARRA DE BÚSQUEDA -->
-    <div class="busqueda-info" style="grid-area: busqueda;">
-      <span class="lupa">🔍</span>
-      <input type="text" id="busqueda" placeholder="Buscar información de la aplicación..." autocomplete="off">
+        <p class="texto-chico">Sin títulos obligatorios · Sin comisiones ocultas</p>
     </div>
 
-    <button class="btn-dimon" style="grid-area: boton1;" onclick="abrirDemanda()">¿NECESITÁS UN SERVICIO?</button>
-    <button class="btn-dimon" style="grid-area: boton2;" onclick="abrirOferta()">¿Querés ofrecer tus servicios?</button>
-    <button class="btn-dimon btn-microfono" style="grid-area: boton3;" onclick="abrirTodo()">
-      <div class="icono-mic">🎤</div>
-      <div class="btn-texto">
-        Asistente de voz
-        <small>Próximamente disponible</small>
-      </div>
-    </button>
-
-  </div>
-
-  <!-- PIE -->
-  <div class="pie">
-    <a href="#" onclick="abrirInfo('normas')">Normas y Seguridad</a> |
-    <a href="#" onclick="abrirInfo('actualizaciones')">Actualizaciones</a> |
-    <a href="#" onclick="abrirInfo('privacidad')">Política de Privacidad</a>
-    <a href="#" class="descargar">⬇️ Descargar aplicación</a>
-  </div>
-
-  <!-- ============== PANTALLAS INTERNAS ============== -->
-  <div id="pantalla-busqueda" class="pantalla">
-    <button class="btn-volver" onclick="cerrarPantalla()">← Volver</button>
-    <h2 id="titulo-busqueda">Información</h2>
-    <div id="contenido-busqueda" class="resultado-busqueda"></div>
-  </div>
-
-  <div id="pantalla-demanda" class="pantalla">
-    <button class="btn-volver" onclick="cerrarPantalla()">← Volver</button>
-    <h2>¿Qué necesitás?</h2>
-    <div style="color:white; text-align:center; padding:2rem;">
-      <p style="font-size:1.1rem; margin-bottom:1rem;">Publicá lo que necesitás y te contactan quienes pueden hacerlo.</p>
-      <textarea placeholder="Describí el servicio que necesitás..." style="width:100%; padding:1rem; border-radius:10px; border:none; margin-bottom:1rem; font-size:1rem;"></textarea>
-      <button style="background:#67f1ff; color:black; border:none; padding:1rem 2rem; border-radius:10px; font-size:1rem; font-weight:bold; cursor:pointer;">Publicar necesidad</button>
-    </div>
-  </div>
-
-  <div id="pantalla-oferta" class="pantalla">
-    <button class="btn-volver" onclick="cerrarPantalla()">← Volver</button>
-    <h2>¿Qué ofrecés?</h2>
-    <div style="color:white; text-align:center; padding:2rem;">
-      <p style="font-size:1.1rem; margin-bottom:1rem;">Publicá tus servicios y quienes los necesitan te encuentran.</p>
-      <textarea placeholder="Describí lo que sabés hacer..." style="width:100%; padding:1rem; border-radius:10px; border:none; margin-bottom:1rem; font-size:1rem;"></textarea>
-      <button style="background:#67f1ff; color:black; border:none; padding:1rem 2rem; border-radius:10px; font-size:1rem; font-weight:bold; cursor:pointer;">Publicar servicio</button>
-    </div>
-  </div>
-
-  <div id="pantalla-todo" class="pantalla">
-    <button class="btn-volver" onclick="cerrarPantalla()">← Volver</button>
-    <h2>Próximamente</h2>
-    <div style="color:white; text-align:center; padding:2rem;">
-      <p style="font-size:1.1rem; margin-bottom:1rem;">El asistente de voz estará disponible en la próxima actualización.</p>
-    </div>
-  </div>
-
-  <!-- ============== LÓGICA ============== -->
-  <script>
-    const baseInfo = {
-      cobro: { titulo: '💰 ¿Cuánto se cobra?', texto: 'La aplicación es GRATUITA para buscar y publicar. Solo al cerrar un trato: Quien paga suma un 3% sobre el valor del servicio. Quien cobra se descuenta un 3% sobre el valor del servicio. Total 6% por trato cerrado. Sin costos ocultos.' },
-      gratis: { titulo: '🆓 ¿Es gratis usarla?', texto: 'Sí, es 100% gratis buscar, navegar, publicar y contactar. Solo se aporta un 3% de cada lado al confirmar un trato. Si no cerrás nada, no pagás nada.' },
-      normas: { titulo: '📋 Normas y Seguridad', texto: 'Tratá con respeto a todas las personas. Cumplí lo que acordás. Si alguien no cumple, avisá. No se permiten servicios ilegales ni discriminación de ningún tipo.' },
-      privacidad: { titulo: '🔒 Política de Privacidad', texto: 'Tus datos no se venden ni se comparten con nadie. Solo usamos lo necesario para que funcione. Podés pedir borrar tu cuenta cuando quieras.' },
-      funcion: { titulo: '❓ ¿Cómo funciona?', texto: 'Buscás o publicás. Te contactás. Acuerdan precio. Confirman el trato. Listo. Simple, justo y transparente.' },
-      requisitos: { titulo: '📄 ¿Qué necesitás?', texto: 'Solo tu correo y tu país. No pedimos documentos ni tarjetas para empezar.' }
-    };
-
-    const inputBusqueda = document.getElementById('busqueda');
-    inputBusqueda.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') buscarInfo(this.value);
-    });
-
-    function buscarInfo(texto) {
-      if (!texto.trim()) return;
-      const clave = texto.trim().toLowerCase();
-      let resultado = null;
-      if (clave.includes('cobro') || clave.includes('cuánto') || clave.includes('precio')) resultado = baseInfo.cobro;
-      else if (clave.includes('gratis') || clave.includes('costo')) resultado = baseInfo.gratis;
-      else if (clave.includes('normas') || clave.includes('seguridad')) resultado = baseInfo.normas;
-      else if (clave.includes('privacidad') || clave.includes('datos')) resultado = baseInfo.privacidad;
-      else if (clave.includes('cómo funciona') || clave.includes('funciona')) resultado = baseInfo.funcion;
-      else if (clave.includes('requisitos') || clave.includes('necesito')) resultado = baseInfo.requisitos;
-      else resultado = { titulo: '🔍 No lo encontré', texto: 'Probá buscar: cuánto se cobra, es gratis, normas, privacidad, cómo funciona, requisitos.' };
-      mostrarBusqueda(resultado);
-    }
-
-    function mostrarBusqueda(datos) {
-      document.getElementById('titulo-busqueda').textContent = datos.titulo;
-      document.getElementById('contenido-busqueda').innerHTML = '<h3>' + datos.titulo + '</h3><p>' + datos.texto + '</p>';
-      document.getElementById('pantalla-busqueda').classList.add('activa');
-    }
-
-    function abrirDemanda() { document.getElementById('pantalla-demanda').classList.add('activa'); }
-    function abrirOferta() { document.getElementById('pantalla-oferta').classList.add('activa'); }
-    function abrirTodo() { document.getElementById('pantalla-todo').classList.add('activa'); }
-    function abrirInfo(tipo) {
-      if (tipo === 'normas') mostrarBusqueda(baseInfo.normas);
-      else if (tipo === 'privacidad') mostrarBusqueda(baseInfo.privacidad);
-      else if (tipo === 'actualizaciones') mostrarBusqueda({titulo: '🔄 Actualizaciones', texto: 'Versión 1.0 — Pantalla principal con diseño de Canva, búsqueda de información, publicación de servicios y demandas. Gira solo en celular y PC. Próximamente: chat y listado completo.'});
-    }
-    function cerrarPantalla() { document.querySelectorAll('.pantalla').forEach(p => p.classList.remove('activa')); }
-  </script>
+    <script src="app.js"></script>
 </body>
 </html>
