@@ -1,0 +1,48 @@
+# =============================================================
+# 🔐 ARCHIVO DE CONFIGURACIÓN — DIMON CONNECT
+# ⚠️ NO COMPARTIR · NO SUBIR A INTERNET · SOLO PARA EL SERVIDOR
+# =============================================================
+
+# 📌 DATOS DEL CREADOR
+CREADOR_NOMBRE="José María Mondine Lemos"
+CREADOR_DOCUMENTO="43433929"
+CREADOR_CORREO="josemondine723@gmail.com"
+
+# 🌐 ENTORNO Y PUERTO
+NODE_ENV=production
+PORT=3000
+APP_URL="https://dimon-connect.duckdns.org"
+APP_NAME="Dimon Connect"
+
+# 🔑 SEGURIDAD — JWT
+JWT_SECRET=ClaveSeguraDimon2026LiraBase!
+JWT_EXPIRES_IN=7d
+
+# 💳 PAYPAL — Modo LIVE
+PAYPAL_MODE=live
+PAYPAL_CLIENT_ID=AdRBautpSs_PojiqAiVHT_07kesu4h-hr2p7DIqKc6-P-2olyEwYWqkNDRJfXoZM8z1vGJp5XP3Ujx1
+PAYPAL_CLIENT_SECRET=PONER_TU_CLAVE_SECRETA_DE_PAYPAL_AQUI
+
+# 🗄️ BASE DE DATOS — SUPABASE
+SUPABASE_URL=https://db.mjyzsixwyevqqwhtocst.supabase.co
+SUPABASE_ANON_KEY=sb_publishable_Vl7FzKhCGdTONP7asJZNmQ_DFZlr7nb
+SUPABASE_SERVICE_KEY=sb_secret_sddKIE5Z5_Dn7GB42iKozw_9LJs3OXq
+DATABASE_URL=postgresql://postgres:Prometeo_Atenas_Ades@db.mjyzsixwyevqqwhtocst.supabase.co:5432/postgres
+
+# 🗄️ BASE DE DATOS ALTERNATIVA — NEON
+DATABASE_NEON_URL=postgresql://neondb_owner:npg_caDIf87xuvZV@ep-empty-dew-ac1w9u3w-pooler.sa-east-1.aws.neon.tech/neondb?sslmode=require
+
+# 💰 COMISIONES — 5% cada parte = 10% total
+COMISION_COMPRADOR=0.05
+COMISION_PROVEEDOR=0.05
+
+# ⚖️ MARCO LEGAL
+LEGAL_FRAMEWORK=Ley18.600-UY
+PAIS=Uruguay
+MONEDA=UYU
+
+# 📜 SUCESIÓN Y DERECHOS — INTOCABLES
+SUCESORA_NOMBRE="Taina Mondine Doldan"
+SUCESORA_DOCUMENTO="5.999.901-6"
+SUCESORA_PORCENTAJE_GANANCIAS=0.50
+SUCESORA_EDAD_MAYORIA=18
