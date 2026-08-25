@@ -4,37 +4,269 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dimon Connect</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,5 95,50 50,95 5,50' fill='%231E40AF'/></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background: url('20260825_025615_0000.png') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            color: #ffffff;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.12);
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 480px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 300px 20px 30px;
+            min-height: 100vh;
+            justify-content: space-between;
+        }
+
+        .mensaje {
+            margin-bottom: 40px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            line-height: 1.6;
+        }
+
+        .mensaje h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .mensaje .eslogan1 {
+            font-size: 1.05rem;
+            font-style: italic;
+            margin-bottom: 4px;
+            opacity: 0.98;
+        }
+
+        .mensaje .eslogan2 {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-bottom: 18px;
+        }
+
+        .mensaje p {
+            font-size: 0.9rem;
+            opacity: 0.92;
+            margin-bottom: 10px;
+        }
+
+        .mensaje .cierre {
+            font-size: 0.9rem;
+            font-weight: 600;
+            opacity: 0.95;
+        }
+
+        a {
+            text-decoration: none;
+            width: 100%;
+        }
+
+        .btn-group {
+            width: 100%;
+            margin-bottom: 35px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 22px 20px;
+            border-radius: 14px;
+            border: none;
+            font-size: 1.15rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-bottom: 18px;
+            transition: all 0.25s;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+            text-align: center;
+        }
+
+        .btn-need {
+            background: #ffffff;
+            color: #1a42db;
+        }
+
+        .btn-need:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            background: #f0f4ff;
+        }
+
+        .btn-offer {
+            background: linear-gradient(90deg, #28c76f 0%, #20b05f 100%);
+            color: #ffffff;
+        }
+
+        .btn-offer:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(40, 199, 111, 0.35);
+        }
+
+        .tools-row {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            margin-bottom: 25px;
+        }
+
+        .tool-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+        }
+
+        .tool-btn:hover {
+            opacity: 1;
+        }
+
+        .tool-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 3px;
+        }
+
+        .tool-text {
+            font-size: 0.75rem;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+        }
+
+        .download-btn {
+            padding: 14px 32px;
+            background: #ffffff;
+            border: none;
+            border-radius: 50px;
+            color: #1a42db;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 25px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-1px);
+            background: #f0f4ff;
+        }
+
+        .footer-links {
+            font-size: 0.7rem;
+            opacity: 0.8;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+            line-height: 1.8;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 6px;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <div class="pantalla-inicio">
-        <div class="logo-contenedor">
-            <svg class="logo-rombo" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="grad-rombo" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#1E40AF"/>
-                        <stop offset="100%" stop-color="#06B6D4"/>
-                    </linearGradient>
-                </defs>
-                <polygon points="60,10 110,60 60,110 10,60" fill="url(#grad-rombo)" stroke="#0F172A" stroke-width="2"/>
-            </svg>
-            <h1 class="logo-texto">Dimon Connect</h1>
-        </div>
 
-        <p class="mensaje-principal">Acá encontrás la persona justa para lo que necesitás.</p>
-        <p class="mensaje-secundario">Personas que saben. Personas que ayudan. Confianza de verdad.</p>
+<div class="container">
 
-        <div class="botones-principales">
-            <a href="buscar.html" class="boton boton-primario">
-                Necesito ayuda
-            </a>
-            <a href="ofrecer.html" class="boton boton-secundario">
-                Ofrezco mi trabajo
-            </a>
-        </div>
-
-        <p class="texto-chico">Sin títulos obligatorios · Sin comisiones ocultas</p>
+    <div class="mensaje">
+        <h1>Dimon Connect</h1>
+        <p class="eslogan1">El puente entre quien necesita y quien sabe hacer.</p>
+        <p class="eslogan2">Personas con soluciones. Acuerdos justos para las dos partes.</p>
+        <p>¿Se busca algo que parece difícil de conseguir? Acá se puede encontrar.<br>
+        No importa qué tan específico o único sea. Si existe la necesidad, existe también quien la puede cubrir.</p>
+        <p>¿Se sabe hacer algo que parece que no tiene dónde ofrecer? Acá tiene su lugar.<br>
+        Cualquier tarea, cualquier conocimiento, cualquier habilidad. Si hay alguien que lo necesita, acá se encuentra.</p>
+        <p class="cierre">Nada es demasiado pequeño. Nada es demasiado especial. Todo trabajo tiene valor.</p>
     </div>
+
+    <div class="btn-group">
+        <a href="solicitudes.html">
+            <button class="btn-primary btn-need">
+                ¿Qué servicio se necesita?
+            </button>
+        </a>
+
+        <a href="ofertas.html">
+            <button class="btn-primary btn-offer">
+                Ofrecer un servicio
+            </button>
+        </a>
+    </div>
+
+    <div class="tools-row">
+        <a href="asistente.html" class="tool-btn">
+            <div class="tool-icon">🎤</div>
+            <span class="tool-text">Asistente</span>
+        </a>
+
+        <a href="filtros.html" class="tool-btn">
+            <div class="tool-icon">🔍</div>
+            <span class="tool-text">Filtros</span>
+        </a>
+
+        <a href="ayuda.html" class="tool-btn">
+            <div class="tool-icon">❓</div>
+            <span class="tool-text">Ayuda</span>
+        </a>
+    </div>
+
+    <button class="download-btn" onclick="window.location.href='descargar.html'">
+        📲 Descargar Dimon Connect
+    </button>
+
+    <div class="footer-links">
+        <a href="terminos.html">Términos y Condiciones</a> ·
+        <a href="legal.html">Marco Legal</a> ·
+        <a href="privacidad.html">Privacidad y Seguridad</a> ·
+        <a href="normas.html">Normas de Uso</a> ·
+        <a href="contacto.html">Contacto</a>
+    </div>
+
+</div>
+
 </body>
 </html>
