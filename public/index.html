@@ -4,279 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dimon Connect</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        }
-
-        body {
-            background:background: url('https://raw.githubusercontent.com/josemondine7/Dimon-Connect-Servicios-Autonomos/main/public/20260825_025615_0000.png') no-repeat center center fixed;
-
-            background-size: cover;
-            min-height: 100vh;
-            color: #ffffff;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.15);
-            z-index: 0;
-        }, 
- img.src="06f9228d-9ba5-4998-9604-c4432eefaa34_20260825_183431_0000.png" 
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 480px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 280px 20px 30px;
-            min-height: 100vh;
-            justify-content: space-between;
-        }
-
-        .mensaje {
-            margin-bottom: 50px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            line-height: 1.7;
-        }
-
-        .mensaje h1 {
-            font-size: 2.5rem;
-            font-weight: 900;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        .mensaje .eslogan1 {
-            font-size: 1.1rem;
-            font-style: italic;
-            margin-bottom: 6px;
-            opacity: 0.95;
-        }
-
-        .mensaje .eslogan2 {
-            font-size: 1rem;
-            opacity: 0.9;
-            margin-bottom: 20px;
-        }
-
-        .mensaje p {
-            font-size: 0.95rem;
-            opacity: 0.92;
-            margin-bottom: 12px;
-        }
-
-        .mensaje .cierre {
-            font-size: 1rem;
-            font-weight: 700;
-            opacity: 0.98;
-            margin-top: 10px;
-        }
-
-        a {
-            text-decoration: none;
-            width: 100%;
-        }
-
-        .btn-group {
-            width: 100%;
-            margin-bottom: 40px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .btn-primary {
-            width: 100%;
-            padding: 20px 24px;
-            border-radius: 16px;
-            border: none;
-            font-size: 1.2rem;
-            font-weight: 800;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-            text-align: center;
-            display: block;
-        }
-
-        .btn-need {
-            background: #ffffff;
-            color: #1a42db;
-            border: 3px solid #1a42db;
-        }
-
-        .btn-need:active {
-            transform: scale(0.97);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
-        }
-
-        .btn-offer {
-            background: linear-gradient(90deg, #28c76f 0%, #1ea85c 100%);
-            color: #ffffff;
-            border: 3px solid #1ea85c;
-        }
-
-        .btn-offer:active {
-            transform: scale(0.97);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
-        }
-
-        .tools-row {
-            display: flex;
-            justify-content: space-around;
-            gap: 20px;
-            margin-bottom: 30px;
-            width: 100%;
-            max-width: 380px;
-        }
-
-        .tool-btn {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.18);
-            border: 2px solid rgba(255, 255, 255, 0.35);
-            border-radius: 14px;
-            padding: 16px 12px;
-            color: white;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            min-width: 90px;
-        }
-
-        .tool-btn:active {
-            transform: scale(0.95);
-            background: rgba(255, 255, 255, 0.25);
-        }
-
-        .tool-icon {
-            font-size: 1.8rem;
-            line-height: 1;
-        }
-
-        .tool-text {
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.4);
-        }
-
-        .download-btn {
-            width: 100%;
-            max-width: 340px;
-            padding: 18px 30px;
-            background: linear-gradient(135deg, #ffffff 0%, #f0f4ff 100%);
-            border: 3px solid #1a42db;
-            border-radius: 50px;
-            color: #1a42db;
-            font-size: 1.1rem;
-            font-weight: 800;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 6px 20px rgba(26, 66, 219, 0.35);
-            margin-bottom: 30px;
-        }
-
-        .download-btn:active {
-            transform: scale(0.97);
-            box-shadow: 0 3px 10px rgba(26, 66, 219, 0.25);
-        }
-
-        .footer-links {
-            font-size: 0.75rem;
-            opacity: 0.85;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.4);
-            line-height: 2;
-            text-align: center;
-        }
-
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            margin: 0 6px;
-            border-bottom: 1px solid rgba(255,255,255,0.25);
-        }
-
-        .footer-links a:active {
-            border-bottom: 1px solid rgba(255,255,255,0.6);
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="assets/logo-dimon-connect.png">
 </head>
 <body>
+    <!-- IMAGEN DE FONDO COMPLETA — mapa + logo + texto -->
+    <div class="fondo-pantalla"></div>
 
-<div class="container">
+    <div class="contenedor-principal">
+        <!-- LOGO Y NOMBRE (también arriba por si la imagen no carga) -->
+        <div class="logo-superior">
+            <img src="assets/logo-dimon-connect.png" alt="Dimon Connect">
+        </div>
 
-    <div class="mensaje">
-        <h1>Dimon Connect</h1>
-        <p class="eslogan1">El puente entre quien necesita y quien sabe hacer.</p>
-        <p class="eslogan2">Personas con soluciones. Acuerdos justos para las dos partes.</p>
-        <p>¿Se busca algo que parece difícil de conseguir? Acá se puede encontrar.<br>
-        No importa qué tan específico o único sea. Si existe la necesidad, existe también quien la puede cubrir.</p>
-        <p>¿Se sabe hacer algo que parece que no tiene dónde ofrecer? Acá tiene su lugar.<br>
-        Cualquier tarea, cualquier conocimiento, cualquier habilidad. Si hay alguien que lo necesita, acá se encuentra.</p>
-        <p class="cierre">Nada es demasiado pequeño. Nada es demasiado especial. Todo trabajo tiene valor.</p>
+        <!-- BARRA DE BÚSQUEDA 🔍 -->
+        <a href="buscar.html" class="barra-busqueda">
+            <span class="icono-buscar">🔍</span> Buscar
+        </a>
+
+        <!-- FILA DE BOTONES: OFERTA + TRABAJAR CON NOSOTROS -->
+        <div class="fila-botones-doble">
+            <a href="oferta.html" class="boton-doble">
+                Oferta de<br>servicios
+            </a>
+            <a href="trabajar.html" class="boton-doble">
+                Querés trabajar<br>con nosotros?
+            </a>
+        </div>
+
+        <!-- BOTÓN SOLICITUD DE SERVICIOS + BOTÓN FILTRO -->
+        <div class="fila-solicitud">
+            <a href="demanda.html" class="boton-solicitud">
+                Solicitud de servicios
+            </a>
+            <a href="filtros.html" class="boton-filtro">
+                Q
+            </a>
+        </div>
+
+        <!-- ENLACES INFERIORES -->
+        <div class="enlaces-inferiores">
+            <a href="condiciones.html">Normas y Seguridad</a>
+            <span>|</span>
+            <a href="#">Actualizaciones</a>
+            <span>|</span>
+            <a href="condiciones.html">Politica de Privacidad</a>
+        </div>
+
+        <!-- BOTÓN DESCARGAR APP -->
+        <a href="#" class="boton-descargar">
+            <span class="icono-descargar">⬇</span> Descargar la aplicación Dimon Connect
+        </a>
     </div>
-
-    <div class="btn-group">
-        <a href="solicitudes.html">
-            <button class="btn-primary btn-need">
-                ¿Qué servicio se necesita?
-            </button>
-        </a>
-
-        <a href="ofertas.html">
-            <button class="btn-primary btn-offer">
-                Ofrecer un servicio
-            </button>
-        </a>
-    </div>
-
-    <div class="tools-row">
-        <a href="asistente.html" class="tool-btn">
-            <div class="tool-icon">🎤</div>
-            <span class="tool-text">Asistente de voz</span>
-        </a>
-
-        <a href="filtros.html" class="tool-btn">
-            <div class="tool-icon">🔍</div>
-            <span class="tool-text">Filtros</span>
-        </a>
-
-        <a href="ayuda.html" class="tool-btn">
-            <div class="tool-icon">❓</div>
-            <span class="tool-text">Ayuda</span>
-        </a>
-    </div>
-
-    <button class="download-btn" onclick="window.location.href='descargar.html'">
-        📲 Descargar Dimon Connect
-    </button>
-
-    <div class="footer-links">
-        <a href="terminos.html">Términos y Condiciones</a> ·
-        <a href="legal.html">Marco Legal</a> ·
-        <a href="privacidad.html">Privacidad y Seguridad</a> ·
-        <a href="normas.html">Normas de Uso</a> ·
-        <a href="contacto.html">Contacto</a>
-    </div>
-
-</div>
-
 </body>
 </html>
