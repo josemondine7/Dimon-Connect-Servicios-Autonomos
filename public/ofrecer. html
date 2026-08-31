@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>¿Querés trabajar con nosotros? — Dimon Connect</title>
+  <title>Ofrece tus servicios aquí — Dimon Connect</title>
   <style>
     * {
       box-sizing: border-box;
@@ -122,8 +122,8 @@
   <div class="contenedor">
     <a href="index.html" class="volver">Volver al inicio</a>
 
-    <h1>¿Querés trabajar con nosotros?</h1>
-    <p class="subtitulo">Se ofrece lo que se sabe hacer. Se encuentra el trabajo adecuado.</p>
+    <h1>Ofrece tus servicios aquí</h1>
+    <p class="subtitulo">Se publica lo que se sabe hacer. Se encuentra el trabajo adecuado.</p>
 
     <div class="campo">
       <label>Nombre completo</label>
@@ -163,18 +163,4 @@
     <div class="campo">
       <label>Precio aproximado por esta tarea</label>
       <div class="precio-texto">
-        El precio indicado corresponde a la mano de obra descrita arriba. Los materiales no se encuentran incluidos. Todo se rige por lo acordado entre quien brinda el servicio y quien lo solicita.
-      </div>
-      <input type="text" placeholder="Valor estimado">
-    </div>
-
-    <div class="compromiso">
-      No se requieren títulos ni certificaciones, solo experiencia. Al inscribirse se entiende el compromiso de realizar el trabajo de buena forma, y se publica únicamente aquello que se sabe cumplir.
-    </div>
-
-    <button class="boton">Publicar el servicio</button>
-
-  </div>
-
-</body>
-</html>
+        El precio indicado corresponde a la mano de obra descrita arriba. Los materiales
