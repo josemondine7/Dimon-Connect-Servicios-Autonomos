@@ -1,193 +1,123 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscar — Dimon Connect</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body { padding-bottom: 70px; }
-        .encabezado {
-            width: 100%;
-            max-width: 500px;
-            text-align: left;
-            margin-bottom: 1.5rem;
-        }
-        .encabezado h2 {
-            font-size: 1.5rem;
-            color: var(--azul);
-            margin-bottom: 0.25rem;
-        }
-        .encabezado p {
-            color: #64748B;
-            font-size: 0.95rem;
-        }
-        .barra-busqueda {
-            width: 100%;
-            max-width: 500px;
-            padding: 0.875rem 1.25rem;
-            border-radius: 10px;
-            border: 1px solid var(--borde);
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-            outline: none;
-            transition: border-color 0.2s;
-            background: var(--blanco);
-        }
-        .barra-busqueda:focus { border-color: var(--azul); }
-        .categorias {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.625rem;
-            margin-bottom: 2rem;
-            justify-content: flex-start;
-            width: 100%;
-            max-width: 500px;
-        }
-        .categoria {
-            padding: 0.625rem 1rem;
-            background: var(--blanco);
-            border-radius: 8px;
-            border: 1px solid var(--borde);
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 0.9rem;
-        }
-        .categoria:hover { border-color: var(--azul); color: var(--azul); }
-        .tarjeta-persona {
-            background: var(--blanco);
-            border-radius: 12px;
-            padding: 1.25rem;
-            margin-bottom: 1rem;
-            box-shadow: 0 1px 3px var(--sombra);
-            width: 100%;
-            max-width: 500px;
-            text-align: left;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .tarjeta-persona:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px var(--sombra);
-        }
-        .persona-foto {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--azul), var(--cian));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-        }
-        .persona-nombre {
-            font-size: 1.05rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-        .persona-descripcion {
-            color: #64748B;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-            line-height: 1.5;
-        }
-        .persona-datos {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.9rem;
-        }
-        .persona-precio {
-            font-weight: 600;
-            color: var(--azul);
-        }
-        .persona-valoracion {
-            color: #F59E0B;
-            font-weight: 500;
-        }
-        .navegacion-inferior {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--blanco);
-            display: flex;
-            justify-content: space-around;
-            padding: 0.75rem 0;
-            box-shadow: 0 -1px 0 var(--borde);
-            z-index: 100;
-        }
-        .nav-item {
-            text-align: center;
-            cursor: pointer;
-            color: #94A3B8;
-            font-size: 0.8rem;
-            transition: color 0.2s;
-        }
-        .nav-item.activo {
-            color: var(--azul);
-            font-weight: 600;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buscar — Dimon Connect</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at 80% 20%, #1a2a6c, #0f4c81, #00d2ff);
+      color: #ffffff;
+      padding: 30px 20px;
+      line-height: 1.7;
+    }
+
+    .contenedor {
+      max-width: 750px;
+      margin: 0 auto;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 35px;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    }
+
+    .volver {
+      display: inline-block;
+      color: #00f2fe;
+      text-decoration: none;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .volver:hover { text-decoration: underline; }
+
+    h1 {
+      color: #00f2fe;
+      margin-bottom: 15px;
+      font-size: 26px;
+      text-align: center;
+    }
+
+    .descripcion {
+      text-align: center;
+      color: #b8fff8;
+      margin-bottom: 30px;
+      font-size: 15px;
+    }
+
+    .barra-busqueda {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    input {
+      flex: 1;
+      padding: 15px 20px;
+      border-radius: 12px;
+      border: none;
+      background: rgba(255,255,255,0.95);
+      color: #1a2a6c;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .boton {
+      padding: 15px 25px;
+      border-radius: 12px;
+      border: none;
+      background: #00f2fe;
+      color: #0a2a4a;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .boton:hover {
+      background: #00d4e0;
+    }
+
+    .informacion {
+      background: rgba(0,242,254,0.08);
+      padding: 20px;
+      border-radius: 12px;
+      border-left: 4px solid #00f2fe;
+      color: #e0ffff;
+      font-size: 15px;
+    }
+  </style>
 </head>
-<body class="pantalla-inicio" style="justify-content: flex-start; padding-top: 2rem;">
+<body>
 
-    <div class="encabezado">
-        <h2>¿Qué necesitás?</h2>
-        <p>Encontrá personas cerca de vos, listas para ayudarte.</p>
-    </div>
-    
-    <input type="text" class="barra-busqueda" placeholder="Escribí lo que buscás...">
-    
-    <div class="categorias">
-        <div class="categoria">Reparaciones</div>
-        <div class="categoria">Limpieza</div>
-        <div class="categoria">Jardín</div>
-        <div class="categoria">Cuidado</div>
-        <div class="categoria">Tareas</div>
-        <div class="categoria">Otros</div>
+  <div class="contenedor">
+    <a href="index.html" class="volver">Volver al inicio</a>
+
+    <h1>¿Qué estás buscando?</h1>
+
+    <p class="descripcion">La barra funciona como tu asistente inteligente. Escribí como sepas, que ella te entiende.</p>
+
+    <div class="barra-busqueda">
+      <input type="text" placeholder="Escribí acá lo que necesitás...">
+      <button class="boton">Buscar</button>
     </div>
 
-    <h3 style="width: 100%; max-width: 500px; text-align: left; margin-bottom: 1rem; color: #475569; font-size: 1rem;">Personas disponibles</h3>
-
-    <div class="tarjeta-persona">
-        <div class="persona-foto">M</div>
-        <div class="persona-nombre">María — Limpieza y orden</div>
-        <div class="persona-descripcion">Experiencia en limpieza de casas, departamentos y oficinas. Trabajo responsable.</div>
-        <div class="persona-datos">
-            <span class="persona-precio">Desde $U 250 / hora</span>
-            <span class="persona-valoracion">4.9 ★</span>
-        </div>
+    <div class="informacion">
+      ✅ Entiende los catorce idiomas más hablados del mundo y se adapta al teclado de tu país.<br><br>
+      ✅ Encuentra servicios que se ofrecen, servicios que se solicitan, y también normas, ayuda y funcionamiento de la plataforma.<br><br>
+      ✅ No importa cómo lo escribas o si no te expresás perfecto: el asistente entiende lo que necesitás y te lleva directo.<br><br>
+      🔒 No accede a información privada. Solo muestra lo público.
     </div>
 
-    <div class="tarjeta-persona">
-        <div class="persona-foto">C</div>
-        <div class="persona-nombre">Carlos — Reparaciones generales</div>
-        <div class="persona-descripcion">Arreglos eléctricos, muebles, pinturas y tareas rápidas. Trabajo prolijo.</div>
-        <div class="persona-datos">
-            <span class="persona-precio">Desde $U 350 / hora</span>
-            <span class="persona-valoracion">4.8 ★</span>
-        </div>
-    </div>
-
-    <div class="tarjeta-persona">
-        <div class="persona-foto">A</div>
-        <div class="persona-nombre">Ana — Cuidado y compañía</div>
-        <div class="persona-descripcion">Acompañamiento y cuidado de personas mayores. Paciencia y responsabilidad.</div>
-        <div class="persona-datos">
-            <span class="persona-precio">Desde $U 200 / hora</span>
-            <span class="persona-valoracion">5.0 ★</span>
-        </div>
-    </div>
-
-    <div class="navegacion-inferior">
-        <div class="nav-item activo">Inicio</div>
-        <div class="nav-item">Buscar</div>
-        <div class="nav-item">Mensajes</div>
-        <div class="nav-item">Perfil</div>
-    </div>
+  </div>
 
 </body>
 </html>
