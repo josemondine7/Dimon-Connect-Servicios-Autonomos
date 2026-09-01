@@ -1,0 +1,235 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 1200 620"
+  role="img"
+  aria-labelledby="mapTitle"
+>
+  <title id="mapTitle">Mapa mundial formado por puntos luminosos</title>
+
+  <defs>
+    <radialGradient id="pointGlow">
+      <stop offset="0" stop-color="#d9ffff" stop-opacity="1" />
+      <stop offset=".35" stop-color="#5cfaff" stop-opacity=".9" />
+      <stop offset="1" stop-color="#19bff5" stop-opacity="0" />
+    </radialGradient>
+
+    <linearGradient id="mapLine" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#59ffff" stop-opacity=".25" />
+      <stop offset=".5" stop-color="#00deff" stop-opacity=".9" />
+      <stop offset="1" stop-color="#8bcaff" stop-opacity=".15" />
+    </linearGradient>
+
+    <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="3" />
+    </filter>
+
+    <pattern id="dots" width="15" height="15" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="1.35" fill="#65efff" opacity=".55" />
+      <circle cx="10" cy="9" r=".9" fill="#58dfff" opacity=".35" />
+    </pattern>
+  </defs>
+
+  <!-- Siluetas geográficas estilizadas -->
+  <g fill="url(#dots)" stroke="url(#mapLine)" stroke-width="1.2">
+
+    <!-- Norteamérica -->
+    <path d="
+      M100 165
+      C135 130 190 115 244 120
+      C273 123 305 138 325 157
+      L303 178
+      L278 187
+      L267 215
+      L242 219
+      L226 248
+      L195 235
+      L178 209
+      L146 208
+      L124 188
+      Z
+    " />
+
+    <!-- Centroamérica -->
+    <path d="
+      M250 225
+      L272 235
+      L282 258
+      L300 270
+      L286 288
+      L267 281
+      L252 260
+      L236 242
+      Z
+    " />
+
+    <!-- Sudamérica -->
+    <path d="
+      M316 281
+      C342 303 360 328 355 360
+      C350 391 330 416 327 446
+      L305 493
+      L282 482
+      L274 443
+      L257 413
+      L267 379
+      L253 347
+      L272 316
+      Z
+    " />
+
+    <!-- Europa -->
+    <path d="
+      M536 161
+      L574 145
+      L608 151
+      L629 167
+      L658 170
+      L680 187
+      L663 204
+      L630 199
+      L608 216
+      L581 204
+      L558 211
+      L537 194
+      Z
+    " />
+
+    <!-- Asia -->
+    <path d="
+      M659 168
+      C710 137 785 124 858 141
+      L948 157
+      L1017 190
+      L1049 226
+      L1015 247
+      L978 238
+      L950 258
+      L909 249
+      L885 271
+      L841 257
+      L810 276
+      L779 252
+      L736 256
+      L702 231
+      L670 214
+      Z
+    " />
+
+    <!-- África -->
+    <path d="
+      M566 241
+      L620 232
+      L669 251
+      L702 292
+      L692 345
+      L661 396
+      L628 429
+      L594 405
+      L582 364
+      L554 328
+      L542 287
+      Z
+    " />
+
+    <!-- India y sudeste asiático -->
+    <path d="
+      M782 273
+      L819 288
+      L842 316
+      L823 340
+      L797 326
+      L773 300
+      Z
+    " />
+
+    <!-- Australia -->
+    <path d="
+      M884 399
+      C922 378 982 381 1020 404
+      L1049 439
+      L1022 476
+      L977 492
+      L928 483
+      L896 459
+      L876 426
+      Z
+    " />
+
+    <!-- Groenlandia -->
+    <path d="
+      M360 72
+      L418 62
+      L460 82
+      L448 116
+      L408 133
+      L366 116
+      L345 91
+      Z
+    " />
+
+  </g>
+
+  <!-- Puntos destacados -->
+  <g fill="url(#pointGlow)" filter="url(#softGlow)">
+    <circle cx="215" cy="168" r="18" />
+    <circle cx="284" cy="188" r="15" />
+    <circle cx="604" cy="181" r="17" />
+    <circle cx="735" cy="194" r="16" />
+    <circle cx="817" cy="218" r="20" />
+    <circle cx="919" cy="199" r="16" />
+    <circle cx="638" cy="303" r="20" />
+    <circle cx="958" cy="431" r="18" />
+  </g>
+
+  <g fill="#b6ffff">
+    <circle cx="215" cy="168" r="3.5" />
+    <circle cx="284" cy="188" r="2.5" />
+    <circle cx="604" cy="181" r="3" />
+    <circle cx="735" cy="194" r="3.2" />
+    <circle cx="817" cy="218" r="3.8" />
+    <circle cx="919" cy="199" r="2.8" />
+    <circle cx="638" cy="303" r="4" />
+    <circle cx="958" cy="431" r="3" />
+  </g>
+
+  <!-- Líneas de conexión -->
+  <g
+    fill="none"
+    stroke="#5ffaff"
+    stroke-width="1"
+    stroke-dasharray="3 8"
+    opacity=".5"
+  >
+    <path d="M215 168 C355 110 455 190 604 181" />
+    <path d="M604 181 C680 202 730 205 817 218" />
+    <path d="M817 218 C864 192 883 192 919 199" />
+    <path d="M638 303 C710 280 765 250 817 218" />
+    <path d="M638 303 C748 356 844 401 958 431" />
+    <path d="M284 188 C305 237 303 279 316 319" />
+  </g>
+
+  <!-- Puntos adicionales decorativos -->
+  <g fill="#5aeaff" opacity=".7">
+    <circle cx="130" cy="150" r="1.5" />
+    <circle cx="158" cy="180" r="1.2" />
+    <circle cx="187" cy="141" r="1.4" />
+    <circle cx="236" cy="201" r="1.3" />
+    <circle cx="296" cy="164" r="1.1" />
+    <circle cx="345" cy="350" r="1.6" />
+    <circle cx="326" cy="404" r="1.2" />
+    <circle cx="565" cy="155" r="1.4" />
+    <circle cx="625" cy="135" r="1.1" />
+    <circle cx="678" cy="182" r="1.6" />
+    <circle cx="715" cy="226" r="1.2" />
+    <circle cx="760" cy="158" r="1.3" />
+    <circle cx="856" cy="171" r="1.5" />
+    <circle cx="890" cy="231" r="1.1" />
+    <circle cx="979" cy="214" r="1.4" />
+    <circle cx="1016" cy="280" r="1.2" />
+    <circle cx="610" cy="367" r="1.5" />
+    <circle cx="665" cy="337" r="1.2" />
+    <circle cx="720" cy="314" r="1.5" />
+    <circle cx="917" cy="449" r="1.4" />
+    <circle cx="1002" cy="454" r="1.3" />
+  </g>
+</svg>
