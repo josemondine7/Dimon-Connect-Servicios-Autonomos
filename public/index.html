@@ -3,194 +3,301 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Dimon Connect - Servicios Autónomos" />
+  <meta name="description" content="Dimon Connect — Servicios Autónomos" />
   <title>Dimon Connect | Servicios Autónomos</title>
-
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow-x: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #ffffff;
+    }
+
+    /* Fondo de pantalla — tu imagen oficial */
+    .fondo-imagen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('fondo-Dimon.png') no-repeat center center;
+      background-size: cover;
+      z-index: -2;
+    }
+
+    /* Capa semitransparente para legibilidad */
+    .fondo-sombra {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.25);
+      z-index: -1;
+    }
+
+    .contenedor-principal {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2rem 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* --- LOGO Y TÍTULO --- */
+    .cabecera {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .logo {
+      max-width: 140px;
+      margin-bottom: 1rem;
+    }
+
+    .cabecera h1 {
+      font-size: 2.2rem;
+      color: #00f2fe;
+      margin-bottom: 0.3rem;
+      letter-spacing: 1px;
+    }
+
+    .cabecera h1 span {
+      color: #ffffff;
+      font-weight: 300;
+    }
+
+    .subtitulo {
+      font-size: 1.1rem;
+      color: #b8fff8;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+
+    /* --- BARRA DE BÚSQUEDA --- */
+    .barra-busqueda {
+      display: flex;
+      gap: 0.5rem;
+      max-width: 600px;
+      margin: 0 auto 3rem;
+    }
+
+    .barra-busqueda input {
+      flex: 1;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      border: none;
+      background: rgba(255, 255, 255, 0.9);
+      color: #1a2a6c;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .boton-lupa {
+      padding: 1rem 1.3rem;
+      border-radius: 12px;
+      border: none;
+      background: #00f2fe;
+      color: #0a2a4a;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .boton-lupa:hover {
+      background: #00d4e0;
+    }
+
+    /* --- BOTONES PRINCIPALES --- */
+    .botones-accion {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 500px;
+      margin: 0 auto 3rem;
+    }
+
+    .boton-principal {
+      padding: 1.1rem 2rem;
+      border-radius: 12px;
+      border: none;
+      font-size: 1.05rem;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+      display: block;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .boton-principal:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 242, 254, 0.25);
+    }
+
+    .boton-1 {
+      background: #00f2fe;
+      color: #0a2a4a;
+    }
+
+    .boton-2 {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      border: 2px solid #00f2fe;
+    }
+
+    .boton-3 {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      border: 2px solid #ffffff;
+    }
+
+    /* --- BOTÓN DE DESCARGA — abajo a la izquierda --- */
+    .boton-descarga {
+      position: fixed;
+      left: 1.5rem;
+      bottom: 2rem;
+      padding: 0.8rem 1.2rem;
+      border-radius: 10px;
+      background: #ff6b00;
+      color: #ffffff;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.9rem;
+      z-index: 10;
+      transition: all 0.2s;
+    }
+
+    .boton-descarga:hover {
+      background: #e65c00;
+      transform: scale(1.05);
+    }
+
+    /* --- ENLACES INFERIORES --- */
+    .pie-pagina {
+      text-align: center;
+      margin-top: 2rem;
+      padding-bottom: 4rem;
+    }
+
+    .enlaces-pie {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .enlaces-pie a {
+      color: #b8fff8;
+      text-decoration: none;
+      font-size: 0.9rem;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .enlaces-pie a:hover {
+      border-bottom-color: #00f2fe;
+      color: #ffffff;
+    }
+
+    .asistente-lira {
+      color: #00f2fe;
+      font-size: 0.95rem;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 0.5rem;
+      transition: all 0.2s;
+    }
+
+    .asistente-lira:hover {
+      text-shadow: 0 0 10px #00f2fe;
+    }
+
+    /* --- RESPONSIVE — celular y escritorio --- */
+    @media (min-width: 768px) {
+      .cabecera h1 { font-size: 3rem; }
+      .botones-accion { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+      .boton-principal { min-width: 280px; }
+    }
+
+    @media (max-width: 480px) {
+      .contenedor-principal { padding: 1.5rem 1rem; }
+      .cabecera h1 { font-size: 1.6rem; }
+      .boton-descarga { position: static; margin: 1rem auto; display: block; width: fit-content; }
+    }
+  </style>
 </head>
 <body>
 
-  <main class="hero">
+  <!-- Fondo visual oficial -->
+  <div class="fondo-imagen"></div>
+  <div class="fondo-sombra"></div>
 
-    <!-- Fondo decorativo -->
-    <div class="glow glow-left"></div>
-    <div class="glow glow-right"></div>
+  <div class="contenedor-principal">
 
-    <!-- Mapa mundial en SVG -->
-    <div class="map-background" aria-hidden="true">
-      <img src="world-map.svg" alt="" />
-    </div>
-
-    <!-- Barra superior -->
-    <header class="navbar">
-
-      <a href="#" class="brand" aria-label="Dimon Connect">
-        <svg class="brand-mark" viewBox="0 0 48 48" role="img" aria-hidden="true">
-          <defs>
-            <linearGradient id="logoBlue" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#00e9ff" />
-              <stop offset="100%" stop-color="#0875ff" />
-            </linearGradient>
-
-            <linearGradient id="logoDark" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#102eaf" />
-              <stop offset="100%" stop-color="#071566" />
-            </linearGradient>
-          </defs>
-
-          <polygon
-            points="24,2 46,24 24,46 2,24"
-            fill="url(#logoBlue)"
-          />
-
-          <polygon
-            points="24,10 38,24 24,38 10,24"
-            fill="#071a8e"
-          />
-
-          <polygon
-            points="24,10 38,24 24,24 14,24"
-            fill="#0a5bda"
-          />
-
-          <polygon
-            points="24,24 38,24 24,38 14,24"
-            fill="url(#logoDark)"
-          />
-
-          <polygon
-            points="24,2 24,10 10,24 2,24"
-            fill="#11dff8"
-            opacity=".9"
-          />
-        </svg>
-
-        <span class="brand-name">
-          <strong>Dimon</strong>
-          <span>Connect</span>
-        </span>
-      </a>
-
-      <nav class="navigation" aria-label="Navegación principal">
-        <a href="#">Cursos</a>
-        <a href="#">Mentoría</a>
-        <a href="#">Tienda &amp; Blog</a>
-        <a href="#">Encuentra empleo</a>
-        <a href="#">Únete</a>
-        <a href="#">Únete nosotros</a>
-      </nav>
-
-      <button class="search-icon" aria-label="Buscar">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="10.7" cy="10.7" r="6.4"></circle>
-          <path d="M16 16l5 5"></path>
-        </svg>
-      </button>
-
+    <!-- 🎯 LOGO + TÍTULO -->
+    <header class="cabecera">
+      <img src="logo_dimon_connect.png" alt="Dimon Connect" class="logo" onerror="this.style.display='none'">
+      <h1>Dimon <span>Connect</span></h1>
+      <p class="subtitulo">El puente entre quien necesita y quien tiene la solución.</p>
     </header>
 
-    <!-- Contenido principal -->
-    <section class="hero-content">
+    <!-- 🔍 BARRA DE BÚSQUEDA -->
+    <form class="barra-busqueda" action="buscar.html" method="get">
+      <input type="search" name="q" placeholder="Buscar servicios, personas, categorías..." required>
+      <button type="submit" class="boton-lupa">🔍</button>
+    </form>
 
-      <div class="hero-logo">
-        <svg viewBox="0 0 140 140" role="img" aria-label="Logotipo Dimon">
-          <defs>
-            <linearGradient id="heroLogoBlue" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#12e7fa" />
-              <stop offset="100%" stop-color="#0876ff" />
-            </linearGradient>
+    <!-- 🟢 BOTONES PRINCIPALES -->
+    <main class="botones-accion">
+      <a href="ofrecer.html" class="boton-principal boton-1">Ofrecer mis servicios</a>
+      <a href="solicitar.html" class="boton-principal boton-2">Solicitar un servicio</a>
+      <a href="login.html" class="boton-principal boton-3">Iniciar sesión</a>
+    </main>
 
-            <linearGradient id="heroLogoNavy" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#153dc9" />
-              <stop offset="100%" stop-color="#06135e" />
-            </linearGradient>
-          </defs>
+    <!-- 🔗 PIE DE PÁGINA -->
+    <footer class="pie-pagina">
+      <nav class="enlaces-pie">
+        <a href="normas.html">Normas y Seguridad</a>
+        <a href="normas.html#privacidad">Privacidad</a>
+        <a href="normas.html#terminos">Términos de Servicio</a>
+        <a href="normas.html#cookies">Cookies</a>
+        <a href="normas.html#contacto">Contacto</a>
+      </nav>
+      <a href="lira.html" class="asistente-lira">🤖 Hablar con el Asistente Lira</a>
+    </footer>
 
-          <polygon
-            points="70,5 135,70 70,135 5,70"
-            fill="url(#heroLogoBlue)"
-          />
+  </div>
 
-          <polygon
-            points="70,20 120,70 70,120 20,70"
-            fill="#061889"
-          />
+  <!-- 📱 BOTÓN DE DESCARGA DE LA APP — abajo a la izquierda -->
+  <a href="#" class="boton-descarga" id="boton-descarga-app">📱 Descargar aplicación</a>
 
-          <polygon
-            points="70,20 120,70 70,70 35,70"
-            fill="#116bd9"
-          />
+  <!-- Funcionalidad del botón de descarga -->
+  <script>
+    // Cuando tengas el enlace real de descarga, reemplaza el # aquí abajo
+    const enlaceDescarga = "#"; // Ejemplo: "https://tu-app.com/download"
+    document.getElementById('boton-descarga-app').setAttribute('href', enlaceDescarga);
 
-          <polygon
-            points="70,70 120,70 70,120 35,70"
-            fill="url(#heroLogoNavy)"
-          />
-
-          <polygon
-            points="70,5 70,20 20,70 5,70"
-            fill="#11ddf8"
-          />
-        </svg>
-      </div>
-
-      <div class="copy">
-        <p class="eyebrow">
-          Dimon <span>Connect</span>
-        </p>
-
-        <h1>
-          Servicios <span>Autónomos</span>
-        </h1>
-
-        <p class="subtitle">
-          El puente entre quien necesita un servicio<br />
-          y quien tiene la solución.
-        </p>
-
-        <form class="service-search">
-          <label class="sr-only" for="service-input">
-            Buscar servicios
-          </label>
-
-          <input
-            id="service-input"
-            type="search"
-            placeholder="Buscar servicios..."
-          />
-
-          <button type="submit" aria-label="Buscar servicios">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <circle cx="10.7" cy="10.7" r="6.4"></circle>
-              <path d="M16 16l5 5"></path>
-            </svg>
-          </button>
-        </form>
-      </div>
-
-    </section>
-
-    <!-- Acciones -->
-    <section class="actions" aria-label="Acciones principales">
-      <a href="#" class="button button-primary">
-        Oferta de servicios
-      </a>
-
-      <a href="#" class="button button-secondary">
-        ¿Quieres trabajar con nosotros?
-      </a>
-
-      <a href="#" class="button button-accent">
-        Solicita un servicio
-      </a>
-    </section>
-
-    <!-- Firma inferior -->
-    <div class="ai-signature">
-      <strong>Dola AI</strong>
-      <span>Dola AI</span>
-    </div>
-
-  </main>
+    // Efecto de clic en botones
+    document.querySelectorAll('.boton-principal, .boton-descarga').forEach(boton => {
+      boton.addEventListener('click', function() {
+        this.style.transform = 'scale(0.98)';
+        setTimeout(() => this.style.transform = '', 150);
+      });
+    });
+  </script>
 
 </body>
 </html>
