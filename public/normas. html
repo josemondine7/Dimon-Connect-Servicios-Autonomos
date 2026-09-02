@@ -1,112 +1,63 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Normas y Seguridad — Dimon Connect</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ofrecer Servicios — Dimon Connect</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+    html, body { width: 100%; min-height: 100vh; background: #0a1a4a; color: #fff; padding: 2rem 1.5rem; }
+    .contenedor { max-width: 600px; margin: 0 auto; }
+    .volver { color: #00f2fe; text-decoration: none; font-weight: 600; display: inline-block; margin-bottom: 2rem; }
+    h1 { color: #00f2fe; text-align: center; margin-bottom: 0.5rem; }
+    .intro { text-align: center; color: #b8fff8; margin-bottom: 2rem; line-height: 1.6; }
+    form { display: flex; flex-direction: column; gap: 1rem; }
+    label { font-weight: 500; color: #e0ffff; }
+    input, textarea, select {
+      padding: 0.9rem 1.2rem; border-radius: 10px; border: none;
+      background: rgba(255,255,255,0.9); color: #1a2a6c; font-size: 1rem;
     }
-
-    body {
-      min-height: 100vh;
-      background: radial-gradient(circle at 80% 20%, #1a2a6c, #0f4c81, #00d2ff);
-      color: #ffffff;
-      padding: 30px 20px;
-      line-height: 1.7;
+    textarea { min-height: 120px; resize: vertical; }
+    button {
+      padding: 1rem; border-radius: 10px; border: none;
+      background: #00f2fe; color: #0a2a4a; font-size: 1.1rem; font-weight: 700;
+      cursor: pointer; margin-top: 1rem; transition: all 0.2s;
     }
-
-    .contenedor {
-      max-width: 750px;
-      margin: 0 auto;
-      background: rgba(0, 0, 0, 0.25);
-      padding: 35px;
-      border-radius: 20px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-    }
-
-    .volver {
-      display: inline-block;
-      color: #00f2fe;
-      text-decoration: none;
-      margin-bottom: 20px;
-      font-weight: 600;
-    }
-
-    .volver:hover { text-decoration: underline; }
-
-    h1 {
-      color: #00f2fe;
-      margin-bottom: 25px;
-      font-size: 26px;
-      text-align: center;
-    }
-
-    .norma {
-      background: rgba(0,242,254,0.08);
-      padding: 18px;
-      border-radius: 12px;
-      border-left: 4px solid #00f2fe;
-      margin-bottom: 15px;
-      font-size: 15px;
-      color: #e0ffff;
-    }
-
-    .importante {
-      margin-top: 25px;
-      padding: 18px;
-      background: rgba(255,80,80,0.1);
-      border-radius: 12px;
-      border-left: 4px solid #ff6b6b;
-      color: #ffb8b8;
-      font-size: 15px;
-    }
+    button:hover { background: #00d4e0; transform: translateY(-2px); }
+    .compromiso { margin-top: 2rem; padding: 1.2rem; background: rgba(0,242,254,0.08); border-radius: 10px; border-left: 4px solid #00f2fe; color: #e0ffff; line-height: 1.6; }
   </style>
 </head>
 <body>
-
   <div class="contenedor">
-    <a href="index.html" class="volver">Volver al inicio</a>
+    <a href="index.html" class="volver">← Volver al inicio</a>
+    <h1>Ofrece tus servicios</h1>
+    <p class="intro">Creá oportunidades, compartí tu talento y ayudá a quienes lo necesitan. Completá los datos con claridad.</p>
 
-    <h1>Normas y Seguridad</h1>
+    <form action="#" method="POST">
+      <label>Tipo de servicio *</label>
+      <input type="text" name="tipo" placeholder="Ej: Limpieza, Carpintería, Clases, Reparación..." required>
 
-    <div class="norma">
-      Este sistema se ampara en el derecho de toda persona a buscar y ofrecer soluciones lícitas. Su único propósito es poner en contacto a quien necesita un servicio con quien puede realizarlo. Se rige por la libertad de pacto y por lo acordado entre las partes. Todo se ajusta a las leyes vigentes.
+      <label>Descripción del trabajo *</label>
+      <textarea name="descripcion" placeholder="Explicá detalladamente qué ofrecés, alcance, condiciones..." required></textarea>
+
+      <label>Ciudad *</label>
+      <input type="text" name="ciudad" placeholder="Tu ciudad" required>
+
+      <label>País *</label>
+      <input type="text" name="pais" placeholder="Tu país" required>
+
+      <label>Correo electrónico *</label>
+      <input type="email" name="correo" placeholder="tu@email.com" required>
+
+      <label>Precio estimado en USD (total del servicio) *</label>
+      <input type="number" name="precio" placeholder="0.00" step="0.01" required>
+
+      <button type="submit">✅ Publicar servicio</button>
+    </form>
+
+    <div class="compromiso">
+      <strong>Compromiso:</strong> Al inscribirte, te comprometés a ofrecer solo servicios que podés realizar con calidad y responsabilidad. No publiques tareas que no sabés hacer. El respeto y la honestidad son la base de esta plataforma.
     </div>
-
-    <div class="norma">
-      El sistema se traduce a los catorce idiomas más conocidos del mundo, abarcando con ellos a más del 90% de la población mundial. El resto de los idiomas se agrupan en miles de lenguas con pocos hablantes cada una, por lo que no resulta práctico incluirlos a todos.
-    </div>
-
-    <div class="norma">
-      Todo acuerdo al que se llegue entre las personas queda registrado como compromiso válido. Queda escrito claramente qué se hace, cuánto vale y cuándo se paga. Al aceptar, se genera un compromiso entre las partes.
-    </div>
-
-    <div class="norma">
-      El pago se mantiene en resguardo hasta que ambas partes confirmen que el trabajo se realizó de forma correcta. Una vez confirmado, se libera el pago al prestador del servicio.
-    </div>
-
-    <div class="norma">
-      Sobre el valor de la mano de obra se cobra el <strong>5%</strong>. A quien brinda el servicio se le descuenta el <strong>5%</strong> del valor acordado. A quien solicita el servicio se le suma el <strong>5%</strong> sobre el valor acordado. Todo queda registrado de forma transparente.
-    </div>
-
-    <div class="norma">
-      Los datos de pago, cuentas y medios de cobro se solicitan solamente cuando las partes confirman el acuerdo. Al principio no se requiere información financiera.
-    </div>
-
-    <div class="norma">
-      Todo lo que se escribe y se acuerda queda guardado como prueba. El sistema funciona como testigo de lo pactado.
-    </div>
-
-    <div class="importante">
-      No se permiten servicios ilegales ni fuera de la ley. Todo servicio publicado debe cumplir con lo que se ofrece y con lo acordado entre las partes.
-    </div>
-
   </div>
-
 </body>
 </html>
