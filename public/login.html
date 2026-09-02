@@ -2,59 +2,175 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Iniciar Sesión — Dimon Connect</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
     html, body {
-      width: 100%; min-height: 100vh;
-      background: linear-gradient(135deg, #0f1e5c, #1a3a8c);
-      color: #fff; display: flex; align-items: center; justify-content: center; padding: 2rem;
+      width: 100%;
+      min-height: 100vh;
+      /* ✅ Fondo desde public */
+      background: url('fondo-Dimon.png') no-repeat center center fixed;
+      background-size: cover;
+      background-attachment: fixed;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
     }
-    .caja {
-      width: 100%; max-width: 420px; background: rgba(0,0,0,0.3);
-      padding: 2.5rem; border-radius: 20px; box-shadow: 0 8px 32px rgba(0,242,254,0.15);
+
+    .capa-sombra {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(5, 16, 64, 0.4);
+      z-index: -1;
     }
-    .volver { color: #00f2fe; text-decoration: none; font-weight: 600; display: inline-block; margin-bottom: 2rem; }
-    h1 { color: #00f2fe; text-align: center; margin-bottom: 2rem; font-size: 1.8rem; }
-    .logo { text-align: center; font-size: 2.5rem; margin-bottom: 1rem; }
-    form { display: flex; flex-direction: column; gap: 1.2rem; }
-    label { font-weight: 500; color: #e0ffff; }
+
+    .volver {
+      position: absolute;
+      top: 1.5rem;
+      left: 1.5rem;
+      color: #00ccff;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .volver:hover { text-decoration: underline; }
+
+    .tarjeta-login {
+      background: rgba(5, 20, 60, 0.85);
+      padding: 2.5rem 2rem;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(0, 204, 255, 0.2);
+      text-align: center;
+    }
+
+    /* ✅ TU LOGO — nombre EXACTO de la carpeta public */
+    .logo-sesion {
+      width: 180px;
+      height: auto;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      color: #00ccff;
+      margin-bottom: 2rem;
+    }
+
+    .grupo {
+      margin-bottom: 1.2rem;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      font-size: 0.9rem;
+      color: #b0e0ff;
+      margin-bottom: 0.5rem;
+    }
+
     input {
-      padding: 1rem 1.2rem; border-radius: 10px; border: none;
-      background: rgba(255,255,255,0.9); color: #1a2a6c; font-size: 1rem;
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.9);
+      color: #051040;
+      font-size: 1rem;
+      outline: none;
     }
-    button {
-      padding: 1rem; border-radius: 10px; border: none;
-      background: #00f2fe; color: #0a2a4a; font-size: 1.1rem; font-weight: 700;
-      cursor: pointer; margin-top: 0.5rem; transition: all 0.2s;
+
+    input:focus {
+      box-shadow: 0 0 0 2px #00ccff;
     }
-    button:hover { background: #00d4e0; transform: translateY(-2px); }
-    .enlaces { margin-top: 1.5rem; text-align: center; font-size: 0.9rem; }
-    .enlaces a { color: #00f2fe; text-decoration: none; }
-    .separador { margin: 1.5rem 0; text-align: center; color: #88aacc; }
+
+    .boton-ingresar {
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #00ccff, #00f2fe);
+      color: #051040;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      margin-bottom: 1.5rem;
+      transition: all 0.2s;
+    }
+
+    .boton-ingresar:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0, 204, 255, 0.4);
+    }
+
+    .enlaces-abajo {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .enlaces-abajo a {
+      color: #b0e0ff;
+      text-decoration: none;
+    }
+
+    .enlaces-abajo a:hover {
+      color: #00ccff;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .tarjeta-login { padding: 2rem 1.5rem; }
+      .logo-sesion { width: 150px; }
+    }
   </style>
 </head>
 <body>
-  <div class="caja">
-    <a href="index.html" class="volver">← Volver al inicio</a>
-    <div class="logo">💎</div>
-    <h1>Dimon Connect</h1>
 
-    <form action="#" method="POST">
-      <label>Correo electrónico</label>
-      <input type="email" name="email" placeholder="tu@email.com" required>
+  <div class="capa-sombra"></div>
 
-      <label>Contraseña</label>
-      <input type="password" name="clave" placeholder="••••••••" required>
+  <a href="index.html" class="volver">← Volver al inicio</a>
 
-      <button type="submit">🔐 Iniciar sesión</button>
+  <div class="tarjeta-login">
+    <!-- ✅ TU LOGO — nombre exacto, está en public -->
+    <img src="logo_dimon_connect.png" alt="Dimon Connect" class="logo-sesion" />
+
+    <form>
+      <div class="grupo">
+        <label>Correo electrónico</label>
+        <input type="email" placeholder="tu@email.com" required />
+      </div>
+
+      <div class="grupo">
+        <label>Contraseña</label>
+        <input type="password" placeholder="••••••••" required />
+      </div>
+
+      <button type="submit" class="boton-ingresar">🔐 Iniciar sesión</button>
     </form>
 
-    <div class="enlaces">
-      <p>¿No tenés cuenta? <a href="#">Crear cuenta nueva</a></p>
-      <p><a href="#">Olvidé mi contraseña</a></p>
+    <div class="enlaces-abajo">
+      <a href="registro.html">¿No tenés cuenta? Crear cuenta nueva</a>
+      <a href="recuperar.html">Olvidé mi contraseña</a>
     </div>
   </div>
+
 </body>
 </html>
