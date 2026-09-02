@@ -15,12 +15,22 @@
     html, body {
       width: 100%;
       min-height: 100vh;
-      /* ✅ TU FONDO COMPLETO — mapa + rombo + Dimon Connect — SIN DUPLICAR NADA */
+      /* TU FONDO COMPLETO */
       background: url('06f9228d-9ba5-4998-9604-c4432eefaa34_20260825_182353_0000.png') no-repeat center center fixed;
       background-size: cover;
       color: #ffffff;
       text-align: center;
       padding: 2rem 1.5rem;
+    }
+
+    .capa-sombra {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(5, 16, 64, 0.55);
+      z-index: -1;
     }
 
     .contenedor {
@@ -30,11 +40,13 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
+      position: relative;
+      z-index: 1;
     }
 
-    /* --- ESPACIO SUPERIOR — el fondo ya tiene logo y nombre, NO se pone nada acá --- */
+    /* ESPACIO ARRIBA — deja ver el logo y nombre del fondo */
     .espacio-superior {
-      height: 35vh; /* Deja ver el rombo y el nombre sin taparlos */
+      height: 32vh;
     }
 
     /* --- BARRA DE BÚSQUEDA --- */
@@ -84,7 +96,7 @@
       flex-direction: column;
       gap: 1rem;
       align-items: center;
-      margin-bottom: 4rem;
+      margin-bottom: 3rem;
       width: 100%;
     }
 
@@ -123,31 +135,11 @@
       border: 2px solid #ffffff;
     }
 
-    /* --- BOTÓN DE DESCARGA — abajo a la izquierda --- */
-    .descarga {
-      position: fixed;
-      left: 1.5rem;
-      bottom: 2rem;
-      padding: 0.7rem 1rem;
-      border-radius: 8px;
-      background: #ff7700;
-      color: #ffffff;
-      border: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-      text-decoration: none;
-      z-index: 10;
-      transition: background 0.2s;
-    }
-
-    .descarga:hover {
-      background: #e66a00;
-    }
-
-    /* --- ENLACES INFERIORES --- */
+    /* --- ENLACES INFERIORES — AHORA SE VEN BIEN --- */
     .pie {
       width: 100%;
-      padding-bottom: 2rem;
+      padding-bottom: 5rem;
+      margin-top: auto;
     }
 
     .enlaces-pie {
@@ -155,7 +147,8 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 1.2rem;
-      margin-bottom: 0.8rem;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
     }
 
     .enlaces-pie a {
@@ -177,26 +170,54 @@
       text-decoration: none;
       display: inline-block;
       margin-top: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      background: rgba(0, 204, 255, 0.1);
     }
 
     .asistente-lira:hover {
-      text-shadow: 0 0 10px #00ccff;
+      background: rgba(0, 204, 255, 0.2);
+      text-shadow: 0 0 8px #00ccff;
+    }
+
+    /* --- BOTÓN DE DESCARGA --- */
+    .descarga {
+      position: fixed;
+      left: 1.5rem;
+      bottom: 2rem;
+      padding: 0.7rem 1rem;
+      border-radius: 8px;
+      background: #ff7700;
+      color: #ffffff;
+      border: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      z-index: 10;
+      transition: background 0.2s;
+    }
+
+    .descarga:hover {
+      background: #e66a00;
     }
 
     /* --- RESPONSIVE --- */
     @media (max-width: 480px) {
-      .espacio-superior { height: 25vh; }
+      .espacio-superior { height: 22vh; }
       .boton { width: 85%; }
       .descarga { position: static; margin: 1rem auto; display: block; width: fit-content; }
-      .enlaces-pie { gap: 0.8rem; }
+      .enlaces-pie { gap: 0.7rem; }
+      .pie { padding-bottom: 2rem; }
     }
   </style>
 </head>
 <body>
 
+  <div class="capa-sombra"></div>
+
   <div class="contenedor">
 
-    <!-- ⚠️ NO se pone logo ni título acá — ya están en el fondo -->
+    <!-- ⚠️ El fondo ya tiene logo y nombre — no se duplica nada -->
     <div class="espacio-superior"></div>
 
     <!-- 🔍 BARRA DE BÚSQUEDA -->
@@ -214,21 +235,21 @@
       <a href="login.html" class="boton boton-3">Iniciar sesión</a>
     </div>
 
-    <!-- 🔗 PIE DE PÁGINA -->
+    <!-- 🔗 ENLACES INFERIORES — AHORA SE VEN TODOS -->
     <div class="pie">
       <nav class="enlaces-pie">
-        <a href="normas.html">Normas y Seguridad</a>
-        <a href="normas.html#privacidad">Privacidad</a>
-        <a href="normas.html#terminos">Términos de Servicio</a>
-        <a href="normas.html#cookies">Cookies</a>
-        <a href="normas.html#contacto">Contacto</a>
+        <a href="normas.html">📜 Normas y Seguridad</a>
+        <a href="normas.html#privacidad">🔒 Privacidad</a>
+        <a href="normas.html#terminos">📄 Términos de Servicio</a>
+        <a href="normas.html#cookies">🍪 Cookies</a>
+        <a href="normas.html#contacto">📬 Contacto</a>
       </nav>
       <a href="lira.html" class="asistente-lira">🤖 Hablar con el Asistente Lira</a>
     </div>
 
   </div>
 
-  <!-- 📱 BOTÓN DE DESCARGA — abajo a la izquierda -->
+  <!-- 📱 BOTÓN DE DESCARGA -->
   <a href="#" class="descarga">📱 Descargar aplicación</a>
 
 </body>
