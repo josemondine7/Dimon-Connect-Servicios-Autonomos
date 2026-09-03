@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fondo-pantalla-dimon</title>
+  <title>Dimon Connect</title>
   <style>
     * {
       box-sizing: border-box;
@@ -11,56 +11,160 @@
       padding: 0;
     }
 
-    html,
     body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      min-height: 100%;
-      background-color: #087bea;
-    }
-
-    body {
+      background-color: #0d6efd;
+      background: radial-gradient(circle at center, #1b73fe 0%, #0855ce 60%, #0340a6 100%);
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    .contenedor-fondo {
-      width: 308px;
-      height: 548px;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       overflow: hidden;
-      background-color: #087bea;
     }
 
-    .imagen-fondo {
-      display: block;
+    .card-container {
       width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center center;
+      max-width: 420px;
+      height: 100vh;
+      max-height: 850px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 140px;
+      position: relative;
     }
 
-    @media (max-width: 340px) {
-      .contenedor-fondo {
-        width: calc(100vw - 24px);
-        height: auto;
-        aspect-ratio: 308 / 548;
-      }
+    /* Logo Icon Styling */
+    .logo-icon {
+      width: 110px;
+      height: 110px;
+      margin-bottom: 25px;
+      filter: drop-shadow(0px 8px 16px rgba(0, 0, 0, 0.3));
+    }
+
+    /* Typography Styling */
+    .brand-title {
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+      text-align: center;
+    }
+
+    .brand-title .dark {
+      color: #0b1f3a;
+    }
+
+    .brand-title .light {
+      color: #38ef7d;
+      background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-subtitle {
+      color: #0e2a47;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      text-align: center;
+      margin-bottom: 50px;
+      opacity: 0.85;
+    }
+
+    /* World Map Styling */
+    .world-map {
+      width: 105%;
+      max-width: 460px;
+      height: auto;
+      opacity: 0.85;
+      filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.15));
     }
   </style>
 </head>
 <body>
-  <main class="contenedor-fondo">
-    <img
-      class="imagen-fondo"
-      src="./share_1788447307732.png"
-      alt="Dimon Connect - Fondo de Pantalla"
-      width="308"
-      height="548"
-    >
-  </main>
+
+  <div class="card-container">
+    
+    <svg class="logo-icon" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="top-left" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#00d2ff"/>
+          <stop offset="100%" stop-color="#006699"/>
+        </linearGradient>
+        <linearGradient id="top-right" x1="100%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#00f2fe"/>
+          <stop offset="100%" stop-color="#003366"/>
+        </linearGradient>
+        <linearGradient id="bottom-left" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#003366"/>
+          <stop offset="100%" stop-color="#00d2ff"/>
+        </linearGradient>
+        <linearGradient id="bottom-right" x1="100%" y1="100%" x2="0%" y2="0%">
+          <stop offset="0%" stop-color="#001a33"/>
+          <stop offset="100%" stop-color="#00c6ff"/>
+        </linearGradient>
+        <linearGradient id="center-diamond" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#00ffff"/>
+          <stop offset="100%" stop-color="#0088cc"/>
+        </linearGradient>
+      </defs>
+
+      <path d="M100 10 L190 100 L100 190 L10 100 Z" fill="#051329" />
+      
+      <path d="M100 10 L100 100 L10 100 Z" fill="url(#top-left)" />
+      <path d="M100 10 L190 100 L100 100 Z" fill="url(#top-right)" />
+      <path d="M10 100 L100 100 L100 190 Z" fill="url(#bottom-left)" />
+      <path d="M100 100 L190 100 L100 190 Z" fill="url(#bottom-right)" />
+      
+      <path d="M100 50 L150 100 L100 150 L50 100 Z" fill="url(#center-diamond)" stroke="#ffffff" stroke-width="2"/>
+    </svg>
+
+    <div class="brand-title">
+      <span class="dark">Dimon</span> <span class="light">Connect</span>
+    </div>
+    <div class="brand-subtitle">
+      Servicios Autónomos
+    </div>
+
+    <svg class="world-map" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="map-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#70e1ff" stop-opacity="0.7"/>
+        </linearGradient>
+      </defs>
+
+      <g fill="url(#map-grad)">
+        <ellipse cx="180" cy="120" rx="40" ry="20" />
+        <ellipse cx="230" cy="110" rx="35" ry="25" />
+        <ellipse cx="280" cy="100" rx="45" ry="30" />
+        <ellipse cx="200" cy="160" rx="55" ry="25" />
+        <ellipse cx="260" cy="170" rx="40" ry="20" />
+
+        <ellipse cx="320" cy="290" rx="30" ry="40" />
+        <ellipse cx="300" cy="350" rx="25" ry="45" />
+        <ellipse cx="290" cy="410" rx="15" ry="30" />
+
+        <ellipse cx="510" cy="120" rx="30" ry="20" />
+        <ellipse cx="550" cy="130" rx="35" ry="25" />
+
+        <ellipse cx="520" cy="240" rx="40" ry="45" />
+        <ellipse cx="550" cy="310" rx="30" ry="40" />
+        <ellipse cx="560" cy="370" rx="20" ry="25" />
+
+        <ellipse cx="650" cy="120" rx="60" ry="30" />
+        <ellipse cx="730" cy="140" rx="70" ry="40" />
+        <ellipse cx="810" cy="160" rx="60" ry="35" />
+        <ellipse cx="680" cy="200" rx="45" ry="30" />
+        <ellipse cx="750" cy="220" rx="50" ry="30" />
+
+        <ellipse cx="830" cy="350" rx="40" ry="25" />
+      </g>
+    </svg>
+
+  </div>
+
 </body>
 </html>
