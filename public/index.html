@@ -18,27 +18,15 @@
       overflow-x: hidden;
     }
 
-    /* ===== TU FONDO COMPLETO — YA TRAE ROMBO, DIMON CONNECT Y EL MAPA ===== */
+    /* ===== TU FONDO — SIEMPRE COMPLETO Y ARRIBA ===== */
     body {
-      background: url('06f9228d-9ba5-4998-9604-c4432eefaa34_20260825_182353_0000.png') no-repeat center center fixed;
+      background: url('06f9228d-9ba5-4998-9604-c4432eefaa34_20260825_182353_0000.png') no-repeat center top fixed;
       background-size: cover;
-      background-position: center top;
+      background-position: center top; /* ROMBO Y NOMBRE SIEMPRE VISIBLES */
       color: #ffffff;
     }
 
-    /* Sombra MUY LEVE para que se lean los botones SIN tapar el fondo */
-    .capa-sombra {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(5, 16, 64, 0.15); /* Muy suave, no tapa nada */
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    /* ===== CONTENIDO — TODO ABAJO DEL LOGO, NO LO TAPA ===== */
+    /* ===== CONTENEDOR — TODO CENTRADO SIN TAPAR LOGO ===== */
     .contenedor {
       position: relative;
       z-index: 1;
@@ -46,48 +34,55 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end; /* Empuja todo hacia abajo */
+      justify-content: center;
       align-items: center;
       padding: 1.5rem;
-      padding-top: 50vh; /* DEJA ESPACIO ARRIBA — ROMBO Y NOMBRE QUEDAN LIBRES */
+      padding-top: 38vh; /* ESPACIO SUFICIENTE ARRIBA PARA EL ROMBO */
       padding-bottom: 8rem;
     }
 
-    /* ===== BUSCADOR ===== */
+    /* ===== BUSCADOR — TOTALMENTE TRASLÚCIDO ===== */
     .buscador {
       width: 100%;
       max-width: 500px;
       display: flex;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
     }
 
     .buscador input {
       flex: 1;
       padding: 1rem 1.25rem;
-      border: none;
+      border: 1px solid rgba(255, 255, 255, 0.35);
       border-radius: 12px 0 0 12px;
       font-size: 1rem;
-      color: #051040;
-      background: rgba(255, 255, 255, 0.95);
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.12); /* TRASLÚCIDO */
       outline: none;
+      backdrop-filter: blur(6px);
+    }
+
+    .buscador input::placeholder {
+      color: rgba(255, 255, 255, 0.65);
     }
 
     .buscador button {
       padding: 0 1.5rem;
-      border: none;
+      border: 1px solid rgba(0, 204, 255, 0.5);
       border-radius: 0 12px 12px 0;
-      background: #00ccff;
-      color: #051040;
+      background: rgba(0, 204, 255, 0.35); /* TRASLÚCIDO */
+      color: #ffffff;
       font-size: 1.2rem;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: all 0.25s ease;
+      backdrop-filter: blur(6px);
     }
 
     .buscador button:hover {
-      background: #00f2fe;
+      background: rgba(0, 204, 255, 0.55);
+      border-color: rgba(0, 204, 255, 0.8);
     }
 
-    /* ===== BOTONES PRINCIPALES ===== */
+    /* ===== BOTONES — TODOS TRASLÚCIDOS CON BORDE ===== */
     .botones-principales {
       width: 100%;
       max-width: 520px;
@@ -99,71 +94,60 @@
     .boton {
       padding: 1.15rem 1.5rem;
       border-radius: 12px;
-      border: none;
+      border: 2px solid rgba(255, 255, 255, 0.4);
       font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
       text-decoration: none;
       text-align: center;
       transition: all 0.25s ease;
+      background: rgba(255, 255, 255, 0.1); /* TRASLÚCIDO — SE VE EL FONDO ATRÁS */
+      color: #ffffff;
+      backdrop-filter: blur(6px);
+    }
+
+    .boton:hover {
+      background: rgba(255, 255, 255, 0.25);
+      border-color: rgba(0, 204, 255, 0.7);
+      transform: translateY(-2px);
     }
 
     .boton-primario {
-      background: #00ccff;
-      color: #051040;
+      border-color: rgba(0, 204, 255, 0.6);
+      background: rgba(0, 204, 255, 0.25);
     }
 
     .boton-primario:hover {
-      background: #00f2fe;
-      transform: translateY(-2px);
+      background: rgba(0, 204, 255, 0.45);
+      border-color: rgba(0, 204, 255, 1);
     }
 
-    .boton-secundario {
-      background: rgba(0, 204, 255, 0.15);
-      color: #ffffff;
-      border: 2px solid #00ccff;
-    }
-
-    .boton-secundario:hover {
-      background: rgba(0, 204, 255, 0.3);
-      transform: translateY(-2px);
-    }
-
-    .boton-terciario {
-      background: rgba(255, 255, 255, 0.1);
-      color: #ffffff;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-    }
-
-    .boton-terciario:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: translateY(-2px);
-    }
-
-    /* ===== BOTÓN DESCARGA — ABAJO IZQUIERDA ===== */
+    /* ===== BOTÓN DESCARGA — TRASLÚCIDO NARANJA ===== */
     .boton-descarga {
       position: fixed;
       bottom: 1.5rem;
       left: 1.5rem;
       padding: 0.85rem 1.25rem;
       border-radius: 10px;
-      border: none;
-      background: #ff9900;
-      color: #000000;
+      border: 2px solid rgba(255, 153, 0, 0.6);
+      background: rgba(255, 153, 0, 0.35); /* TRASLÚCIDO NARANJA */
+      color: #ffffff;
       font-size: 0.9rem;
       font-weight: 700;
       cursor: pointer;
       text-decoration: none;
       z-index: 2;
       transition: all 0.2s;
+      backdrop-filter: blur(6px);
     }
 
     .boton-descarga:hover {
-      background: #ffb347;
+      background: rgba(255, 153, 0, 0.55);
+      border-color: rgba(255, 153, 0, 0.9);
       transform: translateY(-2px);
     }
 
-    /* ===== ENLACES INFERIORES ===== */
+    /* ===== ENLACES INFERIORES — TRASLÚCIDOS ===== */
     .enlaces-inferiores {
       position: fixed;
       bottom: 1.5rem;
@@ -175,10 +159,15 @@
       justify-content: center;
       z-index: 2;
       font-size: 0.85rem;
+      background: rgba(0, 16, 64, 0.25);
+      padding: 0.5rem 1.25rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(6px);
     }
 
     .enlaces-inferiores a {
-      color: #b0e0ff;
+      color: rgba(176, 224, 255, 0.9);
       text-decoration: none;
       border-bottom: 1px solid transparent;
       transition: all 0.2s;
@@ -186,10 +175,10 @@
 
     .enlaces-inferiores a:hover {
       color: #ffffff;
-      border-bottom-color: #00ccff;
+      border-bottom-color: rgba(0, 204, 255, 0.6);
     }
 
-    /* ===== RESPONSIVE — SE ADAPTA A CELULAR Y COMPUTADORA ===== */
+    /* ===== RESPONSIVE — SE ADAPTA SOLO ===== */
     @media (min-width: 768px) {
       .botones-principales {
         flex-direction: row;
@@ -201,14 +190,14 @@
         min-width: 160px;
       }
       .contenedor {
-        padding-top: 55vh; /* Más espacio en pantalla grande */
+        padding-top: 42vh; /* Más espacio en pantalla grande */
       }
     }
 
     @media (max-width: 480px) {
       .contenedor {
         padding: 1rem;
-        padding-top: 45vh; /* Espacio justo en celular */
+        padding-top: 32vh;
         padding-bottom: 7rem;
       }
       .buscador input {
@@ -229,27 +218,25 @@
 </head>
 <body>
 
-  <div class="capa-sombra"></div>
-
   <main class="contenedor">
-    <!-- BUSCADOR -->
+    <!-- BUSCADOR TRASLÚCIDO -->
     <div class="buscador">
       <input type="text" placeholder="Buscar servicios, personas..." />
       <button type="submit">🔍</button>
     </div>
 
-    <!-- BOTONES PRINCIPALES -->
+    <!-- BOTONES TODOS TRASLÚCIDOS -->
     <div class="botones-principales">
       <a href="ofrecer.html" class="boton boton-primario">Ofrecer mis servicios</a>
-      <a href="solicitar.html" class="boton boton-secundario">Solicitar un servicio</a>
-      <a href="login.html" class="boton boton-terciario">Iniciar sesión</a>
+      <a href="solicitar.html" class="boton">Solicitar un servicio</a>
+      <a href="login.html" class="boton">Iniciar sesión</a>
     </div>
   </main>
 
-  <!-- BOTÓN DESCARGA -->
+  <!-- BOTÓN DESCARGA TRASLÚCIDO -->
   <a href="#" class="boton-descarga">Descargar aplicación</a>
 
-  <!-- ENLACES INFERIORES -->
+  <!-- ENLACES INFERIORES TRASLÚCIDOS -->
   <nav class="enlaces-inferiores">
     <a href="normas.html">Normas y Seguridad</a>
     <a href="privacidad.html">Privacidad</a>
