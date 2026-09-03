@@ -5,69 +5,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Normas y Seguridad — Dimon Connect</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-    html, body {
-      width: 100%; min-height: 100vh; background: #0a1a4a; color: #fff;
-      padding: 2rem 1.5rem; line-height: 1.7;
-    }
-    .contenedor { max-width: 800px; margin: 0 auto; }
-    .volver { color: #00f2fe; text-decoration: none; font-weight: 600; display: inline-block; margin-bottom: 2rem; }
-    h1 { color: #00f2fe; text-align: center; margin-bottom: 2rem; font-size: 2rem; }
-    h2 { color: #b8fff8; margin: 2rem 0 1rem; font-size: 1.4rem; border-bottom: 1px solid #00f2fe33; padding-bottom: 0.5rem; }
-    p, ul { margin-bottom: 1rem; color: #e0ffff; }
-    ul { padding-left: 1.5rem; }
-    li { margin-bottom: 0.5rem; }
-    .destacado {
-      background: rgba(0,242,254,0.08); padding: 1.5rem; border-radius: 12px;
-      border-left: 4px solid #00f2fe; margin: 1.5rem 0;
-    }
-    .resaltado { color: #00f2fe; font-weight: 600; }
-    hr { border: none; border-top: 1px solid #00f2fe33; margin: 2.5rem 0; }
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+    html,body{background:url('fondo-Dimon.png') no-repeat center center fixed;background-size:cover;color:#fff;padding:1.5rem;line-height:1.6}
+    .capa-sombra{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(5,16,64,.5);z-index:-1}
+    .contenedor{max-width:800px;margin:0 auto;position:relative;z-index:1}
+    h1{color:#00ccff;text-align:center;margin-bottom:2rem}
+    h2{color:#00ccff;margin:1.5rem 0 1rem}
+    section{background:rgba(5,20,60,.7);padding:1.5rem;border-radius:12px;margin-bottom:1.5rem}
+    .volver{display:inline-block;color:#00ccff;text-decoration:none;margin-bottom:1.5rem}
   </style>
 </head>
 <body>
+  <div class="capa-sombra"></div>
   <div class="contenedor">
     <a href="index.html" class="volver">← Volver al inicio</a>
-    <h1>📜 Normas, Comisiones y Marco Legal</h1>
+    <h1>Normas y Seguridad</h1>
 
-    <h2>⚖️ 1. Marco Legal</h2>
-    <p>Dimon Connect es una plataforma de intermediación que conecta a personas que necesitan un servicio con personas que pueden brindarlo. Se rige por el derecho internacional de los contratos y por las leyes de cada país donde opera.</p>
-    <p>Todo acuerdo aceptado por ambas partes tiene valor de <strong class="resaltado">CONTRATO LEGAL</strong>.</p>
-    <p><em>Código Civil — Artículo 1257:</em> "Los contratos legalmente celebrados tienen fuerza de ley entre las partes que los otorgan." Lo acordado en esta plataforma es válido y obligatorio para ambos.</p>
+    <section id="comisiones">
+      <h2>Comisiones del Servicio</h2>
+      <p>Dimon Connect cobra una comisión del <strong>5%</strong> sobre el valor del servicio a quien lo solicita, y descuenta un <strong>5%</strong> a quien lo presta. El total de la comisión es del <strong>10%</strong> por operación.</p>
+      <p>Estos fondos se destinan al funcionamiento, mantenimiento, mejora y gestión de la plataforma, así como a cubrir los costos operativos, tecnológicos y administrativos del servicio.</p>
+    </section>
 
-    <h2>💰 2. Comisiones de la Plataforma</h2>
-    <div class="destacado">
-      <p><strong>La comisión es del 5% sobre el valor de la mano de obra, por cada parte:</strong></p>
-      <ul>
-        <li>✅ <strong>Quien presta el servicio:</strong> Recibe el monto acordado <span class="resaltado">menos 5%</span> de comisión de plataforma.</li>
-        <li>✅ <strong>Quien solicita el servicio:</strong> Paga el monto acordado <span class="resaltado">más 5%</span> de comisión de plataforma.</li>
-        <li>💡 Total de la operación: el prestador recibe 95%, el solicitante paga 105%. La plataforma percibe el 10% total repartido entre ambas partes.</li>
-      </ul>
-    </div>
+    <section id="legal">
+      <h2>Marco Legal</h2>
+      <p>Los acuerdos celebrados entre las partes a través de esta plataforma tienen valor de contrato legal, conforme al <strong>Artículo 1257 del Código Civil de Uruguay</strong>: "Los contratos legalmente celebrados tienen fuerza de ley entre las partes que los otorgan."</p>
+      <p>La plataforma opera con alcance internacional, respetando las normativas de protección al consumidor y comercio electrónico aplicables en cada jurisdicción.</p>
+    </section>
 
-    <h2>✅ 3. Normas de Conducta</h2>
-    <ul>
-      <li>Publicar solo servicios lícitos y permitidos por la ley.</li>
-      <li>Ofrecer únicamente servicios que se pueden realizar con calidad y responsabilidad.</li>
-      <li>Compromiso de cumplir lo acordado en tiempo y forma.</li>
-      <li>Respeto mutuo y trato digno entre usuarios.</li>
-      <li>Prohibido contenido ilegal, discriminatorio, dañino o fraudulento.</li>
-    </ul>
+    <section id="privacidad">
+      <h2>Privacidad</h2>
+      <p>La información personal se protege y solo se utiliza para el funcionamiento del servicio. No se comparte con terceros sin consentimiento, salvo obligación legal.</p>
+    </section>
 
-    <h2 id="privacidad">🔒 4. Política de Privacidad</h2>
-    <p>Respetamos tu privacidad. Solo recopilamos los datos necesarios para el funcionamiento de la plataforma. Tus datos personales no se venden ni comparten con terceros con fines comerciales. Se protegen con medidas de seguridad técnicas y administrativas.</p>
+    <section id="terminos">
+      <h2>Términos de Servicio</h2>
+      <p>Solo se ofrecen y solicitan servicios lícitos. Las partes se comprometen a actuar de buena fe y cumplir lo acordado.</p>
+    </section>
 
-    <h2 id="cookies">🍪 5. Cookies</h2>
-    <p>Utilizamos cookies — pequeños archivos que el sitio guarda en tu dispositivo — para recordar tus preferencias, idioma y mejorar tu experiencia de navegación. No se usan para rastrearte fuera de Dimon Connect. Podés desactivarlas en cualquier momento desde la configuración de tu navegador.</p>
+    <section id="cookies">
+      <h2>Cookies</h2>
+      <p>Este sitio utiliza cookies para mejorar la experiencia de navegación y recordar preferencias de idioma y configuración.</p>
+    </section>
 
-    <h2 id="terminos">📄 6. Términos de Servicio</h2>
-    <p>Al usar Dimon Connect, aceptás ser mayor de edad o contar con autorización legal. La plataforma actúa únicamente como intermediario; no es parte del contrato entre los usuarios, ni asume responsabilidad por el cumplimiento del servicio pactado entre las partes.</p>
-
-    <h2 id="contacto">📬 7. Contacto</h2>
-    <p>Consultas legales y administrativas: <strong>contacto@dimonconnect.com</strong></p>
-
-    <hr>
-    <p style="text-align: center; color: #88aacc; font-size: 0.9rem;">© 2025 Dimon Connect — Todos los derechos reservados. Plataforma internacional.</p>
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <p>Para consultas: contacto@dimonconnect.com</p>
+    </section>
   </div>
 </body>
 </html>
