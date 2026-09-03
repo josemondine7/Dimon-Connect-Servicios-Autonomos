@@ -9,7 +9,7 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     html, body {
@@ -19,7 +19,7 @@
       position: fixed;
     }
 
-    /* ===== TU FONDO — YA APUNTA A TU ARCHIVO ===== */
+    /* ===== TU IMAGEN DE FONDO — BUSCA EN PUBLIC ===== */
     body {
       background: url('Fondo-pantalla-Dimon.png') no-repeat center center fixed;
       background-size: cover;
@@ -229,7 +229,7 @@
     }
     .enlaces-inferiores a:hover { color: #fff; border-bottom-color: rgba(0,204,255,0.6); }
 
-    /* ===== RESPONSIVE ===== */
+    /* ===== RESPONSIVE — CELULAR Y COMPUTADORA ===== */
     @media (max-width: 480px) {
       .contenedor { padding: 1rem; padding-top: 25vh; padding-bottom: 7rem; }
       .buscador input { font-size: 0.95rem; padding: 0.9rem 1rem; }
@@ -238,6 +238,10 @@
       .boton-descarga { bottom: 4.5rem; left: 1rem; padding: 0.7rem 1rem; font-size: 0.75rem; }
       .boton-lira { top: 1rem; right: 1rem; width: 48px; height: 48px; font-size: 1.5rem; }
       .selector-idioma { top: 1rem; left: 1rem; }
+    }
+    @media (min-width: 768px) {
+      .contenedor { padding-top: 35vh; }
+      .botones-principales { max-width: 450px; }
     }
   </style>
 </head>
@@ -307,7 +311,7 @@
     <a href="normas.html#contacto">Contacto</a>
   </nav>
 
-  <!-- ===== JAVASCRIPT — CONTRASEÑA ===== -->
+  <!-- ===== JAVASCRIPT — CONTRASEÑA LIRA ===== -->
   <script>
     const botonLira = document.getElementById('botonLira');
     const modalContraseña = document.getElementById('modalContraseña');
