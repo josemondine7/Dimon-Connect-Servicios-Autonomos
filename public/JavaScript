@@ -1,1 +1,7 @@
-
+// SUPABASE — Dimon Connect
+export const SUPABASE_URL = "AQUÍ_PONÉ_TU_URL";
+export const SUPABASE_KEY = "AQUÍ_PONÉ_TU_CLAVE_PÚBLICA";
+// PAYPAL — Dimon Connect
+export const PAYPAL_MODE = "sandbox";
+export const PAYPAL_CLIENT_ID = "AQUÍ_TU_CLIENT_ID";
+export const PAYPAL_WEBHOOK_SECRET = "AQUÍ_TU_SECRETO";
