@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Chat — Dimon Connect</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+    html, body {
+      width: 100%; height: 100vh;
+      background: url('fondo-Dimon.png') no-repeat center center fixed;
+      background-size: cover; color: #fff;
+      overflow: hidden;
+    }
+    .capa-sombra {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(5,16,64,.55); z-index: -1;
+    }
+    .volver {
+      position: absolute; top: 1rem; left: 1rem;
+      color: #00ccff; text-decoration: none; font-size: .95rem; z-index: 10;
+    }
+    .volver:hover { text-decoration: underline; }
+
+    /* --- ACUERDO PREVIO --- */
+    .acuerdo-fondo {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,.85); display: flex; align-items: center; justify-content: center;
+      z-index: 100; padding: 1.5rem;
+    }
+    .acuerdo-caja {
+      background: rgba(5,20,60,.95); padding: 2rem; border-radius: 16px;
+      border: 2px solid #00ccff; max-width: 480px; width: 100%; text-align: center;
+    }
+    .acuerdo-caja h2 { color: #00ccff; margin-bottom: 1.5rem; font-size: 1.3rem; }
+    .resumen { text-align: left; margin: 1.5rem 0; line-height: 1.8rem; }
+    .resumen p { border-bottom: 1px solid rgba(0,204,255,.2); padding: .5rem 0; }
+    .resumen strong { color: #00ccff; }
+    .check { display: flex; align-items: center; gap: .8rem; margin: 1.5rem 0; text-align: left; cursor: pointer; }
+    .check input { width: 20px; height: 20px; cursor: pointer; }
+    .boton-aceptar, .boton-cancelar {
+      width: 100%; padding: 1rem; border-radius: 10px; font-size: 1rem; font-weight: 700;
+      border: none; cursor: pointer; transition: all .2s;
+    }
+    .boton-aceptar { background: linear-gradient(90deg, #00ccff, #00f2fe); color: #051040; margin-bottom: .8rem; }
+    .boton-aceptar:disabled { opacity: .4; cursor: not-allowed; }
+    .boton-cancelar { background: transparent; color: #ff6b6b; border: 2px solid #ff6b6b; }
+
+    /* --- CHAT --- */
+    .chat-pantalla {
+      width: 100%; height: 100vh; display: none; flex-direction: column;
+      position: relative; z-index: 1;
+    }
+    .chat-cabecera {
+      padding: 1rem 1.5rem; background: rgba(5,20,60,.8);
+      border-bottom: 1px solid rgba(0,204,255,.2); display: flex;
+      align-items: center; justify-content: space-between;
+    }
+    .chat-cabecera h3 { color: #00ccff; font-size: 1.1rem; }
+    .estado { font-size: .85rem; color: #4ade80; }
+    .chat-mensajes {
+      flex: 1; padding: 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem;
+    }
+    .mensaje {
+      max-width: 75%; padding: .9rem 1.2rem; border-radius: 16px; line-height: 1.4;
+    }
+    .mensaje-propio { background: #00ccff; color: #051040; align-self: flex-end; border-bottom-right-radius: 4px; }
+    .mensaje-otro { background: rgba(255,255,255,.15); color: #fff; align-self: flex-start; border-bottom-left-radius: 4px; }
+    .chat-enviar {
+      display: flex; gap: .8rem; padding: 1rem; background: rgba(5,20,60,.8); border-top: 1px solid rgba(0,204,255,.2);
+    }
+    .chat-enviar input {
+      flex: 1; padding: 1rem 1.2rem; border-radius: 24px; border: none;
+      background: rgba(255,255,255,.9); color: #051040; font-size: 1rem; outline: none;
+    }
+    .boton-enviar {
+      width: 48px; height: 48px; border-radius: 50%; border: none;
+      background: #00ccff; color: #051040; font-size: 1.2rem; cursor: pointer;
+    }
+    .boton-trato-cerrado {
+      margin: 0 1rem 1rem; padding: .9rem; border-radius: 10px; border: none;
+      background: #4ade80; color: #051040; font-weight: 700; font-size: .95rem; cursor: pointer;
+    }
+    @media (max-width: 480px) {
+      .acuerdo-caja { padding: 1.5rem; }
+      .mensaje { max-width: 85%; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="capa-sombra"></div>
+  <a href="index.html" class="volver">← Volver</a>
+
+  <!-- ✅ ACUERDO PREVIO — ANTES DE ENTRAR AL CHAT -->
+  <div class="acuerdo-fondo" id="acuerdoPantalla">
+    <div class="acuerdo-caja">
+      <h2>Confirmar Acuerdo del Servicio</h2>
+      <div class="resumen">
+        <p><strong>Servicio:</strong> <span id="servicioNombre">Instalación y configuración</span></p>
+        <p><strong>Precio acordado:</strong> $<span id="precioValor">100.00</span> USD</p>
+        <p><strong>Comisión solicitante (5%):</strong> +$<span id="comisionSoli">5.00</span> USD</p>
+        <p><strong>Comisión proveedor (5%):</strong> −$<span id="comisionProv">5.00</span> USD</p>
+        <p><strong>Total a pagar:</strong> $<span id="totalPagar">105.00</span> USD</p>
+        <p style="margin-top: .8rem; font-size: .9rem; color: #b0e0ff;">✅ El dinero queda retenido en garantía hasta confirmar la entrega. Al aceptar, este acuerdo tiene valor de contrato legal conforme al Artículo 1257 del Código Civil de Uruguay.</p>
+      </div>
+      <label class="check">
+        <input type="checkbox" id="aceptoCheck" onchange="activarBoton()">
+        <span>He leído y acepto las condiciones y comisiones del servicio</span>
+      </label>
+      <button class="boton-aceptar" id="botonAceptar" disabled onclick="entrarAlChat()">Aceptar y entrar al chat</button>
+      <button class="boton-cancelar" onclick="window.location.href='index.html'">Cancelar</button>
+    </div>
+  </div>
+
+  <!-- 💬 CHAT — SOLO APARECE SI ACEPTA -->
+  <div class="chat-pantalla" id="chatPantalla">
+    <div class="chat-cabecera">
+      <h3 id="nombreOtro">María — Proveedora</h3>
+      <span class="estado">● En línea</span>
+    </div>
+
+    <div class="chat-mensajes" id="cajaMensajes">
+      <div class="mensaje mensaje-otro">Hola, vi tu solicitud y puedo hacerlo. ¿Te parece bien el precio y el plazo?</div>
+      <div class="mensaje mensaje-propio">Sí, perfecto. ¿Cuándo podés empezar?</div>
+      <div class="mensaje mensaje-otro">Mañana mismo. El pago queda retenido hasta confirmar, ¿cierto?</div>
+      <div class="mensaje mensaje-propio">Así es. Cuando termines confirmo y se libera.</div>
+    </div>
+
+    <button class="boton-trato-cerrado" onclick="cerrarTrato()">✅ Trato cerrado — Confirmar entrega y pago</button>
+
+    <div class="chat-enviar">
+      <input type="text" id="mensajeEntrada" placeholder="Escribir mensaje..." onkeypress="if(event.key==='Enter')enviarMensaje()">
+      <button class="boton-enviar" onclick="enviarMensaje()">➤</button>
+    </div>
+  </div>
+
+  <script>
+    function activarBoton() {
+      const check = document.getElementById('aceptoCheck');
+      const btn = document.getElementById('botonAceptar');
+      btn.disabled = !check.checked;
+    }
+    function entrarAlChat() {
+      document.getElementById('acuerdoPantalla').style.display = 'none';
+      document.getElementById('chatPantalla').style.display = 'flex';
+    }
+    function enviarMensaje() {
+      const entrada = document.getElementById('mensajeEntrada');
+      const texto = entrada.value.trim();
+      if (!texto) return;
+      const caja = document.getElementById('cajaMensajes');
+      const nuevo = document.createElement('div');
+      nuevo.className = 'mensaje mensaje-propio';
+      nuevo.textContent = texto;
+      caja.appendChild(nuevo);
+      entrada.value = '';
+      caja.scrollTop = caja.scrollHeight;
+    }
+    function cerrarTrato() {
+      alert('✅ Trato cerrado. El pago se liberará cuando ambas partes confirmen la entrega. Gracias por usar Dimon Connect.');
+    }
+  </script>
+
+</body>
+</html>
