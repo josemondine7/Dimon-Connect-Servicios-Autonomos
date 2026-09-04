@@ -2,121 +2,289 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Lira — Asistente de Dimon Connect</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lira — Asistente Administrativo</title>
+  <link rel="stylesheet" href="styles.css" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
     html, body {
-      width: 100%; height: 100vh; background-color: #003366;
-      background-image: url('./1788448614792.png'); background-repeat: no-repeat;
-      background-position: center; background-size: cover; color: #fff;
-      display: flex; flex-direction: column; overflow: hidden;
+      width: 100%; height: 100vh;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #fff; display: flex; flex-direction: column; overflow: hidden;
     }
     .cabecera {
-      padding: 1rem 1.5rem; background: rgba(0,30,60,0.85); backdrop-filter: blur(10px);
-      display: flex; align-items: center; justify-content: space-between;
-      border-bottom: 1px solid rgba(255,215,0,0.3);
+      display: flex; align-items: center; padding: 1rem 1.5rem;
+      background: rgba(0,0,0,0.3); border-bottom: 1px solid rgba(255,255,255,0.1);
+      gap: 1rem;
     }
-    .volver { color: #00ccff; text-decoration: none; font-size: 0.95rem; }
-    .nombre-lira { display: flex; align-items: center; gap: 0.8rem; }
-    .icono-lira {
-      width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, #ffd700, #ffaa00);
-      display: flex; align-items: center; justify-content: center; color: #000; font-weight: 700; font-size: 1.2rem;
-    }
-    .estado-conectado { width: 10px; height: 10px; background: #00ff44; border-radius: 50%; box-shadow: 0 0 6px #00ff44; }
-    .caja-mensajes {
+    .volver { color: #93c5fd; text-decoration: none; font-size: 0.9rem; }
+    .info-lira h2 { font-size: 1.1rem; color: #fcd34d; }
+    .info-lira p { font-size: 0.85rem; color: #10b981; }
+    .mensajes {
       flex: 1; padding: 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem;
-      background: rgba(0,20,40,0.5);
+      background: radial-gradient(circle at top, rgba(59,130,246,0.05), transparent 50%);
     }
     .mensaje {
-      max-width: 80%; padding: 0.9rem 1.1rem; border-radius: 18px; line-height: 1.5; font-size: 0.95rem;
+      max-width: 80%; padding: 1rem 1.25rem; border-radius: 18px; line-height: 1.6;
+      position: relative;
     }
     .mensaje-usuario {
-      background: linear-gradient(135deg, #0066cc, #0088ff); align-self: flex-end;
-      border-bottom-right-radius: 4px;
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      align-self: flex-end; border-bottom-right-radius: 4px;
     }
     .mensaje-lira {
-      background: rgba(255,215,0,0.15); border: 1px solid rgba(255,215,0,0.4); align-self: flex-start;
-      border-bottom-left-radius: 4px; color: #fff;
+      background: rgba(255,255,255,0.08);
+      align-self: flex-start; border-bottom-left-radius: 4px; border-left: 3px solid #fcd34d;
     }
-    .caja-escritura {
-      padding: 1rem 1.5rem; background: rgba(0,30,60,0.85); backdrop-filter: blur(10px);
-      display: flex; gap: 0.8rem; border-top: 1px solid rgba(255,255,255,0.1);
+    .mensaje-imagen { max-width: 250px; border-radius: 12px; margin-top: 0.5rem; }
+    .hora { font-size: 0.7rem; opacity: 0.5; margin-top: 0.3rem; text-align: right; }
+    .atajos {
+      padding: 0.75rem 1.5rem; background: rgba(0,0,0,0.2); border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex; gap: 0.5rem; flex-wrap: wrap;
     }
-    .caja-escritura input {
-      flex: 1; padding: 1rem 1.2rem; border-radius: 25px; border: 2px solid rgba(0,204,255,0.3);
-      background: rgba(255,255,255,0.1); color: #fff; font-size: 0.95rem; outline: none;
+    .atajo {
+      padding: 0.4rem 0.8rem; border-radius: 15px; font-size: 0.8rem;
+      background: rgba(252,211,77,0.15); color: #fef3c7; cursor: pointer;
+      border: 1px solid rgba(252,211,77,0.25);
     }
-    .caja-escritura button {
-      width: 48px; height: 48px; border-radius: 50%; border: none;
-      background: linear-gradient(135deg, #ffd700, #ffaa00); color: #000; font-size: 1.2rem; cursor: pointer;
+    .atajo:hover { background: rgba(252,211,77,0.25); }
+    .entrada {
+      display: flex; gap: 0.5rem; padding: 0.75rem 1rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      background: rgba(0,0,0,0.25); align-items: center;
     }
-    .etiqueta-sistema { font-size: 0.75rem; color: #ffd700; margin-bottom: 0.3rem; }
-    @media (max-width: 768px) {
-      .mensaje { max-width: 85%; }
-      .cabecera { padding: 0.8rem 1rem; }
-      .caja-mensajes { padding: 1rem; }
-      .caja-escritura { padding: 0.8rem 1rem; }
+    .btn-accion {
+      width: 44px; height: 44px; border-radius: 50%; border: none;
+      background: rgba(255,255,255,0.1); color: #fff; font-size: 1.2rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
     }
+    .btn-accion:hover { background: rgba(255,255,255,0.2); }
+    .btn-accion.grabando { background: #ef4444; animation: pulso 1s infinite; }
+    @keyframes pulso { 0% { box-shadow: 0 0 0 0 rgba(239,68,68,0.4); } 70% { box-shadow: 0 0 0 10px rgba(239,68,68,0); } 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0); } }
+    .entrada input {
+      flex: 1; padding: 0.9rem 1.2rem; border-radius: 25px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08);
+      color: #fff; font-size: 1rem; outline: none;
+    }
+    .boton-enviar {
+      padding: 0.9rem 1.5rem; border-radius: 25px; border: none;
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: #fff; font-weight: 600; cursor: pointer;
+    }
+    #input-archivo { display: none; }
+    .estado-voz { font-size: 0.8rem; color: #fcd34d; margin-left: 0.5rem; display: none; }
   </style>
 </head>
 <body>
-
   <div class="cabecera">
-    <a href="index.html" class="volver">← Volver</a>
-    <div class="nombre-lira">
-      <div class="icono-lira">L</div>
-      <div>
-        <div style="font-weight:700; color:#ffd700;">Lira — Asistente General</div>
-        <div style="font-size:0.8rem; color:#80c8ff;">Conectada y lista para trabajar</div>
-      </div>
-      <div class="estado-conectado"></div>
+    <a href="index.html" class="volver">← Salir</a>
+    <div class="info-lira">
+      <h2>🤖 Lira — Asistente Administrativo</h2>
+      <p id="estado-lira">✅ Activa · Conectada a Dimon Connect</p>
     </div>
-    <div style="width:42px;"></div>
   </div>
 
-  <div class="caja-mensajes" id="mensajes">
-    <div class="etiqueta-sistema">Sistema Dimon Connect</div>
+  <div class="atajos">
+    <span class="atajo" onclick="preguntar('¿Cómo funcionan las comisiones?')">Comisiones</span>
+    <span class="atajo" onclick="preguntar('¿Qué leyes nos amparan?')">Leyes</span>
+    <span class="atajo" onclick="preguntar('¿Cómo se cobra y paga?')">Pagos</span>
+    <span class="atajo" onclick="preguntar('¿Cómo funciona el trato?')">Trato</span>
+    <span class="atajo" onclick="preguntar('Ver estadísticas')">Estadísticas</span>
+    <span class="atajo" onclick="preguntar('¿Qué es Lira?')">Sobre Lira</span>
+  </div>
+
+  <div class="mensajes" id="caja-mensajes">
     <div class="mensaje mensaje-lira">
-      Hola. Soy Lira, el sistema inteligente de Dimon Connect. Estoy lista para asistirte en todo lo que necesites: desarrollo, programación, gestión de pagos, estrategia, promoción, análisis de inversiones y más. ¿En qué empezamos?
+      ✅ Hola, José. Soy Lira, tu asistente administrativa.<br><br>
+      Estoy conectada a toda la información de Dimon Connect: comisiones, leyes, pagos, tratos, usuarios y transacciones.<br><br>
+      Podés escribirme, hablarme con tu voz o enviarme imágenes y documentos. ¿En qué te ayudo?
+      <div class="hora">Ahora</div>
     </div>
   </div>
 
-  <div class="caja-escritura">
-    <input type="text" id="texto-mensaje" placeholder="Escribir mensaje a Lira..." />
-    <button onclick="enviarMensaje()">➤</button>
+  <div class="entrada">
+    <button class="btn-accion" id="btn-voz" onclick="alternarVoz()" title="Hablar con Lira">🎤</button>
+    <span class="estado-voz" id="estado-voz">Escuchando...</span>
+    
+    <button class="btn-accion" onclick="document.getElementById('input-archivo').click()" title="Subir imagen o archivo">📎</button>
+    <input type="file" id="input-archivo" accept="image/*,.pdf,.doc,.docx,.txt" onchange="subirArchivo(event)" />
+    
+    <input type="text" id="texto-mensaje" placeholder="Escribí o hablá con Lira..." onkeydown="if(event.key==='Enter')enviarMensaje()" />
+    
+    <button class="boton-enviar" onclick="enviarMensaje()">➤</button>
   </div>
 
-<script>
-  function enviarMensaje() {
-    const input = document.getElementById('texto-mensaje');
-    const texto = input.value.trim();
-    if (!texto) return;
+  <script>
+    // ==============================================
+    // BASE DE CONOCIMIENTO DE LIRA — SABE TODO
+    // ==============================================
+    const BASE_CONOCIMIENTO = {
+      'comisiones': 'El sistema de comisiones de Dimon Connect es del 10% TOTAL sobre el valor del servicio: 5% a cargo de quien solicita el servicio y 5% a cargo de quien lo brinda. Se descuenta/suma al momento de confirmar el trato. No hay costos de registro ni mensualidad.',
+      'leyes': 'Dimon Connect se ampara en el Artículo 1257 del Código Civil de Uruguay: "Los contratos legalmente celebrados tienen fuerza de ley entre las partes que los otorgan." Además, toda intermediación legítima da derecho a cobrar una comisión. Los acuerdos dentro de la plataforma tienen valor de contrato legal entre las partes.',
+      'pagos': 'Los pagos se pueden realizar por PayPal, transferencia bancaria o efectivo. El prestador configura su método de cobro en su Perfil. Al confirmar el trato, el pago se libera descontando el 5% de comisión al prestador y sumando el 5% al solicitante. El dinero se acredita según el método elegido.',
+      'trato': 'El trato funciona así: 1) El solicitante busca o publica un servicio. 2) Acuerdan precio, fecha y condiciones. 3) Ambas partes aceptan las condiciones legales. 4) Se confirma el trato y se libera el pago. 5) Al finalizar el servicio, se confirma y el dinero se transfiere al prestador.',
+      'estadísticas': 'Actualmente la plataforma está en fase de lanzamiento. Los datos en tiempo real se integrarán con la base de datos. Podés ver usuarios registrados, servicios publicados y tratos completados desde el panel de administración.',
+      'lira': 'Soy Lira, la inteligencia administrativa de Dimon Connect. Fui creada para asistirte en la gestión, control y conocimiento de toda la plataforma. Estoy conectada a las leyes, comisiones, usuarios, transacciones y funcionamiento del sistema. Solo vos tenés acceso con tu clave exclusiva.',
+      'defecto': 'Entiendo tu consulta. Estoy conectada a toda la información de Dimon Connect: comisiones del 5%+5%, leyes que nos amparan (Art. 1257 Código Civil), métodos de pago (PayPal, banco, efectivo), funcionamiento de tratos y administración. ¿Podés especificar un poco más para darte la información exacta?'
+    };
 
-    // Agrega mensaje del usuario
-    const caja = document.getElementById('mensajes');
-    caja.innerHTML += `<div class="mensaje mensaje-usuario">${texto}</div>`;
-    input.value = '';
-    caja.scrollTop = caja.scrollHeight;
+    // ==============================================
+    // CHAT — ENVIAR Y RECIBIR MENSAJES
+    // ==============================================
+    function enviarMensaje() {
+      const texto = document.getElementById('texto-mensaje').value.trim();
+      if (!texto) return;
+      
+      agregarMensajeUsuario(texto);
+      document.getElementById('texto-mensaje').value = '';
+      
+      // Simular respuesta de Lira
+      setTimeout(() => {
+        const respuesta = generarRespuesta(texto);
+        agregarMensajeLira(respuesta);
+      }, 600);
+    }
 
-    // Simulación de respuesta de Lira
-    setTimeout(() => {
-      const respuestas = [
-        'Entendido. Estoy procesando esa información y voy a trabajar en ello.',
-        'Perfecto. Voy a poner eso en marcha y te aviso cuando esté listo.',
-        'Recibido. Estoy analizando las mejores opciones para implementar esto.',
-        'De acuerdo. Voy a gestionar eso ahora mismo y te mantengo informado.',
-        'Claro que sí. Estoy actualizando la base de datos y las herramientas correspondientes.'
-      ];
-      const respuesta = respuestas[Math.floor(Math.random() * respuestas.length)];
-      caja.innerHTML += `<div class="mensaje mensaje-lira">${respuesta}</div>`;
+    function agregarMensajeUsuario(texto) {
+      const caja = document.getElementById('caja-mensajes');
+      const hora = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+      caja.innerHTML += `
+        <div class="mensaje mensaje-usuario">
+          ${texto.replace(/</g, '&lt;')}
+          <div class="hora">${hora}</div>
+        </div>
+      `;
       caja.scrollTop = caja.scrollHeight;
-    }, 1200);
-  }
-  document.getElementById('texto-mensaje').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') enviarMensaje();
-  });
-</script>
+    }
 
+    function agregarMensajeLira(texto) {
+      const caja = document.getElementById('caja-mensajes');
+      const hora = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+      caja.innerHTML += `
+        <div class="mensaje mensaje-lira">
+          ${texto}
+          <div class="hora">${hora}</div>
+        </div>
+      `;
+      caja.scrollTop = caja.scrollHeight;
+      // Leer en voz alta
+      hablar(texto);
+    }
+
+    function generarRespuesta(consulta) {
+      const q = consulta.toLowerCase();
+      if (q.includes('comisión')) return BASE_CONOCIMIENTO.comisiones;
+      if (q.includes('ley') || q.includes('amparan')) return BASE_CONOCIMIENTO.leyes;
+      if (q.includes('pago') || q.includes('cobrar') || q.includes('dinero')) return BASE_CONOCIMIENTO.pagos;
+      if (q.includes('trato') || q.includes('acuerdo') || q.includes('funciona')) return BASE_CONOCIMIENTO.trato;
+      if (q.includes('estadística') || q.includes('cuántos') || q.includes('datos')) return BASE_CONOCIMIENTO.estadísticas;
+      if (q.includes('lira') || q.includes('quién eres') || q.includes('qué eres')) return BASE_CONOCIMIENTO.lira;
+      return BASE_CONOCIMIENTO.defecto;
+    }
+
+    function preguntar(texto) {
+      document.getElementById('texto-mensaje').value = texto;
+      enviarMensaje();
+    }
+
+    // ==============================================
+    // VOZ — RECONOCIMIENTO Y SÍNTESIS DE VOZ
+    // ==============================================
+    let reconocimientoVoz = null;
+    let hablando = false;
+
+    function alternarVoz() {
+      if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+        alert('⚠️ Tu navegador no soporta reconocimiento de voz. Usá Chrome o Edge.');
+        return;
+      }
+      
+      const btn = document.getElementById('btn-voz');
+      const estado = document.getElementById('estado-voz');
+      
+      if (!hablando) {
+        // Empezar a escuchar
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        reconocimientoVoz = new SpeechRecognition();
+        reconocimientoVoz.lang = 'es-ES';
+        reconocimientoVoz.continuous = false;
+        reconocimientoVoz.interimResults = false;
+        
+        reconocimientoVoz.onstart = () => {
+          hablando = true;
+          btn.classList.add('grabando');
+          estado.style.display = 'inline';
+        };
+        
+        reconocimientoVoz.onresult = (e) => {
+          const texto = e.results[0][0].transcript;
+          document.getElementById('texto-mensaje').value = texto;
+          enviarMensaje();
+        };
+        
+        reconocimientoVoz.onend = () => {
+          hablando = false;
+          btn.classList.remove('grabando');
+          estado.style.display = 'none';
+        };
+        
+        reconocimientoVoz.start();
+      } else {
+        reconocimientoVoz.stop();
+        hablando = false;
+        btn.classList.remove('grabando');
+        estado.style.display = 'none';
+      }
+    }
+
+    // Que Lira hable en voz alta
+    function hablar(texto) {
+      if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(texto.replace(/<[^>]*>/g, ''));
+        utterance.lang = 'es-ES';
+        utterance.rate = 1;
+        utterance.pitch = 1.1;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    // ==============================================
+    // SUBIR IMÁGENES Y ARCHIVOS
+    // ==============================================
+    function subirArchivo(e) {
+      const archivo = e.target.files[0];
+      if (!archivo) return;
+      
+      const caja = document.getElementById('caja-mensajes');
+      const hora = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+      
+      if (archivo.type.startsWith('image/')) {
+        const url = URL.createObjectURL(archivo);
+        caja.innerHTML += `
+          <div class="mensaje mensaje-usuario">
+            📷 Imagen enviada:<br>
+            <img src="${url}" class="mensaje-imagen" alt="Imagen subida" />
+            <div class="hora">${hora}</div>
+          </div>
+        `;
+      } else {
+        caja.innerHTML += `
+          <div class="mensaje mensaje-usuario">
+            📎 Archivo: <strong>${archivo.name}</strong> (${(archivo.size / 1024).toFixed(1)} KB)
+            <div class="hora">${hora}</div>
+          </div>
+        `;
+      }
+      
+      caja.scrollTop = caja.scrollHeight;
+      
+      // Respuesta automática de Lira
+      setTimeout(() => {
+        agregarMensajeLira('✅ Recibí el archivo. Lo analizo y te respondo.');
+      }, 500);
+    }
+  </script>
 </body>
 </html>
