@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ofrecer Tu Servicio — Dimon Connect</title>
+  <title>Ofrecer Tus Servicios — Dimon Connect</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
@@ -17,25 +17,27 @@
     .contenedor { max-width: 600px; margin: 0 auto; }
     .volver {
       display: inline-block; color: #93c5fd; text-decoration: none;
-      margin-bottom: 2rem; padding: 0.6rem 1.2rem;
+      margin-bottom: 1.5rem; padding: 0.5rem 1rem;
       background: rgba(59, 130, 246, 0.15); border-radius: 8px;
       border: 1px solid rgba(96, 165, 250, 0.3);
-      transition: all 0.25s ease;
     }
-    .volver:hover { background: rgba(59, 130, 246, 0.25); }
     h1 { font-size: 1.8rem; margin-bottom: 0.5rem; color: #93c5fd; text-align: center; }
     .subtitulo { text-align: center; color: #bae6fd; margin-bottom: 2rem; }
-    .form-grupo { margin-bottom: 1.5rem; }
-    label { display: block; margin-bottom: 0.5rem; color: #7dd3fc; font-weight: 500; }
-    input, textarea, select {
-      width: 100%; padding: 0.9rem 1rem; border-radius: 8px;
+    .caja {
+      background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 12px;
+      margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.1);
+    }
+    .form-grupo { margin-bottom: 1.25rem; }
+    label { display: block; margin-bottom: 0.5rem; color: #bae6fd; font-weight: 500; font-size: 0.95rem; }
+    input, select, textarea {
+      width: 100%; padding: 0.85rem 1rem; border-radius: 8px;
       border: 1px solid rgba(255,255,255,0.2);
       background: rgba(255,255,255,0.08);
-      color: #fff; font-size: 1rem;
-      outline: none; transition: border 0.2s;
+      color: #fff; font-size: 1rem; outline: none;
+      transition: border 0.2s;
     }
-    input:focus, textarea:focus, select:focus { border-color: #38bdf8; }
-    textarea { min-height: 120px; resize: vertical; }
+    input:focus, select:focus, textarea:focus { border-color: #38bdf8; }
+    textarea { min-height: 100px; resize: vertical; }
     .boton {
       width: 100%; padding: 1rem;
       background: linear-gradient(135deg, #f97316, #ea580c);
@@ -45,108 +47,95 @@
       margin-top: 0.5rem;
     }
     .boton:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(249, 115, 22, 0.35); }
-    .caja-info {
-      background: rgba(16, 185, 129, 0.1);
-      padding: 1.2rem; border-radius: 10px;
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      margin-bottom: 2rem;
-      color: #bbf7d0;
+    .aviso {
+      background: rgba(252, 211, 77, 0.1); padding: 1rem; border-radius: 10px;
+      border: 1px solid rgba(252, 211, 77, 0.3); margin-top: 1.5rem;
+      color: #fef3c7; font-size: 0.9rem; line-height: 1.6;
     }
-    .fila-doble { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .separador { height: 1px; background: rgba(255,255,255,0.15); margin: 2rem 0; }
-    .boton-secundario {
-      display: block; text-align: center;
-      padding: 0.9rem; background: transparent;
-      border: 2px solid #38bdf8; color: #38bdf8;
-      border-radius: 10px; text-decoration: none;
-      font-weight: 600; margin-top: 1rem;
-      transition: all 0.2s;
-    }
-    .boton-secundario:hover { background: rgba(56, 189, 248, 0.1); }
+    .check { display: flex; align-items: flex-start; gap: 0.75rem; margin: 1.5rem 0; }
+    .check input { width: auto; margin-top: 0.25rem; }
   </style>
 </head>
 <body>
   <div class="contenedor">
     <a href="index.html" class="volver">← Volver al inicio</a>
 
-    <h1>Ofrece Tu Servicio</h1>
-    <p class="subtitulo">Completa los datos para que las personas te encuentren</p>
+    <h1>Ofrece Tus Servicios</h1>
+    <p class="subtitulo">Completá los datos para que te encuentren y te contacten</p>
 
-    <div class="caja-info">
-      ✅ Al publicar tu servicio te comprometes a realizarlo con responsabilidad y buena fe. No ofrezcas servicios que no puedas cumplir.
-    </div>
-
-    <form id="form-oferta">
-      <div class="form-grupo">
-        <label for="titulo">Título del Servicio *</label>
-        <input type="text" id="titulo" placeholder="Ej: Instalación de electricidad, Clases de matemáticas..." required />
-      </div>
-
-      <div class="form-grupo">
-        <label for="descripcion">Descripción del Trabajo *</label>
-        <textarea id="descripcion" placeholder="Explica detalladamente qué ofreces, qué incluye, materiales, tiempos..." required></textarea>
-      </div>
-
-      <div class="fila-doble">
+    <form onsubmit="enviarOferta(event)">
+      <div class="caja">
         <div class="form-grupo">
-          <label for="precio">Precio Estimado (USD) *</label>
-          <input type="number" id="precio" placeholder="0.00" min="1" step="0.5" required />
+          <label>Título del Servicio</label>
+          <input type="text" id="titulo" placeholder="Ej: Limpieza de casa, Reparación eléctrica..." required />
         </div>
         <div class="form-grupo">
-          <label for="moneda">Moneda</label>
-          <select id="moneda">
-            <option value="USD">USD — Dólar</option>
-            <option value="UYU">UYU — Peso Uruguayo</option>
-            <option value="ARS">ARS — Peso Argentino</option>
-            <option value="BRL">BRL — Real Brasileño</option>
-            <option value="EUR">EUR — Euro</option>
-            <option value="MXN">MXN — Peso Mexicano</option>
-          </select>
+          <label>Descripción del Trabajo</label>
+          <textarea id="descripcion" placeholder="Detallá qué hacés, experiencia, materiales incluidos, tiempos de realización..." required></textarea>
         </div>
-      </div>
-
-      <div class="fila-doble">
         <div class="form-grupo">
-          <label for="pais">País *</label>
+          <label>País</label>
           <select id="pais" required>
             <option value="">Seleccioná tu país</option>
-            <option value="UY">Uruguay</option>
-            <option value="AR">Argentina</option>
-            <option value="BR">Brasil</option>
-            <option value="CL">Chile</option>
-            <option value="US">Estados Unidos</option>
-            <option value="ES">España</option>
-            <option value="MX">México</option>
-            <option value="OT">Otro</option>
+            <option>Uruguay</option>
+            <option>Argentina</option>
+            <option>Brasil</option>
+            <option>Chile</option>
+            <option>Estados Unidos</option>
+            <option>España</option>
+            <option>México</option>
+            <option>Otro</option>
           </select>
         </div>
         <div class="form-grupo">
-          <label for="ciudad">Ciudad *</label>
+          <label>Ciudad</label>
           <input type="text" id="ciudad" placeholder="Tu ciudad" required />
+        </div>
+        <div class="form-grupo">
+          <label>Correo Electrónico de Contacto</label>
+          <input type="email" id="correo" placeholder="tu@email.com" required />
+        </div>
+        <div class="form-grupo">
+          <label>Precio Estimado (moneda según tu país)</label>
+          <input type="number" id="precio" placeholder="0.00" min="0" step="0.01" required />
+        </div>
+
+        <!-- 🔵 CAMPO NUEVO: MÉTODO DE COBRO -->
+        <div class="form-grupo">
+          <label>💳 Método de Cobro Preferido</label>
+          <select id="metodo-cobro" required>
+            <option value="">Seleccioná cómo querés cobrar</option>
+            <option>PayPal — Pago internacional rápido</option>
+            <option>Cuenta Bancaria — Transferencia directa</option>
+            <option>PayPal + Cuenta Bancaria — Ambas opciones</option>
+            <option>Efectivo — Pago presencial al entregar el trabajo</option>
+            <option>A convenir — Definir al acordar el trato</option>
+          </select>
         </div>
       </div>
 
-      <div class="form-grupo">
-        <label for="correo">Correo Electrónico *</label>
-        <input type="email" id="correo" placeholder="tu@email.com" required />
+      <label class="check">
+        <input type="checkbox" required />
+        <span>Me comprometo a realizar el servicio con responsabilidad y buena fe. No ofrezco tareas que no sé realizar.</span>
+      </label>
+
+      <div class="aviso">
+        ⚠️ <strong>Comisiones al concretar el trato:</strong><br>
+        • Se descuenta el 5% del valor total al prestador del servicio<br>
+        • Se suma el 5% al solicitante del servicio<br>
+        • Total: 10% sobre el valor de la transacción
       </div>
 
       <button type="submit" class="boton">✅ Publicar Servicio</button>
     </form>
-
-    <div class="separador"></div>
-
-    <a href="oferta-demanda.html" class="boton-secundario">👀 Ver Servicios Disponibles</a>
-    <a href="informacion-funcionamiento.html" class="boton-secundario">ℹ️ Cómo funciona y comisiones</a>
   </div>
 
   <script>
-    const form = document.getElementById('form-oferta');
-    form.addEventListener('submit', function(e) {
+    function enviarOferta(e) {
       e.preventDefault();
-      alert('✅ Servicio publicado con éxito.\n\nAparecerá en el listado de Ofertas y Demandas. ¡Gracias por ofrecer tu trabajo!');
-      form.reset();
-    });
+      alert('✅ ¡Servicio publicado con éxito!\n\nYa aparece en el listado de ofertas.\nMétodo de cobro seleccionado: ' + document.getElementById('metodo-cobro').value);
+      window.location.href = 'oferta-demanda.html';
+    }
   </script>
 </body>
 </html>
