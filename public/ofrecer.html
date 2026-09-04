@@ -2,211 +2,168 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ofertas y Demandas — Dimon Connect</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Oferta y Demanda de Servicios — Dimon Connect</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     html, body {
-      width: 100%; min-height: 100vh;
-      background: url('fondo-Dimon.png') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff; padding: 2rem 1.5rem;
+      width: 100%; min-height: 100vh; background-color: #0066FF;
+      background-image: url('./1788448614792.png'); background-repeat: no-repeat;
+      background-position: center center; background-size: cover; background-attachment: fixed;
+      color: #ffffff; padding: 1.5rem; padding-bottom: 7rem;
     }
-    .capa {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(5, 16, 64, 0.7); z-index: -1;
+    .volver { margin-bottom: 1.2rem; }
+    .volver a { color: #00ccff; text-decoration: none; font-size: 1rem; font-weight: 600; }
+    .volver a:hover { text-decoration: underline; }
+    h1 { font-size: 1.7rem; color: #ffd700; margin-bottom: 0.5rem; text-align: center; }
+    .subtitulo { text-align: center; color: #b0e0ff; margin-bottom: 1.5rem; font-size: 0.95rem; }
+    .contenedor-columnas { display: flex; gap: 1.2rem; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; }
+    .columna { flex: 1; min-width: 320px; display: flex; flex-direction: column; }
+    .columna-titulo {
+      font-size: 1.2rem; padding: 0.9rem; text-align: center; border-radius: 12px 12px 0 0;
+      font-weight: 700;
     }
-    .contenedor { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
-    .volver { color: #00f2fe; text-decoration: none; font-weight: 600; display: inline-block; margin-bottom: 2rem; }
-    h1 { color: #00f2fe; text-align: center; margin-bottom: 2rem; font-size: 2rem; }
-    .tabs { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; }
-    .tab {
-      padding: 0.8rem 1.5rem; border-radius: 10px; border: none;
-      background: rgba(255,255,255,0.1); color: #fff; font-size: 1rem; cursor: pointer;
-      transition: all 0.2s;
+    .columna-oferta .columna-titulo { background: linear-gradient(135deg, #009933, #00cc44); color: #fff; }
+    .columna-demanda .columna-titulo { background: linear-gradient(135deg, #cc6600, #ff8800); color: #fff; }
+    .lista-contenedor {
+      background: rgba(0, 51, 102, 0.6); border: 2px solid rgba(255,255,255,0.2);
+      border-top: none; border-radius: 0 0 12px 12px; padding: 1rem; min-height: 400px;
+      backdrop-filter: blur(8px);
     }
-    .tab.activa { background: #00f2fe; color: #051040; font-weight: 700; }
-    .tab:hover { transform: translateY(-2px); }
-    .seccion { display: none; }
-    .seccion.visible { display: block; }
-    .tarjeta {
-      background: rgba(255,255,255,0.08); padding: 1.3rem; border-radius: 12px;
-      margin-bottom: 1rem; border-left: 4px solid; transition: all 0.2s;
+    .categoria {
+      padding: 1rem; margin-bottom: 0.8rem; background: rgba(255,255,255,0.08);
+      border-radius: 8px; cursor: pointer; transition: all 0.25s; border-left: 4px solid transparent;
     }
-    .tarjeta:hover { transform: translateY(-2px); }
-    .oferta { border-color: #00f2fe; }
-    .demanda { border-color: #ff9900; }
-    .tarjeta h3 { margin-bottom: 0.5rem; font-size: 1.1rem; }
-    .oferta h3 { color: #00f2fe; }
-    .demanda h3 { color: #ff9900; }
-    .tarjeta p { color: #e0ffff; margin-bottom: 0.5rem; font-size: 0.95rem; }
-    .meta { display: flex; gap: 1rem; flex-wrap: wrap; font-size: 0.85rem; color: #99ccff; }
-    .etiqueta {
-      display: inline-block; padding: 0.25rem 0.7rem; border-radius: 20px;
-      font-size: 0.8rem; margin-bottom: 0.8rem;
+    .categoria:hover { background: rgba(255,255,255,0.15); border-left-color: #00ccff; }
+    .categoria-nombre { font-weight: 600; font-size: 1rem; margin-bottom: 0.25rem; }
+    .categoria-cantidad { font-size: 0.85rem; color: #80c8ff; }
+    .sub-lista { margin-top: 0.8rem; padding-left: 0.5rem; display: none; }
+    .sub-lista.activa { display: block; }
+    .persona {
+      padding: 0.9rem; margin-bottom: 0.6rem; background: rgba(0,0,0,0.2);
+      border-radius: 6px; cursor: pointer; transition: all 0.2s;
     }
-    .oferta .etiqueta { background: rgba(0,242,254,0.2); color: #00f2fe; }
-    .demanda .etiqueta { background: rgba(255,153,0,0.2); color: #ffcc00; }
-    .nuevo { text-align: center; margin-top: 3rem; }
-    .boton-nuevo {
-      padding: 1rem 2rem; border-radius: 12px; border: none;
-      background: #00f2fe; color: #051040; font-size: 1rem; font-weight: 700;
-      cursor: pointer; text-decoration: none; display: inline-block;
-      transition: all 0.2s;
+    .persona:hover { background: rgba(255,255,255,0.1); }
+    .persona-nombre { font-weight: 600; margin-bottom: 0.3rem; }
+    .persona-descripcion { font-size: 0.9rem; color: #e0f0ff; margin-bottom: 0.3rem; line-height: 1.4; }
+    .persona-ubicacion { font-size: 0.85rem; color: #80c8ff; margin-bottom: 0.3rem; }
+    .persona-precio { font-size: 0.9rem; color: #ffd700; font-weight: 500; }
+    .puntito {
+      display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 0.5rem;
+      vertical-align: middle;
     }
-    .boton-nuevo:hover { transform: translateY(-2px); }
-    .vacio { text-align: center; color: #88aacc; padding: 2rem; }
+    .puntito-verde { background: #00ff44; box-shadow: 0 0 4px #00ff44; }
+    .puntito-gris { background: #666; }
+    .sin-registros { text-align: center; padding: 2rem; color: #80c8ff; font-style: italic; }
+    @media (max-width: 768px) {
+      .contenedor-columnas { flex-direction: column; }
+      .columna { width: 100%; }
+    }
   </style>
 </head>
 <body>
-  <div class="capa"></div>
-  <div class="contenedor">
-    <a href="index.html" class="volver">← Volver al inicio</a>
-    <h1>📋 Ofertas y Demandas</h1>
 
-    <!-- PESTAÑAS -->
-    <div class="tabs">
-      <button class="tab activa" onclick="mostrarSeccion('ofertas')">💼 Ofrecer Servicios</button>
-      <button class="tab" onclick="mostrarSeccion('demandas')">📞 Solicitar Servicios</button>
-    </div>
+  <div class="volver"><a href="index.html">← Volver al inicio</a></div>
+  <h1>Oferta y Demanda de Servicios</h1>
+  <p class="subtitulo">Seleccioná una categoría para ver los detalles</p>
 
-    <!-- 🟢 OFERTAS DE SERVICIOS -->
-    <div id="ofertas" class="seccion visible">
-      
-      <div class="tarjeta oferta">
-        <span class="etiqueta">✅ Disponible ahora</span>
-        <h3>🧹 Limpieza del hogar y oficinas</h3>
-        <p>Servicio de limpieza general, departamentos, casas y locales. Experiencia y responsabilidad garantizada.</p>
-        <div class="meta">
-          <span>📍 Montevideo, Uruguay</span>
-          <span>💰 Desde $25 USD</span>
-          <span>⭐ 4.9 / 5</span>
+  <div class="contenedor-columnas">
+    <!-- COLUMNA IZQUIERDA: OFERTAS -->
+    <div class="columna columna-oferta">
+      <div class="columna-titulo">Quienes ofrecen</div>
+      <div class="lista-contenedor">
+
+        <div class="categoria" onclick="toggleSubLista(this)">
+          <div class="categoria-nombre">Pintura</div>
+          <div class="categoria-cantidad">2 personas disponibles</div>
+          <div class="sub-lista">
+            <div class="persona" onclick="window.location.href='perfil-usuario.html'">
+              <span class="puntito puntito-verde"></span>
+              <div class="persona-nombre">Carlos M.</div>
+              <div class="persona-descripcion">Pintura de interiores y exteriores, restauración de frentes, impermeabilización, trabajos en altura.</div>
+              <div class="persona-ubicacion">Montevideo, Uruguay</div>
+              <div class="persona-precio">Desde 25 USD / día</div>
+            </div>
+            <div class="persona" onclick="window.location.href='perfil-usuario.html'">
+              <span class="puntito puntito-gris"></span>
+              <div class="persona-nombre">Ana L.</div>
+              <div class="persona-descripcion">Pintura de departamentos, acabados finos, decoración, colocación de papeles murales.</div>
+              <div class="persona-ubicacion">Buenos Aires, Argentina</div>
+              <div class="persona-precio">Precio a convenir</div>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div class="tarjeta oferta">
-        <span class="etiqueta">✅ Disponible ahora</span>
-        <h3>🔌 Electricista — Instalaciones y reparaciones</h3>
-        <p>Instalaciones nuevas, reparación de fallas, mantenimiento, iluminación y artefactos. Trabajo seguro y certificado.</p>
-        <div class="meta">
-          <span>📍 Montevideo, Uruguay</span>
-          <span>💰 Desde $35 USD</span>
-          <span>⭐ 5.0 / 5</span>
+        <div class="categoria" onclick="toggleSubLista(this)">
+          <div class="categoria-nombre">Carpintería</div>
+          <div class="categoria-cantidad">1 persona disponible</div>
+          <div class="sub-lista">
+            <div class="persona" onclick="window.location.href='perfil-usuario.html'">
+              <span class="puntito puntito-verde"></span>
+              <div class="persona-nombre">Jorge R.</div>
+              <div class="persona-descripcion">Muebles a medida, reparación de muebles antiguos, instalación de puertas y armarios, pisos de madera.</div>
+              <div class="persona-ubicacion">Santiago, Chile</div>
+              <div class="persona-precio">Según presupuesto</div>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div class="tarjeta oferta">
-        <span class="etiqueta">✅ Disponible ahora</span>
-        <h3>🪑 Carpintería y muebles a medida</h3>
-        <p>Fabricación y reparación de muebles, estanterías, mesas, puertas y ventanas. Diseño personalizado.</p>
-        <div class="meta">
-          <span>📍 Montevideo, Uruguay</span>
-          <span>💰 A consultar</span>
-          <span>⭐ 4.8 / 5</span>
+        <div class="categoria" onclick="toggleSubLista(this)">
+          <div class="categoria-nombre">Limpieza</div>
+          <div class="categoria-cantidad">Sin registros aún</div>
+          <div class="sub-lista">
+            <div class="sin-registros">No hay personas en esta categoría por el momento.</div>
+          </div>
         </div>
-      </div>
 
-      <div class="tarjeta oferta">
-        <span class="etiqueta">✅ Disponible ahora</span>
-        <h3>💻 Reparación de computadoras y notebooks</h3>
-        <p>Formateo, actualización, limpieza, cambio de disco y memoria. Asistencia a domicilio disponible.</p>
-        <div class="meta">
-          <span>📍 Montevideo, Uruguay</span>
-          <span>💰 Desde $20 USD</span>
-          <span>⭐ 4.7 / 5</span>
-        </div>
-      </div>
-
-      <div class="tarjeta oferta">
-        <span class="etiqueta">✅ Disponible ahora</span>
-        <h3>🌿 Jardinería y mantenimiento de espacios verdes</h3>
-        <p>Poda, plantación, abono, mantenimiento de jardines y macetas. Trabajo de calidad.</p>
-        <div class="meta">
-          <span>📍 Montevideo, Uruguay</span>
-          <span>💰 Desde $22 USD</span>
-          <span>⭐ 4.9 / 5</span>
-        </div>
-      </div>
-
-      <div class="nuevo">
-        <a href="solicitar.html" class="boton-nuevo">➕ Ofrecer mi servicio</a>
       </div>
     </div>
 
-    <!-- 🟡 DEMANDAS — SOLICITUDES -->
-    <div id="demandas" class="seccion">
-      
-      <div class="tarjeta demanda">
-        <span class="etiqueta">🔴 Necesito urgente</span>
-        <h3>🏠 Necesito pintar living y dormitorio</h3>
-        <p>Departamento de 3 ambientes. Paredes en buen estado. Necesito persona responsable con experiencia.</p>
-        <div class="meta">
-          <span>📍 Montevideo, Centro</span>
-          <span>💰 Presupuesto a acordar</span>
-          <span>📅 Para la próxima semana</span>
-        </div>
-      </div>
+    <!-- COLUMNA DERECHA: DEMANDAS -->
+    <div class="columna columna-demanda">
+      <div class="columna-titulo">Quienes piden</div>
+      <div class="lista-contenedor">
 
-      <div class="tarjeta demanda">
-        <span class="etiqueta">🟡 Necesito</span>
-        <h3>🚿 Reparar grifería de cocina y baño</h3>
-        <p>3 canillas goteando. Necesito fontanero con experiencia. Disponibilidad horaria flexible.</p>
-        <div class="meta">
-          <span>📍 Montevideo, Pocitos</span>
-          <span>💰 A convenir</span>
-          <span>📅 Lo antes posible</span>
+        <div class="categoria" onclick="toggleSubLista(this)">
+          <div class="categoria-nombre">Pintura</div>
+          <div class="categoria-cantidad">1 solicitud</div>
+          <div class="sub-lista">
+            <div class="persona" onclick="window.location.href='perfil-usuario.html'">
+              <span class="puntito puntito-verde"></span>
+              <div class="persona-nombre">María T.</div>
+              <div class="persona-descripcion">Necesito pintar living y dormitorio en departamento de 60m². Incluir mano de obra y materiales.</div>
+              <div class="persona-ubicacion">Montevideo, Uruguay</div>
+              <div class="persona-precio">Presupuesto hasta 300 USD</div>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div class="tarjeta demanda">
-        <span class="etiqueta">🟡 Necesito</span>
-        <h3>📚 Clases particulares de Matemáticas — Secundaria</h3>
-        <p>Apoyo escolar para 3er año. 2 veces por semana, presencial o virtual. Busco profesor con paciencia y experiencia.</p>
-        <div class="meta">
-          <span>📍 Montevideo, Carrasco</span>
-          <span>💰 $15 USD / hora</span>
-          <span>📅 A partir de la semana que viene</span>
+        <div class="categoria" onclick="toggleSubLista(this)">
+          <div class="categoria-nombre">Jardinería</div>
+          <div class="categoria-cantidad">Sin registros aún</div>
+          <div class="sub-lista">
+            <div class="sin-registros">No hay solicitudes en esta categoría por el momento.</div>
+          </div>
         </div>
-      </div>
 
-      <div class="tarjeta demanda">
-        <span class="etiqueta">🟡 Necesito</span>
-        <h3>🚚 Traslado de muebles — 2 ambientes</h3>
-        <p>Mudanza dentro de Montevideo. Sofá, mesa, sillas, cama y cajones. Necesito camión y ayuda para subir/bajar.</p>
-        <div class="meta">
-          <span>📍 Montevideo → Montevideo</span>
-          <span>💰 A acordar</span>
-          <span>📅 Fin de semana del 15</span>
+        <div class="categoria" onclick="toggleSubLista(this)">
+          <div class="categoria-nombre">Reparaciones eléctricas</div>
+          <div class="categoria-cantidad">Sin registros aún</div>
+          <div class="sub-lista">
+            <div class="sin-registros">No hay solicitudes en esta categoría por el momento.</div>
+          </div>
         </div>
-      </div>
 
-      <div class="tarjeta demanda">
-        <span class="etiqueta">🟡 Necesito</span>
-        <h3>🐾 Paseador de perro — 1 vez por día</h3>
-        <p>Perro mediano, amigable. Paseo de 30 min todos los días. Zona Parque Rodó. Preferencia con referencias.</p>
-        <div class="meta">
-          <span>📍 Montevideo, Parque Rodó</span>
-          <span>💰 $8 USD / día</span>
-          <span>📅 Empezar cuanto antes</span>
-        </div>
-      </div>
-
-      <div class="nuevo">
-        <a href="solicitar.html" class="boton-nuevo">➕ Solicitar un servicio</a>
       </div>
     </div>
-
   </div>
 
-  <script>
-    function mostrarSeccion(nombre) {
-      // Ocultar todo
-      document.querySelectorAll('.seccion').forEach(s => s.classList.remove('visible'));
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('activa'));
-      // Mostrar el seleccionado
-      document.getElementById(nombre).classList.add('visible');
-      event.target.classList.add('activa');
-    }
-  </script>
+<script>
+  function toggleSubLista(categoria) {
+    const subLista = categoria.querySelector('.sub-lista');
+    subLista.classList.toggle('activa');
+  }
+</script>
+
 </body>
 </html>
