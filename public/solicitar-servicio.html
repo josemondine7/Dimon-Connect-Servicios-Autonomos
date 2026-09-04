@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Solicitar Servicio — Dimon Connect</title>
+  <title>Solicitar un Servicio — Dimon Connect</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
@@ -17,136 +17,120 @@
     .contenedor { max-width: 600px; margin: 0 auto; }
     .volver {
       display: inline-block; color: #93c5fd; text-decoration: none;
-      margin-bottom: 2rem; padding: 0.6rem 1.2rem;
+      margin-bottom: 1.5rem; padding: 0.5rem 1rem;
       background: rgba(59, 130, 246, 0.15); border-radius: 8px;
       border: 1px solid rgba(96, 165, 250, 0.3);
-      transition: all 0.25s ease;
     }
-    .volver:hover { background: rgba(59, 130, 246, 0.25); }
     h1 { font-size: 1.8rem; margin-bottom: 0.5rem; color: #93c5fd; text-align: center; }
     .subtitulo { text-align: center; color: #bae6fd; margin-bottom: 2rem; }
-    .caja-mensaje {
-      background: rgba(16, 185, 129, 0.1);
-      padding: 1.2rem; border-radius: 10px;
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      margin-bottom: 2rem; color: #bbf7d0; text-align: center;
+    .caja {
+      background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 12px;
+      margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.1);
     }
-    .form-grupo { margin-bottom: 1.5rem; }
-    label { display: block; margin-bottom: 0.5rem; color: #7dd3fc; font-weight: 500; }
-    input, textarea, select {
-      width: 100%; padding: 0.9rem 1rem; border-radius: 8px;
+    .form-grupo { margin-bottom: 1.25rem; }
+    label { display: block; margin-bottom: 0.5rem; color: #bae6fd; font-weight: 500; font-size: 0.95rem; }
+    input, select, textarea {
+      width: 100%; padding: 0.85rem 1rem; border-radius: 8px;
       border: 1px solid rgba(255,255,255,0.2);
       background: rgba(255,255,255,0.08);
-      color: #fff; font-size: 1rem;
-      outline: none; transition: border 0.2s;
+      color: #fff; font-size: 1rem; outline: none;
+      transition: border 0.2s;
     }
-    input:focus, textarea:focus, select:focus { border-color: #38bdf8; }
-    textarea { min-height: 120px; resize: vertical; }
+    input:focus, select:focus, textarea:focus { border-color: #38bdf8; }
+    textarea { min-height: 100px; resize: vertical; }
     .boton {
       width: 100%; padding: 1rem;
-      background: linear-gradient(135deg, #f97316, #ea580c);
+      background: linear-gradient(135deg, #10b981, #059669);
       color: #fff; border: none; border-radius: 10px;
       font-size: 1.1rem; font-weight: 600; cursor: pointer;
       transition: transform 0.2s, box-shadow 0.2s;
       margin-top: 0.5rem;
     }
-    .boton:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(249, 115, 22, 0.35); }
-    .fila-doble { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .separador { height: 1px; background: rgba(255,255,255,0.15); margin: 2rem 0; }
-    .boton-secundario {
-      display: block; text-align: center;
-      padding: 0.9rem; background: transparent;
-      border: 2px solid #38bdf8; color: #38bdf8;
-      border-radius: 10px; text-decoration: none;
-      font-weight: 600; margin-top: 1rem;
-      transition: all 0.2s;
+    .boton:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35); }
+    .aviso {
+      background: rgba(252, 211, 77, 0.1); padding: 1rem; border-radius: 10px;
+      border: 1px solid rgba(252, 211, 77, 0.3); margin-top: 1.5rem;
+      color: #fef3c7; font-size: 0.9rem; line-height: 1.6;
     }
-    .boton-secundario:hover { background: rgba(56, 189, 248, 0.1); }
+    .destacado { color: #fcd34d; font-weight: 600; }
   </style>
 </head>
 <body>
   <div class="contenedor">
     <a href="index.html" class="volver">← Volver al inicio</a>
 
-    <h1>Solicitar Servicio</h1>
-    <p class="subtitulo">Decinos qué necesitás y te conectamos con quien pueda hacerlo</p>
+    <h1>Solicitar un Servicio</h1>
+    <p class="subtitulo">Pedí lo que necesites — cualquier servicio, mientras sea legal</p>
 
-    <div class="caja-mensaje">
-      💡 Podés solicitar <strong>cualquier tipo de servicio legal</strong>, aunque no esté en la lista. Si alguien puede hacerlo, se contactará con vos.
-      <br><br>
-      🤝 <em>La idea es crear oportunidades y solucionar tus necesidades.</em>
-    </div>
-
-    <form id="form-solicitud">
-      <div class="form-grupo">
-        <label for="que-necesito">¿Qué necesitás? *</label>
-        <input type="text" id="que-necesito" placeholder="Ej: Necesito que me arreglen la cocina, que me enseñen inglés..." required />
-      </div>
-
-      <div class="form-grupo">
-        <label for="detalle">Descripción Detallada *</label>
-        <textarea id="detalle" placeholder="Contanos con más detalle: qué incluye, medidas, materiales, cuándo lo necesitás, cualquier detalle importante..." required></textarea>
-      </div>
-
-      <div class="fila-doble">
+    <form onsubmit="enviarSolicitud(event)">
+      <div class="caja">
         <div class="form-grupo">
-          <label for="presupuesto">Presupuesto Estimado *</label>
-          <input type="number" id="presupuesto" placeholder="0.00" min="1" step="1" required />
+          <label>¿Qué necesitás?</label>
+          <input type="text" id="servicio" placeholder="Ej: Necesito que me pinten la casa..." required />
         </div>
         <div class="form-grupo">
-          <label for="moneda">Moneda</label>
-          <select id="moneda">
-            <option value="USD">USD — Dólar</option>
-            <option value="UYU">UYU — Peso Uruguayo</option>
-            <option value="ARS">ARS — Peso Argentino</option>
-            <option value="BRL">BRL — Real Brasileño</option>
-            <option value="EUR">EUR — Euro</option>
-          </select>
+          <label>Descripción Detallada</label>
+          <textarea id="descripcion" placeholder="Contá qué necesitás, cuándo, dimensiones, materiales que proveés, ubicación..." required></textarea>
         </div>
-      </div>
-
-      <div class="fila-doble">
         <div class="form-grupo">
-          <label for="pais">País *</label>
+          <label>País</label>
           <select id="pais" required>
             <option value="">Seleccioná tu país</option>
-            <option value="UY">Uruguay</option>
-            <option value="AR">Argentina</option>
-            <option value="BR">Brasil</option>
-            <option value="CL">Chile</option>
-            <option value="US">Estados Unidos</option>
-            <option value="ES">España</option>
-            <option value="MX">México</option>
-            <option value="OT">Otro</option>
+            <option>Uruguay</option>
+            <option>Argentina</option>
+            <option>Brasil</option>
+            <option>Chile</option>
+            <option>Estados Unidos</option>
+            <option>España</option>
+            <option>México</option>
+            <option>Otro</option>
           </select>
         </div>
         <div class="form-grupo">
-          <label for="ciudad">Ciudad *</label>
-          <input type="text" id="ciudad" placeholder="Tu ciudad" required />
+          <label>Ciudad y Zona</label>
+          <input type="text" id="ciudad" placeholder="Ciudad, barrio o zona" required />
+        </div>
+        <div class="form-grupo">
+          <label>Correo Electrónico de Contacto</label>
+          <input type="email" id="correo" placeholder="tu@email.com" required />
+        </div>
+        <div class="form-grupo">
+          <label>Presupuesto Estimado</label>
+          <input type="number" id="precio" placeholder="0.00" min="0" step="0.01" required />
+        </div>
+
+        <!-- 🔵 CAMPO NUEVO: MÉTODO DE PAGO -->
+        <div class="form-grupo">
+          <label>💳 Método de Pago Preferido</label>
+          <select id="metodo-pago" required>
+            <option value="">Seleccioná cómo vas a pagar</option>
+            <option>PayPal — Pago seguro internacional</option>
+            <option>Transferencia Bancaria directa</option>
+            <option>PayPal + Transferencia — Ambas opciones</option>
+            <option>Efectivo — Al recibir el servicio (presencial)</option>
+            <option>A convenir — Definir al acordar el trato</option>
+          </select>
         </div>
       </div>
 
-      <div class="form-grupo">
-        <label for="correo">Correo Electrónico *</label>
-        <input type="email" id="correo" placeholder="tu@email.com" required />
+      <div class="aviso">
+        ⚠️ <strong>Información importante:</strong><br>
+        • Si el servicio no está listado, se agrega automáticamente.<br>
+        • Quienes puedan realizarlo verán tu solicitud y se contactarán.<br>
+        • Al confirmar el trato se suma un <span class="destacado">5% de comisión</span> sobre el valor del servicio.<br>
+        • Total a pagar: valor del servicio + 5% de comisión.
       </div>
 
-      <button type="submit" class="boton">📋 Publicar Solicitud</button>
+      <button type="submit" class="boton">✅ Publicar Solicitud</button>
     </form>
-
-    <div class="separador"></div>
-
-    <a href="oferta-demanda.html" class="boton-secundario">👀 Ver Servicios Disponibles</a>
-    <a href="informacion-funcionamiento.html" class="boton-secundario">ℹ️ Cómo funciona y comisiones</a>
   </div>
 
   <script>
-    const form = document.getElementById('form-solicitud');
-    form.addEventListener('submit', function(e) {
+    function enviarSolicitud(e) {
       e.preventDefault();
-      alert('✅ Solicitud publicada con éxito.\n\nAparecerá en Ofertas y Demandas. Cuando alguien pueda hacerlo, se contactará con vos.\n\n¡Gracias por confiar en Dimon Connect!');
-      form.reset();
-    });
+      alert('✅ ¡Solicitud publicada con éxito!\n\nQuienes puedan realizar el servicio se contactarán contigo.\nMétodo de pago seleccionado: ' + document.getElementById('metodo-pago').value);
+      window.location.href = 'oferta-demanda.html';
+    }
   </script>
 </body>
 </html>
