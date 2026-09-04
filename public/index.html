@@ -28,7 +28,7 @@
       padding-bottom: 90px;
     }
 
-    /* Selector de Idioma — Arriba Izquierda, bien posicionado */
+    /* Selector de Idioma — Arriba Izquierda — 14 idiomas, sin archivos extra */
     .selector-idioma {
       position: fixed;
       top: 20px;
@@ -53,7 +53,7 @@
       min-width: 180px;
     }
 
-    /* Botón Lira — Arriba Derecha, alineado */
+    /* Botón Lira — Arriba Derecha — Acceso interno protegido */
     .boton-lira {
       position: fixed;
       top: 20px;
@@ -75,7 +75,7 @@
     }
     .boton-lira:active { transform: scale(0.95); }
 
-    /* Contenido Central — Debajo del logo, bien separado */
+    /* Contenido Central — Debajo del logo, SIN superposición */
     .contenedor {
       width: 100%;
       display: flex;
@@ -89,7 +89,7 @@
       z-index: 10;
     }
 
-    /* Buscador — Proporciones exactas */
+    /* Buscador — Busca en toda la plataforma */
     .buscador {
       width: 100%;
       max-width: 520px;
@@ -122,7 +122,7 @@
     }
     .buscador button:hover { background: rgba(0,204,255,0.5); }
 
-    /* Botones Principales — Tamaño uniforme, separados */
+    /* Botones Principales — Cada uno conectado a su página */
     .botones-principales {
       width: 100%;
       max-width: 520px;
@@ -163,7 +163,7 @@
     .boton-terciario:hover { background: rgba(0,51,102,0.7); border-color: #00ccff; }
     .boton:active { transform: scale(0.98); }
 
-    /* Botón Descargar App — Debajo de los botones, centrado */
+    /* Botón Descargar App — Debajo de los botones */
     .boton-descarga {
       display: block;
       width: 100%;
@@ -183,7 +183,7 @@
     }
     .boton-descarga:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,136,0,0.45); }
 
-    /* Pie de Página — Fijo abajo, no tapa nada */
+    /* Pie de Página — Todos los enlaces legales conectados */
     .pie {
       position: fixed;
       bottom: 0;
@@ -211,7 +211,7 @@
       border-bottom-color: #ffd700;
     }
 
-    /* Modal Contraseña Lira — Centrado, bien proporcionado */
+    /* Modal Contraseña Lira — Acceso interno protegido */
     .modal-contraseña {
       position: fixed;
       top: 0;
@@ -321,10 +321,10 @@
     </select>
   </div>
 
-  <!-- Botón Lira -->
+  <!-- Botón Lira — Acceso interno protegido con contraseña -->
   <button class="boton-lira" onclick="abrirLira()">✚</button>
 
-  <!-- Modal Contraseña Lira -->
+  <!-- Modal Contraseña Lira → Conecta con chat-lira.html -->
   <div class="modal-contraseña" id="modal-lira">
     <div class="caja-contraseña">
       <h3>Acceso Interno — Lira</h3>
@@ -336,23 +336,26 @@
     </div>
   </div>
 
-  <!-- Contenido Central — Todo ordenado, sin superposición -->
+  <!-- Contenido Central — TODO CONECTADO A CADA PÁGINA -->
   <div class="contenedor">
+    <!-- Buscador → Conecta con oferta-demanda.html con búsqueda -->
     <div class="buscador">
       <input type="text" id="buscador" placeholder="Buscar servicios, personas, categorías..." />
       <button onclick="buscar()">🔍</button>
     </div>
 
+    <!-- Botones Principales — Cada uno a su página -->
     <div class="botones-principales">
       <a href="ofrecer.html" class="boton boton-primario">Ofrecer mi servicio</a>
       <a href="oferta-demanda.html" class="boton boton-secundario">Oferta y Demanda de Servicios</a>
       <a href="login.html" class="boton boton-terciario">Iniciar sesión</a>
     </div>
 
+    <!-- Botón Descargar App → Conecta con descarga.html -->
     <a href="descarga.html" class="boton-descarga">Descargar aplicación</a>
   </div>
 
-  <!-- Pie de Página — Fijo abajo, bien centrado -->
+  <!-- Pie de Página — Todos los enlaces legales conectados -->
   <div class="pie">
     <a href="normas-seguridad.html" class="enlace-pie">Normas y Seguridad</a>
     <a href="privacidad.html" class="enlace-pie">Política de Privacidad</a>
@@ -362,7 +365,7 @@
   </div>
 
 <script>
-  // --- IDIOMA — Funciona y se guarda automáticamente ---
+  // --- IDIOMA — Cambia y guarda automáticamente ---
   function cambiarIdioma(codigoIdioma) {
     localStorage.setItem('idiomaDimon', codigoIdioma);
     document.documentElement.lang = codigoIdioma;
@@ -374,7 +377,7 @@
     document.documentElement.lang = idiomaGuardado;
   }
 
-  // --- LIRA — Protegido con contraseña ---
+  // --- LIRA — Protegido con contraseña → chat-lira.html ---
   function abrirLira() {
     document.getElementById('modal-lira').classList.add('activo');
     document.getElementById('clave-lira').value = '';
@@ -398,13 +401,14 @@
     if (e.key === 'Escape') cerrarLira();
   });
 
-  // --- BUSCADOR — Funciona con clic y Enter ---
+  // --- BUSCADOR → oferta-demanda.html con término buscado ---
   function buscar() {
     const texto = document.getElementById('buscador').value.trim();
     if (texto !== '') {
       window.location.href = 'oferta-demanda.html?buscar=' + encodeURIComponent(texto);
     }
   }
+  // Buscar con Enter
   document.getElementById('buscador').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') buscar();
   });
