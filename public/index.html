@@ -19,11 +19,14 @@
       position: fixed;
     }
 
-    /* ===== TU IMAGEN DE FONDO — BUSCA EN PUBLIC ===== */
+    /* ===== TU IMAGEN DE FONDO — NOMBRE EXACTO ===== */
     body {
-      background: url('Fondo-pantalla-Dimon.png') no-repeat center center fixed;
-      background-size: cover;
+      background-color: #0066FF;
+      background-image: url('./1788448614792.png');
+      background-repeat: no-repeat;
       background-position: center center;
+      background-size: cover;
+      background-attachment: fixed;
       color: #ffffff;
     }
 
@@ -51,7 +54,7 @@
       box-shadow: 0 0 15px rgba(255,215,0,0.4);
     }
 
-    /* ===== ESCUDO LIRA — ARRIBA DERECHA ===== */
+    /* ===== BOTÓN LIRA — ARRIBA DERECHA ===== */
     .boton-lira {
       position: fixed;
       top: 1.5rem;
@@ -129,7 +132,7 @@
       align-items: center;
       justify-content: center;
       padding: 1.5rem;
-      padding-top: 32vh;
+      padding-top: 28vh;
       padding-bottom: 8rem;
     }
 
@@ -247,7 +250,7 @@
 </head>
 <body>
 
-  <!-- 🌐 SELECTOR DE IDIOMAS -->
+  <!-- 🌐 SELECTOR DE 14 IDIOMAS -->
   <div class="selector-idioma">
     <select id="idioma">
       <option value="es">🇪🇸 Español</option>
@@ -267,7 +270,7 @@
     </select>
   </div>
 
-  <!-- 🛡️ ESCUDO LIRA → CONTRASEÑA -->
+  <!-- 🛡️ BOTÓN LIRA → CONTRASEÑA -->
   <div class="boton-lira" id="botonLira" title="Hablar con Lira"></div>
 
   <!-- 🔒 VENTANA DE CONTRASEÑA -->
@@ -291,7 +294,7 @@
       <button type="submit">🔍</button>
     </div>
 
-    <!-- 🟦 BOTONES PRINCIPALES -->
+    <!-- 🟦 BOTONES PRINCIPALES VINCULADOS -->
     <div class="botones-principales">
       <a href="ofrecer.html" class="boton boton-primario">Ofrecer mis servicios</a>
       <a href="solicitar.html" class="boton">Solicitar un servicio</a>
@@ -299,10 +302,10 @@
     </div>
   </main>
 
-  <!-- 🟧 BOTÓN DESCARGA -->
+  <!-- 📥 BOTÓN DESCARGA DE APLICACIÓN -->
   <a href="descargar.html" class="boton-descarga">Descargar aplicación</a>
 
-  <!-- 📄 ENLACES INFERIORES -->
+  <!-- 📄 ENLACES INFERIORES VINCULADOS -->
   <nav class="enlaces-inferiores">
     <a href="normas.html#normas">Normas y Seguridad</a>
     <a href="normas.html#privacidad">Privacidad</a>
@@ -311,7 +314,7 @@
     <a href="normas.html#contacto">Contacto</a>
   </nav>
 
-  <!-- ===== JAVASCRIPT — CONTRASEÑA LIRA ===== -->
+  <!-- ===== JAVASCRIPT — LIRA + CONTRASEÑA FUNCIONAL ===== -->
   <script>
     const botonLira = document.getElementById('botonLira');
     const modalContraseña = document.getElementById('modalContraseña');
