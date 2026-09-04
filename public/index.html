@@ -3,122 +3,307 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="description" content="Dimon Connect — Servicios autónomos entre personas. Conectamos quienes necesitan un servicio con quienes pueden brindarlo. Gratis, mundial, seguro." />
+  <meta name="description" content="Dimon Connect — Servicios autónomos entre personas. Conectamos quienes necesitan un servicio con quienes pueden brindarlo." />
   <link rel="canonical" href="https://dimonconnect.com/" />
   <meta name="author" content="Dimon Connect" />
   <meta name="robots" content="index, follow" />
   <title>Dimon Connect — Servicios Autónomos</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    html, body { width: 100%; height: 100vh; overflow: hidden; position: fixed; }
+    html, body {
+      width: 100%; height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      position: relative;
+    }
     body {
       background-color: #0066FF;
       background-image: url('./1788448614792.png');
       background-repeat: no-repeat;
-      background-position: center center;
+      background-position: center top;
       background-size: cover;
+      background-attachment: fixed;
       color: #ffffff;
+      min-height: 100vh;
+      padding-bottom: 90px;
     }
-    .selector-idioma { position: fixed; top: 1.5rem; left: 1.5rem; z-index: 25; }
+
+    /* Selector de Idioma — Arriba Izquierda, bien posicionado */
+    .selector-idioma {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 30;
+    }
     .selector-idioma select {
-      padding: 0.5rem 0.9rem; border-radius: 8px; border: 2px solid rgba(255,215,0,0.6);
-      background: rgba(0,51,102,0.9); color: #fff; font-size: 0.85rem; cursor: pointer; outline: none;
-      backdrop-filter: blur(6px);
+      padding: 10px 40px 10px 16px;
+      border-radius: 10px;
+      border: 3px solid #ffd700;
+      background: rgba(0, 51, 102, 0.85);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffd700'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 20px;
+      min-width: 180px;
     }
+
+    /* Botón Lira — Arriba Derecha, alineado */
     .boton-lira {
-      position: fixed; top: 1.5rem; right: 1.5rem; width: 56px; height: 56px; border-radius: 12px;
-      border: 3px solid #ffd700; background: linear-gradient(135deg, #003366, #0066cc);
-      color: #ffd700; font-size: 1.8rem; display: flex; align-items: center; justify-content: center;
-      cursor: pointer; z-index: 25;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 56px;
+      height: 56px;
+      border-radius: 10px;
+      border: 3px solid #ffd700;
+      background: linear-gradient(135deg, #003366, #0066cc);
+      color: #ffd700;
+      font-size: 32px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 30;
+      transition: transform 0.2s;
     }
+    .boton-lira:active { transform: scale(0.95); }
+
+    /* Contenido Central — Debajo del logo, bien separado */
     .contenedor {
-      position: absolute; top: 0; left: 0; width: 100%; height: 100vh; display: flex;
-      flex-direction: column; align-items: center; justify-content: center; padding: 1.5rem;
-      padding-top: 28vh; padding-bottom: 10rem;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 320px;
+      padding-left: 20px;
+      padding-right: 20px;
+      gap: 40px;
+      position: relative;
+      z-index: 10;
     }
+
+    /* Buscador — Proporciones exactas */
     .buscador {
-      width: 100%; max-width: 500px; display: flex; margin-bottom: 2rem; z-index: 10;
+      width: 100%;
+      max-width: 520px;
+      display: flex;
+      align-items: center;
     }
     .buscador input {
-      flex: 1; padding: 1rem 1.25rem; border: 1px solid rgba(255,255,255,0.35);
-      border-radius: 12px 0 0 12px; font-size: 1rem; color: #fff;
-      background: rgba(255,255,255,0.15); outline: none;
+      flex: 1;
+      padding: 16px 20px;
+      border: 2px solid rgba(255,255,255,0.25);
+      border-radius: 12px 0 0 12px;
+      font-size: 16px;
+      color: #fff;
+      background: rgba(255,255,255,0.15);
+      outline: none;
+      backdrop-filter: blur(6px);
     }
-    .buscador input::placeholder { color: rgba(255,255,255,0.65); }
+    .buscador input::placeholder { color: rgba(255,255,255,0.6); }
     .buscador button {
-      padding: 0 1.5rem; border: 1px solid rgba(0,204,255,0.5);
-      border-radius: 0 12px 12px 0; background: rgba(0,204,255,0.35);
-      color: #fff; font-size: 1.2rem; cursor: pointer;
+      padding: 16px 20px;
+      border: 2px solid rgba(0,204,255,0.4);
+      border-left: none;
+      border-radius: 0 12px 12px 0;
+      background: rgba(0,204,255,0.3);
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+      transition: background 0.2s;
     }
+    .buscador button:hover { background: rgba(0,204,255,0.5); }
+
+    /* Botones Principales — Tamaño uniforme, separados */
     .botones-principales {
-      width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 1rem;
+      width: 100%;
+      max-width: 520px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
     .boton {
-      padding: 1.1rem 1.5rem; border-radius: 12px; font-size: 1.05rem; font-weight: 600;
-      text-align: center; text-decoration: none; transition: all 0.25s; cursor: pointer;
+      padding: 20px;
+      border-radius: 14px;
+      font-size: 18px;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.2s;
       border: 2px solid transparent;
+      backdrop-filter: blur(6px);
+      display: block;
+      width: 100%;
     }
     .boton-primario {
-      background: linear-gradient(135deg, #00cc44, #009933); color: #fff;
-      box-shadow: 0 4px 15px rgba(0,204,68,0.35);
+      background: linear-gradient(135deg, #00cc44, #009933);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(0,204,68,0.3);
     }
+    .boton-primario:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,204,68,0.4); }
     .boton-secundario {
-      background: rgba(255,255,255,0.12); color: #fff;
+      background: rgba(255,255,255,0.12);
+      color: #fff;
       border: 2px solid rgba(255,255,255,0.25);
     }
+    .boton-secundario:hover { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.4); }
     .boton-terciario {
-      background: rgba(0,51,102,0.6); color: #00ccff;
+      background: rgba(0,51,102,0.5);
+      color: #00ccff;
       border: 2px solid rgba(0,204,255,0.3);
     }
-    .boton:hover { transform: translateY(-2px); }
+    .boton-terciario:hover { background: rgba(0,51,102,0.7); border-color: #00ccff; }
+    .boton:active { transform: scale(0.98); }
+
+    /* Botón Descargar App — Debajo de los botones, centrado */
     .boton-descarga {
-      position: fixed; bottom: 4.5rem; left: 1.5rem; padding: 0.8rem 1.2rem;
-      background: linear-gradient(135deg, #ff8800, #cc6600); color: #fff;
-      border-radius: 50px; text-decoration: none; font-size: 0.9rem; font-weight: 700;
-      box-shadow: 0 4px 15px rgba(255,136,0,0.35); z-index: 15;
+      display: block;
+      width: 100%;
+      max-width: 320px;
+      margin-top: 10px;
+      padding: 16px 30px;
+      background: linear-gradient(135deg, #ff8800, #cc6600);
+      color: #fff;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(255,136,0,0.35);
+      border: none;
+      text-align: center;
+      transition: all 0.2s;
     }
+    .boton-descarga:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,136,0,0.45); }
+
+    /* Pie de Página — Fijo abajo, no tapa nada */
     .pie {
-      position: fixed; bottom: 0; left: 0; width: 100%; padding: 1rem 1.5rem;
-      background: rgba(0,30,60,0.85); backdrop-filter: blur(10px);
-      display: flex; flex-wrap: wrap; justify-content: center; gap: 1.2rem;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 15px 20px;
+      background: rgba(0,30,60,0.92);
+      backdrop-filter: blur(12px);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px 20px;
       border-top: 1px solid rgba(255,255,255,0.1);
+      z-index: 20;
     }
     .enlace-pie {
-      color: #b0e0ff; font-size: 0.85rem; text-decoration: none;
-      border-bottom: 1px solid transparent; transition: all 0.2s;
+      color: #b0e0ff;
+      font-size: 14px;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s;
     }
-    .enlace-pie:hover { color: #ffd700; border-bottom-color: #ffd700; }
+    .enlace-pie:hover {
+      color: #ffd700;
+      border-bottom-color: #ffd700;
+    }
+
+    /* Modal Contraseña Lira — Centrado, bien proporcionado */
     .modal-contraseña {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85);
-      display: none; align-items: center; justify-content: center; z-index: 100; padding: 1.5rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 20px;
     }
     .modal-contraseña.activo { display: flex; }
     .caja-contraseña {
-      background: linear-gradient(135deg, #003366, #0055aa); border: 3px solid #ffd700; border-radius: 16px;
-      padding: 2.5rem 2rem; width: 100%; max-width: 400px; text-align: center;
+      background: linear-gradient(135deg, #003366, #0055aa);
+      border: 3px solid #ffd700;
+      border-radius: 16px;
+      padding: 40px 30px;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
     }
-    .caja-contraseña h3 { color: #ffd700; margin-bottom: 1.5rem; }
+    .caja-contraseña h3 {
+      color: #ffd700;
+      margin-bottom: 24px;
+      font-size: 20px;
+    }
     .caja-contraseña input {
-      width: 100%; padding: 1rem; border-radius: 8px; border: 2px solid #ffd700;
-      background: rgba(255,255,255,0.1); color: #fff; font-size: 1rem;
-      text-align: center; margin-bottom: 1rem; outline: none;
+      width: 100%;
+      padding: 16px;
+      border-radius: 8px;
+      border: 2px solid #ffd700;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      font-size: 16px;
+      text-align: center;
+      margin-bottom: 24px;
+      outline: none;
     }
-    .botones-modal { display: flex; gap: 1rem; justify-content: center; margin-top: 0.5rem; }
-    .boton-modal { padding: 0.75rem 1.5rem; border-radius: 8px; border: none; font-size: 1rem; font-weight: 600; cursor: pointer; }
-    .boton-confirmar { background: #ffd700; color: #000; }
-    .boton-cancelar { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.4); }
-    @media (max-width: 768px) {
-      .botones-principales { max-width: 90%; }
-      .boton { font-size: 1rem; padding: 1rem 1.2rem; }
-      .pie { gap: 0.8rem; }
-      .enlace-pie { font-size: 0.78rem; }
+    .botones-modal {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .boton-modal {
+      padding: 12px 24px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .boton-confirmar {
+      background: #ffd700;
+      color: #000;
+    }
+    .boton-confirmar:hover { background: #ffea00; }
+    .boton-cancelar {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.4);
+    }
+    .boton-cancelar:hover { border-color: rgba(255,255,255,0.7); }
+
+    /* Responsivo — Celular */
+    @media (max-width: 480px) {
+      .contenedor { padding-top: 260px; gap: 30px; }
+      .boton { padding: 18px; font-size: 16px; }
+      .boton-descarga { max-width: 280px; font-size: 16px; }
+      .selector-idioma select { font-size: 14px; min-width: 150px; }
+      .pie { gap: 8px 12px; padding: 12px 15px; }
+      .enlace-pie { font-size: 13px; }
+      .boton-lira { width: 48px; height: 48px; font-size: 28px; }
+    }
+
+    /* Pantallas grandes */
+    @media (min-width: 1024px) {
+      .contenedor { padding-top: 340px; }
+      .botones-principales { max-width: 540px; }
+      .buscador { max-width: 540px; }
     }
   </style>
 </head>
 <body>
 
+  <!-- Selector de Idioma — 14 idiomas, TODO acá, sin archivos extra -->
   <div class="selector-idioma">
-    <select id="idioma">
+    <select id="idioma" onchange="cambiarIdioma(this.value)">
       <option value="es">Español</option>
       <option value="en">English</option>
       <option value="pt">Português</option>
@@ -136,11 +321,13 @@
     </select>
   </div>
 
+  <!-- Botón Lira -->
   <button class="boton-lira" onclick="abrirLira()">✚</button>
 
+  <!-- Modal Contraseña Lira -->
   <div class="modal-contraseña" id="modal-lira">
     <div class="caja-contraseña">
-      <h3>Acceso interno</h3>
+      <h3>Acceso Interno — Lira</h3>
       <input type="password" id="clave-lira" placeholder="Escribir contraseña" />
       <div class="botones-modal">
         <button class="boton-modal boton-cancelar" onclick="cerrarLira()">Cancelar</button>
@@ -149,6 +336,7 @@
     </div>
   </div>
 
+  <!-- Contenido Central — Todo ordenado, sin superposición -->
   <div class="contenedor">
     <div class="buscador">
       <input type="text" id="buscador" placeholder="Buscar servicios, personas, categorías..." />
@@ -160,10 +348,11 @@
       <a href="oferta-demanda.html" class="boton boton-secundario">Oferta y Demanda de Servicios</a>
       <a href="login.html" class="boton boton-terciario">Iniciar sesión</a>
     </div>
+
+    <a href="descarga.html" class="boton-descarga">Descargar aplicación</a>
   </div>
 
-  <a href="descarga.html" class="boton-descarga">Descargar aplicación</a>
-
+  <!-- Pie de Página — Fijo abajo, bien centrado -->
   <div class="pie">
     <a href="normas-seguridad.html" class="enlace-pie">Normas y Seguridad</a>
     <a href="privacidad.html" class="enlace-pie">Política de Privacidad</a>
@@ -173,19 +362,46 @@
   </div>
 
 <script>
-  function abrirLira() { document.getElementById('modal-lira').classList.add('activo'); }
-  function cerrarLira() { document.getElementById('modal-lira').classList.remove('activo'); }
+  // --- IDIOMA — Funciona y se guarda automáticamente ---
+  function cambiarIdioma(codigoIdioma) {
+    localStorage.setItem('idiomaDimon', codigoIdioma);
+    document.documentElement.lang = codigoIdioma;
+  }
+  // Cargar idioma guardado al entrar
+  const idiomaGuardado = localStorage.getItem('idiomaDimon');
+  if (idiomaGuardado) {
+    document.getElementById('idioma').value = idiomaGuardado;
+    document.documentElement.lang = idiomaGuardado;
+  }
+
+  // --- LIRA — Protegido con contraseña ---
+  function abrirLira() {
+    document.getElementById('modal-lira').classList.add('activo');
+    document.getElementById('clave-lira').value = '';
+    document.getElementById('clave-lira').focus();
+  }
+  function cerrarLira() {
+    document.getElementById('modal-lira').classList.remove('activo');
+  }
   function verificarLira() {
     const clave = document.getElementById('clave-lira').value;
     if (clave === 'LiraAdmin2026') {
       window.location.href = 'chat-lira.html';
     } else {
       alert('Contraseña incorrecta');
+      document.getElementById('clave-lira').value = '';
+      document.getElementById('clave-lira').focus();
     }
   }
+  // Cerrar con tecla Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') cerrarLira();
+  });
+
+  // --- BUSCADOR — Funciona con clic y Enter ---
   function buscar() {
-    const texto = document.getElementById('buscador').value;
-    if (texto.trim() !== '') {
+    const texto = document.getElementById('buscador').value.trim();
+    if (texto !== '') {
       window.location.href = 'oferta-demanda.html?buscar=' + encodeURIComponent(texto);
     }
   }
