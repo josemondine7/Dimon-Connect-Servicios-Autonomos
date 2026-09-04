@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ofertas y Demandas — Dimon Connect</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+    html, body {
+      width: 100%; min-height: 100vh;
+      background: linear-gradient(135deg, #1a2a6c, #0f4c81);
+      color: #fff;
+      padding: 2rem 1.5rem;
+      line-height: 1.6;
+    }
+    .contenedor { max-width: 800px; margin: 0 auto; }
+    .volver {
+      display: inline-block; color: #93c5fd; text-decoration: none;
+      margin-bottom: 1.5rem; padding: 0.5rem 1rem;
+      background: rgba(59, 130, 246, 0.15); border-radius: 8px;
+      border: 1px solid rgba(96, 165, 250, 0.3);
+      transition: all 0.25s ease;
+    }
+    .volver:hover { background: rgba(59, 130, 246, 0.25); }
+    h1 { font-size: 1.8rem; margin-bottom: 1.5rem; color: #93c5fd; text-align: center; }
+    .buscador {
+      width: 100%; padding: 1rem 1.25rem;
+      border-radius: 12px; border: none;
+      background: rgba(255,255,255,0.1);
+      color: #fff; font-size: 1rem;
+      margin-bottom: 2rem; outline: none;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .buscador:focus { border-color: #38bdf8; }
+    .pestañas { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .pestaña {
+      flex: 1; padding: 0.8rem; border: none; border-radius: 10px;
+      background: rgba(255,255,255,0.08); color: #93c5fd;
+      font-size: 1rem; cursor: pointer; transition: all 0.25s;
+    }
+    .pestaña.activa {
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: #fff; font-weight: 600;
+    }
+    .servicio {
+      background: rgba(255,255,255,0.05);
+      padding: 1.25rem; border-radius: 12px;
+      margin-bottom: 1rem; border: 1px solid rgba(255,255,255,0.1);
+      transition: transform 0.2s, border-color 0.2s;
+      cursor: pointer;
+    }
+    .servicio:hover { transform: translateY(-3px); border-color: #38bdf8; }
+    .servicio h3 { color: #fcd34d; margin-bottom: 0.5rem; font-size: 1.1rem; }
+    .servicio p { color: #bae6fd; font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .servicio .meta {
+      display: flex; justify-content: space-between;
+      align-items: center; margin-top: 0.75rem;
+      font-size: 0.9rem; color: #93c5fd;
+    }
+    .precio { color: #10b981; font-weight: 700; font-size: 1.05rem; }
+    .etiqueta {
+      display: inline-block; padding: 0.25rem 0.75rem;
+      border-radius: 20px; font-size: 0.8rem; font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .etiqueta-oferta { background: rgba(16, 185, 129, 0.2); color: #86efac; }
+    .etiqueta-demanda { background: rgba(249, 115, 22, 0.2); color: #fdba74; }
+    .boton {
+      display: inline-block; padding: 0.9rem 1.5rem;
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: #fff; text-decoration: none; border-radius: 10px;
+      font-weight: 600; text-align: center; margin: 2rem 0.5rem 0 0.5rem;
+      border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .boton:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3); }
+    .boton-verde { background: linear-gradient(135deg, #10b981, #059669); }
+    .boton-verde:hover { box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
+    .botones-centro { text-align: center; margin-top: 1rem; }
+    .vacio { text-align: center; padding: 3rem; color: #93c5fd; font-style: italic; }
+    .oculto { display: none !important; }
+  </style>
+</head>
+<body>
+  <div class="contenedor">
+    <a href="index.html" class="volver">← Volver al inicio</a>
+
+    <h1>Ofertas y Demandas</h1>
+
+    <input type="text" class="buscador" id="buscador" placeholder="🔍 Buscar servicio, oficio, palabra clave..." oninput="filtrarServicios()" />
+
+    <div class="pestañas">
+      <button class="pestaña activa" onclick="cambiarPestaña('todos')">Todos</button>
+      <button class="pestaña" onclick="cambiarPestaña('oferta')">Ofrecen</button>
+      <button class="pestaña" onclick="cambiarPestaña('demanda')">Buscan</button>
+    </div>
+
+    <div id="lista-servicios">
+      <!-- OFERTAS PRECARGADAS -->
+      <div class="servicio" data-tipo="oferta" data-tags="limpieza, hogar, limpieza general">
+        <span class="etiqueta etiqueta-oferta">OFERTA</span>
+        <h3>🧹 Limpieza General — Hogar y Locales</h3>
+        <p>Ofrezco servicio de limpieza completo, detallado y confiable. Cocina, baños, pisos, vidrios. Trabajo con responsabilidad y puntualidad.</p>
+        <div class="meta">
+          <span>📍 Montevideo, Uruguay</span>
+          <span class="precio">$ 25 / hora</span>
+        </div>
+      </div>
+
+      <div class="servicio" data-tipo="oferta" data-tags="electricidad, instalaciones, reparaciones">
+        <span class="etiqueta etiqueta-oferta">OFERTA</span>
+        <h3>⚡ Técnico Electricista — Instalaciones y Reparaciones</h3>
+        <p>Instalación de luminarias, tomacorrientes, tableros, reparación de fallas. Trabajo seguro y certificado. Atención rápida y responsable.</p>
+        <div class="meta">
+          <span>📍 Montevideo, Uruguay</span>
+          <span class="precio">$ 40 / hora</span>
+        </div>
+      </div>
+
+      <div class="servicio" data-tipo="oferta" data-tags="clases, matemáticas, educación">
+        <span class="etiqueta etiqueta-oferta">OFERTA</span>
+        <h3>📐 Clases Particulares de Matemáticas — Primaria y Secundaria</h3>
+        <p>Apoyo escolar, preparación de exámenes, explicación paciente y personalizada. Más de 5 años de experiencia. Modalidad presencial y virtual.</p>
+        <div class="meta">
+          <span>📍 Montevideo, Uruguay</span>
+          <span class="precio">$ 18 / hora</span>
+        </div>
+      </div>
+
+      <!-- DEMANDAS PRECARGADAS -->
+      <div class="servicio" data-tipo="demanda" data-tags="pintura, paredes, hogar">
+        <span class="etiqueta etiqueta-demanda">DEMANDA</span>
+        <h3>🎨 Necesito Pintor — Pintura de Departamento Completo</h3>
+        <p>Busco persona responsable para pintar un departamento de 3 ambientes. Paredes en buen estado. Necesito presupuesto y fecha disponible.</p>
+        <div class="meta">
+          <span>📍 Montevideo, Uruguay</span>
+          <span class="precio">$ 300 total</span>
+        </div>
+      </div>
+
+      <div class="servicio" data-tipo="demanda" data-tags="jardineria, patio, mantenimiento">
+        <span class="etiqueta etiqueta-demanda">DEMANDA</span>
+        <h3>🌿 Jardinería — Mantenimiento de Patio y Plantas</h3>
+        <p>Necesito alguien que mantenga el jardín, corte césped, recorte arbustos y cuide las plantas. Servicio mensual o quincenal. Preferencia con experiencia.</p>
+        <div class="meta">
+          <span>📍 Canelones, Uruguay</span>
+          <span class="precio">$ 35 / visita</span>
+        </div>
+      </div>
+
+      <div class="servicio" data-tipo="demanda" data-tags="mudanza, transporte, flete">
+        <span class="etiqueta etiqueta-demanda">DEMANDA</span>
+        <h3>📦 Servicio de Mudanza — Pequeño Traslado</h3>
+        <p>Busco transporte para mudanza pequeña: muebles chicos, cajas, electrodomésticos. De un barrio a otro en la misma ciudad. Necesito fecha y presupuesto.</p>
+        <div class="meta">
+          <span>📍 Montevideo, Uruguay</span>
+          <span class="precio">$ 80 — $ 120</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="sin-resultados" class="vacio oculto">
+      🔍 No se encontraron servicios con esa búsqueda.<br>
+      Podés solicitarlo o publicar tu oferta.
+    </div>
+
+    <div class="botones-centro">
+      <a href="ofrecer-servicio.html" class="boton-verde boton">➕ Ofrecer Servicio</a>
+      <a href="solicitar-servicio.html" class="boton">📋 Solicitar Servicio</a>
+    </div>
+  </div>
+
+  <script>
+    let pestañaActiva = 'todos';
+    const todosLosServicios = Array.from(document.querySelectorAll('.servicio'));
+
+    function cambiarPestaña(tipo) {
+      pestañaActiva = tipo;
+      document.querySelectorAll('.pestaña').forEach(p => p.classList.remove('activa'));
+      event.target.classList.add('activa');
+      filtrarServicios();
+    }
+
+    function filtrarServicios() {
+      const busqueda = document.getElementById('buscador').value.toLowerCase().trim();
+      let visibles = 0;
+
+      todosLosServicios.forEach(servicio => {
+        const texto = (servicio.textContent + ' ' + servicio.dataset.tags).toLowerCase();
+        const coincideBusqueda = busqueda === '' || texto.includes(busqueda);
+        const coincidePestaña = pestañaActiva === 'todos' || servicio.dataset.tipo === pestañaActiva;
+
+        if (coincideBusqueda && coincidePestaña) {
+          servicio.classList.remove('oculto');
+          visibles++;
+        } else {
+          servicio.classList.add('oculto');
+        }
+      });
+
+      document.getElementById('sin-resultados').classList.toggle('oculto', visibles > 0);
+    }
+
+    // Al hacer clic en un servicio
+    todosLosServicios.forEach(s => {
+      s.addEventListener('click', () => {
+        alert('✅ Servicio seleccionado.\n\nAcá se abre la ficha completa con contacto, detalles y opción de contratar.');
+      });
+    });
+  </script>
+</body>
+</html>
