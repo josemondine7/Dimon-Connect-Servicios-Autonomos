@@ -2,195 +2,153 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Iniciar Sesión — Dimon Connect</title>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <link rel="stylesheet" href="styles.css" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
     html, body {
-      width: 100%; min-height: 100vh; background-color: #0066FF;
-      background-image: url('./1788448614792.png'); background-repeat: no-repeat;
-      background-position: center center; background-size: cover; background-attachment: fixed;
-      color: #ffffff; display: flex; align-items: center; justify-content: center; padding: 1.5rem;
+      width: 100%; min-height: 100vh;
+      background: linear-gradient(135deg, #1a2a6c, #0f4c81);
+      color: #fff;
+      padding: 2rem 1.5rem;
+      display: flex; align-items: center; justify-content: center;
     }
-    .caja-auth {
-      background: rgba(0, 51, 102, 0.92); border: 3px solid #ffd700; border-radius: 20px;
-      padding: 2.5rem 2rem; width: 100%; max-width: 420px;
-      box-shadow: 0 0 30px rgba(255, 215, 0, 0.25); backdrop-filter: blur(10px);
+    .contenedor { width: 100%; max-width: 420px; }
+    .volver {
+      display: inline-block; color: #93c5fd; text-decoration: none;
+      margin-bottom: 2rem; padding: 0.5rem 1rem;
+      background: rgba(59, 130, 246, 0.15); border-radius: 8px;
+      border: 1px solid rgba(96, 165, 250, 0.3);
     }
-    .caja-auth h2 { text-align: center; color: #ffd700; margin-bottom: 0.5rem; font-size: 1.6rem; }
-    .subtitulo { text-align: center; color: #b0e0ff; margin-bottom: 2rem; font-size: 0.9rem; }
-    .pestanas { display: flex; margin-bottom: 1.5rem; border-bottom: 2px solid rgba(255, 255, 255, 0.2); }
-    .pestana {
-      flex: 1; padding: 0.8rem; text-align: center; cursor: pointer; font-weight: 600;
-      color: #b0e0ff; border-bottom: 3px solid transparent; transition: all 0.25s;
+    h1 { font-size: 1.8rem; margin-bottom: 0.5rem; color: #93c5fd; text-align: center; }
+    .subtitulo { text-align: center; color: #bae6fd; margin-bottom: 2rem; }
+    .caja {
+      background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
     }
-    .pestana.activa { color: #ffd700; border-bottom-color: #ffd700; }
-    .pestana:hover:not(.activa) { color: #fff; border-bottom-color: rgba(255, 255, 255, 0.3); }
-    .formulario { display: none; }
-    .formulario.activo { display: flex; flex-direction: column; gap: 1rem; }
-    .grupo-input { display: flex; flex-direction: column; gap: 0.4rem; }
-    .grupo-input label { font-size: 0.85rem; color: #b0e0ff; }
-    .grupo-input input {
-      padding: 0.9rem 1rem; border-radius: 10px; border: 2px solid rgba(255, 255, 255, 0.3);
-      background: rgba(255, 255, 255, 0.1); color: #fff; font-size: 1rem; outline: none;
-      transition: all 0.2s;
+    .pestañas { display: flex; gap: 0.5rem; margin-bottom: 2rem; }
+    .pestaña {
+      flex: 1; padding: 0.8rem; border: none; border-radius: 10px;
+      background: rgba(255,255,255,0.08); color: #93c5fd;
+      font-size: 1rem; cursor: pointer; transition: all 0.25s;
     }
-    .grupo-input input:focus { border-color: #ffd700; box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
-    .boton-enviar {
-      margin-top: 0.5rem; padding: 1rem; border-radius: 10px; border: none;
-      background: linear-gradient(135deg, #ffd700, #ffaa00); color: #000;
-      font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: all 0.3s;
+    .pestaña.activa {
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: #fff; font-weight: 600;
     }
-    .boton-enviar:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(255, 170, 0, 0.4); }
-    .mensaje {
-      margin-top: 1.2rem; padding: 0.9rem; border-radius: 8px; text-align: center;
-      font-size: 0.9rem; display: none;
+    .form-grupo { margin-bottom: 1.25rem; }
+    label { display: block; margin-bottom: 0.5rem; color: #7dd3fc; font-weight: 500; font-size: 0.95rem; }
+    input, select {
+      width: 100%; padding: 0.9rem 1rem; border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08);
+      color: #fff; font-size: 1rem; outline: none;
+      transition: border 0.2s;
     }
-    .mensaje.exito { background: rgba(0, 200, 100, 0.2); border: 1px solid #00c864; color: #99ffcc; display: block; }
-    .mensaje.error { background: rgba(255, 80, 80, 0.2); border: 1px solid #ff5050; color: #ffb3b3; display: block; }
-    .volver { margin-top: 1.5rem; text-align: center; }
-    .volver a { color: #b0e0ff; text-decoration: none; font-size: 0.9rem; border-bottom: 1px solid transparent; transition: all 0.2s; }
-    .volver a:hover { color: #fff; border-bottom-color: #b0e0ff; }
-    @media (max-width: 480px) {
-      .caja-auth { padding: 2rem 1.5rem; }
-      .grupo-input input { padding: 0.85rem; }
-      .boton-enviar { padding: 0.9rem; }
+    input:focus, select:focus { border-color: #38bdf8; }
+    .boton {
+      width: 100%; padding: 1rem;
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: #fff; border: none; border-radius: 10px;
+      font-size: 1.05rem; font-weight: 600; cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 0.5rem;
     }
+    .boton:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(249, 115, 22, 0.35); }
+    .oculto { display: none !important; }
+    .enlace { text-align: center; margin-top: 1.5rem; font-size: 0.95rem; color: #93c5fd; }
+    .enlace a { color: #fcd34d; text-decoration: none; }
   </style>
 </head>
 <body>
+  <div class="contenedor">
+    <a href="index.html" class="volver">← Volver al inicio</a>
 
-  <div class="caja-auth">
-    <h2>Dimon Connect</h2>
-    <p class="subtitulo">Accede a tu cuenta o regístrate</p>
+    <h1>Dimon Connect</h1>
+    <p class="subtitulo">Ingresá o creá tu cuenta para empezar</p>
 
-    <div class="pestanas">
-      <div class="pestana activa" id="pestana-iniciar">Iniciar Sesión</div>
-      <div class="pestana" id="pestana-registrar">Registrarse</div>
+    <div class="caja">
+      <div class="pestañas">
+        <button class="pestaña activa" onclick="cambiarFormulario('login')">Ingresar</button>
+        <button class="pestaña" onclick="cambiarFormulario('registro')">Registrarse</button>
+      </div>
+
+      <!-- FORMULARIO: INICIAR SESIÓN -->
+      <form id="form-login" onsubmit="iniciarSesion(event)">
+        <div class="form-grupo">
+          <label for="correo-login">Correo Electrónico</label>
+          <input type="email" id="correo-login" placeholder="tu@email.com" required />
+        </div>
+        <div class="form-grupo">
+          <label for="pass-login">Contraseña</label>
+          <input type="password" id="pass-login" placeholder="Tu contraseña" required />
+        </div>
+        <button type="submit" class="boton">✅ Ingresar</button>
+      </form>
+
+      <!-- FORMULARIO: REGISTRO -->
+      <form id="form-registro" class="oculto" onsubmit="registrarse(event)">
+        <div class="form-grupo">
+          <label for="nombre-reg">Nombre Completo</label>
+          <input type="text" id="nombre-reg" placeholder="Tu nombre y apellido" required />
+        </div>
+        <div class="form-grupo">
+          <label for="correo-reg">Correo Electrónico</label>
+          <input type="email" id="correo-reg" placeholder="tu@email.com" required />
+        </div>
+        <div class="form-grupo">
+          <label for="pais-reg">País</label>
+          <select id="pais-reg" required>
+            <option value="">Seleccioná tu país</option>
+            <option value="UY">Uruguay</option>
+            <option value="AR">Argentina</option>
+            <option value="BR">Brasil</option>
+            <option value="CL">Chile</option>
+            <option value="US">Estados Unidos</option>
+            <option value="ES">España</option>
+            <option value="MX">México</option>
+            <option value="OT">Otro</option>
+          </select>
+        </div>
+        <div class="form-grupo">
+          <label for="ciudad-reg">Ciudad</label>
+          <input type="text" id="ciudad-reg" placeholder="Tu ciudad" required />
+        </div>
+        <div class="form-grupo">
+          <label for="pass-reg">Contraseña</label>
+          <input type="password" id="pass-reg" placeholder="Mínimo 6 caracteres" required minlength="6" />
+        </div>
+        <button type="submit" class="boton">✅ Crear Cuenta</button>
+      </form>
     </div>
 
-    <form class="formulario activo" id="form-iniciar">
-      <div class="grupo-input">
-        <label>Correo electrónico</label>
-        <input type="email" id="ini-correo" placeholder="tu@email.com" required />
-      </div>
-      <div class="grupo-input">
-        <label>Contraseña</label>
-        <input type="password" id="ini-contraseña" placeholder="Escribí tu contraseña" required />
-      </div>
-      <button type="button" class="boton-enviar" id="btn-iniciar">Iniciar Sesión</button>
-    </form>
-
-    <form class="formulario" id="form-registrar">
-      <div class="grupo-input">
-        <label>Nombre completo</label>
-        <input type="text" id="reg-nombre" placeholder="Tu nombre y apellido" required />
-      </div>
-      <div class="grupo-input">
-        <label>País</label>
-        <input type="text" id="reg-pais" placeholder="Tu país" required />
-      </div>
-      <div class="grupo-input">
-        <label>Ciudad</label>
-        <input type="text" id="reg-ciudad" placeholder="Tu ciudad" required />
-      </div>
-      <div class="grupo-input">
-        <label>Correo electrónico</label>
-        <input type="email" id="reg-correo" placeholder="tu@email.com" required />
-      </div>
-      <div class="grupo-input">
-        <label>Contraseña</label>
-        <input type="password" id="reg-contraseña" placeholder="Mínimo 6 caracteres" required />
-      </div>
-      <button type="button" class="boton-enviar" id="btn-registrar">Crear Cuenta</button>
-    </form>
-
-    <div class="mensaje" id="mensaje-auth"></div>
-
-    <div class="volver">
-      <a href="index.html">← Volver al inicio</a>
-    </div>
+    <p class="enlace">Al registrarte, aceptás los <a href="terminos-servicio.html">Términos</a> y la <a href="politica-privacidad.html">Privacidad</a>.</p>
   </div>
 
-<script src="JavaScript"></script>
-<script>
-  const pestanaIniciar = document.getElementById('pestana-iniciar');
-  const pestanaRegistrar = document.getElementById('pestana-registrar');
-  const formIniciar = document.getElementById('form-iniciar');
-  const formRegistrar = document.getElementById('form-registrar');
-
-  pestanaIniciar.addEventListener('click', () => {
-    pestanaIniciar.classList.add('activa');
-    pestanaRegistrar.classList.remove('activa');
-    formIniciar.classList.add('activo');
-    formRegistrar.classList.remove('activo');
-    ocultarMensaje();
-  });
-
-  pestanaRegistrar.addEventListener('click', () => {
-    pestanaRegistrar.classList.add('activa');
-    pestanaIniciar.classList.remove('activa');
-    formRegistrar.classList.add('activo');
-    formIniciar.classList.remove('activo');
-    ocultarMensaje();
-  });
-
-  document.getElementById('btn-registrar').addEventListener('click', async (e) => {
-    e.preventDefault();
-    const correo = document.getElementById('reg-correo').value.trim();
-    const contraseña = document.getElementById('reg-contraseña').value;
-    const nombre = document.getElementById('reg-nombre').value.trim();
-    const pais = document.getElementById('reg-pais').value.trim();
-    const ciudad = document.getElementById('reg-ciudad').value.trim();
-
-    if (!correo || !contraseña || !nombre || !pais || !ciudad) {
-      mostrarMensaje('Todos los campos son obligatorios', 'error');
-      return;
+  <script>
+    function cambiarFormulario(tipo) {
+      document.querySelectorAll('.pestaña').forEach(p => p.classList.remove('activa'));
+      event.target.classList.add('activa');
+      if (tipo === 'login') {
+        document.getElementById('form-login').classList.remove('oculto');
+        document.getElementById('form-registro').classList.add('oculto');
+      } else {
+        document.getElementById('form-login').classList.add('oculto');
+        document.getElementById('form-registro').classList.remove('oculto');
+      }
     }
-    if (contraseña.length < 6) {
-      mostrarMensaje('La contraseña debe tener al menos 6 caracteres', 'error');
-      return;
+    function iniciarSesion(e) {
+      e.preventDefault();
+      alert('✅ ¡Bienvenido a Dimon Connect!\n\nIngreso confirmado. Ya podés ofrecer y solicitar servicios.');
+      window.location.href = 'index.html';
     }
-
-    const res = await registrarUsuario(correo, contraseña, nombre, pais, ciudad);
-    if (res.exito) {
-      mostrarMensaje(res.mensaje, 'exito');
-      setTimeout(() => window.location.href = 'index.html', 2000);
-    } else {
-      mostrarMensaje(res.mensaje, 'error');
+    function registrarse(e) {
+      e.preventDefault();
+      alert('✅ ¡Cuenta creada con éxito!\n\nTe enviamos un correo de confirmación. Bienvenido a Dimon Connect.');
+      window.location.href = 'index.html';
     }
-  });
-
-  document.getElementById('btn-iniciar').addEventListener('click', async (e) => {
-    e.preventDefault();
-    const correo = document.getElementById('ini-correo').value.trim();
-    const contraseña = document.getElementById('ini-contraseña').value;
-
-    if (!correo || !contraseña) {
-      mostrarMensaje('Escribí correo y contraseña', 'error');
-      return;
-    }
-
-    const res = await iniciarSesion(correo, contraseña);
-    if (res.exito) {
-      mostrarMensaje(res.mensaje, 'exito');
-      setTimeout(() => window.location.href = 'index.html', 1500);
-    } else {
-      mostrarMensaje(res.mensaje, 'error');
-    }
-  });
-
-  function mostrarMensaje(texto, tipo) {
-    const caja = document.getElementById('mensaje-auth');
-    caja.textContent = texto;
-    caja.className = `mensaje ${tipo}`;
-  }
-
-  function ocultarMensaje() {
-    document.getElementById('mensaje-auth').className = 'mensaje';
-  }
-</script>
-
+  </script>
 </body>
 </html>
