@@ -25,10 +25,10 @@
       background-attachment: fixed;
       color: #ffffff;
       min-height: 100vh;
-      padding-bottom: 90px;
+      padding-bottom: 130px; /* Más espacio para que el pie no tape contenido */
     }
 
-    /* Selector de Idioma — Arriba Izquierda — 14 idiomas, sin archivos extra */
+    /* Selector de Idioma — Arriba Izquierda */
     .selector-idioma {
       position: fixed;
       top: 20px;
@@ -53,7 +53,7 @@
       min-width: 180px;
     }
 
-    /* Botón Lira — Arriba Derecha — Acceso interno protegido */
+    /* Botón Lira — Arriba Derecha */
     .boton-lira {
       position: fixed;
       top: 20px;
@@ -84,12 +84,12 @@
       padding-top: 320px;
       padding-left: 20px;
       padding-right: 20px;
-      gap: 40px;
+      gap: 30px;
       position: relative;
       z-index: 10;
     }
 
-    /* Buscador — Busca en toda la plataforma */
+    /* Buscador */
     .buscador {
       width: 100%;
       max-width: 520px;
@@ -122,18 +122,18 @@
     }
     .buscador button:hover { background: rgba(0,204,255,0.5); }
 
-    /* Botones Principales — Cada uno conectado a su página */
+    /* Botones Principales — Incluye Perfil de Usuario */
     .botones-principales {
       width: 100%;
       max-width: 520px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 15px;
     }
     .boton {
-      padding: 20px;
+      padding: 18px;
       border-radius: 14px;
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 600;
       text-align: center;
       text-decoration: none;
@@ -161,14 +161,20 @@
       border: 2px solid rgba(0,204,255,0.3);
     }
     .boton-terciario:hover { background: rgba(0,51,102,0.7); border-color: #00ccff; }
+    .boton-perfil {
+      background: linear-gradient(135deg, #9333ea, #7c3aed);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(147,51,234,0.3);
+    }
+    .boton-perfil:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(147,51,234,0.4); }
     .boton:active { transform: scale(0.98); }
 
-    /* Botón Descargar App — Debajo de los botones */
+    /* Botón Descargar App */
     .boton-descarga {
       display: block;
       width: 100%;
       max-width: 320px;
-      margin-top: 10px;
+      margin-top: 5px;
       padding: 16px 30px;
       background: linear-gradient(135deg, #ff8800, #cc6600);
       color: #fff;
@@ -183,35 +189,38 @@
     }
     .boton-descarga:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,136,0,0.45); }
 
-    /* Pie de Página — Todos los enlaces legales conectados */
+    /* Pie de Página — ARREGLADO: SIEMPRE VISIBLE, no se esconde */
     .pie {
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
-      padding: 15px 20px;
-      background: rgba(0,30,60,0.92);
-      backdrop-filter: blur(12px);
+      padding: 12px 15px;
+      background: rgba(0,20,40,0.95);
+      backdrop-filter: blur(15px);
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 10px 20px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      z-index: 20;
+      align-items: center;
+      gap: 8px 16px;
+      border-top: 2px solid rgba(255,255,255,0.15);
+      z-index: 50; /* Más arriba para que siempre se vea */
+      min-height: 80px;
     }
     .enlace-pie {
       color: #b0e0ff;
-      font-size: 14px;
+      font-size: 13px;
       text-decoration: none;
       border-bottom: 1px solid transparent;
       transition: all 0.2s;
+      white-space: nowrap;
     }
     .enlace-pie:hover {
       color: #ffd700;
       border-bottom-color: #ffd700;
     }
 
-    /* Modal Contraseña Lira — Acceso interno protegido */
+    /* Modal Contraseña Lira */
     .modal-contraseña {
       position: fixed;
       top: 0;
@@ -282,13 +291,14 @@
 
     /* Responsivo — Celular */
     @media (max-width: 480px) {
-      .contenedor { padding-top: 260px; gap: 30px; }
-      .boton { padding: 18px; font-size: 16px; }
+      .contenedor { padding-top: 260px; gap: 25px; }
+      .boton { padding: 16px; font-size: 16px; }
       .boton-descarga { max-width: 280px; font-size: 16px; }
       .selector-idioma select { font-size: 14px; min-width: 150px; }
-      .pie { gap: 8px 12px; padding: 12px 15px; }
-      .enlace-pie { font-size: 13px; }
+      .pie { gap: 6px 12px; padding: 10px 12px; min-height: 90px; }
+      .enlace-pie { font-size: 12px; }
       .boton-lira { width: 48px; height: 48px; font-size: 28px; }
+      body { padding-bottom: 140px; }
     }
 
     /* Pantallas grandes */
@@ -301,7 +311,7 @@
 </head>
 <body>
 
-  <!-- Selector de Idioma — 14 idiomas, TODO acá, sin archivos extra -->
+  <!-- Selector de Idioma — 14 idiomas -->
   <div class="selector-idioma">
     <select id="idioma" onchange="cambiarIdioma(this.value)">
       <option value="es">Español</option>
@@ -321,14 +331,14 @@
     </select>
   </div>
 
-  <!-- Botón Lira — Acceso interno protegido con contraseña -->
+  <!-- Botón Lira -->
   <button class="boton-lira" onclick="abrirLira()">✚</button>
 
-  <!-- Modal Contraseña Lira → Conecta con chat-lira.html -->
+  <!-- Modal Contraseña Lira -->
   <div class="modal-contraseña" id="modal-lira">
     <div class="caja-contraseña">
       <h3>Acceso Interno — Lira</h3>
-      <input type="password" id="clave-lira" placeholder="mondine5781lira" />
+      <input type="password" id="clave-lira" placeholder="Escribir contraseña" />
       <div class="botones-modal">
         <button class="boton-modal boton-cancelar" onclick="cerrarLira()">Cancelar</button>
         <button class="boton-modal boton-confirmar" onclick="verificarLira()">Ingresar</button>
@@ -336,26 +346,24 @@
     </div>
   </div>
 
-  <!-- Contenido Central — TODO CONECTADO A CADA PÁGINA -->
+  <!-- Contenido Central — CON PERFIL DE USUARIO AGREGADO -->
   <div class="contenedor">
-    <!-- Buscador → Conecta con oferta-demanda.html con búsqueda -->
     <div class="buscador">
       <input type="text" id="buscador" placeholder="Buscar servicios, personas, categorías..." />
       <button onclick="buscar()">🔍</button>
     </div>
 
-    <!-- Botones Principales — Cada uno a su página -->
     <div class="botones-principales">
       <a href="ofrecer.html" class="boton boton-primario">Ofrecer mi servicio</a>
       <a href="oferta-demanda.html" class="boton boton-secundario">Oferta y Demanda de Servicios</a>
+      <a href="perfil-usuario.html" class="boton boton-perfil">Perfil de Usuario</a>
       <a href="login.html" class="boton boton-terciario">Iniciar sesión</a>
     </div>
 
-    <!-- Botón Descargar App → Conecta con descarga.html -->
     <a href="descarga.html" class="boton-descarga">Descargar aplicación</a>
   </div>
 
-  <!-- Pie de Página — Todos los enlaces legales conectados -->
+  <!-- Pie de Página — ARREGLADO, SIEMPRE VISIBLE, TODO CONECTADO -->
   <div class="pie">
     <a href="normas-seguridad.html" class="enlace-pie">Normas y Seguridad</a>
     <a href="privacidad.html" class="enlace-pie">Política de Privacidad</a>
@@ -365,19 +373,18 @@
   </div>
 
 <script>
-  // --- IDIOMA — Cambia y guarda automáticamente ---
+  // --- IDIOMA ---
   function cambiarIdioma(codigoIdioma) {
     localStorage.setItem('idiomaDimon', codigoIdioma);
     document.documentElement.lang = codigoIdioma;
   }
-  // Cargar idioma guardado al entrar
   const idiomaGuardado = localStorage.getItem('idiomaDimon');
   if (idiomaGuardado) {
     document.getElementById('idioma').value = idiomaGuardado;
     document.documentElement.lang = idiomaGuardado;
   }
 
-  // --- LIRA — Protegido con contraseña → chat-lira.html ---
+  // --- LIRA ---
   function abrirLira() {
     document.getElementById('modal-lira').classList.add('activo');
     document.getElementById('clave-lira').value = '';
@@ -396,19 +403,17 @@
       document.getElementById('clave-lira').focus();
     }
   }
-  // Cerrar con tecla Escape
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') cerrarLira();
   });
 
-  // --- BUSCADOR → oferta-demanda.html con término buscado ---
+  // --- BUSCADOR ---
   function buscar() {
     const texto = document.getElementById('buscador').value.trim();
     if (texto !== '') {
       window.location.href = 'oferta-demanda.html?buscar=' + encodeURIComponent(texto);
     }
   }
-  // Buscar con Enter
   document.getElementById('buscador').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') buscar();
   });
