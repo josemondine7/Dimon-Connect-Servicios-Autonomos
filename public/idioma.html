@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Idioma — Dimon Connect</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+    html, body {
+      width: 100%; min-height: 100vh;
+      background: linear-gradient(135deg, #1a2a6c, #0f4c81);
+      color: #fff;
+      padding: 2rem 1.5rem;
+    }
+    .contenedor { max-width: 600px; margin: 0 auto; }
+    .volver {
+      display: inline-block; color: #93c5fd; text-decoration: none;
+      margin-bottom: 2rem; padding: 0.5rem 1rem;
+      background: rgba(59, 130, 246, 0.15); border-radius: 8px;
+      border: 1px solid rgba(96, 165, 250, 0.3);
+    }
+    h1 { font-size: 1.8rem; margin-bottom: 2rem; color: #93c5fd; text-align: center; }
+    .idioma {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 1.5rem; margin-bottom: 0.75rem;
+      background: rgba(255,255,255,0.05); border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.1);
+      cursor: pointer; transition: all 0.25s;
+    }
+    .idioma:hover { transform: translateX(5px); border-color: #38bdf8; }
+    .idioma.activo { border-color: #fcd34d; background: rgba(252, 211, 77, 0.1); }
+    .nombre { font-size: 1.1rem; font-weight: 500; }
+    .codigo { color: #93c5fd; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="contenedor">
+    <a href="index.html" class="volver">← Volver al inicio</a>
+
+    <h1>🌐 Seleccioná tu Idioma</h1>
+
+    <div class="idioma activo" onclick="cambiarIdioma('es')">
+      <span class="nombre">🇪🇸 Español</span>
+      <span class="codigo">ES</span>
+    </div>
+    <div class="idioma" onclick="cambiarIdioma('en')">
+      <span class="nombre">🇬🇧 English</span>
+      <span class="codigo">EN</span>
+    </div>
+    <div class="idioma" onclick="cambiarIdioma('pt')">
+      <span class="nombre">🇧🇷 Português</span>
+      <span class="codigo">PT</span>
+    </div>
+    <div class="idioma" onclick="cambiarIdioma('zh')">
+      <span class="nombre">🇨🇳 中文 (Chino Mandarín)</span>
+      <span class="codigo">ZH</span>
+    </div>
+    <div class="idioma" onclick="cambiarIdioma('fr')">
+      <span class="nombre">🇫🇷 Français</span>
+      <span class="codigo">FR</span>
+    </div>
+    <div class="idioma" onclick="cambiarIdioma('it')">
+      <span class="nombre">🇮🇹 Italiano</span>
+      <span class="codigo">IT</span>
+    </div>
+    <div class="idioma" onclick="cambiarIdioma('de')">
+      <span class="nombre">🇩🇪 Deutsch</span>
+      <span class="codigo">DE</span>
+    </div>
+    <div class="idioma" onclick="cambiarIdioma('ru')">
+      <span class="nombre">🇷🇺 Русский</span>
+      <span class="codigo">RU</span>
+    </div>
+    <div class="idioma" onclick="cambiarIdioma('ja')">
+      <span class="nombre">🇯🇵 日本語</span>
+      <span class="codigo">JA</span>
+    </div>
+    <div class="idioma" onclick="cambiarIdioma('ar')">
+      <span class="nombre">🇸🇦 العربية</span>
+      <span class="codigo">AR</span>
+    </div>
+    <div class="idioma" onclick="cambiarIdioma('ko')">
+      <span class="nombre">🇰🇷 한국어</span>
+      <span class="codigo">KO</span>
+    </div>
+    <div class="idioma" onclick="cambiarIdioma('nl')">
+      <span class="nombre">🇳🇱 Nederlands</span>
+      <span class="codigo">NL</span>
+    </div>
+    <div class="idioma" onclick="cambiarIdioma('tr')">
+      <span class="nombre">🇹🇷 Türkçe</span>
+      <span class="codigo">TR</span>
+    </div>
+    <div class="idioma" onclick="cambiarIdioma('pl')">
+      <span class="nombre">🇵🇱 Polski</span>
+      <span class="codigo">PL</span>
+    </div>
+
+    <script>
+      function cambiarIdioma(codigo) {
+        document.querySelectorAll('.idioma').forEach(i => i.classList.remove('activo'));
+        event.currentTarget.classList.add('activo');
+        localStorage.setItem('idioma', codigo);
+        alert('✅ Idioma cambiado. La página se recargará.');
+        window.location.href = 'index.html';
+      }
+    </script>
+  </div>
+</body>
+</html>
