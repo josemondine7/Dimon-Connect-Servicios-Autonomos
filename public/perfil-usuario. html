@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Perfil de Usuario — Dimon Connect</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    html, body {
+      width: 100%; min-height: 100vh; background-color: #0066FF;
+      background-image: url('./1788448614792.png'); background-repeat: no-repeat;
+      background-position: center center; background-size: cover; background-attachment: fixed;
+      color: #ffffff; padding: 1.5rem; padding-bottom: 3rem;
+    }
+    .volver { margin-bottom: 1.5rem; }
+    .volver a { color: #00ccff; text-decoration: none; font-size: 1rem; font-weight: 600; }
+    .volver a:hover { text-decoration: underline; }
+    .tarjeta {
+      background: rgba(0, 51, 102, 0.7); border: 2px solid #00ccff; border-radius: 16px;
+      padding: 2rem; max-width: 600px; margin: 0 auto; backdrop-filter: blur(10px);
+    }
+    .cabecera-perfil { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .avatar {
+      width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #ffd700, #ff8800);
+      display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; color: #000;
+    }
+    .nombre { font-size: 1.6rem; font-weight: 700; color: #ffd700; margin-bottom: 0.3rem; }
+    .ubicacion { color: #80c8ff; font-size: 0.95rem; }
+    .etiqueta {
+      display: inline-block; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem;
+      margin-left: 0.5rem;
+    }
+    .etiqueta-disponible { background: rgba(0,255,68,0.15); color: #00ff44; border: 1px solid #00ff44; }
+    .seccion { margin-top: 1.8rem; }
+    h3 { font-size: 1.1rem; color: #00ccff; margin-bottom: 0.8rem; }
+    p { line-height: 1.6; color: #e0f0ff; margin-bottom: 0.5rem; }
+    .precio { font-size: 1.3rem; color: #ffd700; font-weight: 600; margin: 1rem 0; }
+    .caja-pago {
+      background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.4); border-radius: 10px;
+      padding: 1.2rem; margin-top: 1.5rem;
+    }
+    .caja-pago h4 { color: #ffd700; margin-bottom: 0.8rem; font-size: 1rem; }
+    .boton-contactar {
+      width: 100%; padding: 1.1rem; margin-top: 1.8rem; border: none; border-radius: 12px;
+      background: linear-gradient(135deg, #00cc44, #009933); color: #fff;
+      font-size: 1.05rem; font-weight: 600; cursor: pointer; transition: all 0.25s;
+    }
+    .boton-contactar:hover { transform: translateY(-2px); }
+    @media (max-width: 600px) {
+      .tarjeta { padding: 1.5rem; }
+      .cabecera-perfil { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="volver"><a href="oferta-demanda.html">← Volver al listado</a></div>
+
+  <div class="tarjeta">
+    <div class="cabecera-perfil">
+      <div class="avatar">C</div>
+      <div>
+        <div class="nombre">Carlos M.<span class="etiqueta etiqueta-disponible">Disponible ahora</span></div>
+        <div class="ubicacion">Montevideo, Uruguay</div>
+      </div>
+    </div>
+
+    <div class="seccion">
+      <h3>Servicio que ofrece</h3>
+      <p>Pintura de interiores y exteriores, restauración de frentes, impermeabilización, trabajos en altura, acabados de calidad y preparación completa de superficies.</p>
+    </div>
+
+    <div class="precio">Valor estimado: 25 USD por día</div>
+
+    <div class="caja-pago">
+      <h3>Forma de pago y cobro</h3>
+      <p><strong>Plataforma de pago:</strong> PayPal. Funciona en todo el mundo.</p>
+      <p>Quien paga envía el monto total más el 5% de comisión de la plataforma.</p>
+      <p>Quien cobra recibe el monto acordado menos el 5% de comisión de la plataforma.</p>
+      <p>Se necesita cuenta de PayPal para pagar y para cobrar. Si no tenés, se puede crear gratuitamente.</p>
+    </div>
+
+    <button class="boton-contactar" onclick="window.location.href='chat-usuario.html'">Contactar y coordinar servicio</button>
+  </div>
+
+</body>
+</html>
