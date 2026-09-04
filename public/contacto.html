@@ -4,62 +4,100 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contacto — Dimon Connect</title>
+  <link rel="stylesheet" href="styles.css" />
   <style>
-    * {margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif;}
-    html,body {
-      width:100%; min-height:100vh; background:#0066FF;
-      background-image:url('./1788448614792.png'); background-repeat:no-repeat;
-      background-position:center; background-size:cover; color:#fff; padding:1.5rem; padding-bottom:3rem;
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+    html, body {
+      width: 100%; min-height: 100vh;
+      background: linear-gradient(135deg, #1a2a6c, #0f4c81);
+      color: #fff;
+      padding: 2rem 1.5rem;
+      line-height: 1.7;
     }
-    .volver {margin-bottom:1.5rem;}
-    .volver a {color:#00ccff; text-decoration:none; font-weight:600;}
-    h1 {font-size:1.8rem; color:#ffd700; margin-bottom:2rem; text-align:center;}
-    .caja {
-      background:rgba(0,51,102,0.7); border:2px solid #00ccff; border-radius:12px;
-      padding:2rem; max-width:500px; margin:0 auto; backdrop-filter:blur(8px);
+    .contenedor { max-width: 600px; margin: 0 auto; }
+    .volver {
+      display: inline-block; color: #93c5fd; text-decoration: none;
+      margin-bottom: 2rem; padding: 0.5rem 1rem;
+      background: rgba(59, 130, 246, 0.15); border-radius: 8px;
+      border: 1px solid rgba(96, 165, 250, 0.3);
     }
-    label {display:block; margin-bottom:0.5rem; color:#b0e0ff; font-weight:500;}
-    input, textarea {
-      width:100%; padding:1rem; margin-bottom:1.2rem; border-radius:8px; border:2px solid rgba(255,255,255,0.2);
-      background:rgba(255,255,255,0.1); color:#fff; font-size:1rem; outline:none;
+    h1 { font-size: 1.8rem; margin-bottom: 2rem; color: #93c5fd; text-align: center; }
+    .form-grupo { margin-bottom: 1.5rem; }
+    label { display: block; margin-bottom: 0.5rem; color: #7dd3fc; font-weight: 500; }
+    input, textarea, select {
+      width: 100%; padding: 0.9rem 1rem; border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08);
+      color: #fff; font-size: 1rem; outline: none;
+      transition: border 0.2s;
     }
-    input:focus, textarea:focus {border-color:#00ccff;}
-    button {
-      width:100%; padding:1.1rem; border:none; border-radius:8px;
-      background:linear-gradient(135deg, #ffd700, #ff8800); color:#000;
-      font-size:1.05rem; font-weight:700; cursor:pointer; transition:all 0.25s;
+    input:focus, textarea:focus, select:focus { border-color: #38bdf8; }
+    textarea { min-height: 140px; resize: vertical; }
+    .boton {
+      width: 100%; padding: 1rem;
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: #fff; border: none; border-radius: 10px;
+      font-size: 1.1rem; font-weight: 600; cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    button:hover {transform:translateY(-2px);}
-    .info-contacto {margin-top:1.5rem; line-height:1.7; color:#e0f0ff; text-align:center;}
-    .info-contacto p {margin-bottom:0.5rem;}
+    .boton:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(249, 115, 22, 0.35); }
+    .info {
+      margin-top: 2.5rem; padding: 1.5rem;
+      background: rgba(255,255,255,0.05); border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .info h3 { color: #fcd34d; margin-bottom: 1rem; }
+    .info p { margin-bottom: 0.5rem; color: #bae6fd; }
   </style>
 </head>
 <body>
-  <div class="volver"><a href="index.html">← Volver al inicio</a></div>
-  <h1>Contacto</h1>
+  <div class="contenedor">
+    <a href="index.html" class="volver">← Volver al inicio</a>
 
-  <div class="caja">
-    <form onsubmit="event.preventDefault(); alert('Mensaje enviado. Gracias por contactarnos.');">
-      <label for="nombre">Nombre completo</label>
-      <input type="text" id="nombre" required />
+    <h1>📬 Contacto</h1>
 
-      <label for="correo">Correo electrónico</label>
-      <input type="email" id="correo" required />
-
-      <label for="asunto">Asunto</label>
-      <input type="text" id="asunto" required />
-
-      <label for="mensaje">Mensaje</label>
-      <textarea id="mensaje" rows="5" required></textarea>
-
-      <button type="submit">Enviar mensaje</button>
+    <form id="form-contacto" onsubmit="enviarContacto(event)">
+      <div class="form-grupo">
+        <label for="nombre">Tu Nombre</label>
+        <input type="text" id="nombre" required />
+      </div>
+      <div class="form-grupo">
+        <label for="correo">Correo Electrónico</label>
+        <input type="email" id="correo" required />
+      </div>
+      <div class="form-grupo">
+        <label for="asunto">Asunto</label>
+        <select id="asunto" required>
+          <option value="">Seleccioná un motivo</option>
+          <option>Consulta general</option>
+          <option>Problema con el servicio</option>
+          <option>Consulta legal o normativa</option>
+          <option>Sugerencia</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-grupo">
+        <label for="mensaje">Tu Mensaje</label>
+        <textarea id="mensaje" required placeholder="Escribinos tu consulta. Te respondemos a la brevedad."></textarea>
+      </div>
+      <button type="submit" class="boton">✅ Enviar Mensaje</button>
     </form>
 
-    <div class="info-contacto">
-      <p><strong>Correo electrónico:</strong> contacto@dimonconnect.com</p>
-      <p>Respondemos de lunes a viernes dentro de las 48 horas.</p>
+    <div class="info">
+      <h3>Información de Contacto</h3>
+      <p>📧 Correo: contacto@dimonconnect.com</p>
+      <p>🌐 Sitio: www.dimonconnect.com</p>
+      <p>📍 República Oriental del Uruguay</p>
+      <p>🕒 Horario de respuesta: Lunes a Viernes, 9:00 a 18:00 (UTC-3)</p>
     </div>
   </div>
 
+  <script>
+    function enviarContacto(e) {
+      e.preventDefault();
+      alert('✅ ¡Mensaje enviado con éxito!\n\nTe responderemos a la brevedad. ¡Gracias por contactarnos!');
+      e.target.reset();
+    }
+  </script>
 </body>
 </html>
