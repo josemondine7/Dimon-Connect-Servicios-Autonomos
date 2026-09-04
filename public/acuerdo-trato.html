@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acuerdo del Trato — Dimon Connect</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+    html, body {
+      width: 100%; min-height: 100vh;
+      background: linear-gradient(135deg, #1a2a6c, #0f4c81);
+      color: #fff;
+      padding: 2rem 1.5rem;
+      line-height: 1.7;
+    }
+    .contenedor { max-width: 600px; margin: 0 auto; }
+    .volver {
+      display: inline-block; color: #93c5fd; text-decoration: none;
+      margin-bottom: 1.5rem; padding: 0.5rem 1rem;
+      background: rgba(59, 130, 246, 0.15); border-radius: 8px;
+      border: 1px solid rgba(96, 165, 250, 0.3);
+    }
+    h1 { font-size: 1.6rem; margin-bottom: 1.5rem; color: #93c5fd; text-align: center; }
+    .caja {
+      background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 12px;
+      margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.1);
+    }
+    .caja-resumen {
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+    }
+    .fila { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .fila-total { border-bottom: none; border-top: 2px solid rgba(255,255,255,0.2); padding-top: 0.75rem; margin-top: 0.5rem; font-weight: 600; font-size: 1.1rem; }
+    .total { color: #fcd34d; font-weight: 700; }
+    .form-grupo { margin-bottom: 1.25rem; }
+    label { display: block; margin-bottom: 0.5rem; color: #7dd3fc; font-weight: 500; }
+    input, textarea {
+      width: 100%; padding: 0.85rem 1rem; border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08);
+      color: #fff; font-size: 1rem; outline: none;
+    }
+    textarea { min-height: 90px; resize: vertical; }
+    .check { display: flex; align-items: flex-start; gap: 0.75rem; margin: 1.5rem 0; }
+    .check input { width: auto; margin-top: 0.25rem; }
+    .boton {
+      display: block; width: 100%; padding: 1rem;
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff; border: none; border-radius: 10px;
+      font-size: 1.1rem; font-weight: 600; cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-align: center; text-decoration: none;
+    }
+    .boton:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35); }
+    .boton-naranja { background: linear-gradient(135deg, #f97316, #ea580c); margin-top: 1rem; }
+    .boton-naranja:hover { box-shadow: 0 6px 20px rgba(249, 115, 22, 0.35); }
+    .ley { color: #fcd34d; text-decoration: underline; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="contenedor">
+    <a href="javascript:history.back()" class="volver">← Volver al detalle</a>
+
+    <h1>🤝 Acuerdo del Trato</h1>
+
+    <div class="caja caja-resumen">
+      <h3 style="color: #7dd3fc; margin-bottom: 1rem;">Resumen del Servicio</h3>
+      <div class="fila"><span>Valor del servicio</span><span id="base">$ 0</span></div>
+      <div class="fila"><span>Comisión solicitante (5%)</span><span id="comision-sol">$ 0</span></div>
+      <div class="fila"><span>Comisión prestador (5%)</span><span id="comision-pre">$ 0</span></div>
+      <div class="fila fila-total"><span>Total a pagar</span><span class="total" id="total">$ 0</span></div>
+    </div>
+
+    <div class="caja">
+      <h3 style="color: #7dd3fc; margin-bottom: 1rem;">Detalles del Acuerdo</h3>
+      <div class="form-grupo">
+        <label>Precio final acordado entre las partes</label>
+        <input type="number" id="precio-base" placeholder="Ingresá el precio acordado" oninput="calcularTodo()" required />
+      </div>
+      <div class="form-grupo">
+        <label>Fecha estimada de entrega / realización</label>
+        <input type="date" id="fecha-entrega" required />
+      </div>
+      <div class="form-grupo">
+        <label>Detalles adicionales, condiciones o acuerdos especiales</label>
+        <textarea id="detalles-acuerdo" placeholder="Materiales incluidos, horarios, formas de pago, plazos, garantías..."></textarea>
+      </div>
+    </div>
+
+    <label class="check">
+      <input type="checkbox" id="acepto" required />
+      <span>He leído y acepto las condiciones. Entiendo que este acuerdo tiene valor de contrato legal según el <span class="ley" onclick="window.open('ley-articulo-1257.html','_blank')">📜 Artículo 1257 del Código Civil</span>.</span>
+    </label>
+
+    <button class="boton" onclick="confirmarAcuerdo()">✅ Confirmar y Pasar al Chat</button>
+    <a href="detalle-servicio.html" class="boton boton-naranja">← Volver sin confirmar</a>
+  </div>
+
+  <script>
+    function calcularTodo() {
+      const base = parseFloat(document.getElementById('precio-base').value) || 0;
+      const comSol = base * 0.05;
+      const comPre = base * 0.05;
+      const total = base + comSol;
+      document.getElementById('base').textContent = '$ ' + base.toFixed(2);
+      document.getElementById('comision-sol').textContent = '$ ' + comSol.toFixed(2);
+      document.getElementById('comision-pre').textContent = '$ ' + comPre.toFixed(2);
+      document.getElementById('total').textContent = '$ ' + total.toFixed(2);
+    }
+    function confirmarAcuerdo() {
+      const acepto = document.getElementById('acepto').checked;
+      const precio = document.getElementById('precio-base').value;
+      if (!acepto) { alert('⚠️ Debés aceptar las condiciones para continuar.'); return; }
+      if (!precio || precio <= 0) { alert('⚠️ Ingresá el precio acordado.'); return; }
+      alert('✅ ¡Acuerdo confirmado!\n\nYa podés conversar con la otra persona.\nLa información del trato queda registrada para ambas partes.');
+      window.location.href = 'chat-usuarios.html';
+    }
+  </script>
+</body>
+</html>
