@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ofrecer Tu Servicio — Dimon Connect</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+    html, body {
+      width: 100%; min-height: 100vh;
+      background: linear-gradient(135deg, #1a2a6c, #0f4c81);
+      color: #fff;
+      padding: 2rem 1.5rem;
+      line-height: 1.7;
+    }
+    .contenedor { max-width: 600px; margin: 0 auto; }
+    .volver {
+      display: inline-block; color: #93c5fd; text-decoration: none;
+      margin-bottom: 2rem; padding: 0.6rem 1.2rem;
+      background: rgba(59, 130, 246, 0.15); border-radius: 8px;
+      border: 1px solid rgba(96, 165, 250, 0.3);
+      transition: all 0.25s ease;
+    }
+    .volver:hover { background: rgba(59, 130, 246, 0.25); }
+    h1 { font-size: 1.8rem; margin-bottom: 0.5rem; color: #93c5fd; text-align: center; }
+    .subtitulo { text-align: center; color: #bae6fd; margin-bottom: 2rem; }
+    .form-grupo { margin-bottom: 1.5rem; }
+    label { display: block; margin-bottom: 0.5rem; color: #7dd3fc; font-weight: 500; }
+    input, textarea, select {
+      width: 100%; padding: 0.9rem 1rem; border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08);
+      color: #fff; font-size: 1rem;
+      outline: none; transition: border 0.2s;
+    }
+    input:focus, textarea:focus, select:focus { border-color: #38bdf8; }
+    textarea { min-height: 120px; resize: vertical; }
+    .boton {
+      width: 100%; padding: 1rem;
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: #fff; border: none; border-radius: 10px;
+      font-size: 1.1rem; font-weight: 600; cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 0.5rem;
+    }
+    .boton:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(249, 115, 22, 0.35); }
+    .caja-info {
+      background: rgba(16, 185, 129, 0.1);
+      padding: 1.2rem; border-radius: 10px;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      margin-bottom: 2rem;
+      color: #bbf7d0;
+    }
+    .fila-doble { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .separador { height: 1px; background: rgba(255,255,255,0.15); margin: 2rem 0; }
+    .boton-secundario {
+      display: block; text-align: center;
+      padding: 0.9rem; background: transparent;
+      border: 2px solid #38bdf8; color: #38bdf8;
+      border-radius: 10px; text-decoration: none;
+      font-weight: 600; margin-top: 1rem;
+      transition: all 0.2s;
+    }
+    .boton-secundario:hover { background: rgba(56, 189, 248, 0.1); }
+  </style>
+</head>
+<body>
+  <div class="contenedor">
+    <a href="index.html" class="volver">← Volver al inicio</a>
+
+    <h1>Ofrece Tu Servicio</h1>
+    <p class="subtitulo">Completa los datos para que las personas te encuentren</p>
+
+    <div class="caja-info">
+      ✅ Al publicar tu servicio te comprometes a realizarlo con responsabilidad y buena fe. No ofrezcas servicios que no puedas cumplir.
+    </div>
+
+    <form id="form-oferta">
+      <div class="form-grupo">
+        <label for="titulo">Título del Servicio *</label>
+        <input type="text" id="titulo" placeholder="Ej: Instalación de electricidad, Clases de matemáticas..." required />
+      </div>
+
+      <div class="form-grupo">
+        <label for="descripcion">Descripción del Trabajo *</label>
+        <textarea id="descripcion" placeholder="Explica detalladamente qué ofreces, qué incluye, materiales, tiempos..." required></textarea>
+      </div>
+
+      <div class="fila-doble">
+        <div class="form-grupo">
+          <label for="precio">Precio Estimado (USD) *</label>
+          <input type="number" id="precio" placeholder="0.00" min="1" step="0.5" required />
+        </div>
+        <div class="form-grupo">
+          <label for="moneda">Moneda</label>
+          <select id="moneda">
+            <option value="USD">USD — Dólar</option>
+            <option value="UYU">UYU — Peso Uruguayo</option>
+            <option value="ARS">ARS — Peso Argentino</option>
+            <option value="BRL">BRL — Real Brasileño</option>
+            <option value="EUR">EUR — Euro</option>
+            <option value="MXN">MXN — Peso Mexicano</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="fila-doble">
+        <div class="form-grupo">
+          <label for="pais">País *</label>
+          <select id="pais" required>
+            <option value="">Seleccioná tu país</option>
+            <option value="UY">Uruguay</option>
+            <option value="AR">Argentina</option>
+            <option value="BR">Brasil</option>
+            <option value="CL">Chile</option>
+            <option value="US">Estados Unidos</option>
+            <option value="ES">España</option>
+            <option value="MX">México</option>
+            <option value="OT">Otro</option>
+          </select>
+        </div>
+        <div class="form-grupo">
+          <label for="ciudad">Ciudad *</label>
+          <input type="text" id="ciudad" placeholder="Tu ciudad" required />
+        </div>
+      </div>
+
+      <div class="form-grupo">
+        <label for="correo">Correo Electrónico *</label>
+        <input type="email" id="correo" placeholder="tu@email.com" required />
+      </div>
+
+      <button type="submit" class="boton">✅ Publicar Servicio</button>
+    </form>
+
+    <div class="separador"></div>
+
+    <a href="oferta-demanda.html" class="boton-secundario">👀 Ver Servicios Disponibles</a>
+    <a href="informacion-funcionamiento.html" class="boton-secundario">ℹ️ Cómo funciona y comisiones</a>
+  </div>
+
+  <script>
+    const form = document.getElementById('form-oferta');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('✅ Servicio publicado con éxito.\n\nAparecerá en el listado de Ofertas y Demandas. ¡Gracias por ofrecer tu trabajo!');
+      form.reset();
+    });
+  </script>
+</body>
+</html>
