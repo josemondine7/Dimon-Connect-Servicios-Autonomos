@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Normas y Seguridad — Dimon Connect</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+    html, body {
+      width: 100%; min-height: 100vh;
+      background: linear-gradient(135deg, #1a2a6c, #0f4c81);
+      color: #fff;
+      padding: 2rem 1.5rem;
+      line-height: 1.7;
+    }
+    .contenedor { max-width: 800px; margin: 0 auto; }
+    .volver {
+      display: inline-block; color: #93c5fd; text-decoration: none;
+      margin-bottom: 2rem; padding: 0.6rem 1.2rem;
+      background: rgba(59, 130, 246, 0.15); border-radius: 8px;
+      border: 1px solid rgba(96, 165, 250, 0.3);
+      transition: all 0.25s ease;
+    }
+    .volver:hover { background: rgba(59, 130, 246, 0.25); }
+    h1 { font-size: 1.8rem; margin-bottom: 2rem; color: #93c5fd; text-align: center; }
+    h2 { font-size: 1.25rem; margin: 2rem 0 1rem; color: #7dd3fc; }
+    p { margin-bottom: 1rem; color: #e0f2fe; }
+    ul { margin: 1rem 0 1.5rem 2rem; color: #e0f2fe; }
+    li { margin-bottom: 0.75rem; }
+    .ley { color: #fcd34d; text-decoration: underline; cursor: pointer; font-weight: 500; }
+    .caja {
+      background: rgba(255,255,255,0.05); padding: 1.25rem; border-radius: 12px;
+      margin: 1.5rem 0; border: 1px solid rgba(255,255,255,0.1);
+    }
+    .destacado { font-weight: 600; color: #fcd34d; }
+    .boton {
+      display: inline-block; padding: 0.85rem 1.5rem;
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: #fff; text-decoration: none; border-radius: 10px;
+      font-weight: 600; text-align: center; margin: 0.5rem;
+      border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .boton:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3); }
+    .boton-verde { background: linear-gradient(135deg, #10b981, #059669); }
+    .boton-verde:hover { box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
+    .botones-centro { text-align: center; margin-top: 2.5rem; }
+    .separador { height: 1px; background: rgba(255,255,255,0.15); margin: 2.5rem 0; }
+  </style>
+</head>
+<body>
+  <div class="contenedor">
+    <a href="index.html" class="volver">← Volver al inicio</a>
+
+    <h1>Normas y Seguridad</h1>
+
+    <h2>1. Principios Generales</h2>
+    <p>Dimon Connect es una plataforma de intermediación entre personas que necesitan un servicio y personas que pueden brindarlo. Todo trato se basa en la confianza, el respeto y el cumplimiento mutuo. Todo acuerdo aceptado por las dos partes tiene valor de contrato legal. <span class="ley" onclick="window.location.href='ley-articulo-1257.html'">📜 Código Civil — Artículo 1257</span></p>
+
+    <h2>2. Comisiones del Servicio</h2>
+    <p>La plataforma cobra una comisión total del 10% sobre el valor del servicio:</p>
+    <div class="caja">
+      <p>• <span class="destacado">5%</span> a cargo de quien solicita el servicio — se suma al monto al momento del pago</p>
+      <p>• <span class="destacado">5%</span> a cargo de quien brinda el servicio — se descuenta al liberar el pago</p>
+      <p style="margin-top: 0.75rem;">Esta comisión corresponde al servicio completo de intermediación, garantía, seguridad y soporte. <span class="ley" onclick="window.location.href='ley-intermediacion.html'">📜 Derecho de intermediación legítima</span></p>
+    </div>
+
+    <h2>3. Sistema de Seña y Garantía</h2>
+    <p>La seña es la garantía de que el trato es serio. Queda resguardada en Dimon Connect hasta que se confirma el trabajo.</p>
+    <ul>
+      <li>✅ Si se cumple el servicio → la seña se suma al pago y se libera al prestador</li>
+      <li>❌ Si el solicitante cancela sin motivo justo → pierde la seña, que se entrega al prestador como compensación</li>
+      <li>❌ Si el prestador no cumple → la seña se devuelve completa al solicitante</li>
+    </ul>
+
+    <h2>4. Normas de Conducta</h2>
+    <ul>
+      <li>Se podrán ofrecer y solicitar únicamente servicios lícitos y legales.</li>
+      <li>Queda prohibida toda discriminación por origen, nacionalidad, género, creencia o condición personal.</li>
+      <li>No se permitirán conductas ofensivas, amenazantes o que vulneren derechos de terceros.</li>
+      <li>Los usuarios se comprometen a brindar información veraz y completa en su perfil.</li>
+      <li>Dimon Connect se reserva el derecho de suspender cuentas que incumplan estas normas.</li>
+    </ul>
+
+    <h2>5. Protección de Datos y Privacidad</h2>
+    <p>La información personal de los usuarios se protege conforme a las leyes vigentes. No se comparte información personal con terceros sin consentimiento expreso, salvo disposición legal obligatoria.</p>
+
+    <h2>6. Resolución de Conflictos</h2>
+    <p>Ante desacuerdos, las partes se comprometen a intentar resolverlos de buena fe. Dimon Connect podrá intervenir como mediador para encontrar una solución justa.</p>
+
+    <div class="separador"></div>
+
+    <div class="botones-centro">
+      <a href="informacion-funcionamiento.html" class="boton">ℹ️ Información de Funcionamiento</a>
+      <a href="politica-privacidad.html" class="boton boton-verde">🔒 Política de Privacidad</a>
+      <a href="terminos-servicio.html" class="boton">📋 Términos de Servicio</a>
+    </div>
+  </div>
+</body>
+</html>
