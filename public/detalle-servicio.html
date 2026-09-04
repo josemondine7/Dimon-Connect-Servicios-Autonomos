@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detalle del Servicio — Dimon Connect</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+    html, body {
+      width: 100%; min-height: 100vh;
+      background: linear-gradient(135deg, #1a2a6c, #0f4c81);
+      color: #fff;
+      padding: 2rem 1.5rem;
+      line-height: 1.7;
+    }
+    .contenedor { max-width: 700px; margin: 0 auto; }
+    .volver {
+      display: inline-block; color: #93c5fd; text-decoration: none;
+      margin-bottom: 1.5rem; padding: 0.5rem 1rem;
+      background: rgba(59, 130, 246, 0.15); border-radius: 8px;
+      border: 1px solid rgba(96, 165, 250, 0.3);
+    }
+    .etiqueta {
+      display: inline-block; padding: 0.3rem 0.9rem;
+      border-radius: 20px; font-size: 0.85rem; font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .etiqueta-oferta { background: rgba(16, 185, 129, 0.2); color: #86efac; }
+    .etiqueta-demanda { background: rgba(249, 115, 22, 0.2); color: #fdba74; }
+    h1 { font-size: 1.6rem; margin-bottom: 0.5rem; color: #fcd34d; }
+    .autor { color: #93c5fd; margin-bottom: 1.5rem; }
+    .caja {
+      background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 12px;
+      margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.1);
+    }
+    .caja h3 { color: #7dd3fc; margin-bottom: 0.75rem; font-size: 1.1rem; }
+    .precio-grande { font-size: 2rem; font-weight: 700; color: #10b981; margin: 1rem 0; }
+    .meta { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1rem; color: #93c5fd; font-size: 0.95rem; }
+    .boton {
+      display: block; width: 100%; padding: 1rem;
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: #fff; border: none; border-radius: 10px;
+      font-size: 1.1rem; font-weight: 600; cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-align: center; text-decoration: none; margin-top: 1rem;
+    }
+    .boton:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(249, 115, 22, 0.35); }
+    .boton-verde { background: linear-gradient(135deg, #10b981, #059669); }
+    .boton-verde:hover { box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35); }
+    .aviso {
+      background: rgba(252, 211, 77, 0.1); padding: 1rem; border-radius: 10px;
+      border: 1px solid rgba(252, 211, 77, 0.3); margin-top: 1.5rem;
+      color: #fef3c7; font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="contenedor">
+    <a href="oferta-demanda.html" class="volver">← Volver al listado</a>
+
+    <span class="etiqueta etiqueta-oferta" id="tipo-servicio">OFERTA</span>
+    <h1 id="titulo-servicio">Título del Servicio</h1>
+    <p class="autor" id="autor-servicio">Publicado por — 📍 Ciudad, País</p>
+
+    <div class="caja">
+      <h3>Descripción</h3>
+      <p id="descripcion-servicio">Cargando información...</p>
+    </div>
+
+    <div class="caja">
+      <h3>Precio Acordado</h3>
+      <div class="precio-grande" id="precio-servicio">$ 0</div>
+      <p style="color: #93c5fd; font-size: 0.9rem;">Este monto es el valor base del servicio.</p>
+      <div class="aviso">
+        ⚠️ <strong>Comisiones al confirmar el trato:</strong><br>
+        • 5% a cargo de quien solicita el servicio<br>
+        • 5% a cargo de quien brinda el servicio<br>
+        • Total: 10% sobre el valor del servicio
+      </div>
+    </div>
+
+    <a href="acuerdo-trato.html" class="boton-verde boton">🤝 Proponer Acuerdo y Chatear</a>
+    <a href="oferta-demanda.html" class="boton">← Volver a buscar</a>
+  </div>
+
+  <script>
+    // Cargar datos del servicio desde la URL
+    const params = new URLSearchParams(window.location.search);
+    document.getElementById('titulo-servicio').textContent = params.get('titulo') || 'Servicio';
+    document.getElementById('descripcion-servicio').textContent = params.get('descripcion') || 'Sin descripción';
+    document.getElementById('precio-servicio').textContent = params.get('precio') || '$ 0';
+    document.getElementById('autor-servicio').textContent = (params.get('autor') || 'Anónimo') + ' — 📍 ' + (params.get('ciudad') || 'Ciudad');
+    document.getElementById('tipo-servicio').textContent = (params.get('tipo') === 'demanda') ? 'DEMANDA' : 'OFERTA';
+    document.getElementById('tipo-servicio').className = 'etiqueta etiqueta-' + (params.get('tipo') === 'demanda' ? 'demanda' : 'oferta');
+  </script>
+</body>
+</html>
