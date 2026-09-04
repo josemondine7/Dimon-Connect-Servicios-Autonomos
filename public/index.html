@@ -5,21 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Dimon Connect — Servicios Autónomos</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    html, body {
-      width: 100%;
-      height: 100vh;
-      overflow: hidden;
-      position: fixed;
-    }
-
-    /* ===== TU IMAGEN DE FONDO — NOMBRE EXACTO ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    html, body { width: 100%; height: 100vh; overflow: hidden; position: fixed; }
     body {
       background-color: #0066FF;
       background-image: url('./1788448614792.png');
@@ -29,210 +16,90 @@
       background-attachment: fixed;
       color: #ffffff;
     }
-
-    /* ===== SELECTOR DE IDIOMAS — ARRIBA IZQUIERDA ===== */
-    .selector-idioma {
-      position: fixed;
-      top: 1.5rem;
-      left: 1.5rem;
-      z-index: 25;
-    }
+    .selector-idioma { position: fixed; top: 1.5rem; left: 1.5rem; z-index: 25; }
     .selector-idioma select {
-      padding: 0.5rem 0.9rem;
-      border-radius: 8px;
-      border: 2px solid rgba(255,215,0,0.6);
-      background: rgba(0,51,102,0.9);
-      color: #fff;
-      font-size: 0.85rem;
-      cursor: pointer;
-      outline: none;
-      backdrop-filter: blur(6px);
-      transition: all 0.2s;
+      padding: 0.5rem 0.9rem; border-radius: 8px; border: 2px solid rgba(255,215,0,0.6);
+      background: rgba(0,51,102,0.9); color: #fff; font-size: 0.85rem; cursor: pointer; outline: none;
+      backdrop-filter: blur(6px); transition: all 0.2s;
     }
-    .selector-idioma select:hover {
-      border-color: #ffd700;
-      box-shadow: 0 0 15px rgba(255,215,0,0.4);
-    }
-
-    /* ===== BOTÓN LIRA — ARRIBA DERECHA ===== */
+    .selector-idioma select:hover { border-color: #ffd700; box-shadow: 0 0 15px rgba(255,215,0,0.4); }
     .boton-lira {
-      position: fixed;
-      top: 1.5rem;
-      right: 1.5rem;
-      width: 56px;
-      height: 56px;
-      border-radius: 12px;
-      border: 3px solid #ffd700;
-      background: linear-gradient(135deg, #003366, #0066cc);
-      color: #ffd700;
-      font-size: 1.8rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 25;
-      transition: all 0.3s;
+      position: fixed; top: 1.5rem; right: 1.5rem; width: 56px; height: 56px; border-radius: 12px;
+      border: 3px solid #ffd700; background: linear-gradient(135deg, #003366, #0066cc);
+      color: #ffd700; font-size: 1.8rem; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; z-index: 25; transition: all 0.3s;
     }
     .boton-lira::before { content: "✚"; }
     .boton-lira:hover { transform: scale(1.08); }
-
-    /* ===== VENTANA DE CONTRASEÑA ===== */
     .modal-contraseña {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.85);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 100;
-      padding: 1.5rem;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85);
+      display: none; align-items: center; justify-content: center; z-index: 100; padding: 1.5rem;
     }
     .modal-contraseña.activo { display: flex; }
     .caja-contraseña {
-      background: linear-gradient(135deg, #003366, #0055aa);
-      border: 3px solid #ffd700;
-      border-radius: 16px;
-      padding: 2.5rem 2rem;
-      width: 100%; max-width: 400px;
-      text-align: center;
+      background: linear-gradient(135deg, #003366, #0055aa); border: 3px solid #ffd700; border-radius: 16px;
+      padding: 2.5rem 2rem; width: 100%; max-width: 400px; text-align: center;
     }
     .caja-contraseña h3 { color: #ffd700; margin-bottom: 1.5rem; }
     .caja-contraseña input {
-      width: 100%; padding: 1rem;
-      border-radius: 8px;
-      border: 2px solid #ffd700;
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-      font-size: 1rem;
-      text-align: center;
-      margin-bottom: 1rem;
-      outline: none;
+      width: 100%; padding: 1rem; border-radius: 8px; border: 2px solid #ffd700;
+      background: rgba(255,255,255,0.1); color: #fff; font-size: 1rem;
+      text-align: center; margin-bottom: 1rem; outline: none;
     }
     .botones-modal { display: flex; gap: 1rem; justify-content: center; margin-top: 0.5rem; }
-    .boton-modal {
-      padding: 0.75rem 1.5rem;
-      border-radius: 8px;
-      border: none;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-    }
+    .boton-modal { padding: 0.75rem 1.5rem; border-radius: 8px; border: none; font-size: 1rem; font-weight: 600; cursor: pointer; }
     .boton-confirmar { background: #ffd700; color: #000; }
     .boton-cancelar { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.4); }
     .error-contraseña { color: #ff6b6b; margin-top: 1rem; display: none; }
-
-    /* ===== CONTENEDOR PRINCIPAL ===== */
     .contenedor {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-      padding-top: 28vh;
-      padding-bottom: 8rem;
+      position: absolute; top: 0; left: 0; width: 100%; height: 100vh; display: flex;
+      flex-direction: column; align-items: center; justify-content: center; padding: 1.5rem;
+      padding-top: 28vh; padding-bottom: 8rem;
     }
-
-    /* ===== BUSCADOR ===== */
     .buscador {
-      width: 100%; max-width: 500px;
-      display: flex;
-      margin-bottom: 2rem;
-      z-index: 10;
+      width: 100%; max-width: 500px; display: flex; margin-bottom: 2rem; z-index: 10;
     }
     .buscador input {
-      flex: 1;
-      padding: 1rem 1.25rem;
-      border: 1px solid rgba(255,255,255,0.35);
-      border-radius: 12px 0 0 12px;
-      font-size: 1rem;
-      color: #fff;
-      background: rgba(255,255,255,0.15);
-      outline: none;
+      flex: 1; padding: 1rem 1.25rem; border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 12px 0 0 12px; font-size: 1rem; color: #fff;
+      background: rgba(255,255,255,0.15); outline: none;
     }
     .buscador input::placeholder { color: rgba(255,255,255,0.65); }
     .buscador button {
-      padding: 0 1.5rem;
-      border: 1px solid rgba(0,204,255,0.5);
-      border-radius: 0 12px 12px 0;
-      background: rgba(0,204,255,0.35);
-      color: #fff;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: all 0.25s;
+      padding: 0 1.5rem; border: 1px solid rgba(0,204,255,0.5);
+      border-radius: 0 12px 12px 0; background: rgba(0,204,255,0.35);
+      color: #fff; font-size: 1.2rem; cursor: pointer; transition: all 0.25s;
     }
     .buscador button:hover { background: rgba(0,204,255,0.55); }
-
-    /* ===== BOTONES PRINCIPALES ===== */
     .botones-principales {
-      width: 100%; max-width: 500px;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      z-index: 10;
+      width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 1rem; z-index: 10;
     }
     .boton {
-      padding: 1.15rem 1.5rem;
-      border-radius: 12px;
-      border: 2px solid rgba(255,255,255,0.4);
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      text-align: center;
-      transition: all 0.25s ease;
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-      width: 100%;
+      padding: 1.15rem 1.5rem; border-radius: 12px; border: 2px solid rgba(255,255,255,0.4);
+      font-size: 1rem; font-weight: 600; cursor: pointer; text-decoration: none;
+      text-align: center; transition: all 0.25s ease;
+      background: rgba(255,255,255,0.1); color: #fff; width: 100%;
     }
     .boton:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
     .boton-primario { border-color: rgba(0,204,255,0.6); background: rgba(0,204,255,0.25); }
     .boton-primario:hover { background: rgba(0,204,255,0.45); }
-
-    /* ===== BOTÓN DESCARGA — ABAJO IZQUIERDA ===== */
     .boton-descarga {
-      position: fixed;
-      bottom: 1.5rem;
-      left: 1.5rem;
-      padding: 0.8rem 1.2rem;
-      border-radius: 10px;
-      border: 2px solid rgba(255,153,0,0.6);
-      background: rgba(255,153,0,0.35);
-      color: #fff;
-      font-size: 0.85rem;
-      font-weight: 700;
-      text-decoration: none;
-      z-index: 15;
-      transition: all 0.2s;
+      position: fixed; bottom: 1.5rem; left: 1.5rem; padding: 0.8rem 1.2rem;
+      border-radius: 10px; border: 2px solid rgba(255,153,0,0.6);
+      background: rgba(255,153,0,0.35); color: #fff; font-size: 0.85rem;
+      font-weight: 700; text-decoration: none; z-index: 15; transition: all 0.2s;
     }
     .boton-descarga:hover { background: rgba(255,153,0,0.55); }
-
-    /* ===== ENLACES INFERIORES — ABAJO CENTRO ===== */
     .enlaces-inferiores {
-      position: fixed;
-      bottom: 1.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: row;
-      gap: 1rem;
-      justify-content: center;
-      z-index: 15;
-      font-size: 0.8rem;
-      white-space: nowrap;
+      position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: row; gap: 1rem; justify-content: center;
+      z-index: 15; font-size: 0.8rem; white-space: nowrap;
     }
     .enlaces-inferiores a {
-      color: rgba(176,224,255,0.9);
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: all 0.2s;
+      color: rgba(176,224,255,0.9); text-decoration: none;
+      border-bottom: 1px solid transparent; transition: all 0.2s;
     }
     .enlaces-inferiores a:hover { color: #fff; border-bottom-color: rgba(0,204,255,0.6); }
-
-    /* ===== RESPONSIVE — CELULAR Y COMPUTADORA ===== */
     @media (max-width: 480px) {
       .contenedor { padding: 1rem; padding-top: 25vh; padding-bottom: 7rem; }
       .buscador input { font-size: 0.95rem; padding: 0.9rem 1rem; }
@@ -250,10 +117,9 @@
 </head>
 <body>
 
-  <!-- 🌐 SELECTOR DE 14 IDIOMAS -->
   <div class="selector-idioma">
-    <select id="idioma">
-      <option value="es">🇪🇸 Español</option>
+    <select id="selector-idioma">
+      <option value="es" selected>🇪🇸 Español</option>
       <option value="zh">🇨🇳 中文</option>
       <option value="en">🇺🇸 English</option>
       <option value="pt">🇧🇷 Português</option>
@@ -270,10 +136,8 @@
     </select>
   </div>
 
-  <!-- 🛡️ BOTÓN LIRA → CONTRASEÑA -->
   <div class="boton-lira" id="botonLira" title="Hablar con Lira"></div>
 
-  <!-- 🔒 VENTANA DE CONTRASEÑA -->
   <div class="modal-contraseña" id="modalContraseña">
     <div class="caja-contraseña">
       <h3>🔐 Acceso a Lira</h3>
@@ -286,72 +150,99 @@
     </div>
   </div>
 
-  <!-- CONTENIDO PRINCIPAL -->
   <main class="contenedor">
-    <!-- 🔍 BUSCADOR -->
     <div class="buscador">
-      <input type="text" placeholder="Buscar servicios, personas, ayuda..." />
-      <button type="submit">🔍</button>
+      <input type="text" id="input-buscar" placeholder="Buscar servicios, personas, ayuda..." />
+      <button type="button" id="btn-buscar">🔍</button>
     </div>
-
-    <!-- 🟦 BOTONES PRINCIPALES VINCULADOS -->
     <div class="botones-principales">
-      <a href="ofrecer.html" class="boton boton-primario">Ofrecer mis servicios</a>
-      <a href="solicitar.html" class="boton">Solicitar un servicio</a>
-      <a href="login.html" class="boton">Iniciar sesión</a>
+      <a href="ofrecer.html" class="boton boton-primario" id="btn-ofrecer">Ofrecer mis servicios</a>
+      <a href="solicitar.html" class="boton" id="btn-solicitar">Solicitar un servicio</a>
+      <a href="login.html" class="boton" id="btn-login">Iniciar sesión</a>
     </div>
   </main>
 
-  <!-- 📥 BOTÓN DESCARGA DE APLICACIÓN -->
-  <a href="descargar.html" class="boton-descarga">Descargar aplicación</a>
+  <a href="descargar.html" class="boton-descarga" id="btn-descargar">Descargar aplicación</a>
 
-  <!-- 📄 ENLACES INFERIORES VINCULADOS -->
   <nav class="enlaces-inferiores">
-    <a href="normas.html#normas">Normas y Seguridad</a>
-    <a href="normas.html#privacidad">Privacidad</a>
-    <a href="normas.html#terminos">Términos de Servicio</a>
-    <a href="normas.html#cookies">Cookies</a>
-    <a href="normas.html#contacto">Contacto</a>
+    <a href="normas.html#normas" id="link-normas">Normas y Seguridad</a>
+    <a href="normas.html#privacidad" id="link-privacidad">Privacidad</a>
+    <a href="normas.html#terminos" id="link-terminos">Términos de Servicio</a>
+    <a href="normas.html#cookies" id="link-cookies">Cookies</a>
+    <a href="normas.html#contacto" id="link-contacto">Contacto</a>
   </nav>
 
-  <!-- ===== JAVASCRIPT — LIRA + CONTRASEÑA FUNCIONAL ===== -->
-  <script>
-    const botonLira = document.getElementById('botonLira');
-    const modalContraseña = document.getElementById('modalContraseña');
-    const inputContraseña = document.getElementById('inputContraseña');
-    const btnConfirmar = document.getElementById('btnConfirmar');
-    const btnCancelar = document.getElementById('btnCancelar');
-    const errorContraseña = document.getElementById('errorContraseña');
-    const CONTRASEÑA_CORRECTA = 'Mondine5781Lira';
-
-    botonLira.addEventListener('click', () => {
-      modalContraseña.classList.add('activo');
+<script>
+  const traducciones = {
+    es: { ofrecer: "Ofrecer mis servicios", solicitar: "Solicitar un servicio", iniciarSesion: "Iniciar sesión", descargar: "Descargar aplicación", buscarPlaceholder: "Buscar servicios, personas, ayuda...", normas: "Normas y Seguridad", privacidad: "Privacidad", terminos: "Términos de Servicio", cookies: "Cookies", contacto: "Contacto", liralt: "Hablar con Lira" },
+    en: { ofrecer: "Offer my services", solicitar: "Request a service", iniciarSesion: "Log in", descargar: "Download app", buscarPlaceholder: "Search services, people, help...", normas: "Rules & Security", privacidad: "Privacy", terminos: "Terms of Service", cookies: "Cookies", contacto: "Contact", liralt: "Talk to Lira" },
+    pt: { ofrecer: "Oferecer meus serviços", solicitar: "Solicitar um serviço", iniciarSesion: "Entrar", descargar: "Baixar aplicativo", buscarPlaceholder: "Buscar serviços, pessoas, ajuda...", normas: "Regras e Segurança", privacidad: "Privacidade", terminos: "Termos de Serviço", cookies: "Cookies", contacto: "Contato", liralt: "Falar com Lira" },
+    zh: { ofrecer: "提供我的服务", solicitar: "请求服务", iniciarSesion: "登录", descargar: "下载应用", buscarPlaceholder: "搜索服务、人员、帮助...", normas: "规则与安全", privacidad: "隐私", terminos: "服务条款", cookies: "Cookie", contacto: "联系我们", liralt: "与Lira对话" },
+    fr: { ofrecer: "Proposer mes services", solicitar: "Demander un service", iniciarSesion: "Se connecter", descargar: "Télécharger l'appli", buscarPlaceholder: "Rechercher services, personnes, aide...", normas: "Règles et Sécurité", privacidad: "Confidentialité", terminos: "Conditions d'utilisation", cookies: "Cookies", contacto: "Contact", liralt: "Parler à Lira" },
+    de: { ofrecer: "Meine Dienste anbieten", solicitar: "Dienst anfordern", iniciarSesion: "Anmelden", descargar: "App herunterladen", buscarPlaceholder: "Dienste, Personen, Hilfe suchen...", normas: "Regeln & Sicherheit", privacidad: "Datenschutz", terminos: "Nutzungsbedingungen", cookies: "Cookies", contacto: "Kontakt", liralt: "Mit Lira sprechen" },
+    ja: { ofrecer: "サービスを提供する", solicitar: "サービスを依頼する", iniciarSesion: "ログイン", descargar: "アプリをダウンロード", buscarPlaceholder: "サービス、人物、ヘルプを検索...", normas: "規則と安全性", privacidad: "プライバシー", terminos: "利用規約", cookies: "クッキー", contacto: "お問い合わせ", liralt: "Liraと話す" },
+    ar: { ofrecer: "تقديم خدماتي", solicitar: "طلب خدمة", iniciarSesion: "تسجيل الدخول", descargar: "تحميل التطبيق", buscarPlaceholder: "البحث عن خدمات، أشخاص، مساعدة...", normas: "القواعد والأمان", privacidad: "الخصوصية", terminos: "شروط الخدمة", cookies: "ملفات تعريف الارتباط", contacto: "اتصل بنا", liralt: "التحدث مع ليرا" },
+    hi: { ofrecer: "मेरी सेवाएं प्रदान करें", solicitar: "सेवा का अनुरोध करें", iniciarSesion: "लॉग इन करें", descargar: "ऐप डाउनलोड करें", buscarPlaceholder: "सेवाएं, लोग, मददूं खोजें...", normas: "नियम और सुरक्षा", privacidad: "गोपनीयता", terminos: "सेवा की शर्तें", cookies: "कुकीज़", contacto: "संपर्क करें", liralt: "लीरा से बात करें" },
+    bn: { ofrecer: "আমার সেবা প্রদান করুন", solicitar: "সেবা অনুরোধ করুন", iniciarSesion: "লগ ইন করুন", descargar: "অ্যাপ ডাউনলোড করুন", buscarPlaceholder: "সেবা, ব্যক্তি, সাহায্য খুঁজুন...", normas: "নিয়ম ও নিরাপত্তা", privacidad: "গোপনীয়তা", terminos: "সেবার শর্তাবলী", cookies: "কুকিজ", contacto: "যোগাযোগ করুন", liralt: "লীরার সাথে কথা বলুন" },
+    ur: { ofrecer: "میری خدمات پیش کریں", solicitar: "سروس کی درخواست کریں", iniciarSesion: "لاگ ان کریں", descargar: "ایپ ڈاؤن لوڈ کریں", buscarPlaceholder: "سروسز، لوگ، مدد تلاش کریں...", normas: "قواعد اور سیکیورٹی", privacidad: "رازداری", terminos: "سروس کی شرائط", cookies: "کوکیز", contacto: "رابطہ کریں", liralt: "لیرا سے بات کریں" },
+    id: { ofrecer: "Tawarkan layanan saya", solicitar: "Minta layanan", iniciarSesion: "Masuk", descargar: "Unduh aplikasi", buscarPlaceholder: "Cari layanan, orang, bantuan...", normas: "Aturan & Keamanan", privacidad: "Privasi", terminos: "Ketentuan Layanan", cookies: "Cookie", contacto: "Kontak", liralt: "Bicara dengan Lira" },
+    tr: { ofrecer: "Hizmetlerimi sun", solicitar: "Hizmet talep et", iniciarSesion: "Giriş yap", descargar: "Uygulamayı indir", buscarPlaceholder: "Hizmet, kişi, yardım ara...", normas: "Kurallar ve Güvenlik", privacidad: "Gizlilik", terminos: "Hizmet Şartları", cookies: "Çerezler", contacto: "İletişim", liralt: "Lira ile konuş" },
+    ru: { ofrecer: "Предложить услуги", solicitar: "Запросить услугу", iniciarSesion: "Войти", descargar: "Скачать приложение", buscarPlaceholder: "Поиск услуг, людей, помощи...", normas: "Правила и безопасность", privacidad: "Конфиденциальность", terminos: "Условия использования", cookies: "Файлы cookie", contacto: "Контакты", liralt: "Поговорить с Лирой" }
+  };
+  function cambiarIdioma(idioma) {
+    const t = traducciones[idioma] || traducciones.es;
+    document.getElementById('btn-ofrecer').textContent = t.ofrecer;
+    document.getElementById('btn-solicitar').textContent = t.solicitar;
+    document.getElementById('btn-login').textContent = t.iniciarSesion;
+    document.getElementById('btn-descargar').textContent = t.descargar;
+    document.getElementById('input-buscar').placeholder = t.buscarPlaceholder;
+    document.getElementById('link-normas').textContent = t.normas;
+    document.getElementById('link-privacidad').textContent = t.privacidad;
+    document.getElementById('link-terminos').textContent = t.terminos;
+    document.getElementById('link-cookies').textContent = t.cookies;
+    document.getElementById('link-contacto').textContent = t.contacto;
+    document.getElementById('botonLira').setAttribute('title', t.liralt);
+    localStorage.setItem('idiomaDimon', idioma);
+    document.documentElement.lang = idioma;
+  }
+  window.addEventListener('load', () => {
+    const idiomaGuardado = localStorage.getItem('idiomaDimon') || 'es';
+    document.getElementById('selector-idioma').value = idiomaGuardado;
+    cambiarIdioma(idiomaGuardado);
+  });
+  document.getElementById('selector-idioma').addEventListener('change', (e) => {
+    cambiarIdioma(e.target.value);
+  });
+  const botonLira = document.getElementById('botonLira');
+  const modalContraseña = document.getElementById('modalContraseña');
+  const inputContraseña = document.getElementById('inputContraseña');
+  const btnConfirmar = document.getElementById('btnConfirmar');
+  const btnCancelar = document.getElementById('btnCancelar');
+  const errorContraseña = document.getElementById('errorContraseña');
+  const CONTRASEÑA_CORRECTA = 'Mondine5781Lira';
+  botonLira.addEventListener('click', () => {
+    modalContraseña.classList.add('activo');
+    inputContraseña.value = '';
+    errorContraseña.style.display = 'none';
+    inputContraseña.focus();
+  });
+  btnCancelar.addEventListener('click', () => {
+    modalContraseña.classList.remove('activo');
+    inputContraseña.value = '';
+    errorContraseña.style.display = 'none';
+  });
+  btnConfirmar.addEventListener('click', verificarContraseña);
+  inputContraseña.addEventListener('keydown', (e) => { if (e.key === 'Enter') verificarContraseña(); });
+  function verificarContraseña() {
+    if (inputContraseña.value === CONTRASEÑA_CORRECTA) {
+      window.location.href = 'lira.html';
+    } else {
+      errorContraseña.style.display = 'block';
       inputContraseña.value = '';
-      errorContraseña.style.display = 'none';
       inputContraseña.focus();
-    });
-
-    btnCancelar.addEventListener('click', () => {
-      modalContraseña.classList.remove('activo');
-      inputContraseña.value = '';
-      errorContraseña.style.display = 'none';
-    });
-
-    btnConfirmar.addEventListener('click', verificarContraseña);
-    inputContraseña.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') verificarContraseña();
-    });
-
-    function verificarContraseña() {
-      if (inputContraseña.value === CONTRASEÑA_CORRECTA) {
-        window.location.href = 'lira.html';
-      } else {
-        errorContraseña.style.display = 'block';
-        inputContraseña.value = '';
-        inputContraseña.focus();
-      }
     }
-  </script>
+  }
+</script>
 
 </body>
 </html>
