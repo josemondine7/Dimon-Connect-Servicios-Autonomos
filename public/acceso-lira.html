@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acceso a Lira IA — Dimon Connect</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+    html, body {
+      width: 100%; min-height: 100vh;
+      background: linear-gradient(135deg, #1a2a6c, #0f4c81);
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      padding: 2rem 1.5rem;
+    }
+    .contenedor { width: 100%; max-width: 420px; text-align: center; }
+    .volver {
+      display: inline-block; color: #93c5fd; text-decoration: none;
+      margin-bottom: 2rem; padding: 0.5rem 1rem;
+      background: rgba(59, 130, 246, 0.15); border-radius: 8px;
+      border: 1px solid rgba(96, 165, 250, 0.3);
+      position: absolute; top: 1.5rem; left: 1.5rem;
+    }
+    .logo-lira { font-size: 3.5rem; margin-bottom: 1rem; }
+    h1 { font-size: 1.8rem; margin-bottom: 0.5rem; color: #fcd34d; }
+    .subtitulo { color: #93c5fd; margin-bottom: 2rem; line-height: 1.6; }
+    .caja {
+      background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+    }
+    label { display: block; text-align: left; margin-bottom: 0.5rem; color: #7dd3fc; font-weight: 500; }
+    input {
+      width: 100%; padding: 1rem; border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08);
+      color: #fff; font-size: 1.1rem; outline: none;
+      text-align: center; letter-spacing: 2px;
+      margin-bottom: 1rem;
+    }
+    input:focus { border-color: #fcd34d; }
+    .boton {
+      width: 100%; padding: 1rem;
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: #fff; border: none; border-radius: 10px;
+      font-size: 1.1rem; font-weight: 600; cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .boton:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(249, 115, 22, 0.35); }
+    .error { color: #fca5a5; margin-top: 1rem; display: none; }
+    .info { font-size: 0.9rem; color: #93c5fd; margin-top: 1.5rem; line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="volver">← Volver</a>
+
+  <div class="contenedor">
+    <div class="logo-lira">🤖</div>
+    <h1>Lira — Inteligencia Administrativa</h1>
+    <p class="subtitulo">Asistente exclusivo para administración y control de Dimon Connect</p>
+
+    <div class="caja">
+      <label for="clave-lira">🔑 Ingresá la clave de acceso</label>
+      <input type="password" id="clave-lira" placeholder="••••••••••••" onkeydown="if(event.key==='Enter')verificarClave()" />
+      <button class="boton" onclick="verificarClave()">✅ Ingresar a Lira</button>
+      <p class="error" id="mensaje-error">⚠️ Clave incorrecta. Volvé a intentarlo.</p>
+      <p class="info">🔒 Acceso restringido. Solo para uso administrativo. Toda actividad queda registrada.</p>
+    </div>
+  </div>
+
+  <script>
+    // 🔐 CLAVE DE ACCESO — EXACTAMENTE COMO LA DISTE
+    const CLAVE_CORRECTA = 'mondine5781lira';
+
+    function verificarClave() {
+      const claveIngresada = document.getElementById('clave-lira').value.toLowerCase();
+      if (claveIngresada === CLAVE_CORRECTA) {
+        localStorage.setItem('lira-autorizada', 'true');
+        localStorage.setItem('lira-ingreso', new Date().toLocaleString());
+        alert('✅ Acceso concedido. Bienvenido, José.\n\nLira está activa y lista.');
+        window.location.href = 'chat-lira.html';
+      } else {
+        document.getElementById('mensaje-error').style.display = 'block';
+        document.getElementById('clave-lira').value = '';
+      }
+    }
+
+    // Si ya ingresó antes, va directo al chat
+    window.onload = function() {
+      if (localStorage.getItem('lira-autorizada') === 'true') {
+        window.location.href = 'chat-lira.html';
+      }
+    };
+  </script>
+</body>
+</html>
