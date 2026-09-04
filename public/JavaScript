@@ -1,25 +1,106 @@
 // ==============================================================
-// DIMON CONNECT — CONFIGURACIÓN COMPLETA Y SEGURA
+// DIMON CONNECT — CÓDIGO ÚNICO COMPLETO
+// Supabase + PayPal + Autenticación + Sesión
 // ==============================================================
 
-// ENTORNO
-export const NODE_ENV = "production";
-export const PORT = 3001;
+// ====================== DATOS REALES ======================
+const SUPABASE_URL = "https://db.mjyzsixwyevqqwhtocst.supabase.co";
+const SUPABASE_KEY = "sb_publishable_Vl7FzKhCGdTONP7asJZNmQ_DFZlr7nb";
 
-// BASE DE DATOS — SUPABASE (la que usamos ahora)
-export const SUPABASE_URL = "https://db.mjyzsixwyevqqwhtocst.supabase.co";
-export const SUPABASE_KEY = "sb_publishable_Vl7FzKhCGdTONP7asJZNmQ_DFZlr7nb";
+const PAYPAL_CLIENT_ID = "AdRBautpSs_PojiqAiVHT_07kesu4h-hr2p7DIqKc6-P-2olyEwYWqkNDRJfXoZM8z1vGJp5XP3Ujx1";
+const PAYPAL_SECRET = "EAUd0k0FVgNR743D9S1wkGwvYykZwR1vgyx9hqwZaRuypvFyeZzCRbSdmF-AI86iJJujLLMt7Azvs8J";
+const PAYPAL_MODE = "live";
 
-// SEGURIDAD Y ACCESO
-export const JWT_SECRET = "ClaveSeguraDimon2026LiraBase!";
-export const JWT_EXPIRES_IN = "7d";
+// ====================== INICIALIZAR SUPABASE ======================
+let supabase;
+if (typeof supabase !== 'undefined' && typeof window !== 'undefined') {
+  const { createClient } = supabase;
+  supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+}
 
-// DATOS DEL PROPIETARIO
-export const ADMIN_NAME = "José María Mondine Lemos";
-export const ADMIN_DOC = "43433929";
-export const ADMIN_EMAIL = "josemondine723@gmail.com";
+// ====================== REGISTRAR USUARIO ======================
+async function registrarUsuario(correo, contraseña, nombre, pais, ciudad) {
+  try {
+    if (!supabase) return { exito: false, mensaje: "Base de datos no conectada" };
+    
+    const { data: authData, error: authError } = await supabase.auth.signUp({
+      email: correo,
+      password: contraseña
+    });
+    if (authError) throw authError;
 
-// CUENTAS DE PAGO — PAYPAL
-export const PAYPAL_CLIENT_ID = "AdRBautpSs_PojiqAiVHT_07kesu4h-hr2p7DIqKc6-P-2olyEwYWqkNDRJfXoZM8z1vGJp5XP3Ujx1";
-export const PAYPAL_SECRET = "EAUd0k0FVgNR743D9S1wkGwvYykZwR1vgyx9hqwZaRuypvFyeZzCRbSdmF-AI86iJJujLLMt7Azvs8J";
-export const PAYPAL_MODE = "live";
+    const { error: perfilError } = await supabase.from('usuarios').insert([{
+      id: authData.user.id,
+      correo: correo,
+      nombre: nombre,
+      pais: pais,
+      ciudad: ciudad,
+      fecha_registro: new Date(),
+      rol: 'usuario'
+    }]);
+    if (perfilError) throw perfilError;
+
+    return { exito: true, mensaje: '¡Registro exitoso! Bienvenido a Dimon Connect.' };
+  } catch (error) {
+    return { exito: false, mensaje: error.message };
+  }
+}
+
+// ====================== INICIAR SESIÓN ======================
+async function iniciarSesion(correo, contraseña) {
+  try {
+    if (!supabase) return { exito: false, mensaje: "No conectado" };
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: correo,
+      password: contraseña
+    });
+    if (error) throw error;
+    localStorage.setItem('usuarioActivo', JSON.stringify(data.user));
+    return { exito: true, mensaje: '¡Bienvenido de vuelta!' };
+  } catch (error) {
+    return { exito: false, mensaje: error.message };
+  }
+}
+
+// ====================== CERRAR SESIÓN ======================
+async function cerrarSesion() {
+  if (supabase) await supabase.auth.signOut();
+  localStorage.removeItem('usuarioActivo');
+  window.location.href = 'index.html';
+}
+
+// ====================== VERIFICAR SESIÓN ======================
+function verificarSesion() {
+  const usuario = localStorage.getItem('usuarioActivo');
+  return usuario ? JSON.parse(usuario) : null;
+}
+
+// ====================== PAYPAL — BOTÓN DE PAGO ======================
+function inicializarBotonPago(monto, descripcion, servicioId) {
+  if (typeof paypal === 'undefined') {
+    console.error("PayPal SDK no cargado");
+    return;
+  }
+  paypal.Buttons({
+    style: { layout: 'vertical', color: 'gold', shape: 'rect', label: 'pay' },
+    createOrder: (data, actions) => {
+      return actions.order.create({
+        purchase_units: [{
+          amount: { value: monto.toString(), currency_code: 'USD' },
+          description: descripcion
+        }]
+      });
+    },
+    onApprove: async (data, actions) => {
+      await actions.order.capture();
+      alert("✅ ¡Pago realizado con éxito!");
+      window.location.href = `confirmacion.html?servicio=${servicioId}`;
+    },
+    onError: (err) => {
+      console.error("Error de pago:", err);
+      alert("⚠️ Hubo un problema. Intentá nuevamente.");
+    }
+  }).render('#boton-paypal');
+}
+
+// ====================== FIN DEL CÓDIGO ÚNICO ======================
