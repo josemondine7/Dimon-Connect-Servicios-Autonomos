@@ -3,56 +3,69 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Oferta y Demanda de Servicios — Dimon Connect</title>
+  <title>Dimon Connect — Servicios Autónomos</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    html, body {
-      width: 100%; min-height: 100vh; background-color: #0066FF;
-      background-image: url('./1788448614792.png'); background-repeat: no-repeat;
-      background-position: center center; background-size: cover; background-attachment: fixed;
-      color: #ffffff; padding: 1.5rem; padding-bottom: 7rem;
+    html, body { width: 100%; height: 100vh; overflow: hidden; position: fixed; }
+    body {
+      background-color: #0066FF;
+      background-image: url('./1788448614792.png');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      background-attachment: fixed;
+      color: #ffffff;
     }
-    .volver { margin-bottom: 1.2rem; }
-    .volver a { color: #00ccff; text-decoration: none; font-size: 1rem; font-weight: 600; }
-    .volver a:hover { text-decoration: underline; }
-    h1 { font-size: 1.7rem; color: #ffd700; margin-bottom: 0.5rem; text-align: center; }
-    .subtitulo { text-align: center; color: #b0e0ff; margin-bottom: 1.5rem; font-size: 0.95rem; }
-
-    /* ========== DOS COLUMNAS ========== */
-    .contenedor-columnas { display: flex; gap: 1.2rem; max-width: 1200px; margin: 0 auto; }
-    .columna { flex: 1; display: flex; flex-direction: column; }
-    .columna-titulo {
-      font-size: 1.2rem; padding: 0.9rem; text-align: center; border-radius: 12px 12px 0 0;
-      font-weight: 700;
+    .selector-idioma { position: fixed; top: 1.5rem; left: 1.5rem; z-index: 25; }
+    .selector-idioma select {
+      padding: 0.5rem 0.9rem; border-radius: 8px; border: 2px solid rgba(255,215,0,0.6);
+      background: rgba(0,51,102,0.9); color: #fff; font-size: 0.85rem; cursor: pointer; outline: none;
+      backdrop-filter: blur(6px); transition: all 0.2s;
     }
-    .columna-oferta .columna-titulo { background: linear-gradient(135deg, #009933, #00cc44); color: #fff; }
-    .columna-demanda .columna-titulo { background: linear-gradient(135deg, #cc6600, #ff8800); color: #fff; }
-    .lista-contenedor {
-      background: rgba(0, 51, 102, 0.6); border: 2px solid rgba(255, 255, 255, 0.2);
-      border-top: none; border-radius: 0 0 12px 12px;
-      padding: 1rem; min-height: 450px; backdrop-filter: blur(8px);
+    .selector-idioma select:hover { border-color: #ffd700; box-shadow: 0 0 15px rgba(255,215,0,0.4); }
+    .boton-lira {
+      position: fixed; top: 1.5rem; right: 1.5rem; width: 56px; height: 56px; border-radius: 12px;
+      border: 3px solid #ffd700; background: linear-gradient(135deg, #003366, #0066cc);
+      color: #ffd700; font-size: 1.8rem; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; z-index: 25; transition: all 0.3s;
     }
-
-    /* ========== ITEM CLICABLE — CATEGORÍA Y PERSONA ========== */
-    .item {
-      display: block; text-decoration: none; color: inherit;
-      padding: 0.9rem 1rem; margin-bottom: 0.7rem; border-radius: 10px;
-      background: rgba(255, 255, 255, 0.08); border-left: 4px solid transparent;
-      transition: all 0.25s ease; cursor: pointer; position: relative;
+    .boton-lira::before { content: "✚"; }
+    .boton-lira:hover { transform: scale(1.08); }
+    .modal-contraseña {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85);
+      display: none; align-items: center; justify-content: center; z-index: 100; padding: 1.5rem;
     }
-    .item-oferta:hover { background: rgba(0, 204, 68, 0.15); border-left-color: #00cc44; }
-    .item-demanda:hover { background: rgba(255, 136, 0, 0.15); border-left-color: #ff8800; }
-
-    /* 🟢 PUNTITO VERDE — DISPONIBLE AHORA */
-    .puntito-verde {
-      position: absolute; top: 0.9rem; right: 0.9rem;
-      width: 12px; height: 12px; background: #00ff44;
-      border-radius: 50%; box-shadow: 0 0 6px #00ff44;
+    .modal-contraseña.activo { display: flex; }
+    .caja-contraseña {
+      background: linear-gradient(135deg, #003366, #0055aa); border: 3px solid #ffd700; border-radius: 16px;
+      padding: 2.5rem 2rem; width: 100%; max-width: 400px; text-align: center;
     }
-    .puntito-gris {
-      position: absolute; top: 0.9rem; right: 0.9rem;
-      width: 12px; height: 12px; background: #666;
-      border-radius: 50%;
+    .caja-contraseña h3 { color: #ffd700; margin-bottom: 1.5rem; }
+    .caja-contraseña input {
+      width: 100%; padding: 1rem; border-radius: 8px; border: 2px solid #ffd700;
+      background: rgba(255,255,255,0.1); color: #fff; font-size: 1rem;
+      text-align: center; margin-bottom: 1rem; outline: none;
     }
-
-    .item-nombre { font-weight: 700; font-size: 0.98rem; margin-bottom
+    .botones-modal { display: flex; gap: 1rem; justify-content: center; margin-top: 0.5rem; }
+    .boton-modal { padding: 0.75rem 1.5rem; border-radius: 8px; border: none; font-size: 1rem; font-weight: 600; cursor: pointer; }
+    .boton-confirmar { background: #ffd700; color: #000; }
+    .boton-cancelar { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.4); }
+    .error-contraseña { color: #ff6b6b; margin-top: 1rem; display: none; }
+    .contenedor {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100vh; display: flex;
+      flex-direction: column; align-items: center; justify-content: center; padding: 1.5rem;
+      padding-top: 28vh; padding-bottom: 8rem;
+    }
+    .buscador {
+      width: 100%; max-width: 500px; display: flex; margin-bottom: 2rem; z-index: 10;
+    }
+    .buscador input {
+      flex: 1; padding: 1rem 1.25rem; border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 12px 0 0 12px; font-size: 1rem; color: #fff;
+      background: rgba(255,255,255,0.15); outline: none;
+    }
+    .buscador input::placeholder { color: rgba(255,255,255,0.65); }
+    .buscador button {
+      padding: 0 1.5rem; border: 1px solid rgba(0,204,255,0.5);
+      border-radius: 0 12px 12px 0; background: rgba(0,204,255,0.35);
+      color: #fff; font-size
