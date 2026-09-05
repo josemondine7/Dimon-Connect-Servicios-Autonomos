@@ -2,212 +2,70 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Dimon Connect — Servicios Autónomos" />
-  <link rel="icon" type="image/png" href="icono-dimon.png" />
-  <link rel="apple-touch-icon" href="icono-dimon.png" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-title" content="Dimon Connect" />
-  <meta name="theme-color" content="#1a2a6c" />
-  <title>Dimon Connect | Servicios Autónomos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Dimon Connect — Servicios Autónomos</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-    html, body {
-      width: 100%;
-      min-height: 100vh;
-      background: url('17.884.486.1479.2.png') no-repeat center center fixed;
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    html, body { width: 100%; height: 100vh; overflow: hidden; position: fixed; }
+    body {
+      background-color: #0066FF;
+      background-image: url('./1788448614792.png');
+      background-repeat: no-repeat;
+      background-position: center center;
       background-size: cover;
-      color: #fff;
-      position: relative;
-      overflow-x: hidden;
+      background-attachment: fixed;
+      color: #ffffff;
     }
-    .capa-fondo {
-      position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.08);
-      z-index: 1; pointer-events: none;
+    .selector-idioma { position: fixed; top: 1.5rem; left: 1.5rem; z-index: 25; }
+    .selector-idioma select {
+      padding: 0.5rem 0.9rem; border-radius: 8px; border: 2px solid rgba(255,215,0,0.6);
+      background: rgba(0,51,102,0.9); color: #fff; font-size: 0.85rem; cursor: pointer; outline: none;
+      backdrop-filter: blur(6px); transition: all 0.2s;
     }
-    .contenedor {
-      position: relative; z-index: 2;
-      width: 100%;
-      min-height: 100vh;
-      display: flex; flex-direction: column;
-      padding: 1.5rem; padding-top: 5rem; padding-bottom: 7rem;
-    }
-    .barra-superior {
-      position: fixed; top: 0; left: 0; width: 100%;
-      padding: 0.75rem 1.5rem;
-      background: rgba(0,0,0,0.35); backdrop-filter: blur(10px);
-      display: flex; justify-content: space-between; align-items: center;
-      z-index: 10; border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-    .dominio { font-size: 0.9rem; color: #fcd34d; font-weight: 600; }
-    .zona-derecha { display: flex; align-items: center; gap: 1rem; }
-    .selector-idioma {
-      padding: 0.4rem 0.8rem; border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.1); color: #fff;
-      font-size: 0.85rem; cursor: pointer;
-    }
+    .selector-idioma select:hover { border-color: #ffd700; box-shadow: 0 0 15px rgba(255,215,0,0.4); }
     .boton-lira {
-      padding: 0.5rem 1rem; border-radius: 20px; border: none;
-      background: linear-gradient(135deg, #a855f7, #7c3aed);
-      color: #fff; font-weight: 600; cursor: pointer; text-decoration: none;
-      font-size: 0.85rem; transition: transform 0.2s;
+      position: fixed; top: 1.5rem; right: 1.5rem; width: 56px; height: 56px; border-radius: 12px;
+      border: 3px solid #ffd700; background: linear-gradient(135deg, #003366, #0066cc);
+      color: #ffd700; font-size: 1.8rem; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; z-index: 25; transition: all 0.3s;
     }
-    .boton-lira:hover { transform: translateY(-2px); }
+    .boton-lira::before { content: "✚"; }
+    .boton-lira:hover { transform: scale(1.08); }
+    .modal-contraseña {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85);
+      display: none; align-items: center; justify-content: center; z-index: 100; padding: 1.5rem;
+    }
+    .modal-contraseña.activo { display: flex; }
+    .caja-contraseña {
+      background: linear-gradient(135deg, #003366, #0055aa); border: 3px solid #ffd700; border-radius: 16px;
+      padding: 2.5rem 2rem; width: 100%; max-width: 400px; text-align: center;
+    }
+    .caja-contraseña h3 { color: #ffd700; margin-bottom: 1.5rem; }
+    .caja-contraseña input {
+      width: 100%; padding: 1rem; border-radius: 8px; border: 2px solid #ffd700;
+      background: rgba(255,255,255,0.1); color: #fff; font-size: 1rem;
+      text-align: center; margin-bottom: 1rem; outline: none;
+    }
+    .botones-modal { display: flex; gap: 1rem; justify-content: center; margin-top: 0.5rem; }
+    .boton-modal { padding: 0.75rem 1.5rem; border-radius: 8px; border: none; font-size: 1rem; font-weight: 600; cursor: pointer; }
+    .boton-confirmar { background: #ffd700; color: #000; }
+    .boton-cancelar { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.4); }
+    .error-contraseña { color: #ff6b6b; margin-top: 1rem; display: none; }
+    .contenedor {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100vh; display: flex;
+      flex-direction: column; align-items: center; justify-content: center; padding: 1.5rem;
+      padding-top: 28vh; padding-bottom: 8rem;
+    }
     .buscador {
-      width: 100%; max-width: 500px; margin: 0 auto 2.5rem auto;
-      display: flex; gap: 0.5rem;
+      width: 100%; max-width: 500px; display: flex; margin-bottom: 2rem; z-index: 10;
     }
     .buscador input {
-      flex: 1; padding: 1rem 1.5rem; border-radius: 30px;
-      border: 2px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.1); color: #fff;
-      font-size: 1rem; outline: none; backdrop-filter: blur(10px);
+      flex: 1; padding: 1rem 1.25rem; border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 12px 0 0 12px; font-size: 1rem; color: #fff;
+      background: rgba(255,255,255,0.15); outline: none;
     }
-    .buscador input:focus { border-color: #fcd34d; }
+    .buscador input::placeholder { color: rgba(255,255,255,0.65); }
     .buscador button {
-      padding: 1rem 1.5rem; border-radius: 30px; border: none;
-      background: linear-gradient(135deg, #f97316, #ea580c);
-      color: #fff; font-weight: 600; cursor: pointer;
-    }
-    .botones-principales {
-      display: flex; flex-direction: column; gap: 1rem;
-      max-width: 420px; margin: 0 auto;
-    }
-    .boton-grande {
-      width: 100%; padding: 1.25rem; border-radius: 14px;
-      border: 2px solid rgba(255,255,255,0.15);
-      background: rgba(255,255,255,0.08); color: #fff;
-      font-size: 1.1rem; font-weight: 600; cursor: pointer;
-      text-decoration: none; text-align: center; backdrop-filter: blur(10px);
-      transition: all 0.25s;
-    }
-    .boton-grande:hover {
-      transform: translateY(-3px); border-color: #fcd34d;
-      background: rgba(252,211,77,0.1);
-    }
-    .boton-naranja { border-color: rgba(249,115,22,0.4); }
-    .boton-naranja:hover { border-color: #f97316; background: rgba(249,115,22,0.1); }
-    .boton-verde { border-color: rgba(16,185,129,0.4); }
-    .boton-verde:hover { border-color: #10b981; background: rgba(16,185,129,0.1); }
-    .descarga { position: fixed; bottom: 1.5rem; left: 1.5rem; z-index: 3; }
-    .boton-descarga {
-      padding: 0.8rem 1.2rem; border-radius: 12px; border: none;
-      background: linear-gradient(135deg, #10b981, #059669);
-      color: #fff; font-weight: 600; cursor: pointer; text-decoration: none;
-      display: flex; align-items: center; gap: 0.5rem;
-      box-shadow: 0 4px 15px rgba(16,185,129,0.35);
-    }
-    .enlaces-pie {
-      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 3;
-      display: flex; gap: 1rem; flex-wrap: wrap;
-      justify-content: flex-end; max-width: 75%;
-    }
-    .enlace-pie {
-      color: rgba(255,255,255,0.7); text-decoration: none;
-      font-size: 0.85rem; border-bottom: 1px solid transparent;
-      transition: all 0.2s;
-    }
-    .enlace-pie:hover { color: #fcd34d; border-bottom-color: #fcd34d; }
-    @media (max-width: 768px) {
-      .contenedor { padding-top: 4.5rem; padding-bottom: 6rem; }
-      .descarga { bottom: auto; top: 4.5rem; left: 1rem; }
-      .enlaces-pie { bottom: 1rem; right: 1rem; justify-content: flex-start; max-width: 100%; }
-    }
-  </style>
-</head>
-<body>
-  <div class="capa-fondo"></div>
-
-  <div class="barra-superior">
-    <div class="dominio">🌐 dimonconnect.com</div>
-    <div class="zona-derecha">
-      <select class="selector-idioma" onchange="cambiarIdioma(this.value)">
-        <option value="es">🇪🇸 Español</option>
-        <option value="en">🇬🇧 English</option>
-        <option value="pt">🇧🇷 Português</option>
-        <option value="zh">🇨🇳 中文</option>
-        <option value="fr">🇫🇷 Français</option>
-        <option value="de">🇩🇪 Deutsch</option>
-        <option value="it">🇮🇹 Italiano</option>
-        <option value="ru">🇷🇺 Русский</option>
-        <option value="ar">🇸🇦 العربية</option>
-        <option value="ja">🇯🇵 日本語</option>
-        <option value="ko">🇰🇷 한국어</option>
-        <option value="hi">🇮🇳 हिन्दी</option>
-        <option value="bn">🇧🇩 বাংলা</option>
-        <option value="pa">🇵🇰 پښتو</option>
-      </select>
-      <a href="acceso-lira.html" class="boton-lira">🤖 Lira IA</a>
-    </div>
-  </div>
-
-  <div class="contenedor">
-    <div class="buscador">
-      <input type="text" id="buscador-general" placeholder="🔍 Buscá servicios, personas, normas, pagos..." onkeydown="if(event.key==='Enter')ejecutarBusqueda()" />
-      <button onclick="ejecutarBusqueda()">Buscar</button>
-    </div>
-    <div class="botones-principales">
-      <a href="solicitar-servicio.html" class="boton-grande boton-naranja">📋 Solicitar un Servicio</a>
-      <a href="ofrecer-servicio.html" class="boton-grande boton-verde">🛠️ Ofrecer Tus Servicios</a>
-      <a href="oferta-demanda.html" class="boton-grande">📊 Ofertas y Demandas</a>
-      <a href="perfil-usuario.html" class="boton-grande">👤 Mi Perfil y Cobros</a>
-    </div>
-  </div>
-
-  <div class="descarga">
-    <a href="#" class="boton-descarga" id="btn-instalar-app" onclick="instalarApp(event)">
-      <span>⬇️</span> Instalar App
-    </a>
-  </div>
-
-  <div class="enlaces-pie">
-    <a href="normas-seguridad.html" class="enlace-pie">Normas y Seguridad</a>
-    <a href="politica-privacidad.html" class="enlace-pie">Privacidad</a>
-    <a href="terminos-servicio.html" class="enlace-pie">Términos</a>
-    <a href="ley-articulo-1257.html" class="enlace-pie">Marco Legal</a>
-    <a href="contacto.html" class="enlace-pie">Contacto</a>
-    <a href="login.html" class="enlace-pie">Iniciar Sesión</a>
-  </div>
-
-  <script>
-    let eventoInstalacion = null;
-    window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); eventoInstalacion = e; });
-    async function instalarApp(e) {
-      e.preventDefault();
-      if (!eventoInstalacion) { alert('✅ La aplicación ya está instalada o no es compatible con tu navegador.'); return; }
-      eventoInstalacion.prompt();
-      const { outcome } = await eventoInstalacion.userChoice;
-      if (outcome === 'accepted') alert('✅ ¡Dimon Connect instalada correctamente!');
-      eventoInstalacion = null;
-    }
-    function ejecutarBusqueda() {
-      const termino = document.getElementById('buscador-general').value.toLowerCase().trim();
-      if (!termino) return;
-      const rutas = {
-        'solicitar':'solicitar-servicio.html','pedir':'solicitar-servicio.html','ofrecer':'ofrecer-servicio.html',
-        'trabajar':'ofrecer-servicio.html','servicio':'oferta-demanda.html','oferta':'oferta-demanda.html',
-        'demanda':'oferta-demanda.html','perfil':'perfil-usuario.html','cobro':'perfil-usuario.html',
-        'pago':'perfil-usuario.html','paypal':'perfil-usuario.html','normas':'normas-seguridad.html',
-        'seguridad':'normas-seguridad.html','privacidad':'politica-privacidad.html','ley':'ley-articulo-1257.html',
-        'legal':'ley-articulo-1257.html','contacto':'contacto.html','lira':'acceso-lira.html','iniciar':'login.html'
-      };
-      for (const [palabra, ruta] of Object.entries(rutas)) {
-        if (termino.includes(palabra)) { window.location.href = ruta; return; }
-      }
-      alert('🔍 Buscando: "' + termino + '"');
-      window.location.href = 'oferta-demanda.html?busqueda=' + encodeURIComponent(termino);
-    }
-    function cambiarIdioma(codigo) {
-      localStorage.setItem('idioma-dimon', codigo);
-      alert('✅ Idioma cambiado.');
-    }
-    window.onload = function() {
-      const guardado = localStorage.getItem('idioma-dimon');
-      if (guardado) document.querySelector('.selector-idioma').value = guardado;
-    };
-  </script>
-</body>
-</html>
+      padding: 0 1.5rem; border: 1px solid rgba(0,204,255,0.5);
+      border-radius: 0 12px 12px 0; background: rgba(0,204,255,0.35);
+      color: #fff; font-size
