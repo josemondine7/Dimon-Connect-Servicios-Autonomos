@@ -1,37 +1,115 @@
 <!DOCTYPE html>
 <html lang="es">
-<head><!-- === SISTEMA DE IDIOMA GLOBAL — PEGAR EN TODAS LAS PÁGINAS === -->
+<head><!-- === SISTEMA DE IDIOMA GLOBAL — TRADUCE TODO AUTOMÁTICAMENTE === -->
 <script>
 const traducciones = {
-  es: { volver:"Volver", inicio:"Inicio", buscar:"Buscar", ofertaDemanda:"Oferta y Demanda", solicitarServicio:"Solicitar un servicio", iniciarSesion:"Iniciar sesión", inscribirse:"Inscribirse", descargarApp:"Descargar aplicación", normas:"Normas y Seguridad", privacidad:"Privacidad", terminos:"Términos de Servicio", cookies:"Cookies", contacto:"Contacto", buscarPlaceholder:"Buscar servicios, personas, ayuda...", tituloPrivacidad:"Política de Privacidad", infoRecopilamos:"Información que recopilamos", usoInfo:"Uso de la información", proteccionDatos:"Protección de los datos", derechosUsuario:"Derechos del usuario", modificaciones:"Modificaciones" },
-  en: { volver:"Back", inicio:"Home", buscar:"Search", ofertaDemanda:"Offer & Demand", solicitarServicio:"Request a service", iniciarSesion:"Log in", inscribirse:"Sign up", descargarApp:"Download app", normas:"Rules & Security", privacidad:"Privacy", terminos:"Terms of Service", cookies:"Cookies", contacto:"Contact", buscarPlaceholder:"Search services, people, help...", tituloPrivacidad:"Privacy Policy", infoRecopilamos:"Information we collect", usoInfo:"Use of information", proteccionDatos:"Data protection", derechosUsuario:"User rights", modificaciones:"Changes" },
-  pt: { volver:"Voltar", inicio:"Início", buscar:"Buscar", ofertaDemanda:"Oferta e Demanda", solicitarServicio:"Solicitar serviço", iniciarSesion:"Entrar", inscribirse:"Cadastrar-se", descargarApp:"Baixar aplicativo", normas:"Regras e Segurança", privacidad:"Privacidade", terminos:"Termos de Serviço", cookies:"Cookies", contacto:"Contato", buscarPlaceholder:"Buscar serviços, pessoas, ajuda...", tituloPrivacidad:"Política de Privacidade", infoRecopilamos:"Informações que coletamos", usoInfo:"Uso das informações", proteccionDatos:"Proteção de dados", derechosUsuario:"Direitos do usuário", modificaciones:"Alterações" },
-  zh: { volver:"返回", inicio:"首页", buscar:"搜索", ofertaDemanda:"供应与需求", solicitarServicio:"请求服务", iniciarSesion:"登录", inscribirse:"注册", descargarApp:"下载应用", normas:"规则与安全", privacidad:"隐私", terminos:"服务条款", cookies:"Cookie", contacto:"联系我们", buscarPlaceholder:"搜索服务、人员、帮助...", tituloPrivacidad:"隐私政策", infoRecopilamos:"我们收集的信息", usoInfo:"信息的使用", proteccionDatos:"数据保护", derechosUsuario:"用户权利", modificaciones:"修改" },
-  fr: { volver:"Retour", inicio:"Accueil", buscar:"Rechercher", ofertaDemanda:"Offres et Demandes", solicitarServicio:"Demander un service", iniciarSesion:"Se connecter", inscribirse:"S'inscrire", descargarApp:"Télécharger l'appli", normas:"Règles et Sécurité", privacidad:"Confidentialité", terminos:"Conditions d'utilisation", cookies:"Cookies", contacto:"Contact", buscarPlaceholder:"Rechercher services, personnes, aide...", tituloPrivacidad:"Politique de confidentialité", infoRecopilamos:"Informations que nous collectons", usoInfo:"Utilisation des informations", proteccionDatos:"Protection des données", derechosUsuario:"Droits de l'utilisateur", modificaciones:"Modifications" },
-  de: { volver:"Zurück", inicio:"Startseite", buscar:"Suchen", ofertaDemanda:"Angebot & Nachfrage", solicitarServicio:"Dienst anfordern", iniciarSesion:"Anmelden", inscribirse:"Registrieren", descargarApp:"App herunterladen", normas:"Regeln & Sicherheit", privacidad:"Datenschutz", terminos:"Nutzungsbedingungen", cookies:"Cookies", contacto:"Kontakt", buscarPlaceholder:"Dienste, Personen, Hilfe suchen...", tituloPrivacidad:"Datenschutzrichtlinie", infoRecopilamos:"Erhobene Informationen", usoInfo:"Verwendung der Informationen", proteccionDatos:"Datenschutz", derechosUsuario:"Rechte des Nutzers", modificaciones:"Änderungen" },
-  ja: { volver:"戻る", inicio:"ホーム", buscar:"検索", ofertaDemanda:"オファーと需要", solicitarServicio:"サービスを依頼", iniciarSesion:"ログイン", inscribirse:"新規登録", descargarApp:"アプリをダウンロード", normas:"規則と安全性", privacidad:"プライバシー", terminos:"利用規約", cookies:"クッキー", contacto:"お問い合わせ", buscarPlaceholder:"サービス、人物、ヘルプを検索...", tituloPrivacidad:"プライバシーポリシー", infoRecopilamos:"収集する情報", usoInfo:"情報の利用", proteccionDatos:"データ保護", derechosUsuario:"ユーザーの権利", modificaciones:"変更" },
-  ar: { volver:"رجوع", inicio:"الرئيسية", buscar:"بحث", ofertaDemanda:"العرض والطلب", solicitarServicio:"طلب خدمة", iniciarSesion:"تسجيل الدخول", inscribirse:"اشتراك", descargarApp:"تحميل التطبيق", normas:"القواعد والأمان", privacidad:"الخصوصية", terminos:"شروط الخدمة", cookies:"ملفات تعريف الارتباط", contacto:"اتصل بنا", buscarPlaceholder:"البحث عن خدمات، أشخاص، مساعدة...", tituloPrivacidad:"سياسة الخصوصية", infoRecopilamos:"المعلومات التي نجمعها", usoInfo:"استخدام المعلومات", proteccionDatos:"حماية البيانات", derechosUsuario:"حقوق المستخدم", modificaciones:"التعديلات" },
-  ru: { volver:"Назад", inicio:"Главная", buscar:"Поиск", ofertaDemanda:"Предложения и Спрос", solicitarServicio:"Запросить услугу", iniciarSesion:"Войти", inscribirse:"Регистрация", descargarApp:"Скачать приложение", normas:"Правила и безопасность", privacidad:"Конфиденциальность", terminos:"Условия использования", cookies:"Файлы cookie", contacto:"Контакты", buscarPlaceholder:"Поиск услуг, людей, помощи...", tituloPrivacidad:"Политика конфиденциальности", infoRecopilamos:"Собираемая информация", usoInfo:"Использование информации", proteccionDatos:"Защита данных", derechosUsuario:"Права пользователя", modificaciones:"Изменения" }
+  es: { volver:"Volver", tituloPrivacidad:"Política de Privacidad", infoRecopilamos:"Información que recopilamos", usoInfo:"Uso de la información", proteccionDatos:"Protección de los datos", derechosUsuario:"Derechos del usuario", modificaciones:"Modificaciones" },
+  en: { volver:"Back", tituloPrivacidad:"Privacy Policy", infoRecopilamos:"Information we collect", usoInfo:"Use of information", proteccionDatos:"Data protection", derechosUsuario:"User rights", modificaciones:"Changes" },
+  pt: { volver:"Voltar", tituloPrivacidad:"Política de Privacidade", infoRecopilamos:"Informações que coletamos", usoInfo:"Uso das informações", proteccionDatos:"Proteção de dados", derechosUsuario:"Direitos do usuário", modificaciones:"Alterações" },
+  zh: { volver:"返回", tituloPrivacidad:"隐私政策", infoRecopilamos:"我们收集的信息", usoInfo:"信息的使用", proteccionDatos:"数据保护", derechosUsuario:"用户权利", modificaciones:"修改" },
+  fr: { volver:"Retour", tituloPrivacidad:"Politique de confidentialité", infoRecopilamos:"Informations que nous collectons", usoInfo:"Utilisation des informations", proteccionDatos:"Protection des données", derechosUsuario:"Droits de l'utilisateur", modificaciones:"Modifications" },
+  de: { volver:"Zurück", tituloPrivacidad:"Datenschutzrichtlinie", infoRecopilamos:"Erhobene Informationen", usoInfo:"Verwendung der Informationen", proteccionDatos:"Datenschutz", derechosUsuario:"Rechte des Nutzers", modificaciones:"Änderungen" },
+  ja: { volver:"戻る", tituloPrivacidad:"プライバシーポリシー", infoRecopilamos:"収集する情報", usoInfo:"情報の利用", proteccionDatos:"データ保護", derechosUsuario:"ユーザーの権利", modificaciones:"変更" },
+  ar: { volver:"رجوع", tituloPrivacidad:"سياسة الخصوصية", infoRecopilamos:"المعلومات التي نجمعها", usoInfo:"استخدام المعلومات", proteccionDatos:"حماية البيانات", derechosUsuario:"حقوق المستخدم", modificaciones:"التعديلات" },
+  ru: { volver:"Назад", tituloPrivacidad:"Политика конфиденциальности", infoRecopilamos:"Собираемая информация", usoInfo:"Использование информации", proteccionDatos:"Защита данных", derechosUsuario:"Права пользователя", modificaciones:"Изменения" }
 };
+
+const textosCompletos = {
+  es: {
+    infoRecopilamosTexto: "Recopilamos solamente los datos necesarios para que la plataforma funcione correctamente: nombre, correo electrónico, país, ciudad y la información que cada persona decide publicar sobre los servicios que ofrece o solicita.",
+    infoRecopilamosTexto2: "No recopilamos información personal sin consentimiento. No vendemos ni compartimos datos personales con terceros con fines comerciales.",
+    usoInfoTexto: "Los datos se utilizan para conectar a las personas, mostrar ubicación, gestionar cuentas, procesar pagos y enviar notificaciones relacionadas con el servicio. La información de pago se procesa a través de PayPal y no se almacena en esta plataforma.",
+    proteccionDatosTexto: "La información se transmite de forma segura y se almacena con medidas de protección. Sin embargo, ninguna transmisión por internet es completamente infalible, por lo que cada usuario también debe cuidar sus propias credenciales de acceso.",
+    derechosUsuarioTexto: "Cualquier persona puede solicitar ver, corregir o eliminar sus datos personales en cualquier momento. Para hacerlo, debe enviar un mensaje desde la página de Contacto.",
+    modificacionesTexto: "Esta política puede actualizarse en el futuro. Los cambios se publican en esta misma página. El uso continuado de la plataforma después de los cambios implica su aceptación."
+  },
+  en: {
+    infoRecopilamosTexto: "We only collect the data necessary for the platform to work properly: name, email, country, city, and the information each person chooses to publish about the services they offer or request.",
+    infoRecopilamosTexto2: "We do not collect personal information without consent. We do not sell or share personal data with third parties for commercial purposes.",
+    usoInfoTexto: "Data is used to connect people, show location, manage accounts, process payments, and send service-related notifications. Payment information is processed through PayPal and is not stored on this platform.",
+    proteccionDatosTexto: "Information is transmitted securely and stored with protection measures. However, no internet transmission is entirely infallible, so each user must also safeguard their own access credentials.",
+    derechosUsuarioTexto: "Anyone may request to view, correct, or delete their personal data at any time. To do so, send a message from the Contact page.",
+    modificacionesTexto: "This policy may be updated in the future. Changes will be posted on this page. Continued use of the platform after changes implies acceptance."
+  },
+  pt: {
+    infoRecopilamosTexto: "Coletamos apenas os dados necessários para o funcionamento da plataforma: nome, e-mail, país, cidade e as informações que cada pessoa decide publicar sobre os serviços que oferece ou solicita.",
+    infoRecopilamosTexto2: "Não coletamos informações pessoais sem consentimento. Não vendemos nem compartilhamos dados pessoais com terceiros para fins comerciais.",
+    usoInfoTexto: "Os dados são usados para conectar pessoas, mostrar localização, gerenciar contas, processar pagamentos e enviar notificações. As informações de pagamento são processadas pelo PayPal e não são armazenadas nesta plataforma.",
+    proteccionDatosTexto: "As informações são transmitidas de forma segura. Nenhuma transmissão pela internet é totalmente infalível, portanto cada usuário deve proteger seus próprios dados de acesso.",
+    derechosUsuarioTexto: "Qualquer pessoa pode solicitar a consulta, correção ou exclusão de seus dados pessoais a qualquer momento. Basta enviar uma mensagem pela página de Contato.",
+    modificacionesTexto: "Esta política pode ser atualizada. As alterações serão publicadas nesta página. O uso contínuo da plataforma após as alterações implica sua aceitação."
+  },
+  zh: {
+    infoRecopilamosTexto: "我们仅收集平台正常运行所需的必要数据：姓名、电子邮箱、国家、城市，以及用户自愿发布的服务相关信息。",
+    infoRecopilamosTexto2: "未经同意不收集个人信息。不会出售或向第三方共享个人数据用于商业目的。",
+    usoInfoTexto: "数据用于用户匹配、位置展示、账户管理、支付处理和通知发送。支付信息通过PayPal处理，本平台不存储。",
+    proteccionDatosTexto: "信息传输采用安全加密方式。但互联网传输无法保证绝对安全，用户需妥善保管自身账号密码。",
+    derechosUsuarioTexto: "用户可随时申请查看、更正或删除个人数据。请通过联系页面提交申请。",
+    modificacionesTexto: "本政策可能更新。更新后将在本页发布。继续使用平台即表示接受更新后的条款。"
+  },
+  fr: {
+    infoRecopilamosTexto: "Nous collectons uniquement les données nécessaires au fonctionnement de la plateforme : nom, e-mail, pays, ville et les informations publiées sur vos services.",
+    infoRecopilamosTexto2: "Aucune collecte sans consentement. Nous ne vendons ni ne partageons pas vos données à des fins commerciales.",
+    usoInfoTexto: "Les données servent à la mise en relation, à la gestion des comptes et des paiements via PayPal. Aucune donnée bancaire n'est stockée ici.",
+    proteccionDatosTexto: "Les données sont transmises de manière sécurisée. Aucune transmission internet n'étant totalement sûre, protégez vos identifiants.",
+    derechosUsuarioTexto: "Vous pouvez demander l'accès, la correction ou la suppression de vos données à tout moment via la page Contact.",
+    modificacionesTexto: "Cette politique peut évoluer. Les modifications sont publiées ici. L'utilisation continue du service vaut acceptation."
+  },
+  de: {
+    infoRecopilamosTexto: "Wir erheben nur notwendige Daten: Name, E-Mail, Land, Stadt und Informationen zu Ihren Dienstleistungen.",
+    infoRecopilamosTexto2: "Keine Datenerhebung ohne Zustimmung. Kein Verkauf oder Handel mit Ihren Daten.",
+    usoInfoTexto: "Daten werden für Vermittlung, Kontoverwaltung und Zahlungsabwicklung (PayPal) verwendet. Keine Speicherung von Zahlungsdaten.",
+    proteccionDatosTexto: "Daten werden sicher übertragen. Keine Internetübertragung ist absolut sicher – schützen Sie Ihre Zugangsdaten.",
+    derechosUsuarioTexto: "Sie können jederzeit Auskunft, Berichtigung oder Löschung Ihrer Daten verlangen. Nutzen Sie die Kontaktseite.",
+    modificacionesTexto: "Diese Richtlinie kann aktualisiert werden. Änderungen werden hier veröffentlicht. Weitere Nutzung gilt als Zustimmung."
+  },
+  ja: {
+    infoRecopilamosTexto: "必要最小限の情報のみを収集します：氏名、メールアドレス、国、地域、サービスに関する公開情報。",
+    infoRecopilamosTexto2: "同意なしに個人情報を収集することはありません。第三者への販売や商業利用もいたしません。",
+    usoInfoTexto: "データはユーザー同士のマッチング、アカウント管理、決済処理に使用されます。決済情報はPayPal経由で処理され、当サイトには保存されません。",
+    proteccionDatosTexto: "データは安全に送信されますが、インターネット上の通信にはリスクがあります。アカウント情報は各自で管理してください。",
+    derechosUsuarioTexto: "いつでも個人情報の閲覧、修正、削除を請求できます。お問い合わせページよりご連絡ください。",
+    modificacionesTexto: "この方針は更新される場合があります。変更は本ページに掲載されます。継続利用は変更点への同意を意味します。"
+  },
+  ar: {
+    infoRecopilamosTexto: "نجمع فقط البيانات اللازمة لعمل المنصة: الاسم والبريد الإلكتروني والبلد والمدينة والمعلومات التي ينشرها المستخدمون عن خدماتهم.",
+    infoRecopilamosTexto2: "لا نجمع معلومات شخصية دون موافقة. ولا نبيع أو نشارك البيانات مع أطراف ثالثة لأغراض تجارية.",
+    usoInfoTexto: "البيانات تُستخدم للتواصل بين المستخدمين وإدارة الحسابات والدفع عبر PayPal. لا نحتفظ ببيانات الدفع.",
+    proteccionDatosTexto: "المعلومات تُنقل بشكل آمن. لكن لا يوجد ضمان تام لأمان الإنترنت. احرصوا على حماية بيانات الدخول الخاصة بكم.",
+    derechosUsuarioTexto: "يمكنكم طلب مراجعة أو تصحيح أو حذف بياناتكم الشخصية في أي وقت عبر صفحة التواصل.",
+    modificacionesTexto: "قد تُحدث هذه السياسة. التغييرات تُنشر هنا. استمراركم في استخدام المنصة يعني الموافقة على التحديثات."
+  },
+  ru: {
+    infoRecopilamosTexto: "Мы собираем только необходимые данные: имя, email, страна, город и информация об услугах.",
+    infoRecopilamosTexto2: "Сбор данных только с согласия. Мы не продаем и не передаем личные данные третьим лицам.",
+    usoInfoTexto: "Данные используются для связи, управления аккаунтами и платежей через PayPal. Платежные данные не хранятся.",
+    proteccionDatosTexto: "Данные передаются по защищенному каналу. Интернет не гарантирует абсолютную безопасность — берегите свои пароли.",
+    derechosUsuarioTexto: "Вы можете в любое время запросить доступ, исправление или удаление ваших данных через страницу Контакты.",
+    modificacionesTexto: "Политика может обновляться. Изменения публикуются здесь. Продолжение использования означает согласие."
+  }
+};
+
 function aplicarIdioma() {
   const idioma = localStorage.getItem('idiomaDimon') || 'es';
   const t = traducciones[idioma] || traducciones.es;
+  const textos = textosCompletos[idioma] || textosCompletos.es;
   document.documentElement.lang = idioma;
   document.querySelectorAll('[data-txt]').forEach(el => { const c=el.dataset.txt; if(t[c])el.textContent=t[c]; });
-  document.querySelectorAll('[data-txt-ph]').forEach(el => { const c=el.dataset.txtPh; if(t[c])el.placeholder=t[c]; });
+  document.getElementById('texto-ir1').textContent = textos.infoRecopilamosTexto;
+  document.getElementById('texto-ir2').textContent = textos.infoRecopilamosTexto2;
+  document.getElementById('texto-ui').textContent = textos.usoInfoTexto;
+  document.getElementById('texto-pd').textContent = textos.proteccionDatosTexto;
+  document.getElementById('texto-du').textContent = textos.derechosUsuarioTexto;
+  document.getElementById('texto-m').textContent = textos.modificacionesTexto;
   const sel = document.getElementById('selector-idioma');
   if (sel) sel.value = idioma;
 }
 document.addEventListener('DOMContentLoaded', aplicarIdioma);
 </script>
 
-<!-- === SELECTOR DE IDIOMA — APARECE ARRIBA A LA DERECHA === -->
+<!-- === SELECTOR DE IDIOMA === -->
 <div style="position:fixed; top:12px; right:12px; z-index:9999;">
-  <select id="selector-idioma" style="
-    padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.3);
-    background: rgba(0,30,60,0.9); color: #fff; font-size: 13px; cursor: pointer;
-    outline: none;
-  " onchange="localStorage.setItem('idiomaDimon', this.value); aplicarIdioma();">
+  <select id="selector-idioma" style="padding:6px 10px; border-radius:8px; border:1px solid rgba(255,255,255,0.3); background:rgba(0,30,60,0.9); color:#fff; font-size:13px; cursor:pointer; outline:none;" onchange="localStorage.setItem('idiomaDimon', this.value); aplicarIdioma();">
     <option value="es">🇪🇸 Español</option>
     <option value="en">🇬🇧 English</option>
     <option value="pt">🇧🇷 Português</option>
@@ -43,7 +121,6 @@ document.addEventListener('DOMContentLoaded', aplicarIdioma);
     <option value="ru">🇷🇺 Русский</option>
   </select>
 </div>
-<!-- ====================================================== -->
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -64,8 +141,6 @@ document.addEventListener('DOMContentLoaded', aplicarIdioma);
     }
     h2 {font-size:1.2rem; color:#00ccff; margin-bottom:1rem;}
     p {color:#e0f0ff; margin-bottom:1rem;}
-    ul {padding-left:1.5rem; margin-bottom:1rem; color:#e0f0ff;}
-    li {margin-bottom:0.5rem;}
   </style>
 </head>
 <body>
@@ -74,28 +149,28 @@ document.addEventListener('DOMContentLoaded', aplicarIdioma);
 
   <div class="caja">
     <h2 data-txt="infoRecopilamos">Información que recopilamos</h2>
-    <p>Recopilamos solamente los datos necesarios para que la plataforma funcione correctamente: nombre, correo electrónico, país, ciudad y la información que cada persona decide publicar sobre los servicios que ofrece o solicita.</p>
-    <p>No recopilamos información personal sin consentimiento. No vendemos ni compartimos datos personales con terceros con fines comerciales.</p>
+    <p id="texto-ir1">Recopilamos solamente los datos necesarios para que la plataforma funcione correctamente: nombre, correo electrónico, país, ciudad y la información que cada persona decide publicar sobre los servicios que ofrece o solicita.</p>
+    <p id="texto-ir2">No recopilamos información personal sin consentimiento. No vendemos ni compartimos datos personales con terceros con fines comerciales.</p>
   </div>
 
   <div class="caja">
     <h2 data-txt="usoInfo">Uso de la información</h2>
-    <p>Los datos se utilizan para conectar a las personas, mostrar ubicación, gestionar cuentas, procesar pagos y enviar notificaciones relacionadas con el servicio. La información de pago se procesa a través de PayPal y no se almacena en esta plataforma.</p>
+    <p id="texto-ui">Los datos se utilizan para conectar a las personas, mostrar ubicación, gestionar cuentas, procesar pagos y enviar notificaciones relacionadas con el servicio. La información de pago se procesa a través de PayPal y no se almacena en esta plataforma.</p>
   </div>
 
   <div class="caja">
     <h2 data-txt="proteccionDatos">Protección de los datos</h2>
-    <p>La información se transmite de forma segura y se almacena con medidas de protección. Sin embargo, ninguna transmisión por internet es completamente infalible, por lo que cada usuario también debe cuidar sus propias credenciales de acceso.</p>
+    <p id="texto-pd">La información se transmite de forma segura y se almacena con medidas de protección. Sin embargo, ninguna transmisión por internet es completamente infalible, por lo que cada usuario también debe cuidar sus propias credenciales de acceso.</p>
   </div>
 
   <div class="caja">
     <h2 data-txt="derechosUsuario">Derechos del usuario</h2>
-    <p>Cualquier persona puede solicitar ver, corregir o eliminar sus datos personales en cualquier momento. Para hacerlo, debe enviar un mensaje desde la página de Contacto.</p>
+    <p id="texto-du">Cualquier persona puede solicitar ver, corregir o eliminar sus datos personales en cualquier momento. Para hacerlo, debe enviar un mensaje desde la página de Contacto.</p>
   </div>
 
   <div class="caja">
     <h2 data-txt="modificaciones">Modificaciones</h2>
-    <p>Esta política puede actualizarse en el futuro. Los cambios se publican en esta misma página. El uso continuado de la plataforma después de los cambios implica su aceptación.</p>
+    <p id="texto-m">Esta política puede actualizarse en el futuro. Los cambios se publican en esta misma página. El uso continuado de la plataforma después de los cambios implica su aceptación.</p>
   </div>
 
 </body>
