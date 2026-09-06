@@ -153,7 +153,7 @@
 
   <div class="boton-lira" id="botonLira" title="Acceso a Lira"></div>
 
-  <!-- ===== BARRA DE BÚSQUEDA → ARRIBA, CENTRADA, MÁS CHICA ===== -->
+  <!-- ===== BARRA DE BÚSQUEDA ===== -->
   <div class="buscador">
     <input type="text" id="input-buscar" placeholder="Buscar servicios, personas, ayuda..." />
     <button type="button" id="btn-buscar">🔍</button>
@@ -173,9 +173,9 @@
 
   <main class="contenedor">
     <div class="botones-principales">
+      <a href="brindar-servicio.html" class="boton" id="btn-brindar">Brindar mi servicio</a>
       <a href="oferta-demanda.html" class="boton" id="btn-oferta-demanda">Oferta y Demanda</a>
-      <a href="solicitar-servicio.html" class="boton" id="btn-solicitar">Solicitar un servicio</a>
-      <a href="login.html" class="boton" id="btn-login">Iniciar sesión / Inscribirse</a>
+      <a href="solicitar-servicio.html" class="boton" id="btn-solicitar">Solicitar servicio</a>
     </div>
   </main>
 
@@ -190,12 +190,12 @@
   </nav>
 
 <script>
-  // TRADUCCIONES — QUEDAN IGUALES
+  // TRADUCCIONES ACTUALIZADAS — NOMBRES NUEVOS
   const traducciones = {
     es: { 
+      brindar: "Brindar mi servicio",
       ofertaDemanda: "Oferta y Demanda", 
-      solicitar: "Solicitar un servicio", 
-      iniciarSesion: "Iniciar sesión / Inscribirse", 
+      solicitar: "Solicitar servicio", 
       descargar: "Descargar aplicación", 
       buscarPlaceholder: "Buscar servicios, personas, ayuda...", 
       normas: "Normas y Seguridad", 
@@ -206,9 +206,9 @@
       liralt: "Acceso a Lira" 
     },
     en: { 
-      ofertaDemanda: "Offer & Demand", 
-      solicitar: "Request a service", 
-      iniciarSesion: "Log in / Sign up", 
+      brindar: "Offer My Service",
+      ofertaDemanda: "Offers & Requests", 
+      solicitar: "Request a Service", 
       descargar: "Download app", 
       buscarPlaceholder: "Search services, people, help...", 
       normas: "Rules & Security", 
@@ -219,9 +219,9 @@
       liralt: "Access Lira" 
     },
     pt: { 
+      brindar: "Oferecer meu serviço",
       ofertaDemanda: "Oferta e Demanda", 
-      solicitar: "Solicitar um serviço", 
-      iniciarSesion: "Entrar / Cadastrar-se", 
+      solicitar: "Solicitar serviço", 
       descargar: "Baixar aplicativo", 
       buscarPlaceholder: "Buscar serviços, pessoas, ajuda...", 
       normas: "Regras e Segurança", 
@@ -232,9 +232,9 @@
       liralt: "Acessar Lira" 
     },
     zh: { 
+      brindar: "提供我的服务",
       ofertaDemanda: "供应与需求", 
       solicitar: "请求服务", 
-      iniciarSesion: "登录 / 注册", 
       descargar: "下载应用", 
       buscarPlaceholder: "搜索服务、人员、帮助...", 
       normas: "规则与安全", 
@@ -245,9 +245,9 @@
       liralt: "访问Lira" 
     },
     fr: { 
+      brindar: "Offrir mon service",
       ofertaDemanda: "Offres et Demandes", 
       solicitar: "Demander un service", 
-      iniciarSesion: "Se connecter / S'inscrire", 
       descargar: "Télécharger l'appli", 
       buscarPlaceholder: "Rechercher services, personnes, aide...", 
       normas: "Règles et Sécurité", 
@@ -258,9 +258,9 @@
       liralt: "Accéder à Lira" 
     },
     de: { 
+      brindar: "Meinen Dienst anbieten",
       ofertaDemanda: "Angebot & Nachfrage", 
       solicitar: "Dienst anfordern", 
-      iniciarSesion: "Anmelden / Registrieren", 
       descargar: "App herunterladen", 
       buscarPlaceholder: "Dienste, Personen, Hilfe suchen...", 
       normas: "Regeln & Sicherheit", 
@@ -271,9 +271,9 @@
       liralt: "Lira öffnen" 
     },
     ja: { 
+      brindar: "サービスを提供する",
       ofertaDemanda: "オファーと需要", 
       solicitar: "サービスを依頼", 
-      iniciarSesion: "ログイン / 新規登録", 
       descargar: "アプリをダウンロード", 
       buscarPlaceholder: "サービス、人物、ヘルプを検索...", 
       normas: "規則と安全性", 
@@ -284,9 +284,9 @@
       liralt: "Liraにアクセス" 
     },
     ar: { 
+      brindar: "تقديم خدمتي",
       ofertaDemanda: "العرض والطلب", 
       solicitar: "طلب خدمة", 
-      iniciarSesion: "تسجيل الدخول / اشتراك", 
       descargar: "تحميل التطبيق", 
       buscarPlaceholder: "البحث عن خدمات، أشخاص، مساعدة...", 
       normas: "القواعد والأمان", 
@@ -297,9 +297,9 @@
       liralt: "الوصول إلى ليرا" 
     },
     hi: { 
+      brindar: "मेरी सेवा प्रदान करें",
       ofertaDemanda: "ऑफ़र और मांग", 
       solicitar: "सेवा का अनुरोध करें", 
-      iniciarSesion: "लॉग इन / पंजीकरण करें", 
       descargar: "ऐप डाउनलोड करें", 
       buscarPlaceholder: "सेवाएं, लोग, मददूं खोजें...", 
       normas: "नियम और सुरक्षा", 
@@ -310,9 +310,9 @@
       liralt: "लीरा तक पहुंच" 
     },
     bn: { 
+      brindar: "আমার সেবা প্রদান করুন",
       ofertaDemanda: "অফার ও চাহিদা", 
       solicitar: "সেবা অনুরোধ করুন", 
-      iniciarSesion: "লগ ইন / নিবন্ধন করুন", 
       descargar: "অ্যাপ ডাউনলোড করুন", 
       buscarPlaceholder: "সেবা, ব্যক্তি, সাহায্য খুঁজুন...", 
       normas: "নিয়ম ও নিরাপত্তা", 
@@ -323,9 +323,9 @@
       liralt: "লীরায় প্রবেশ করুন" 
     },
     ur: { 
+      brindar: "میری سروس پیش کریں",
       ofertaDemanda: "پیشکش اور طلب", 
       solicitar: "سروس کی درخواست کریں", 
-      iniciarSesion: "لاگ ان / رجسٹر ہوں", 
       descargar: "ایپ ڈاؤن لوڈ کریں", 
       buscarPlaceholder: "سروسز، لوگ، مدد تلاش کریں...", 
       normas: "قواعد اور سیکیورٹی", 
@@ -336,9 +336,9 @@
       liralt: "لیرا تک رسائی" 
     },
     id: { 
+      brindar: "Tawarkan layanan saya",
       ofertaDemanda: "Penawaran & Permintaan", 
       solicitar: "Minta layanan", 
-      iniciarSesion: "Masuk / Daftar", 
       descargar: "Unduh aplikasi", 
       buscarPlaceholder: "Cari layanan, orang, bantuan...", 
       normas: "Aturan & Keamanan", 
@@ -349,9 +349,9 @@
       liralt: "Akses Lira" 
     },
     tr: { 
+      brindar: "Hizmetimi sun",
       ofertaDemanda: "Teklif & Talep", 
       solicitar: "Hizmet talep et", 
-      iniciarSesion: "Giriş yap / Kayıt ol", 
       descargar: "Uygulamayı indir", 
       buscarPlaceholder: "Hizmet, kişi, yardım ara...", 
       normas: "Kurallar ve Güvenlik", 
@@ -362,9 +362,9 @@
       liralt: "Lira'ya erişim" 
     },
     ru: { 
+      brindar: "Предложить свою услугу",
       ofertaDemanda: "Предложения и Спрос", 
       solicitar: "Запросить услугу", 
-      iniciarSesion: "Войти / Регистрация", 
       descargar: "Скачать приложение", 
       buscarPlaceholder: "Поиск услуг, людей, помощи...", 
       normas: "Правила и безопасность", 
@@ -378,9 +378,9 @@
 
   function cambiarIdioma(idioma) {
     const t = traducciones[idioma] || traducciones.es;
+    document.getElementById('btn-brindar').textContent = t.brindar;
     document.getElementById('btn-oferta-demanda').textContent = t.ofertaDemanda;
     document.getElementById('btn-solicitar').textContent = t.solicitar;
-    document.getElementById('btn-login').textContent = t.iniciarSesion;
     document.getElementById('btn-descargar').textContent = t.descargar;
     document.getElementById('input-buscar').placeholder = t.buscarPlaceholder;
     document.getElementById('link-normas').textContent = t.normas;
@@ -447,9 +447,9 @@
     if (!termino) return;
     
     const rutas = {
+      'brindar': 'brindar-servicio.html',
       'oferta': 'oferta-demanda.html', 'demanda': 'oferta-demanda.html',
       'solicitar': 'solicitar-servicio.html', 'servicio': 'solicitar-servicio.html',
-      'login': 'login.html', 'iniciar': 'login.html', 'inscribirse': 'login.html', 'registro': 'login.html',
       'descargar': 'descarga.html', 'app': 'descarga.html', 'aplicación': 'descarga.html',
       'normas': 'normas-seguridad.html', 'seguridad': 'normas-seguridad.html',
       'privacidad': 'politica-privacidad.html', 'terminos': 'terminos-servicio.html',
