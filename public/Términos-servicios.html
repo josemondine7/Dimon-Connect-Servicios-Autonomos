@@ -1,36 +1,120 @@
 <!DOCTYPE html>
 <html lang="es">
-<head><!-- === SISTEMA DE IDIOMA GLOBAL — PEGAR EN TODAS LAS PÁGINAS === -->
+<head><!-- === SISTEMA DE IDIOMA GLOBAL — TRADUCE TODO AUTOMÁTICAMENTE === -->
 <script>
 const traducciones = {
-  es: { volver:"Volver", inicio:"Inicio", buscar:"Buscar", ofertaDemanda:"Oferta y Demanda", solicitarServicio:"Solicitar un servicio", iniciarSesion:"Iniciar sesión", inscribirse:"Inscribirse", descargarApp:"Descargar aplicación", normas:"Normas y Seguridad", privacidad:"Privacidad", terminos:"Términos de Servicio", cookies:"Cookies", contacto:"Contacto", buscarPlaceholder:"Buscar servicios, personas, ayuda..." },
-  en: { volver:"Back", inicio:"Home", buscar:"Search", ofertaDemanda:"Offer & Demand", solicitarServicio:"Request a service", iniciarSesion:"Log in", inscribirse:"Sign up", descargarApp:"Download app", normas:"Rules & Security", privacidad:"Privacy", terminos:"Terms of Service", cookies:"Cookies", contacto:"Contact", buscarPlaceholder:"Search services, people, help..." },
-  pt: { volver:"Voltar", inicio:"Início", buscar:"Buscar", ofertaDemanda:"Oferta e Demanda", solicitarServicio:"Solicitar serviço", iniciarSesion:"Entrar", inscribirse:"Cadastrar-se", descargarApp:"Baixar aplicativo", normas:"Regras e Segurança", privacidad:"Privacidade", terminos:"Termos de Serviço", cookies:"Cookies", contacto:"Contato", buscarPlaceholder:"Buscar serviços, pessoas, ajuda..." },
-  zh: { volver:"返回", inicio:"首页", buscar:"搜索", ofertaDemanda:"供应与需求", solicitarServicio:"请求服务", iniciarSesion:"登录", inscribirse:"注册", descargarApp:"下载应用", normas:"规则与安全", privacidad:"隐私", terminos:"服务条款", cookies:"Cookie", contacto:"联系我们", buscarPlaceholder:"搜索服务、人员、帮助..." },
-  fr: { volver:"Retour", inicio:"Accueil", buscar:"Rechercher", ofertaDemanda:"Offres et Demandes", solicitarServicio:"Demander un service", iniciarSesion:"Se connecter", inscribirse:"S'inscrire", descargarApp:"Télécharger l'appli", normas:"Règles et Sécurité", privacidad:"Confidentialité", terminos:"Conditions d'utilisation", cookies:"Cookies", contacto:"Contact", buscarPlaceholder:"Rechercher services, personnes, aide..." },
-  de: { volver:"Zurück", inicio:"Startseite", buscar:"Suchen", ofertaDemanda:"Angebot & Nachfrage", solicitarServicio:"Dienst anfordern", iniciarSesion:"Anmelden", inscribirse:"Registrieren", descargarApp:"App herunterladen", normas:"Regeln & Sicherheit", privacidad:"Datenschutz", terminos:"Nutzungsbedingungen", cookies:"Cookies", contacto:"Kontakt", buscarPlaceholder:"Dienste, Personen, Hilfe suchen..." },
-  ja: { volver:"戻る", inicio:"ホーム", buscar:"検索", ofertaDemanda:"オファーと需要", solicitarServicio:"サービスを依頼", iniciarSesion:"ログイン", inscribirse:"新規登録", descargarApp:"アプリをダウンロード", normas:"規則と安全性", privacidad:"プライバシー", terminos:"利用規約", cookies:"クッキー", contacto:"お問い合わせ", buscarPlaceholder:"サービス、人物、ヘルプを検索..." },
-  ar: { volver:"رجوع", inicio:"الرئيسية", buscar:"بحث", ofertaDemanda:"العرض والطلب", solicitarServicio:"طلب خدمة", iniciarSesion:"تسجيل الدخول", inscribirse:"اشتراك", descargarApp:"تحميل التطبيق", normas:"القواعد والأمان", privacidad:"الخصوصية", terminos:"شروط الخدمة", cookies:"ملفات تعريف الارتباط", contacto:"اتصل بنا", buscarPlaceholder:"البحث عن خدمات، أشخاص، مساعدة..." },
-  hi: { volver:"वापस", inicio:"होम", buscar:"खोजें", ofertaDemanda:"ऑफ़र और मांग", solicitarServicio:"सेवा का अनुरोध करें", iniciarSesion:"लॉग इन", inscribirse:"पंजीकरण करें", descargarApp:"ऐप डाउनलोड करें", normas:"नियम और सुरक्षा", privacidad:"गोपनीयता", terminos:"सेवा की शर्तें", cookies:"कुकीज़", contacto:"संपर्क करें", buscarPlaceholder:"सेवाएं, लोग, मददूं खोजें..." },
-  bn: { volver:"ফিরে যান", inicio:"হোম", buscar:"খুঁজুন", ofertaDemanda:"অফার ও চাহিদা", solicitarServicio:"সেবা অনুরোধ করুন", iniciarSesion:"লগ ইন", inscribirse:"নিবন্ধন করুন", descargarApp:"অ্যাপ ডাউনলোড করুন", normas:"নিয়ম ও নিরাপত্তা", privacidad:"গোপনীয়তা", terminos:"সেবার শর্তাবলী", cookies:"কুকিজ", contacto:"যোগাযোগ করুন", buscarPlaceholder:"সেবা, ব্যক্তি, সাহায্য খুঁজুন..." },
-  ur: { volver:"واپس", inicio:"ہوم", buscar:"تلاش کریں", ofertaDemanda:"پیشکش اور طلب", solicitarServicio:"سروس کی درخواست کریں", iniciarSesion:"لاگ ان", inscribirse:"رجسٹر ہوں", descargarApp:"ایپ ڈاؤن لوڈ کریں", normas:"قواعد اور سیکیورٹی", privacidad:"رازداری", terminos:"سروس کی شرائط", cookies:"کوکیز", contacto:"رابطہ کریں", buscarPlaceholder:"سروسز، لوگ، مدد تلاش کریں..." },
-  id: { volver:"Kembali", inicio:"Beranda", buscar:"Cari", ofertaDemanda:"Penawaran & Permintaan", solicitarServicio:"Minta layanan", iniciarSesion:"Masuk", inscribirse:"Daftar", descargarApp:"Unduh aplikasi", normas:"Aturan & Keamanan", privacidad:"Privasi", terminos:"Ketentuan Layanan", cookies:"Cookie", contacto:"Kontak", buscarPlaceholder:"Cari layanan, orang, bantuan..." },
-  tr: { volver:"Geri", inicio:"Ana Sayfa", buscar:"Ara", ofertaDemanda:"Teklif & Talep", solicitarServicio:"Hizmet talep et", iniciarSesion:"Giriş yap", inscribirse:"Kayıt ol", descargarApp:"Uygulamayı indir", normas:"Kurallar ve Güvenlik", privacidad:"Gizlilik", terminos:"Hizmet Şartları", cookies:"Çerezler", contacto:"İletişim", buscarPlaceholder:"Hizmet, kişi, yardım ara..." },
-  ru: { volver:"Назад", inicio:"Главная", buscar:"Поиск", ofertaDemanda:"Предложения и Спрос", solicitarServicio:"Запросить услугу", iniciarSesion:"Войти", inscribirse:"Регистрация", descargarApp:"Скачать приложение", normas:"Правила и безопасность", privacidad:"Конфиденциальность", terminos:"Условия использования", cookies:"Файлы cookie", contacto:"Контакты", buscarPlaceholder:"Поиск услуг, людей, помощи..." }
+  es: { volver:"Volver", titulo:"Términos de Servicio", aceptacion:"Aceptación de los términos", uso:"Uso permitido", pagos:"Comisiones y pagos", responsabilidad:"Responsabilidad", modificaciones:"Modificaciones" },
+  en: { volver:"Back", titulo:"Terms of Service", aceptacion:"Acceptance of terms", uso:"Permitted use", pagos:"Fees and payments", responsabilidad:"Liability", modificaciones:"Changes" },
+  pt: { volver:"Voltar", titulo:"Termos de Serviço", aceptacion:"Aceitação dos termos", uso:"Uso permitido", pagos:"Comissões e pagamentos", responsabilidade:"Responsabilidade", modificacoes:"Alterações" },
+  zh: { volver:"返回", titulo:"服务条款", aceptacion:"条款接受", uso:"使用规范", pagos:"佣金与支付", responsabilidad:"责任声明", modificaciones:"条款修改" },
+  fr: { volver:"Retour", titulo:"Conditions d'utilisation", aceptacion:"Acceptation des conditions", uso:"Usage autorisé", pagos:"Commissions et paiements", responsabilite:"Responsabilité", modifications:"Modifications" },
+  de: { volver:"Zurück", titulo:"Nutzungsbedingungen", aceptacion:"Zustimmung zu den Bedingungen", nutzung:"Erlaubte Nutzung", zahlungen:"Gebühren und Zahlungen", haftung:"Haftung", aenderungen:"Änderungen" },
+  ja: { volver:"戻る", titulo:"利用規約", aceptacion:"規約の同意", uso:"利用許可", pagos:"手数料と支払い", sekinin:"責任について", henko:"変更" },
+  ar: { volver:"رجوع", titulo:"شروط الخدمة", aceptacion:"قبول الشروط", uso:"الاستخدام المسموح به", pagos:"العمولات والمدفوعات", masouliya:"المسؤولية", taadil:"التعديلات" },
+  ru: { volver:"Назад", titulo:"Условия использования", aceptacion:"Принятие условий", ispolzovanie:"Разрешённое использование", platezhi:"Комиссии и платежи", otvetstvennost:"Ответственность", izmeneniya:"Изменения" }
 };
+
+const textosCompletos = {
+  es: {
+    aceptacionTexto: "Al utilizar Dimon Connect, el usuario acepta estos términos en su totalidad. Si no está de acuerdo, no debe utilizar la plataforma. Dimon Connect facilita el contacto entre personas que necesitan un servicio y personas que pueden brindarlo, pero no es parte del contrato entre ellas.",
+    usoTexto: "La plataforma solo puede utilizarse para servicios lícitos y legales. Queda prohibido publicar contenido ilegal, falso, ofensivo, discriminatorio o que viole derechos de terceros. Cada usuario se compromete a actuar con honestidad y respeto.",
+    pagosTexto: "Por cada servicio concretado, se aplica una comisión del 5% al prestador del servicio y del 5% al solicitante, ambas sobre el valor total de la mano de obra. El pago se realiza a través de PayPal u otros medios disponibles. Dimon Connect no retiene el dinero, sino que se transfiere directamente entre las partes con el descuento correspondiente.",
+    responsabilidadTexto: "Dimon Connect no garantiza la veracidad de los datos publicados ni el cumplimiento de los acuerdos entre usuarios. Las partes deben verificar la identidad y las condiciones antes de contratar. La plataforma no es empleador ni intermediario del servicio.",
+    modificacionesTexto: "Nos reservamos el derecho de modificar estos términos en cualquier momento. Los cambios entran en vigor desde su publicación en el sitio. El uso continuado de la plataforma implica la aceptación de los nuevos términos."
+  },
+  en: {
+    aceptacionTexto: "By using Dimon Connect, you agree to these terms in full. If you do not agree, do not use the platform. Dimon Connect facilitates contact between people needing services and people providing them, but is not a party to any agreement between them.",
+    usoTexto: "The platform may only be used for lawful services. Publishing illegal, false, offensive, discriminatory content or content violating third-party rights is prohibited. Every user agrees to act honestly and respectfully.",
+    pagosTexto: "For each completed service, a 5% commission applies to the provider and 5% to the requester, both calculated on the total labor value. Payments are processed through PayPal or other available methods. Dimon Connect does not hold funds; money is transferred directly between parties with the corresponding discount applied.",
+    responsabilidadTexto: "Dimon Connect does not guarantee the accuracy of published information or compliance with agreements. Users must verify identities and terms before contracting. The platform is not an employer or service intermediary.",
+    modificacionesTexto: "We reserve the right to modify these terms at any time. Changes take effect upon posting. Continued use of the platform implies acceptance of the updated terms."
+  },
+  pt: {
+    aceptacionTexto: "Ao usar o Dimon Connect, o usuário aceita estes termos na íntegra. Se não concordar, não deve usar a plataforma. O Dimon Connect facilita o contato entre quem precisa e quem oferece um serviço, mas não faz parte do contrato entre as partes.",
+    usoTexto: "A plataforma só pode ser usada para serviços lícitos. É proibido publicar conteúdo ilegal, falso, ofensivo, discriminatório ou que viole direitos de terceiros. Cada usuário compromete-se a agir com honestidade e respeito.",
+    pagosTexto: "Por cada serviço concluído, aplica-se uma comissão de 5% ao prestador e 5% ao solicitante, sobre o valor total do serviço. O pagamento é feito via PayPal ou outros meios disponíveis. O Dimon Connect não retém o dinheiro; a transferência é direta entre as partes com os descontos aplicados.",
+    responsabilidadTexto: "O Dimon Connect não garante a veracidade dos dados nem o cumprimento dos acordos. As partes devem verificar identidade e condições antes de contratar. A plataforma não é empregadora nem intermediária do serviço.",
+    modificacionesTexto: "Reservamo-nos o direito de alterar estes termos a qualquer momento. As alterações entram em vigor com a publicação. O uso contínuo da plataforma implica a aceitação dos novos termos."
+  },
+  zh: {
+    aceptacionTexto: "使用 Dimon Connect 即表示您完全接受本条款。如不同意，请勿使用本平台。本平台仅为供需双方提供对接渠道，并非双方合同的当事方。",
+    usoTexto: "仅限用于合法服务。禁止发布违法、虚假、攻击性、歧视性或侵犯他人权益的内容。所有用户应秉持诚信与尊重原则。",
+    pagosTexto: "每笔服务交易，向服务提供方收取5%佣金，向需求方收取5%佣金，均按服务总额计算。通过PayPal等方式直接支付，平台不代管资金，佣金自动扣除。",
+    responsabilidadTexto: "平台不保证信息的真实性及协议的履行。双方应在交易前核实身份与条件。平台非雇主或服务中介。",
+    modificacionesTexto: "我们保留随时修改本条款的权利。变更一经发布即生效。继续使用平台即表示接受修订后的条款。"
+  },
+  fr: {
+    aceptacionTexto: "L'utilisation de Dimon Connect implique l'acceptation intégrale de ces conditions. En cas de désaccord, cessez d'utiliser la plateforme. La plateforme met en relation les parties mais n'est pas partie au contrat.",
+    usoTexto: "Usage réservé aux services licites. Contenu illégal, faux, offensant ou discriminatoire interdit. Chaque utilisateur s'engage à agir avec honnêteté et respect.",
+    pagosTexto: "Commission de 5% au prestataire et 5% au demandeur, calculée sur le montant total. Paiement via PayPal ou autres moyens. La plateforme ne détient pas les fonds — virement direct avec déduction des commissions.",
+    responsabilidadTexto: "La plateforme ne garantit pas l'exactitude des annonces ni l'exécution des accords. Vérifiez identité et conditions avant de contracter. Dimon Connect n'est ni employeur ni intermédiaire.",
+    modificacionesTexto: "Nous nous réservons le droit de modifier ces conditions. Les modifications prennent effet dès leur publication. L'utilisation continue du service vaut acceptation."
+  },
+  de: {
+    aceptacionTexto: "Mit der Nutzung von Dimon Connect akzeptieren Sie diese Bedingungen vollständig. Bei Nicht-Einverständnis darf die Plattform nicht genutzt werden. Die Plattform vermittelt nur, ist aber nicht Vertragspartner.",
+    usoTexto: "Nur für rechtmäßige Dienste. Illegale, falsche, beleidigende oder diskriminierende Inhalte sind verboten. Jeder Nutzer handelt ehrlich und respektvoll.",
+    pagosTexto: "5% Provision für den Anbieter und 5% für den Auftraggeber, berechnet auf den Gesamtwert. Zahlung über PayPal. Die Plattform hält keine Gelder — Direktüberweisung mit Provisionsabzug.",
+    responsabilidadTexto: "Keine Garantie für Richtigkeit der Angaben oder Vertragserfüllung. Identität und Bedingungen prüfen. Die Plattform ist kein Arbeitgeber und kein Dienstleister.",
+    modificacionesTexto: "Änderungen dieser Bedingungen bleiben vorbehalten. Sie treten mit Veröffentlichung in Kraft. Weitere Nutzung gilt als Zustimmung."
+  },
+  ja: {
+    aceptacionTexto: "Dimon Connect の利用は本規約に同意したものとみなされます。同意されない場合はご利用いただけません。本サービスは仲介のみを行い、契約の当事者にはなりません。",
+    usoTexto: "合法なサービスにのみ利用可。違法、虚偽、攻撃的、差別的なコンテンツの掲載を禁止します。誠実かつ敬意を持ってご利用ください。",
+    pagosTexto: "成立した取引ごとに、サービス提供者に5%、依頼者に5%の手数料が発生します。PayPal等を通じて直接送金され、手数料が差し引かれます。",
+    responsabilidadTexto: "情報の正確性や契約の履行は保証しません。取引前に本人確認と条件確認を行ってください。雇用主でも仲介業者でもありません。",
+    modificacionesTexto: "本規約は随時変更される場合があります。変更後の掲載をもって効力を生じます。継続利用は変更点への同意とみなされます。"
+  },
+  ar: {
+    aceptacionTexto: "باستخدامك لـ Dimon Connect، فإنك توافق على هذه الشروط بالكامل. إن لم توافق، فلا تستخدم المنصة. المنصة تسهل التواصل فقط وليست طرفاً في العقد المبرم بين المستخدمين.",
+    usoTexto: "يُسمح بالاستخدام فقط للخدمات المشروعة. يُمنع نشر محتوى غير قانوني أو كاذب أو مسيء أو تمييزي. يلتزم جميع المستخدمين بالتعامل بصدق واحترام.",
+    pagosTexto: "تُطبق عمولة 5% على مقدم الخدمة و5% على طالب الخدمة من إجمالي قيمة العمل. الدفع عبر PayPal أو غيره. المنصة لا تحتفظ بالأموال؛ تُحول مباشرة مع خصم العمولات.",
+    responsabilidadTexto: "لا تضمن المنصة دقة البيانات أو تنفيذ الاتفاقيات. تحقق من الهوية والشروط قبل التعاقد. المنصة ليست صاحب عمل ولا وسيط للخدمة.",
+    modificacionesTexto: "نحتفظ بالحق في تعديل هذه الشروط في أي وقت. تدخل التعديلات حيز النفاذ عند النشر. استمرار استخدام المنصة يعني الموافقة على الشروط المعدلة."
+  },
+  ru: {
+    aceptacionTexto: "Используя Dimon Connect, вы принимаете данные условия полностью. При несогласии не используйте платформу. Платформа только помогает найти контакт, но не является стороной договора.",
+    usoTexto: "Платформа используется только для законных услуг. Запрещена публикация незаконной, ложной, оскорбительной или дискриминационной информации. Все пользователи действуют честно и уважительно.",
+    pagosTexto: "Комиссия 5% исполнителю и 5% заказчику от общей стоимости работ. Оплата через PayPal. Платформа не удерживает средства — перевод напрямую с вычетом комиссий.",
+    responsabilidadTexto: "Платформа не гарантирует достоверность данных и выполнение условий. Проверяйте личность и условия перед заключением сделки. Платформа не является работодателем или посредником.",
+    modificacionesTexto: "Мы оставляем за собой право изменять условия в любое время. Изменения вступают в силу с момента публикации. Продолжение использования означает согласие с новой версией."
+  }
+};
+
 function aplicarIdioma() {
   const idioma = localStorage.getItem('idiomaDimon') || 'es';
   const t = traducciones[idioma] || traducciones.es;
+  const textos = textosCompletos[idioma] || textosCompletos.es;
   document.documentElement.lang = idioma;
   document.querySelectorAll('[data-txt]').forEach(el => { const c=el.dataset.txt; if(t[c])el.textContent=t[c]; });
-  document.querySelectorAll('[data-txt-ph]').forEach(el => { const c=el.dataset.txtPh; if(t[c])el.placeholder=t[c]; });
+  document.getElementById('texto-aceptacion').textContent = textos.aceptacionTexto;
+  document.getElementById('texto-uso').textContent = textos.usoTexto;
+  document.getElementById('texto-pagos').innerHTML = textos.pagosTexto.replace('5% al prestador del servicio', '<strong>5% al prestador del servicio</strong>').replace('5% al solicitante', '<strong>5% al solicitante</strong>');
+  document.getElementById('texto-resp').textContent = textos.responsabilidadTexto;
+  document.getElementById('texto-mod').textContent = textos.modificacionesTexto;
+  const sel = document.getElementById('selector-idioma');
+  if (sel) sel.value = idioma;
 }
 document.addEventListener('DOMContentLoaded', aplicarIdioma);
 </script>
 
+<!-- === SELECTOR DE IDIOMA === -->
+<div style="position:fixed; top:12px; right:12px; z-index:9999;">
+  <select id="selector-idioma" style="padding:6px 10px; border-radius:8px; border:1px solid rgba(255,255,255,0.3); background:rgba(0,30,60,0.9); color:#fff; font-size:13px; cursor:pointer; outline:none;" onchange="localStorage.setItem('idiomaDimon', this.value); aplicarIdioma();">
+    <option value="es">🇪🇸 Español</option>
+    <option value="en">🇬🇧 English</option>
+    <option value="pt">🇧🇷 Português</option>
+    <option value="zh">🇨🇳 中文</option>
+    <option value="fr">🇫🇷 Français</option>
+    <option value="de">🇩🇪 Deutsch</option>
+    <option value="ja">🇯🇵 日本語</option>
+    <option value="ar">🇸🇦 العربية</option>
+    <option value="ru">🇷🇺 Русский</option>
+  </select>
+</div>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-txt="terminos">Términos de Servicio — Dimon Connect</title>
+  <title data-txt="titulo">Términos de Servicio — Dimon Connect</title>
   <style>
     * {margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif;}
     html,body {
@@ -38,7 +122,7 @@ document.addEventListener('DOMContentLoaded', aplicarIdioma);
       background-image:url('./1788448614792.png'); background-repeat:no-repeat;
       background-position:center; background-size:cover; color:#fff; padding:1.5rem; padding-bottom:3rem;
     }
-    .volver {margin-bottom:1.5rem;}
+    .volver {margin-bottom:1.5rem; margin-top: 3rem;}
     .volver a {color:#00ccff; text-decoration:none; font-weight:600;}
     h1 {font-size:1.8rem; color:#ffd700; margin-bottom:2rem; text-align:center;}
     .caja {
@@ -47,38 +131,36 @@ document.addEventListener('DOMContentLoaded', aplicarIdioma);
     }
     h2 {font-size:1.2rem; color:#00ccff; margin-bottom:1rem;}
     p {color:#e0f0ff; margin-bottom:1rem;}
-    ul {padding-left:1.5rem; margin-bottom:1rem; color:#e0f0ff;}
-    li {margin-bottom:0.5rem;}
     strong {color:#ffd700;}
   </style>
 </head>
 <body>
   <div class="volver"><a href="index.html" data-txt="volver">← Volver al inicio</a></div>
-  <h1 data-txt="terminos">Términos de Servicio</h1>
+  <h1 data-txt="titulo">Términos de Servicio</h1>
 
   <div class="caja">
-    <h2>Aceptación de los términos</h2>
-    <p>Al utilizar Dimon Connect, el usuario acepta estos términos en su totalidad. Si no está de acuerdo, no debe utilizar la plataforma. Dimon Connect facilita el contacto entre personas que necesitan un servicio y personas que pueden brindarlo, pero no es parte del contrato entre ellas.</p>
+    <h2 data-txt="aceptacion">Aceptación de los términos</h2>
+    <p id="texto-aceptacion">Al utilizar Dimon Connect, el usuario acepta estos términos en su totalidad. Si no está de acuerdo, no debe utilizar la plataforma. Dimon Connect facilita el contacto entre personas que necesitan un servicio y personas que pueden brindarlo, pero no es parte del contrato entre ellas.</p>
   </div>
 
   <div class="caja">
-    <h2>Uso permitido</h2>
-    <p>La plataforma solo puede utilizarse para servicios lícitos y legales. Queda prohibido publicar contenido ilegal, falso, ofensivo, discriminatorio o que viole derechos de terceros. Cada usuario se compromete a actuar con honestidad y respeto.</p>
+    <h2 data-txt="uso">Uso permitido</h2>
+    <p id="texto-uso">La plataforma solo puede utilizarse para servicios lícitos y legales. Queda prohibido publicar contenido ilegal, falso, ofensivo, discriminatorio o que viole derechos de terceros. Cada usuario se compromete a actuar con honestidad y respeto.</p>
   </div>
 
   <div class="caja">
-    <h2>Comisiones y pagos</h2>
-    <p>Por cada servicio concretado, se aplica una comisión del <strong>5% al prestador del servicio</strong> y del <strong>5% al solicitante</strong>, ambas sobre el valor total de la mano de obra. El pago se realiza a través de PayPal u otros medios disponibles. Dimon Connect no retiene el dinero, sino que se transfiere directamente entre las partes con el descuento correspondiente.</p>
+    <h2 data-txt="pagos">Comisiones y pagos</h2>
+    <p id="texto-pagos">Por cada servicio concretado, se aplica una comisión del <strong>5% al prestador del servicio</strong> y del <strong>5% al solicitante</strong>, ambas sobre el valor total de la mano de obra. El pago se realiza a través de PayPal u otros medios disponibles. Dimon Connect no retiene el dinero, sino que se transfiere directamente entre las partes con el descuento correspondiente.</p>
   </div>
 
   <div class="caja">
-    <h2>Responsabilidad</h2>
-    <p>Dimon Connect no garantiza la veracidad de los datos publicados ni el cumplimiento de los acuerdos entre usuarios. Las partes deben verificar la identidad y las condiciones antes de contratar. La plataforma no es empleador ni intermediario del servicio.</p>
+    <h2 data-txt="responsabilidad">Responsabilidad</h2>
+    <p id="texto-resp">Dimon Connect no garantiza la veracidad de los datos publicados ni el cumplimiento de los acuerdos entre usuarios. Las partes deben verificar la identidad y las condiciones antes de contratar. La plataforma no es empleador ni intermediario del servicio.</p>
   </div>
 
   <div class="caja">
-    <h2>Modificaciones</h2>
-    <p>Nos reservamos el derecho de modificar estos términos en cualquier momento. Los cambios entran en vigor desde su publicación en el sitio. El uso continuado de la plataforma implica la aceptación de los nuevos términos.</p>
+    <h2 data-txt="modificaciones">Modificaciones</h2>
+    <p id="texto-mod">Nos reservamos el derecho de modificar estos términos en cualquier momento. Los cambios entran en vigor desde su publicación en el sitio. El uso continuado de la plataforma implica la aceptación de los nuevos términos.</p>
   </div>
 
 </body>
