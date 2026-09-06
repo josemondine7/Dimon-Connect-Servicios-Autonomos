@@ -3,20 +3,15 @@
 <head><!-- === SISTEMA DE IDIOMA GLOBAL — PEGAR EN TODAS LAS PÁGINAS === -->
 <script>
 const traducciones = {
-  es: { volver:"Volver", inicio:"Inicio", buscar:"Buscar", ofertaDemanda:"Oferta y Demanda", solicitarServicio:"Solicitar un servicio", iniciarSesion:"Iniciar sesión", inscribirse:"Inscribirse", descargarApp:"Descargar aplicación", normas:"Normas y Seguridad", privacidad:"Privacidad", terminos:"Términos de Servicio", cookies:"Cookies", contacto:"Contacto", buscarPlaceholder:"Buscar servicios, personas, ayuda..." },
-  en: { volver:"Back", inicio:"Home", buscar:"Search", ofertaDemanda:"Offer & Demand", solicitarServicio:"Request a service", iniciarSesion:"Log in", inscribirse:"Sign up", descargarApp:"Download app", normas:"Rules & Security", privacidad:"Privacy", terminos:"Terms of Service", cookies:"Cookies", contacto:"Contact", buscarPlaceholder:"Search services, people, help..." },
-  pt: { volver:"Voltar", inicio:"Início", buscar:"Buscar", ofertaDemanda:"Oferta e Demanda", solicitarServicio:"Solicitar serviço", iniciarSesion:"Entrar", inscribirse:"Cadastrar-se", descargarApp:"Baixar aplicativo", normas:"Regras e Segurança", privacidad:"Privacidade", terminos:"Termos de Serviço", cookies:"Cookies", contacto:"Contato", buscarPlaceholder:"Buscar serviços, pessoas, ajuda..." },
-  zh: { volver:"返回", inicio:"首页", buscar:"搜索", ofertaDemanda:"供应与需求", solicitarServicio:"请求服务", iniciarSesion:"登录", inscribirse:"注册", descargarApp:"下载应用", normas:"规则与安全", privacidad:"隐私", terminos:"服务条款", cookies:"Cookie", contacto:"联系我们", buscarPlaceholder:"搜索服务、人员、帮助..." },
-  fr: { volver:"Retour", inicio:"Accueil", buscar:"Rechercher", ofertaDemanda:"Offres et Demandes", solicitarServicio:"Demander un service", iniciarSesion:"Se connecter", inscribirse:"S'inscrire", descargarApp:"Télécharger l'appli", normas:"Règles et Sécurité", privacidad:"Confidentialité", terminos:"Conditions d'utilisation", cookies:"Cookies", contacto:"Contact", buscarPlaceholder:"Rechercher services, personnes, aide..." },
-  de: { volver:"Zurück", inicio:"Startseite", buscar:"Suchen", ofertaDemanda:"Angebot & Nachfrage", solicitarServicio:"Dienst anfordern", iniciarSesion:"Anmelden", inscribirse:"Registrieren", descargarApp:"App herunterladen", normas:"Regeln & Sicherheit", privacidad:"Datenschutz", terminos:"Nutzungsbedingungen", cookies:"Cookies", contacto:"Kontakt", buscarPlaceholder:"Dienste, Personen, Hilfe suchen..." },
-  ja: { volver:"戻る", inicio:"ホーム", buscar:"検索", ofertaDemanda:"オファーと需要", solicitarServicio:"サービスを依頼", iniciarSesion:"ログイン", inscribirse:"新規登録", descargarApp:"アプリをダウンロード", normas:"規則と安全性", privacidad:"プライバシー", terminos:"利用規約", cookies:"クッキー", contacto:"お問い合わせ", buscarPlaceholder:"サービス、人物、ヘルプを検索..." },
-  ar: { volver:"رجوع", inicio:"الرئيسية", buscar:"بحث", ofertaDemanda:"العرض والطلب", solicitarServicio:"طلب خدمة", iniciarSesion:"تسجيل الدخول", inscribirse:"اشتراك", descargarApp:"تحميل التطبيق", normas:"القواعد والأمان", privacidad:"الخصوصية", terminos:"شروط الخدمة", cookies:"ملفات تعريف الارتباط", contacto:"اتصل بنا", buscarPlaceholder:"البحث عن خدمات، أشخاص، مساعدة..." },
-  hi: { volver:"वापस", inicio:"होम", buscar:"खोजें", ofertaDemanda:"ऑफ़र और मांग", solicitarServicio:"सेवा का अनुरोध करें", iniciarSesion:"लॉग इन", inscribirse:"पंजीकरण करें", descargarApp:"ऐप डाउनलोड करें", normas:"नियम और सुरक्षा", privacidad:"गोपनीयता", terminos:"सेवा की शर्तें", cookies:"कुकीज़", contacto:"संपर्क करें", buscarPlaceholder:"सेवाएं, लोग, मददूं खोजें..." },
-  bn: { volver:"ফিরে যান", inicio:"হোম", buscar:"খুঁজুন", ofertaDemanda:"অফার ও চাহিদা", solicitarServicio:"সেবা অনুরোধ করুন", iniciarSesion:"লগ ইন", inscribirse:"নিবন্ধন করুন", descargarApp:"অ্যাপ ডাউনলোড করুন", normas:"নিয়ম ও নিরাপত্তা", privacidad:"গোপনীয়তা", terminos:"সেবার শর্তাবলী", cookies:"কুকিজ", contacto:"যোগাযোগ করুন", buscarPlaceholder:"সেবা, ব্যক্তি, সাহায্য খুঁজুন..." },
-  ur: { volver:"واپس", inicio:"ہوم", buscar:"تلاش کریں", ofertaDemanda:"پیشکش اور طلب", solicitarServicio:"سروس کی درخواست کریں", iniciarSesion:"لاگ ان", inscribirse:"رجسٹر ہوں", descargarApp:"ایپ ڈاؤن لوڈ کریں", normas:"قواعد اور سیکیورٹی", privacidad:"رازداری", terminos:"سروس کی شرائط", cookies:"کوکیز", contacto:"رابطہ کریں", buscarPlaceholder:"سروسز، لوگ، مدد تلاش کریں..." },
-  id: { volver:"Kembali", inicio:"Beranda", buscar:"Cari", ofertaDemanda:"Penawaran & Permintaan", solicitarServicio:"Minta layanan", iniciarSesion:"Masuk", inscribirse:"Daftar", descargarApp:"Unduh aplikasi", normas:"Aturan & Keamanan", privacidad:"Privasi", terminos:"Ketentuan Layanan", cookies:"Cookie", contacto:"Kontak", buscarPlaceholder:"Cari layanan, orang, bantuan..." },
-  tr: { volver:"Geri", inicio:"Ana Sayfa", buscar:"Ara", ofertaDemanda:"Teklif & Talep", solicitarServicio:"Hizmet talep et", iniciarSesion:"Giriş yap", inscribirse:"Kayıt ol", descargarApp:"Uygulamayı indir", normas:"Kurallar ve Güvenlik", privacidad:"Gizlilik", terminos:"Hizmet Şartları", cookies:"Çerezler", contacto:"İletişim", buscarPlaceholder:"Hizmet, kişi, yardım ara..." },
-  ru: { volver:"Назад", inicio:"Главная", buscar:"Поиск", ofertaDemanda:"Предложения и Спрос", solicitarServicio:"Запросить услугу", iniciarSesion:"Войти", inscribirse:"Регистрация", descargarApp:"Скачать приложение", normas:"Правила и безопасность", privacidad:"Конфиденциальность", terminos:"Условия использования", cookies:"Файлы cookie", contacto:"Контакты", buscarPlaceholder:"Поиск услуг, людей, помощи..." }
+  es: { volver:"Volver", inicio:"Inicio", buscar:"Buscar", ofertaDemanda:"Oferta y Demanda", solicitarServicio:"Solicitar un servicio", iniciarSesion:"Iniciar sesión", inscribirse:"Inscribirse", descargarApp:"Descargar aplicación", normas:"Normas y Seguridad", privacidad:"Privacidad", terminos:"Términos de Servicio", cookies:"Cookies", contacto:"Contacto", buscarPlaceholder:"Buscar servicios, personas, ayuda...", tituloPrivacidad:"Política de Privacidad", infoRecopilamos:"Información que recopilamos", usoInfo:"Uso de la información", proteccionDatos:"Protección de los datos", derechosUsuario:"Derechos del usuario", modificaciones:"Modificaciones" },
+  en: { volver:"Back", inicio:"Home", buscar:"Search", ofertaDemanda:"Offer & Demand", solicitarServicio:"Request a service", iniciarSesion:"Log in", inscribirse:"Sign up", descargarApp:"Download app", normas:"Rules & Security", privacidad:"Privacy", terminos:"Terms of Service", cookies:"Cookies", contacto:"Contact", buscarPlaceholder:"Search services, people, help...", tituloPrivacidad:"Privacy Policy", infoRecopilamos:"Information we collect", usoInfo:"Use of information", proteccionDatos:"Data protection", derechosUsuario:"User rights", modificaciones:"Changes" },
+  pt: { volver:"Voltar", inicio:"Início", buscar:"Buscar", ofertaDemanda:"Oferta e Demanda", solicitarServicio:"Solicitar serviço", iniciarSesion:"Entrar", inscribirse:"Cadastrar-se", descargarApp:"Baixar aplicativo", normas:"Regras e Segurança", privacidad:"Privacidade", terminos:"Termos de Serviço", cookies:"Cookies", contacto:"Contato", buscarPlaceholder:"Buscar serviços, pessoas, ajuda...", tituloPrivacidad:"Política de Privacidade", infoRecopilamos:"Informações que coletamos", usoInfo:"Uso das informações", proteccionDatos:"Proteção de dados", derechosUsuario:"Direitos do usuário", modificaciones:"Alterações" },
+  zh: { volver:"返回", inicio:"首页", buscar:"搜索", ofertaDemanda:"供应与需求", solicitarServicio:"请求服务", iniciarSesion:"登录", inscribirse:"注册", descargarApp:"下载应用", normas:"规则与安全", privacidad:"隐私", terminos:"服务条款", cookies:"Cookie", contacto:"联系我们", buscarPlaceholder:"搜索服务、人员、帮助...", tituloPrivacidad:"隐私政策", infoRecopilamos:"我们收集的信息", usoInfo:"信息的使用", proteccionDatos:"数据保护", derechosUsuario:"用户权利", modificaciones:"修改" },
+  fr: { volver:"Retour", inicio:"Accueil", buscar:"Rechercher", ofertaDemanda:"Offres et Demandes", solicitarServicio:"Demander un service", iniciarSesion:"Se connecter", inscribirse:"S'inscrire", descargarApp:"Télécharger l'appli", normas:"Règles et Sécurité", privacidad:"Confidentialité", terminos:"Conditions d'utilisation", cookies:"Cookies", contacto:"Contact", buscarPlaceholder:"Rechercher services, personnes, aide...", tituloPrivacidad:"Politique de confidentialité", infoRecopilamos:"Informations que nous collectons", usoInfo:"Utilisation des informations", proteccionDatos:"Protection des données", derechosUsuario:"Droits de l'utilisateur", modificaciones:"Modifications" },
+  de: { volver:"Zurück", inicio:"Startseite", buscar:"Suchen", ofertaDemanda:"Angebot & Nachfrage", solicitarServicio:"Dienst anfordern", iniciarSesion:"Anmelden", inscribirse:"Registrieren", descargarApp:"App herunterladen", normas:"Regeln & Sicherheit", privacidad:"Datenschutz", terminos:"Nutzungsbedingungen", cookies:"Cookies", contacto:"Kontakt", buscarPlaceholder:"Dienste, Personen, Hilfe suchen...", tituloPrivacidad:"Datenschutzrichtlinie", infoRecopilamos:"Erhobene Informationen", usoInfo:"Verwendung der Informationen", proteccionDatos:"Datenschutz", derechosUsuario:"Rechte des Nutzers", modificaciones:"Änderungen" },
+  ja: { volver:"戻る", inicio:"ホーム", buscar:"検索", ofertaDemanda:"オファーと需要", solicitarServicio:"サービスを依頼", iniciarSesion:"ログイン", inscribirse:"新規登録", descargarApp:"アプリをダウンロード", normas:"規則と安全性", privacidad:"プライバシー", terminos:"利用規約", cookies:"クッキー", contacto:"お問い合わせ", buscarPlaceholder:"サービス、人物、ヘルプを検索...", tituloPrivacidad:"プライバシーポリシー", infoRecopilamos:"収集する情報", usoInfo:"情報の利用", proteccionDatos:"データ保護", derechosUsuario:"ユーザーの権利", modificaciones:"変更" },
+  ar: { volver:"رجوع", inicio:"الرئيسية", buscar:"بحث", ofertaDemanda:"العرض والطلب", solicitarServicio:"طلب خدمة", iniciarSesion:"تسجيل الدخول", inscribirse:"اشتراك", descargarApp:"تحميل التطبيق", normas:"القواعد والأمان", privacidad:"الخصوصية", terminos:"شروط الخدمة", cookies:"ملفات تعريف الارتباط", contacto:"اتصل بنا", buscarPlaceholder:"البحث عن خدمات، أشخاص، مساعدة...", tituloPrivacidad:"سياسة الخصوصية", infoRecopilamos:"المعلومات التي نجمعها", usoInfo:"استخدام المعلومات", proteccionDatos:"حماية البيانات", derechosUsuario:"حقوق المستخدم", modificaciones:"التعديلات" },
+  ru: { volver:"Назад", inicio:"Главная", buscar:"Поиск", ofertaDemanda:"Предложения и Спрос", solicitarServicio:"Запросить услугу", iniciarSesion:"Войти", inscribirse:"Регистрация", descargarApp:"Скачать приложение", normas:"Правила и безопасность", privacidad:"Конфиденциальность", terminos:"Условия использования", cookies:"Файлы cookie", contacto:"Контакты", buscarPlaceholder:"Поиск услуг, людей, помощи...", tituloPrivacidad:"Политика конфиденциальности", infoRecopilamos:"Собираемая информация", usoInfo:"Использование информации", proteccionDatos:"Защита данных", derechosUsuario:"Права пользователя", modificaciones:"Изменения" }
 };
 function aplicarIdioma() {
   const idioma = localStorage.getItem('idiomaDimon') || 'es';
@@ -24,12 +19,35 @@ function aplicarIdioma() {
   document.documentElement.lang = idioma;
   document.querySelectorAll('[data-txt]').forEach(el => { const c=el.dataset.txt; if(t[c])el.textContent=t[c]; });
   document.querySelectorAll('[data-txt-ph]').forEach(el => { const c=el.dataset.txtPh; if(t[c])el.placeholder=t[c]; });
+  const sel = document.getElementById('selector-idioma');
+  if (sel) sel.value = idioma;
 }
 document.addEventListener('DOMContentLoaded', aplicarIdioma);
 </script>
+
+<!-- === SELECTOR DE IDIOMA — APARECE ARRIBA A LA DERECHA === -->
+<div style="position:fixed; top:12px; right:12px; z-index:9999;">
+  <select id="selector-idioma" style="
+    padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(0,30,60,0.9); color: #fff; font-size: 13px; cursor: pointer;
+    outline: none;
+  " onchange="localStorage.setItem('idiomaDimon', this.value); aplicarIdioma();">
+    <option value="es">🇪🇸 Español</option>
+    <option value="en">🇬🇧 English</option>
+    <option value="pt">🇧🇷 Português</option>
+    <option value="zh">🇨🇳 中文</option>
+    <option value="fr">🇫🇷 Français</option>
+    <option value="de">🇩🇪 Deutsch</option>
+    <option value="ja">🇯🇵 日本語</option>
+    <option value="ar">🇸🇦 العربية</option>
+    <option value="ru">🇷🇺 Русский</option>
+  </select>
+</div>
+<!-- ====================================================== -->
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-txt="privacidad">Política de Privacidad — Dimon Connect</title>
+  <title data-txt="tituloPrivacidad">Política de Privacidad — Dimon Connect</title>
   <style>
     * {margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif;}
     html,body {
@@ -37,7 +55,7 @@ document.addEventListener('DOMContentLoaded', aplicarIdioma);
       background-image:url('./1788448614792.png'); background-repeat:no-repeat;
       background-position:center; background-size:cover; color:#fff; padding:1.5rem; padding-bottom:3rem;
     }
-    .volver {margin-bottom:1.5rem;}
+    .volver {margin-bottom:1.5rem; margin-top: 3rem;}
     .volver a {color:#00ccff; text-decoration:none; font-weight:600;}
     h1 {font-size:1.8rem; color:#ffd700; margin-bottom:2rem; text-align:center;}
     .caja {
@@ -52,31 +70,31 @@ document.addEventListener('DOMContentLoaded', aplicarIdioma);
 </head>
 <body>
   <div class="volver"><a href="index.html" data-txt="volver">← Volver al inicio</a></div>
-  <h1 data-txt="privacidad">Política de Privacidad</h1>
+  <h1 data-txt="tituloPrivacidad">Política de Privacidad</h1>
 
   <div class="caja">
-    <h2>Información que recopilamos</h2>
+    <h2 data-txt="infoRecopilamos">Información que recopilamos</h2>
     <p>Recopilamos solamente los datos necesarios para que la plataforma funcione correctamente: nombre, correo electrónico, país, ciudad y la información que cada persona decide publicar sobre los servicios que ofrece o solicita.</p>
     <p>No recopilamos información personal sin consentimiento. No vendemos ni compartimos datos personales con terceros con fines comerciales.</p>
   </div>
 
   <div class="caja">
-    <h2>Uso de la información</h2>
+    <h2 data-txt="usoInfo">Uso de la información</h2>
     <p>Los datos se utilizan para conectar a las personas, mostrar ubicación, gestionar cuentas, procesar pagos y enviar notificaciones relacionadas con el servicio. La información de pago se procesa a través de PayPal y no se almacena en esta plataforma.</p>
   </div>
 
   <div class="caja">
-    <h2>Protección de los datos</h2>
+    <h2 data-txt="proteccionDatos">Protección de los datos</h2>
     <p>La información se transmite de forma segura y se almacena con medidas de protección. Sin embargo, ninguna transmisión por internet es completamente infalible, por lo que cada usuario también debe cuidar sus propias credenciales de acceso.</p>
   </div>
 
   <div class="caja">
-    <h2>Derechos del usuario</h2>
+    <h2 data-txt="derechosUsuario">Derechos del usuario</h2>
     <p>Cualquier persona puede solicitar ver, corregir o eliminar sus datos personales en cualquier momento. Para hacerlo, debe enviar un mensaje desde la página de Contacto.</p>
   </div>
 
   <div class="caja">
-    <h2>Modificaciones</h2>
+    <h2 data-txt="modificaciones">Modificaciones</h2>
     <p>Esta política puede actualizarse en el futuro. Los cambios se publican en esta misma página. El uso continuado de la plataforma después de los cambios implica su aceptación.</p>
   </div>
 
