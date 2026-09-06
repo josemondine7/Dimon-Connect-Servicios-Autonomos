@@ -1,127 +1,209 @@
 <!DOCTYPE html>
 <html lang="es">
-<head><!-- === SISTEMA DE IDIOMA GLOBAL — PEGAR EN TODAS LAS PÁGINAS === -->
+<head><!-- === SISTEMA DE IDIOMA GLOBAL === -->
 <script>
 const traducciones = {
-  es: { volver:"Volver", inicio:"Inicio", buscar:"Buscar", ofertaDemanda:"Oferta y Demanda", solicitarServicio:"Solicitar un servicio", iniciarSesion:"Iniciar sesión", inscribirse:"Inscribirse", descargarApp:"Descargar aplicación", normas:"Normas y Seguridad", privacidad:"Privacidad", terminos:"Términos de Servicio", cookies:"Cookies", contacto:"Contacto", buscarPlaceholder:"Buscar servicios, personas, ayuda..." },
-  en: { volver:"Back", inicio:"Home", buscar:"Search", ofertaDemanda:"Offer & Demand", solicitarServicio:"Request a service", iniciarSesion:"Log in", inscribirse:"Sign up", descargarApp:"Download app", normas:"Rules & Security", privacidad:"Privacy", terminos:"Terms of Service", cookies:"Cookies", contacto:"Contact", buscarPlaceholder:"Search services, people, help..." },
-  pt: { volver:"Voltar", inicio:"Início", buscar:"Buscar", ofertaDemanda:"Oferta e Demanda", solicitarServicio:"Solicitar serviço", iniciarSesion:"Entrar", inscribirse:"Cadastrar-se", descargarApp:"Baixar aplicativo", normas:"Regras e Segurança", privacidad:"Privacidade", terminos:"Termos de Serviço", cookies:"Cookies", contacto:"Contato", buscarPlaceholder:"Buscar serviços, pessoas, ajuda..." },
-  zh: { volver:"返回", inicio:"首页", buscar:"搜索", ofertaDemanda:"供应与需求", solicitarServicio:"请求服务", iniciarSesion:"登录", inscribirse:"注册", descargarApp:"下载应用", normas:"规则与安全", privacidad:"隐私", terminos:"服务条款", cookies:"Cookie", contacto:"联系我们", buscarPlaceholder:"搜索服务、人员、帮助..." },
-  fr: { volver:"Retour", inicio:"Accueil", buscar:"Rechercher", ofertaDemanda:"Offres et Demandes", solicitarServicio:"Demander un service", iniciarSesion:"Se connecter", inscribirse:"S'inscrire", descargarApp:"Télécharger l'appli", normas:"Règles et Sécurité", privacidad:"Confidentialité", terminos:"Conditions d'utilisation", cookies:"Cookies", contacto:"Contact", buscarPlaceholder:"Rechercher services, personnes, aide..." },
-  de: { volver:"Zurück", inicio:"Startseite", buscar:"Suchen", ofertaDemanda:"Angebot & Nachfrage", solicitarServicio:"Dienst anfordern", iniciarSesion:"Anmelden", inscribirse:"Registrieren", descargarApp:"App herunterladen", normas:"Regeln & Sicherheit", privacidad:"Datenschutz", terminos:"Nutzungsbedingungen", cookies:"Cookies", contacto:"Kontakt", buscarPlaceholder:"Dienste, Personen, Hilfe suchen..." },
-  ja: { volver:"戻る", inicio:"ホーム", buscar:"検索", ofertaDemanda:"オファーと需要", solicitarServicio:"サービスを依頼", iniciarSesion:"ログイン", inscribirse:"新規登録", descargarApp:"アプリをダウンロード", normas:"規則と安全性", privacidad:"プライバシー", terminos:"利用規約", cookies:"クッキー", contacto:"お問い合わせ", buscarPlaceholder:"サービス、人物、ヘルプを検索..." },
-  ar: { volver:"رجوع", inicio:"الرئيسية", buscar:"بحث", ofertaDemanda:"العرض والطلب", solicitarServicio:"طلب خدمة", iniciarSesion:"تسجيل الدخول", inscribirse:"اشتراك", descargarApp:"تحميل التطبيق", normas:"القواعد والأمان", privacidad:"الخصوصية", terminos:"شروط الخدمة", cookies:"ملفات تعريف الارتباط", contacto:"اتصل بنا", buscarPlaceholder:"البحث عن خدمات، أشخاص، مساعدة..." },
-  hi: { volver:"वापस", inicio:"होम", buscar:"खोजें", ofertaDemanda:"ऑफ़र और मांग", solicitarServicio:"सेवा का अनुरोध करें", iniciarSesion:"लॉग इन", inscribirse:"पंजीकरण करें", descargarApp:"ऐप डाउनलोड करें", normas:"नियम और सुरक्षा", privacidad:"गोपनीयता", terminos:"सेवा की शर्तें", cookies:"कुकीज़", contacto:"संपर्क करें", buscarPlaceholder:"सेवाएं, लोग, मददूं खोजें..." },
-  bn: { volver:"ফিরে যান", inicio:"হোম", buscar:"খুঁজুন", ofertaDemanda:"অফার ও চাহিদা", solicitarServicio:"সেবা অনুরোধ করুন", iniciarSesion:"লগ ইন", inscribirse:"নিবন্ধন করুন", descargarApp:"অ্যাপ ডাউনলোড করুন", normas:"নিয়ম ও নিরাপত্তা", privacidad:"গোপনীয়তা", terminos:"সেবার শর্তাবলী", cookies:"কুকিজ", contacto:"যোগাযোগ করুন", buscarPlaceholder:"সেবা, ব্যক্তি, সাহায্য খুঁজুন..." },
-  ur: { volver:"واپس", inicio:"ہوم", buscar:"تلاش کریں", ofertaDemanda:"پیشکش اور طلب", solicitarServicio:"سروس کی درخواست کریں", iniciarSesion:"لاگ ان", inscribirse:"رجسٹر ہوں", descargarApp:"ایپ ڈاؤن لوڈ کریں", normas:"قواعد اور سیکیورٹی", privacidad:"رازداری", terminos:"سروس کی شرائط", cookies:"کوکیز", contacto:"رابطہ کریں", buscarPlaceholder:"سروسز، لوگ، مدد تلاش کریں..." },
-  id: { volver:"Kembali", inicio:"Beranda", buscar:"Cari", ofertaDemanda:"Penawaran & Permintaan", solicitarServicio:"Minta layanan", iniciarSesion:"Masuk", inscribirse:"Daftar", descargarApp:"Unduh aplikasi", normas:"Aturan & Keamanan", privacidad:"Privasi", terminos:"Ketentuan Layanan", cookies:"Cookie", contacto:"Kontak", buscarPlaceholder:"Cari layanan, orang, bantuan..." },
-  tr: { volver:"Geri", inicio:"Ana Sayfa", buscar:"Ara", ofertaDemanda:"Teklif & Talep", solicitarServicio:"Hizmet talep et", iniciarSesion:"Giriş yap", inscribirse:"Kayıt ol", descargarApp:"Uygulamayı indir", normas:"Kurallar ve Güvenlik", privacidad:"Gizlilik", terminos:"Hizmet Şartları", cookies:"Çerezler", contacto:"İletişim", buscarPlaceholder:"Hizmet, kişi, yardım ara..." },
-  ru: { volver:"Назад", inicio:"Главная", buscar:"Поиск", ofertaDemanda:"Предложения и Спрос", solicitarServicio:"Запросить услугу", iniciarSesion:"Войти", inscribirse:"Регистрация", descargarApp:"Скачать приложение", normas:"Правила и безопасность", privacidad:"Конфиденциальность", terminos:"Условия использования", cookies:"Файлы cookie", contacto:"Контакты", buscarPlaceholder:"Поиск услуг, людей, помощи..." }
+  es: { volver:"Volver al inicio", titulo:"Normas y Seguridad", respeto:"Respeto mutuo", honestidad:"Honestidad en los tratos", seguridad:"Seguridad personal", datos:"Protección de datos", pagos:"Pagos y seña", prohibiciones:"Prohibiciones", sanciones:"Sanciones", funcionamiento:"Funcionamiento general" },
+  en: { volver:"Back to home", titulo:"Rules and Security", respeto:"Mutual respect", honestidad:"Honest dealings", seguridad:"Personal safety", datos:"Data protection", pagos:"Payments and deposit", prohibiciones:"Prohibited actions", sanciones:"Sanctions", funcionamiento:"General operation" },
+  pt: { volver:"Voltar ao início", titulo:"Normas e Segurança", respeto:"Respeito mútuo", honestidad:"Honestidade nos negócios", seguridad:"Segurança pessoal", datos:"Proteção de dados", pagos:"Pagamentos e sinal", prohibiciones:"Proibições", sanciones:"Sanções", funcionamiento:"Funcionamento geral" },
+  zh: { volver:"返回首页", titulo:"规则与安全", respeto:"相互尊重", honestidad:"交易诚信", seguridad:"人身安全", datos:"数据保护", pagos:"付款与定金", prohibiciones:"禁止行为", sanciones:"处罚规定", funcionamiento:"一般规则" },
+  fr: { volver:"Retour à l'accueil", titulo:"Règles et Sécurité", respeto:"Respect mutuel", honestidad:"Honnêteté dans les échanges", seguridad:"Sécurité personnelle", datos:"Protection des données", pagos:"Paiements et arrhes", prohibiciones:"Interdictions", sanciones:"Sanctions", funcionamiento:"Fonctionnement général" },
+  de: { volver:"Zurück zur Startseite", titulo:"Regeln und Sicherheit", respeto:"Gegenseitiger Respekt", honestidad:"Ehrlichkeit bei Geschäften", seguridad:"Persönliche Sicherheit", datos:"Datenschutz", pagos:"Zahlungen und Anzahlung", prohibiciones:"Verbote", sanciones:"Sanktionen", funcionamiento:"Allgemeine Regeln" },
+  ja: { volver:"ホームに戻る", titulo:"規則と安全", respeto:"相互の尊重", honestidad:"取引の誠実さ", seguridad:"個人の安全", datos:"データ保護", pagos:"支払いと手付金", prohibiciones:"禁止事項", sanciones:"罰則", funcionamiento:"一般的な運用" },
+  ar: { volver:"العودة للرئيسية", titulo:"القواعد والأمان", respeto:"الاحترام المتبادل", honestidad:"الصدق في التعاملات", seguridad:"الأمان الشخصي", datos:"حماية البيانات", pagos:"الدفعات والعربون", prohibiciones:"المحظورات", sanciones:"العقوبات", funcionamiento:"العمل العام" },
+  ru: { volver:"На главную", titulo:"Правила и безопасность", respeto:"Взаимное уважение", honestidad:"Честность в сделках", seguridad:"Личная безопасность", datos:"Защита данных", pagos:"Платежи и задаток", prohibiciones:"Запрещено", sanciones:"Штрафы и блокировки", funcionamiento:"Общие принципы" }
+};
+const textosCompletos = {
+  es: {
+    respetoTexto:"Todas las personas que usan Dimon Connect deben tratar a los demás con respeto y educación. No se toleran insultos, amenazas, discriminación ni comportamientos agresivos. El trato debe ser cordial en todo momento, tanto en los mensajes como al momento de concretar el servicio de forma presencial o remota.",
+    honestidadTexto:"Cada usuario debe ser honesto al describir su servicio, sus habilidades, el precio y el tiempo estimado de realización. Quien solicita un servicio debe describir con claridad qué necesita. La información publicada debe ser verdadera. Si hay cambios en el trato acordado, deben comunicarse de común acuerdo antes de avanzar.",
+    seguridadTexto:"Cuando se acuerde un encuentro presencial, elegí siempre lugares públicos y seguros, contale a otra persona dónde vas a estar y con quién. Si el servicio se realiza en un domicilio, verificá previamente los datos de la otra persona. La plataforma facilita el contacto, pero cada persona es responsable de su propia seguridad.",
+    datosTexto:"La información personal que compartís dentro de la plataforma se maneja con confidencialidad. No se comparte con terceros sin tu consentimiento. Cada usuario se compromete a no difundir datos personales de otras personas sin su autorización expresa.",
+    pagosTexto:"Se recomienda el pago a través de los medios habilitados en la plataforma. Se puede acordar una seña para confirmar el servicio. Si quien solicita el servicio cancela con anticipación sin justificación, la seña puede quedar a favor del prestador. Si el prestador no cumple, la seña se devuelve en su totalidad. Dimon Connect retiene un 5% por cada operación como comisión de gestión.",
+    prohibicionesTexto:"Está prohibido publicar contenido ilegal, ofensivo, engañoso o que promueva actividades peligrosas. Está prohibido usar la plataforma para estafas, venta de productos prohibidos, acoso o suplantación de identidad.",
+    sancionesTexto:"El incumplimiento de estas normas puede dar lugar a la suspensión o eliminación definitiva de la cuenta, sin derecho a reclamo. En caso de conductas que constituyan delito, se dará aviso a las autoridades correspondientes.",
+    funcionamientoTexto:"Dimon Connect es una plataforma de conexión entre personas. No es empleador de ninguno de los usuarios ni asume responsabilidad por la calidad, puntualidad o resultado de los servicios pactados entre las partes. Cada acuerdo se celebra directamente entre quienes contratan y quienes prestan el servicio."
+  },
+  en: {
+    respetoTexto:"All users of Dimon Connect must treat others with respect and courtesy. Insults, threats, discrimination or aggressive behavior will not be tolerated. Communications must be polite at all times, both in messages and when meeting in person or working remotely.",
+    honestidadTexto:"Each user must be honest when describing their service, skills, price and estimated delivery time. Those requesting a service must clearly describe their needs. Published information must be truthful. Any changes to an agreed arrangement must be communicated and accepted by both parties before proceeding.",
+    seguridadTexto:"When arranging an in-person meeting, always choose public and safe places, and tell someone else where you will be and with whom. If the service takes place at a private location, verify the other person's details beforehand. The platform facilitates contact, but each person remains responsible for their own safety.",
+    datosTexto:"Personal information shared on the platform is kept confidential and is not shared with third parties without your consent. Users agree not to disclose other people's personal information without their express permission.",
+    pagosTexto:"Payments through the platform's authorized methods are recommended. A deposit may be agreed to confirm the service. If the requester cancels without valid reason, the deposit may be kept by the service provider. If the provider fails to perform, the deposit is fully refunded. Dimon Connect retains a 5% commission per transaction.",
+    prohibicionesTexto:"It is forbidden to publish illegal, offensive, misleading or dangerous content. Fraud, sale of prohibited items, harassment or identity impersonation are strictly prohibited.",
+    sancionesTexto:"Violation of these rules may result in temporary or permanent account suspension. In the case of criminal behavior, the corresponding authorities will be notified.",
+    funcionamientoTexto:"Dimon Connect is a platform connecting independent people. It is not an employer and assumes no responsibility for the quality, timeliness or outcome of services agreed directly between users."
+  },
+  pt: {
+    respetoTexto:"Todos os usuários devem tratar os outros com respeito. Não serão tolerados insultos, ameaças, discriminação ou comportamento agressivo. A comunicação deve ser sempre educada, tanto nas mensagens quanto nos encontros.",
+    honestidadTexto:"Cada usuário deve ser honesto ao descrever seu serviço, preço e prazo. Quem solicita deve explicar claramente o que precisa. Alterações no acordo devem ser combinadas entre ambas as partes.",
+    seguridadTexto:"Para encontros presenciais, escolha locais públicos e seguros. Informe alguém sobre o local e horário. A plataforma facilita o contato, mas cada um é responsável pela sua própria segurança.",
+    datosTexto:"Seus dados pessoais são tratados com confidencialidade e não são compartilhados sem consentimento. É proibido divulgar dados de outras pessoas sem autorização.",
+    pagosTexto:"Recomenda-se usar os meios de pagamento da plataforma. Pode ser combinado um sinal. Se quem pede cancelar sem motivo justo, o sinal pode ficar com quem presta o serviço. Se quem presta não cumpre, o sinal é devolvido integralmente. A Dimon Connect retém 5% de comissão por transação.",
+    prohibicionesTexto:"Proibido conteúdo ilegal, ofensivo, enganoso ou perigoso. Fraudes, assédio e falsidade de identidade não serão aceitos.",
+    sancionesTexto:"O descumprimento pode resultar em suspensão ou exclusão definitiva da conta. Em caso de crime, as autoridades serão comunicadas.",
+    funcionamientoTexto:"A Dimon Connect é apenas uma plataforma de intermediação. Não é empregadora e não se responsabiliza pela qualidade ou resultado dos serviços contratados entre os usuários."
+  },
+  zh: {
+    respetoTexto:"所有用户必须互相尊重。禁止辱骂、威胁、歧视或任何攻击性言行。无论是线上沟通还是当面会面，都应保持礼貌。",
+    honestidadTexto:"发布服务信息时必须真实，包括技能、价格和工期。需求方应清楚说明需求。任何变更须经双方同意后方可执行。",
+    seguridadTexto:"当面会面请选择公共场所并告知亲友行程。上门服务前请确认对方信息。平台仅提供对接渠道，安全责任由当事人自负。",
+    datosTexto:"个人信息严格保密，未经同意不向第三方透露。禁止擅自传播他人个人信息。",
+    pagosTexto:"建议使用平台指定支付方式。可约定定金。需求方无故取消，定金可归服务方；服务方未履约，定金全额退还。平台每笔交易收取5%服务费。",
+    prohibicionesTexto:"禁止发布违法、违规、欺诈或危险信息。严禁诈骗、骚扰、冒名顶替等行为。",
+    sancionesTexto:"违反规则将视情节暂停或永久封禁账号。涉嫌违法将移交有关部门。",
+    funcionamientoTexto:"本平台仅提供信息对接服务，不参与实际交易，不对服务质量、安全或履约结果承担责任。"
+  },
+  fr: {
+    respetoTexto:"Tous les utilisateurs doivent se traiter avec respect. Les insultes, menaces, discriminations ou comportements agressifs ne sont pas tolérés. La communication doit rester polie en tout temps.",
+    honestidadTexto:"Chaque utilisateur doit décrire honnêtement son service, ses tarifs et ses délais. Toute modification doit être convenue entre les deux parties.",
+    seguridadTexto:"Rencontrez-vous dans des lieux publics et sûrs. Informez un proche de votre itinéraire. La plateforme facilite la mise en relation mais ne garantit pas la sécurité des personnes.",
+    datosTexto:"Vos données personnelles restent confidentielles. Elles ne sont jamais transmises sans votre accord.",
+    pagosTexto:"Il est recommandé d'utiliser les moyens de paiement de la plateforme. Un acompte peut être convenu. En cas d'annulation injustifiée du demandeur, l'acompte peut être conservé. Si le prestataire ne remplit pas sa mission, l'acompte est intégralement remboursé. La commission de gestion est de 5%.",
+    prohibicionesTexto:"Il est interdit de publier des contenus illégaux, trompeurs ou dangereux. Toute fraude, harcèlement ou usurpation d'identité est passible de sanctions.",
+    sancionesTexto:"Le non-respect des règles peut entraîner la suspension ou la suppression définitive du compte. Tout comportement délictueux sera signalé aux autorités compétentes.",
+    funcionamientoTexto:"Dimon Connect est une plateforme de mise en relation. Elle n'est pas employeur et n'assume aucune responsabilité quant à la qualité, la ponctualité ou le résultat des services convenus entre les parties."
+  },
+  de: {
+    respetoTexto:"Alle Nutzer haben sich mit Respekt zu begegnen. Beleidigungen, Drohungen, Diskriminierung oder aggressives Verhalten werden nicht geduldet.",
+    honestidadTexto:"Jeder muss seine Dienste, Fähigkeiten, Preise und Zeiträume wahrheitsgemäß beschreiben. Änderungen bedürfen der Zustimmung beider Seiten.",
+    seguridadTexto:"Treffen Sie sich an öffentlichen Orten und informieren Sie jemand darüber. Die Plattform vermittelt nur, für Sicherheit ist jede Person selbst verantwortlich.",
+    datosTexto:"Persönliche Daten werden vertraulich behandelt und nicht ohne Zustimmung weitergegeben.",
+    pagosTexto:"Zahlungen über die Plattform werden empfohlen. Eine Anzahlung kann vereinbart werden. Bei ungerechtfertigter Stornierung kann diese einbehalten werden. Bei Nichterbringung wird sie erstattet. Die Provision beträgt 5%.",
+    prohibicionesTexto:"Illegale, irreführende oder gefährliche Inhalte sind verboten. Betrug, Belästigung und Identitätsmissbrauch werden geahndet.",
+    sancionesTexto:"Verstöße können zur Sperrung oder Löschung des Accounts führen. Bei Straftaten werden Behörden informiert.",
+    funcionamientoTexto:"Die Plattform ist nur Vermittlerin. Sie ist kein Arbeitgeber und übernimmt keine Haftung für Qualität, Sicherheit oder Ergebnis der vereinbarten Leistungen."
+  },
+  ja: {
+    respetoTexto:"利用者同士は相互に尊重し合わなければなりません。暴言、脅迫、差別、攻撃的な行動は一切許可されません。",
+    honestidadTexto:"サービス内容、価格、期間は正直に記載してください。変更が生じた場合は双方の同意が必要です。",
+    seguridadTexto:"対面での待ち合わせは公共の場所を選び、家族や友人に行き先を伝えてください。プラットフォームは仲介のみを行い、安全は各自で確保してください。",
+    datosTexto:"個人情報は同意なしに第三者に提供しません。他者の情報を無断で共有することを禁止します。",
+    pagosTexto:"プラットフォーム経由の支払いを推奨します。手付金の支払いが可能です。注文者の都合でキャンセルされた場合、手付金は提供側に帰属することがあります。不履行の場合は全額返金されます。手数料は5%です。",
+    prohibicionesTexto:"違法、詐欺的、危険なコンテンツの掲載を禁止します。詐欺、嫌がらせ、なりすましは厳禁です。",
+    sancionesTexto:"規約違反の場合はアカウント停止または永久削除となることがあります。犯罪行為は関係当局に通報します。",
+    funcionamientoTexto:"本サービスは仲介プラットフォームであり、実際の取引に関する品質、安全、結果について責任を負いません。"
+  },
+  ar: {
+    respetoTexto:"يجب معاملة الآخرين باحترام. لا يُسمح بالإهانات أو التهديدات أو التمييز أو أي سلوك عدواني. الحوار يجب أن يكون مهذباً دائماً.",
+    honestidadTexto:"يجب وصف الخدمات والاسعار والمهام بصدق. اي تغيير يجب ان يتفق عليه الطرفان قبل التنفيذ.",
+    seguridadTexto:"اختر أماكن عامة وآمنة للقاءات الشخصية وأخبر شخصاً آخر بمكانك. المنصة تسهل التواصل فقط والمسؤولية الشخصية تقع على عاتق كل فرد.",
+    datosTexto:"المعلومات الشخصية محمية ولا تُشارك مع الغير دون إذن. يُمنع نشر بيانات الآخرين دون موافقتهم.",
+    pagosTexto:"يُنصح بالدفع عبر المنصة. يمكن دفع عربون لتأكيد الطلب. إذا ألغى الطلب دون سبب مشروع، يحتفظ المقدم بالعربون. إذا لم يقدم الخدمة، يُرد العربون بالكامل. نسبة المنصة 5% من كل معاملة.",
+    prohibicionesTexto:"يُمنع نشر محتوى غير قانوني أو احتيالي أو خطير. الاحتيال والتنمر وانتحال الشخصية ممنوع تماماً.",
+    sancionesTexto:"مخالفة القواعد قد تؤدي إلى تعليق الحساب أو حذفه نهائياً. في حالات الجرم يتم إبلاغ الجهات المختصة.",
+    funcionamientoTexto:"المنصة مجرد وسيط بين الأطراف. لا تُعتبر صاحب عمل ولا تتحمل مسؤولية جودة الخدمات أو نتائجها."
+  },
+  ru: {
+    respetoTexto:"Все пользователи должны относиться друг к другу с уважением. Оскорбления, угрозы, дискриминация и агрессивное поведение не допускаются.",
+    honestidadTexto:"Описание услуг, цен и сроков должно быть честным. Любые изменения требуют обоюдного согласия сторон.",
+    seguridadTexto:"Встречайтесь в общественных местах и сообщайте близким о своих планах. Платформа только помогает найти контакт, ответственность за безопасность несет каждый пользователь лично.",
+    datosTexto:"Личные данные защищены и не передаются третьим лицам без вашего согласия.",
+    pagosTexto:"Рекомендуется оплата через платформу. Может быть внесен задаток. При необоснованном отказе заказчика задаток остается исполнителю. Если исполнитель не выполнил работу — задаток возвращается полностью. Комиссия платформы — 5%.",
+    prohibicionesTexto:"Запрещено публиковать незаконную, обманчивую или опасную информацию. Мошенничество, домогательства и подмена личности преследуются.",
+    sancionesTexto:"Нарушение правил влечет блокировку или удаление аккаунта. При признаках преступления уведомляются соответствующие органы.",
+    funcionamientoTexto:"Платформа является посредником между пользователями и не несет ответственности за качество, безопасность или результат оказываемых услуг."
+  }
 };
 function aplicarIdioma() {
   const idioma = localStorage.getItem('idiomaDimon') || 'es';
   const t = traducciones[idioma] || traducciones.es;
+  const textos = textosCompletos[idioma] || textosCompletos.es;
   document.documentElement.lang = idioma;
   document.querySelectorAll('[data-txt]').forEach(el => { const c=el.dataset.txt; if(t[c])el.textContent=t[c]; });
-  document.querySelectorAll('[data-txt-ph]').forEach(el => { const c=el.dataset.txtPh; if(t[c])el.placeholder=t[c]; });
+  document.getElementById('texto-respeto').textContent = textos.respetoTexto;
+  document.getElementById('texto-honestidad').textContent = textos.honestidadTexto;
+  document.getElementById('texto-seguridad').textContent = textos.seguridadTexto;
+  document.getElementById('texto-datos').textContent = textos.datosTexto;
+  document.getElementById('texto-pagos').textContent = textos.pagosTexto;
+  document.getElementById('texto-prohibiciones').textContent = textos.prohibicionesTexto;
+  document.getElementById('texto-sanciones').textContent = textos.sancionesTexto;
+  document.getElementById('texto-funcionamiento').textContent = textos.funcionamientoTexto;
+  const sel = document.getElementById('selector-idioma');
+  if (sel) sel.value = idioma;
 }
 document.addEventListener('DOMContentLoaded', aplicarIdioma);
 </script>
 
+<!-- === SELECTOR DE IDIOMA === -->
+<div style="position:fixed; top:12px; right:12px; z-index:9999;">
+  <select id="selector-idioma" style="padding:6px 10px; border-radius:8px; border:1px solid rgba(255,255,255,0.3); background:rgba(0,30,60,0.9); color:#fff; font-size:13px; cursor:pointer; outline:none;" onchange="localStorage.setItem('idiomaDimon', this.value); aplicarIdioma();">
+    <option value="es">🇪🇸 Español</option>
+    <option value="en">🇬🇧 English</option>
+    <option value="pt">🇧🇷 Português</option>
+    <option value="zh">🇨🇳 中文</option>
+    <option value="fr">🇫🇷 Français</option>
+    <option value="de">🇩🇪 Deutsch</option>
+    <option value="ja">🇯🇵 日本語</option>
+    <option value="ar">🇸🇦 العربية</option>
+    <option value="ru">🇷🇺 Русский</option>
+  </select>
+</div>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Normas y Seguridad — Dimon Connect</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title data-txt="titulo">Normas y Seguridad — Dimon Connect</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-    html, body {
-      width: 100%; min-height: 100vh;
-      background: linear-gradient(135deg, #1a2a6c, #0f4c81);
-      color: #fff;
-      padding: 2rem 1.5rem;
-      line-height: 1.7;
+    * {margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif;}
+    html,body {
+      width:100%; min-height:100vh; background:#0066FF;
+      background-image:url('./1788448614792.png'); background-repeat:no-repeat;
+      background-position:center; background-size:cover; color:#fff; padding:1.5rem; padding-bottom:3rem;
     }
-    .contenedor { max-width: 800px; margin: 0 auto; }
-    .volver {
-      display: inline-block; color: #93c5fd; text-decoration: none;
-      margin-bottom: 2rem; padding: 0.6rem 1.2rem;
-      background: rgba(59, 130, 246, 0.15); border-radius: 8px;
-      border: 1px solid rgba(96, 165, 250, 0.3);
-      transition: all 0.25s ease;
-    }
-    .volver:hover { background: rgba(59, 130, 246, 0.25); }
-    h1 { font-size: 1.8rem; margin-bottom: 2rem; color: #93c5fd; text-align: center; }
-    h2 { font-size: 1.25rem; margin: 2rem 0 1rem; color: #7dd3fc; }
-    p { margin-bottom: 1rem; color: #e0f2fe; }
-    ul { margin: 1rem 0 1.5rem 2rem; color: #e0f2fe; }
-    li { margin-bottom: 0.75rem; }
-    .ley { color: #fcd34d; text-decoration: underline; cursor: pointer; font-weight: 500; }
+    .volver {margin-bottom:1.5rem; margin-top: 3rem;}
+    .volver a {color:#00ccff; text-decoration:none; font-weight:600;}
+    h1 {font-size:1.8rem; color:#ffd700; margin-bottom:2rem; text-align:center;}
     .caja {
-      background: rgba(255,255,255,0.05); padding: 1.25rem; border-radius: 12px;
-      margin: 1.5rem 0; border: 1px solid rgba(255,255,255,0.1);
+      background:rgba(0,51,102,0.7); border:2px solid #00ccff; border-radius:12px;
+      padding:1.5rem; margin-bottom:1.5rem; backdrop-filter:blur(8px); line-height:1.8;
     }
-    .destacado { font-weight: 600; color: #fcd34d; }
-    .boton {
-      display: inline-block; padding: 0.85rem 1.5rem;
-      background: linear-gradient(135deg, #f97316, #ea580c);
-      color: #fff; text-decoration: none; border-radius: 10px;
-      font-weight: 600; text-align: center; margin: 0.5rem;
-      border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .boton:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3); }
-    .boton-verde { background: linear-gradient(135deg, #10b981, #059669); }
-    .boton-verde:hover { box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
-    .botones-centro { text-align: center; margin-top: 2.5rem; }
-    .separador { height: 1px; background: rgba(255,255,255,0.15); margin: 2.5rem 0; }
+    h2 {font-size:1.2rem; color:#00ccff; margin-bottom:1rem;}
+    p {color:#e0f0ff; margin-bottom:0;}
   </style>
 </head>
 <body>
-  <div class="contenedor">
-    <a href="index.html" class="volver">← Volver al inicio</a>
+  <div class="volver"><a href="index.html" data-txt="volver">← Volver al inicio</a></div>
+  <h1 data-txt="titulo">Normas y Seguridad</h1>
 
-    <h1>Normas y Seguridad</h1>
-
-    <h2>1. Principios Generales</h2>
-    <p>Dimon Connect es una plataforma de intermediación entre personas que necesitan un servicio y personas que pueden brindarlo. Todo trato se basa en la confianza, el respeto y el cumplimiento mutuo. Todo acuerdo aceptado por las dos partes tiene valor de contrato legal. <span class="ley" onclick="window.location.href='ley-articulo-1257.html'">📜 Código Civil — Artículo 1257</span></p>
-
-    <h2>2. Comisiones del Servicio</h2>
-    <p>La plataforma cobra una comisión total del 10% sobre el valor del servicio:</p>
-    <div class="caja">
-      <p>• <span class="destacado">5%</span> a cargo de quien solicita el servicio — se suma al monto al momento del pago</p>
-      <p>• <span class="destacado">5%</span> a cargo de quien brinda el servicio — se descuenta al liberar el pago</p>
-      <p style="margin-top: 0.75rem;">Esta comisión corresponde al servicio completo de intermediación, garantía, seguridad y soporte. <span class="ley" onclick="window.location.href='ley-intermediacion.html'">📜 Derecho de intermediación legítima</span></p>
-    </div>
-
-    <h2>3. Sistema de Seña y Garantía</h2>
-    <p>La seña es la garantía de que el trato es serio. Queda resguardada en Dimon Connect hasta que se confirma el trabajo.</p>
-    <ul>
-      <li>✅ Si se cumple el servicio → la seña se suma al pago y se libera al prestador</li>
-      <li>❌ Si el solicitante cancela sin motivo justo → pierde la seña, que se entrega al prestador como compensación</li>
-      <li>❌ Si el prestador no cumple → la seña se devuelve completa al solicitante</li>
-    </ul>
-
-    <h2>4. Normas de Conducta</h2>
-    <ul>
-      <li>Se podrán ofrecer y solicitar únicamente servicios lícitos y legales.</li>
-      <li>Queda prohibida toda discriminación por origen, nacionalidad, género, creencia o condición personal.</li>
-      <li>No se permitirán conductas ofensivas, amenazantes o que vulneren derechos de terceros.</li>
-      <li>Los usuarios se comprometen a brindar información veraz y completa en su perfil.</li>
-      <li>Dimon Connect se reserva el derecho de suspender cuentas que incumplan estas normas.</li>
-    </ul>
-
-    <h2>5. Protección de Datos y Privacidad</h2>
-    <p>La información personal de los usuarios se protege conforme a las leyes vigentes. No se comparte información personal con terceros sin consentimiento expreso, salvo disposición legal obligatoria.</p>
-
-    <h2>6. Resolución de Conflictos</h2>
-    <p>Ante desacuerdos, las partes se comprometen a intentar resolverlos de buena fe. Dimon Connect podrá intervenir como mediador para encontrar una solución justa.</p>
-
-    <div class="separador"></div>
-
-    <div class="botones-centro">
-      <a href="informacion-funcionamiento.html" class="boton">ℹ️ Información de Funcionamiento</a>
-      <a href="politica-privacidad.html" class="boton boton-verde">🔒 Política de Privacidad</a>
-      <a href="terminos-servicio.html" class="boton">📋 Términos de Servicio</a>
-    </div>
+  <div class="caja">
+    <h2 data-txt="respeto">Respeto mutuo</h2>
+    <p id="texto-respeto">Todas las personas que usan Dimon Connect deben tratar a los demás con respeto y educación. No se toleran insultos, amenazas, discriminación ni comportamientos agresivos. El trato debe ser cordial en todo momento, tanto en los mensajes como al momento de concretar el servicio de forma presencial o remota.</p>
   </div>
+
+  <div class="caja">
+    <h2 data-txt="honestidad">Honestidad en los tratos</h2>
+    <p id="texto-honestidad">Cada usuario debe ser honesto al describir su servicio, sus habilidades, el precio y el tiempo estimado de realización. Quien solicita un servicio debe describir con claridad qué necesita. La información publicada debe ser verdadera. Si hay cambios en el trato acordado, deben comunicarse de común acuerdo antes de avanzar.</p>
+  </div>
+
+  <div class="caja">
+    <h2 data-txt="seguridad">Seguridad personal</h2>
+    <p id="texto-seguridad">Cuando se acuerde un encuentro presencial, elegí siempre lugares públicos y seguros, contale a otra persona dónde vas a estar y con quién. Si el servicio se realiza en un domicilio, verificá previamente los datos de la otra persona. La plataforma facilita el contacto, pero cada persona es responsable de su propia seguridad.</p>
+  </div>
+
+  <div class="caja">
+    <h2 data-txt="datos">Protección de datos</h2>
+    <p id="texto-datos">La información personal que compartís dentro de la plataforma se maneja con confidencialidad. No se comparte con terceros sin tu consentimiento. Cada usuario se compromete a no difundir datos personales de otras personas sin su autorización expresa.</p>
+  </div>
+
+  <div class="caja">
+    <h2 data-txt="pagos">Pagos y seña</h2>
+    <p id="texto-pagos">Se recomienda el pago a través de los medios habilitados en la plataforma. Se puede acordar una seña para confirmar el servicio. Si quien solicita el servicio cancela con anticipación sin justificación, la seña puede quedar a favor del prestador. Si el prestador no cumple, la seña se devuelve en su totalidad. Dimon Connect retiene un 5% por cada operación como comisión de gestión.</p>
+  </div>
+
+  <div class="caja">
+    <h2 data-txt="prohibiciones">Prohibiciones</h2>
+    <p id="texto-prohibiciones">Está prohibido publicar contenido ilegal, ofensivo, engañoso o que promueva actividades peligrosas. Está prohibido usar la plataforma para estafas, venta de productos prohibidos, acoso o suplantación de identidad.</p>
+  </div>
+
+  <div class="caja">
+    <h2 data-txt="sanciones">Sanciones</h2>
+    <p id="texto-sanciones">El incumplimiento de estas normas puede dar lugar a la suspensión o eliminación definitiva de la cuenta, sin derecho a reclamo. En caso de conductas que constituyan delito, se dará aviso a las autoridades correspondientes.</p>
+  </div>
+
+  <div class="caja">
+    <h2 data-txt="funcionamiento">Funcionamiento general</h2>
+    <p id="texto-funcionamiento">Dimon Connect es una plataforma de conexión entre personas. No es empleador de ninguno de los usuarios ni asume responsabilidad por la calidad, puntualidad o resultado de los servicios pactados entre las partes. Cada acuerdo se celebra directamente entre quienes contratan y quienes prestan el servicio.</p>
+  </div>
+
 </body>
 </html>
