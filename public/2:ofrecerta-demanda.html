@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<script>
+const traducciones = {
+  es: {
+    volver: "Volver a rubros",
+    btnOfrecer: "📋 Ofrecer mi servicio",
+    btnPedir: "📝 Solicitar un servicio",
+    tituloOferta: "Personas que ofrecen",
+    tituloDemanda: "Personas que necesitan",
+    nombre: "Nombre",
+    correo: "Correo",
+    descripcion: "Descripción",
+    precio: "Precio",
+    ubicacion: "Ubicación",
+    contactar: "Contactar",
+    vacio: "No hay publicaciones en este rubro todavía.",
+    mensaje: "Escribí un mensaje breve para la persona:"
+  },
+  en: {
+    volver: "Back to categories",
+    btnOfrecer: "📋 Offer my service",
+    btnPedir: "📝 Request a service",
+    tituloOferta: "People offering",
+    tituloDemanda: "People needing",
+    nombre: "Name",
+    correo: "Email",
+    descripcion: "Description",
+    precio: "Price",
+    ubicacion: "Location",
+    contactar: "Contact",
+    vacio: "No posts in this category yet.",
+    mensaje: "Write a brief message to the person:"
+  }
+};
+
+let servicioActual = '';
+let modoActual = '';
+
+function aplicarIdioma() {
+  const idioma = localStorage.getItem('idiomaDimon') || 'es';
+  const t = traducciones[idioma] || traducciones.es;
+  document.documentElement.lang = idioma;
+  document.querySelectorAll('[data-txt]').forEach(el => { const c = el.dataset.txt; if(t[c]) el.textContent = t[c]; });
+
+  servicioActual = sessionStorage.getItem('servicioSeleccionado') || 'Servicio';
+  modoActual = sessionStorage.getItem('modoDetalle') || 'ofertas';
+
+  document.getElementById('nombre-servicio').textContent = servicioActual;
+  document.getElementById('titulo-detalle').textContent = 
+    modoActual === 'ofertas' ? t.tituloOferta : t.tituloDemanda;
+
+  cargarPublicaciones();
+}
+
+function cargarPublicaciones() {
+  const idioma = localStorage.getItem('idiomaDimon') || 'es';
+  const t = traducciones[idioma] || traducciones.es;
+  const caja = document.getElementById('lista-personas');
+  caja.innerHTML = '';
+
+  const clave = modoActual === 'ofertas' ? 'ofertasDimon' : 'demandasDimon';
+  const datos = JSON.parse(localStorage.getItem(clave) || '[]');
+  const filtrados = datos.filter(d => d.servicio === servicioActual);
+
+  if (filtrados.length === 0) {
+    caja.innerHTML = `<p class="vacio">${t.vacio}</p>`;
+    return;
+  }
+
+  filtrados.forEach(pub => {
+    caja.innerHTML += `
+      <div class="tarjeta">
+        <p class="campo"><strong>${t.nombre}:</strong> ${pub.nombre || 'Anónimo'}</p>
+        <p class="campo"><strong>${t.correo}:</strong> ${pub.correo || 'No especificado'}</p>
+        <p class="campo"><strong>${t.descripcion}:</strong> ${pub.descripcion || 'Sin descripción'}</p>
+        <p class="campo"><strong>${t.precio}:</strong> ${pub.precio || pub.presupuesto || 'A convenir'}</p>
+        <p class="campo"><strong>${t.ubicacion}:</strong> ${pub.localidad || pub.pais || 'Sin ubicación'}</p>
+        <div class="boton-accion">
+          <button class="btn-contactar" onclick="contactar(${pub.id}, '${modoActual}', '${pub.nombre||''}', '${pub.correo||''}', '${servicioActual}')">
+            🟢 ${t.contactar}
+          </button>
+        </div>
+      </div>
+    `;
+  });
+}
+
+function contactar(id, tipo, nombre, correo, servicio) {
+  const idioma = localStorage.getItem('idiomaDimon') || 'es';
+  const t = traducciones[idioma] || traducciones.es;
+  const mensaje = prompt(t.mensaje);
+  if (mensaje === null) return;
+
+  const notificaciones = JSON.parse(localStorage.getItem('notificacionesDimon') || '[]');
+  notificaciones.unshift({
+    id: Date.now(),
+    objetivoId: id,
+    tipo,
+    remitenteNombre: nombre,
+    remitenteCorreo: correo,
+    servicio: servicio,
+    mensaje: mensaje || "Quiere contactarte por tu publicación",
+    fecha: new Date().toISOString(),
+    leida: false
+  });
+  localStorage.setItem('notificacionesDimon', JSON.stringify(notificaciones));
+  alert("✅ Notificación enviada. También se envió un aviso al correo de la persona.");
+}
+
+document.addEventListener('DOMContentLoaded', aplicarIdioma);
+</script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detalle — Dimon Connect</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+    html, body {
+      width: 100%; min-height: 100vh;
+      background: linear-gradient(135deg, #0f172a, #1e3a8a, #3b82f6);
+      color: #fff; padding: 1.5rem;
+    }
+    .contenedor { max-width: 700px; margin: 0 auto; }
+
+    .volver {
+      display: inline-block; color: #bfdbfe; text-decoration: none;
+      margin-bottom: 1.2rem; padding: 0.6rem 1.2rem;
+      background: rgba(96, 165, 250, 0.15); border-radius: 10px;
+      border: 1px solid rgba(147, 197, 253, 0.3);
+    }
+
+    .botones-anotarse {
+      display: flex; gap: 0.8rem; margin-bottom: 1.5rem; flex-wrap: wrap;
+    }
+    .btn-ofrecer, .btn-pedir {
+      flex: 1; min-width: 180px; padding: 1rem; border-radius: 10px;
+      text-decoration: none; font-weight: 600; text-align: center;
+      transition: transform 0.2s; border: none; cursor: pointer; font-size: 1rem;
+    }
+    .btn-ofrecer { background: linear-gradient(135deg, #22c55e, #16a34a); color: #fff; }
+    .btn-pedir { background: linear-gradient(135deg, #3b82f6, #2563eb); color: #fff; }
+    .btn-ofrecer:hover, .btn-pedir:hover { transform: scale(1.03); }
+
+    h1 { font-size: 1.4rem; margin-bottom: 0.3rem; color: #fef08a; }
+    h2 { font-size: 1.2rem; margin-bottom: 1.5rem; color: #93c5fd; }
+
+    .tarjeta {
+      background: rgba(255,255,255,0.05); border-radius: 14px;
+      padding: 1.4rem; margin-bottom: 1rem;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .campo { margin-bottom: 0.7rem; line-height: 1.5; }
+    .boton-accion { margin-top: 1.2rem; }
+    .btn-contactar {
+      width: 100%; padding: 0.9rem; background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #fff; border: none; border-radius: 10px; font-weight: 600; cursor: pointer;
+      font-size: 1rem;
+    }
+    .vacio { text-align: center; color: #93c5fd; padding: 3rem 1rem; }
+
+    @media (max-width: 480px) {
+      .botones-anotarse { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="contenedor">
+    <a href="oferta-demanda.html" class="volver">← <span data-txt="volver">Volver a rubros</span></a>
+
+    <!-- BOTONES DE ANOTARSE — TAMBIÉN ARRIBA ACÁ -->
+    <div class="botones-anotarse">
+      <a href="brindar-servicio.html" class="btn-ofrecer" data-txt="btnOfrecer">📋 Ofrecer mi servicio</a>
+      <a href="solicitar-servicio.html" class="btn-pedir" data-txt="btnPedir">📝 Solicitar un servicio</a>
+    </div>
+
+    <h1 id="titulo-detalle"></h1>
+    <h2 id="nombre-servicio"></h2>
+
+    <div id="lista-personas"></div>
+  </div>
+</body>
+</html>
