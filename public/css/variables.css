@@ -1,0 +1,51 @@
+/* ==========================================
+   DIMON CONNECT 2026 — Variables Globales
+   Diseño: Vidrio Oscuro · Móvil Primero
+========================================== */
+
+:root {
+  /* Colores principales */
+  --color-fondo: #0a0f1f;
+  --color-superficie: #111a33;
+  --color-superficie-clara: #1a2749;
+  --color-primario: #1a6aff;
+  --color-primario-suave: #3b82ff;
+  --color-secundario: #00c6ff;
+  --color-exito: #00c853;
+  --color-advertencia: #ffab00;
+  --color-peligro: #ff5252;
+  --color-texto: #ffffff;
+  --color-texto-suave: #b0b8d0;
+  --color-texto-secundario: #7c87a3;
+  --color-borde: rgba(255, 255, 255, 0.08);
+  
+  /* Tipografía */
+  --fuente-principal: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  --texto-xs: 12px;
+  --texto-sm: 14px;
+  --texto-base: 16px;
+  --texto-lg: 18px;
+  --texto-xl: 22px;
+  --texto-2xl: 28px;
+  --texto-3xl: 34px;
+  
+  /* Espaciado */
+  --espacio-xs: 4px;
+  --espacio-sm: 8px;
+  --espacio-md: 16px;
+  --espacio-lg: 24px;
+  --espacio-xl: 32px;
+  
+  /* Bordes */
+  --radio-sm: 8px;
+  --radio-md: 16px;
+  --radio-lg: 24px;
+  
+  /* Sombras */
+  --sombra-suave: 0 4px 20px rgba(0, 0, 0, 0.35);
+  --sombra-media: 0 8px 32px rgba(0, 0, 0, 0.45);
+  
+  /* Transiciones */
+  --transicion-rapida: 150ms ease;
+  --transicion-normal: 250ms ease;
+}
