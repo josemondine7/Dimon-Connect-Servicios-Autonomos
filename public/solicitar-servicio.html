@@ -1,163 +1,80 @@
 <!DOCTYPE html>
 <html lang="es">
-<head><!-- === SISTEMA DE IDIOMA GLOBAL — PEGAR EN TODAS LAS PÁGINAS === -->
-<script>
-const traducciones = {
-  es: { volver:"Volver", inicio:"Inicio", buscar:"Buscar", ofertaDemanda:"Oferta y Demanda", solicitarServicio:"Solicitar un servicio", iniciarSesion:"Iniciar sesión", inscribirse:"Inscribirse", descargarApp:"Descargar aplicación", normas:"Normas y Seguridad", privacidad:"Privacidad", terminos:"Términos de Servicio", cookies:"Cookies", contacto:"Contacto", buscarPlaceholder:"Buscar servicios, personas, ayuda..." },
-  en: { volver:"Back", inicio:"Home", buscar:"Search", ofertaDemanda:"Offer & Demand", solicitarServicio:"Request a service", iniciarSesion:"Log in", inscribirse:"Sign up", descargarApp:"Download app", normas:"Rules & Security", privacidad:"Privacy", terminos:"Terms of Service", cookies:"Cookies", contacto:"Contact", buscarPlaceholder:"Search services, people, help..." },
-  pt: { volver:"Voltar", inicio:"Início", buscar:"Buscar", ofertaDemanda:"Oferta e Demanda", solicitarServicio:"Solicitar serviço", iniciarSesion:"Entrar", inscribirse:"Cadastrar-se", descargarApp:"Baixar aplicativo", normas:"Regras e Segurança", privacidad:"Privacidade", terminos:"Termos de Serviço", cookies:"Cookies", contacto:"Contato", buscarPlaceholder:"Buscar serviços, pessoas, ajuda..." },
-  zh: { volver:"返回", inicio:"首页", buscar:"搜索", ofertaDemanda:"供应与需求", solicitarServicio:"请求服务", iniciarSesion:"登录", inscribirse:"注册", descargarApp:"下载应用", normas:"规则与安全", privacidad:"隐私", terminos:"服务条款", cookies:"Cookie", contacto:"联系我们", buscarPlaceholder:"搜索服务、人员、帮助..." },
-  fr: { volver:"Retour", inicio:"Accueil", buscar:"Rechercher", ofertaDemanda:"Offres et Demandes", solicitarServicio:"Demander un service", iniciarSesion:"Se connecter", inscribirse:"S'inscrire", descargarApp:"Télécharger l'appli", normas:"Règles et Sécurité", privacidad:"Confidentialité", terminos:"Conditions d'utilisation", cookies:"Cookies", contacto:"Contact", buscarPlaceholder:"Rechercher services, personnes, aide..." },
-  de: { volver:"Zurück", inicio:"Startseite", buscar:"Suchen", ofertaDemanda:"Angebot & Nachfrage", solicitarServicio:"Dienst anfordern", iniciarSesion:"Anmelden", inscribirse:"Registrieren", descargarApp:"App herunterladen", normas:"Regeln & Sicherheit", privacidad:"Datenschutz", terminos:"Nutzungsbedingungen", cookies:"Cookies", contacto:"Kontakt", buscarPlaceholder:"Dienste, Personen, Hilfe suchen..." },
-  ja: { volver:"戻る", inicio:"ホーム", buscar:"検索", ofertaDemanda:"オファーと需要", solicitarServicio:"サービスを依頼", iniciarSesion:"ログイン", inscribirse:"新規登録", descargarApp:"アプリをダウンロード", normas:"規則と安全性", privacidad:"プライバシー", terminos:"利用規約", cookies:"クッキー", contacto:"お問い合わせ", buscarPlaceholder:"サービス、人物、ヘルプを検索..." },
-  ar: { volver:"رجوع", inicio:"الرئيسية", buscar:"بحث", ofertaDemanda:"العرض والطلب", solicitarServicio:"طلب خدمة", iniciarSesion:"تسجيل الدخول", inscribirse:"اشتراك", descargarApp:"تحميل التطبيق", normas:"القواعد والأمان", privacidad:"الخصوصية", terminos:"شروط الخدمة", cookies:"ملفات تعريف الارتباط", contacto:"اتصل بنا", buscarPlaceholder:"البحث عن خدمات، أشخاص، مساعدة..." },
-  hi: { volver:"वापस", inicio:"होम", buscar:"खोजें", ofertaDemanda:"ऑफ़र और मांग", solicitarServicio:"सेवा का अनुरोध करें", iniciarSesion:"लॉग इन", inscribirse:"पंजीकरण करें", descargarApp:"ऐप डाउनलोड करें", normas:"नियम और सुरक्षा", privacidad:"गोपनीयता", terminos:"सेवा की शर्तें", cookies:"कुकीज़", contacto:"संपर्क करें", buscarPlaceholder:"सेवाएं, लोग, मददूं खोजें..." },
-  bn: { volver:"ফিরে যান", inicio:"হোম", buscar:"খুঁজুন", ofertaDemanda:"অফার ও চাহিদা", solicitarServicio:"সেবা অনুরোধ করুন", iniciarSesion:"লগ ইন", inscribirse:"নিবন্ধন করুন", descargarApp:"অ্যাপ ডাউনলোড করুন", normas:"নিয়ম ও নিরাপত্তা", privacidad:"গোপনীয়তা", terminos:"সেবার শর্তাবলী", cookies:"কুকিজ", contacto:"যোগাযোগ করুন", buscarPlaceholder:"সেবা, ব্যক্তি, সাহায্য খুঁজুন..." },
-  ur: { volver:"واپس", inicio:"ہوم", buscar:"تلاش کریں", ofertaDemanda:"پیشکش اور طلب", solicitarServicio:"سروس کی درخواست کریں", iniciarSesion:"لاگ ان", inscribirse:"رجسٹر ہوں", descargarApp:"ایپ ڈاؤن لوڈ کریں", normas:"قواعد اور سیکیورٹی", privacidad:"رازداری", terminos:"سروس کی شرائط", cookies:"کوکیز", contacto:"رابطہ کریں", buscarPlaceholder:"سروسز، لوگ، مدد تلاش کریں..." },
-  id: { volver:"Kembali", inicio:"Beranda", buscar:"Cari", ofertaDemanda:"Penawaran & Permintaan", solicitarServicio:"Minta layanan", iniciarSesion:"Masuk", inscribirse:"Daftar", descargarApp:"Unduh aplikasi", normas:"Aturan & Keamanan", privacidad:"Privasi", terminos:"Ketentuan Layanan", cookies:"Cookie", contacto:"Kontak", buscarPlaceholder:"Cari layanan, orang, bantuan..." },
-  tr: { volver:"Geri", inicio:"Ana Sayfa", buscar:"Ara", ofertaDemanda:"Teklif & Talep", solicitarServicio:"Hizmet talep et", iniciarSesion:"Giriş yap", inscribirse:"Kayıt ol", descargarApp:"Uygulamayı indir", normas:"Kurallar ve Güvenlik", privacidad:"Gizlilik", terminos:"Hizmet Şartları", cookies:"Çerezler", contacto:"İletişim", buscarPlaceholder:"Hizmet, kişi, yardım ara..." },
-  ru: { volver:"Назад", inicio:"Главная", buscar:"Поиск", ofertaDemanda:"Предложения и Спрос", solicitarServicio:"Запросить услугу", iniciarSesion:"Войти", inscribirse:"Регистрация", descargarApp:"Скачать приложение", normas:"Правила и безопасность", privacidad:"Конфиденциальность", terminos:"Условия использования", cookies:"Файлы cookie", contacto:"Контакты", buscarPlaceholder:"Поиск услуг, людей, помощи..." }
-};
-function aplicarIdioma() {
-  const idioma = localStorage.getItem('idiomaDimon') || 'es';
-  const t = traducciones[idioma] || traducciones.es;
-  document.documentElement.lang = idioma;
-  document.querySelectorAll('[data-txt]').forEach(el => { const c=el.dataset.txt; if(t[c])el.textContent=t[c]; });
-  document.querySelectorAll('[data-txt-ph]').forEach(el => { const c=el.dataset.txtPh; if(t[c])el.placeholder=t[c]; });
-}
-document.addEventListener('DOMContentLoaded', aplicarIdioma);
-</script>
-
+<head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Solicitar un Servicio — Dimon Connect</title>
-  <link rel="stylesheet" href="styles.css" />
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-    html, body {
-      width: 100%; min-height: 100vh;
-      background: linear-gradient(135deg, #1a2a6c, #0f4c81);
-      color: #fff;
-      padding: 2rem 1.5rem;
-      line-height: 1.7;
-    }
-    .contenedor { max-width: 600px; margin: 0 auto; }
-    .volver {
-      display: inline-block; color: #93c5fd; text-decoration: none;
-      margin-bottom: 1.5rem; padding: 0.5rem 1rem;
-      background: rgba(59, 130, 246, 0.15); border-radius: 8px;
-      border: 1px solid rgba(96, 165, 250, 0.3);
-    }
-    h1 { font-size: 1.8rem; margin-bottom: 0.5rem; color: #93c5fd; text-align: center; }
-    .subtitulo { text-align: center; color: #bae6fd; margin-bottom: 2rem; }
-    .caja {
-      background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 12px;
-      margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.1);
-    }
-    .form-grupo { margin-bottom: 1.25rem; }
-    label { display: block; margin-bottom: 0.5rem; color: #bae6fd; font-weight: 500; font-size: 0.95rem; }
-    input, select, textarea {
-      width: 100%; padding: 0.85rem 1rem; border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.08);
-      color: #fff; font-size: 1rem; outline: none;
-      transition: border 0.2s;
-    }
-    input:focus, select:focus, textarea:focus { border-color: #38bdf8; }
-    textarea { min-height: 100px; resize: vertical; }
-    .boton {
-      width: 100%; padding: 1rem;
-      background: linear-gradient(135deg, #10b981, #059669);
-      color: #fff; border: none; border-radius: 10px;
-      font-size: 1.1rem; font-weight: 600; cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      margin-top: 0.5rem;
-    }
-    .boton:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35); }
-    .aviso {
-      background: rgba(252, 211, 77, 0.1); padding: 1rem; border-radius: 10px;
-      border: 1px solid rgba(252, 211, 77, 0.3); margin-top: 1.5rem;
-      color: #fef3c7; font-size: 0.9rem; line-height: 1.6;
-    }
-    .destacado { color: #fcd34d; font-weight: 600; }
-  </style>
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/responsivo.css">
 </head>
 <body>
-  <div class="contenedor">
-    <a href="index.html" class="volver">← Volver al inicio</a>
 
-    <h1>Solicitar un Servicio</h1>
-    <p class="subtitulo">Pedí lo que necesites — cualquier servicio, mientras sea legal</p>
+  <header>
+    <button class="boton-volver" onclick="window.location.href='oferta-demanda.html'" data-txt="volver">← Volver</button>
+    <h2 data-txt="solicitarServicio">Solicitar un Servicio</h2>
+  </header>
 
-    <form onsubmit="enviarSolicitud(event)">
-      <div class="caja">
-        <div class="form-grupo">
-          <label>¿Qué necesitás?</label>
-          <input type="text" id="servicio" placeholder="Ej: Necesito que me pinten la casa..." required />
-        </div>
-        <div class="form-grupo">
-          <label>Descripción Detallada</label>
-          <textarea id="descripcion" placeholder="Contá qué necesitás, cuándo, dimensiones, materiales que proveés, ubicación..." required></textarea>
-        </div>
-        <div class="form-grupo">
-          <label>País</label>
-          <select id="pais" required>
-            <option value="">Seleccioná tu país</option>
-            <option>Uruguay</option>
-            <option>Argentina</option>
-            <option>Brasil</option>
-            <option>Chile</option>
-            <option>Estados Unidos</option>
-            <option>España</option>
-            <option>México</option>
-            <option>Otro</option>
-          </select>
-        </div>
-        <div class="form-grupo">
-          <label>Ciudad y Zona</label>
-          <input type="text" id="ciudad" placeholder="Ciudad, barrio o zona" required />
-        </div>
-        <div class="form-grupo">
-          <label>Correo Electrónico de Contacto</label>
-          <input type="email" id="correo" placeholder="tu@email.com" required />
-        </div>
-        <div class="form-grupo">
-          <label>Presupuesto Estimado</label>
-          <input type="number" id="precio" placeholder="0.00" min="0" step="0.01" required />
-        </div>
-
-        <!-- 🔵 CAMPO NUEVO: MÉTODO DE PAGO -->
-        <div class="form-grupo">
-          <label>💳 Método de Pago Preferido</label>
-          <select id="metodo-pago" required>
-            <option value="">Seleccioná cómo vas a pagar</option>
-            <option>PayPal — Pago seguro internacional</option>
-            <option>Transferencia Bancaria directa</option>
-            <option>PayPal + Transferencia — Ambas opciones</option>
-            <option>Efectivo — Al recibir el servicio (presencial)</option>
-            <option>A convenir — Definir al acordar el trato</option>
-          </select>
-        </div>
+  <main class="contenedor-formulario">
+    <form id="formulario-demandante" class="formulario">
+      <div class="grupo-formulario">
+        <label data-txt="nombreCompleto">Nombre Completo</label>
+        <input type="text" id="demandante-nombre" required>
       </div>
 
-      <div class="aviso">
-        ⚠️ <strong>Información importante:</strong><br>
-        • Si el servicio no está listado, se agrega automáticamente.<br>
-        • Quienes puedan realizarlo verán tu solicitud y se contactarán.<br>
-        • Al confirmar el trato se suma un <span class="destacado">5% de comisión</span> sobre el valor del servicio.<br>
-        • Total a pagar: valor del servicio + 5% de comisión.
+      <div class="grupo-formulario">
+        <label data-txt="correo">Correo Electrónico</label>
+        <input type="email" id="demandante-correo" required>
       </div>
 
-      <button type="submit" class="boton">✅ Publicar Solicitud</button>
+      <div class="grupo-formulario">
+        <label data-txt="telefono">Teléfono / WhatsApp</label>
+        <input type="tel" id="demandante-telefono" required>
+      </div>
+
+      <div class="grupo-formulario">
+        <label data-txt="servicioRequerido">Servicio que Necesito</label>
+        <select id="demandante-servicio" required>
+          <option value="" data-txt="seleccionarOpcion">Seleccionar...</option>
+        </select>
+      </div>
+
+      <div class="grupo-formulario">
+        <label data-txt="descripcionServicio">Descripción del Trabajo</label>
+        <textarea id="demandante-descripcion" rows="4" required></textarea>
+      </div>
+
+      <div class="grupo-formulario">
+        <label data-txt="presupuestoMaximo">Presupuesto Máximo</label>
+        <input type="number" id="demandante-presupuesto" step="0.01" min="0">
+        <select id="demandante-moneda">
+          <option value="USD">USD $</option>
+          <option value="UYU">UYU $</option>
+          <option value="ARS">ARS $</option>
+          <option value="EUR">EUR €</option>
+        </select>
+      </div>
+
+      <div class="grupo-formulario">
+        <label data-txt="ubicacion">Ubicación / Dónde se necesita</label>
+        <input type="text" id="demandante-ubicacion">
+      </div>
+
+      <div class="grupo-formulario checkbox">
+        <input type="checkbox" id="acepto-normas-demandante" required>
+        <label for="acepto-normas-demandante" data-txt="aceptoNormas">Acepto las Normas y el Acuerdo del Trato</label>
+      </div>
+
+      <button type="submit" class="boton-principal" data-txt="registrarDemanda">Publicar Solicitud</button>
     </form>
-  </div>
+  </main>
 
-  <script>
-    function enviarSolicitud(e) {
-      e.preventDefault();
-      alert('✅ ¡Solicitud publicada con éxito!\n\nQuienes puedan realizar el servicio se contactarán contigo.\nMétodo de pago seleccionado: ' + document.getElementById('metodo-pago').value);
-      window.location.href = 'oferta-demanda.html';
-    }
-  </script>
+  <script src="js/idioma.js"></script>
+  <script src="js/almacenamiento.js"></script>
+  <script src="js/validacion.js"></script>
+  <script src="js/trato.js"></script>
+  <script src="js/flujos.js"></script>
 </body>
 </html>
