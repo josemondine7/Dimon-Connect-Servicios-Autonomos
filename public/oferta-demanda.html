@@ -1,201 +1,46 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<script>
-const traducciones = {
-  es: {
-    volver: "Volver al inicio",
-    btnOfrecer: "📋 Ofrecer mi servicio",
-    btnPedir: "📝 Solicitar un servicio",
-    btnOfertas: "🛒 Servicios ofrecidos",
-    btnDemandas: "📋 Servicios solicitados",
-    tituloOfertas: "Tocá un servicio para ver quién lo ofrece",
-    tituloDemandas: "Tocá un servicio para ver quién lo necesita",
-    vacio: "No hay servicios publicados todavía. Sé el primero en anotarse.",
-    explicacion: "💡 No encontrás el servicio que buscás? Anotate igual. Los servicios nuevos se incorporan automáticamente."
-  },
-  en: {
-    volver: "Back to Home",
-    btnOfrecer: "📋 Offer my service",
-    btnPedir: "📝 Request a service",
-    btnOfertas: "🛒 Services Offered",
-    btnDemandas: "📋 Services Requested",
-    tituloOfertas: "Tap a service to see who offers it",
-    tituloDemandas: "Tap a service to see who needs it",
-    vacio: "No services published yet. Be the first!",
-    explicacion: "💡 Can't find what you're looking for? Sign up anyway. New services are added automatically."
-  }
-};
-
-let modoActual = 'ofertas';
-
-function aplicarIdioma() {
-  const idioma = localStorage.getItem('idiomaDimon') || 'es';
-  const t = traducciones[idioma] || traducciones.es;
-  document.documentElement.lang = idioma;
-  document.querySelectorAll('[data-txt]').forEach(el => { const c = el.dataset.txt; if(t[c]) el.textContent = t[c]; });
-  cambiarModo('ofertas');
-}
-
-function obtenerRubros() {
-  const ofertas = JSON.parse(localStorage.getItem('ofertasDimon') || '[]');
-  const demandas = JSON.parse(localStorage.getItem('demandasDimon') || '[]');
-  const fijos = ["Pintura","Electricidad","Carpintería","Albañilería","Limpieza","Cocina","Plomería","Jardinería","Mecánica","Informática","Cuidado de personas","Traducción","Diseño","Otros"];
-  const todos = new Set(fijos);
-  ofertas.forEach(o => { if(o.servicio) todos.add(o.servicio); });
-  demandas.forEach(d => { if(d.servicio) todos.add(d.servicio); });
-  return Array.from(todos).sort();
-}
-
-function cambiarModo(modo) {
-  modoActual = modo;
-  const idioma = localStorage.getItem('idiomaDimon') || 'es';
-  const t = traducciones[idioma] || traducciones.es;
-  document.getElementById('btn-ofertas').classList.toggle('activo', modo === 'ofertas');
-  document.getElementById('btn-demandas').classList.toggle('activo', modo === 'demandas');
-  document.getElementById('titulo-pagina').textContent = modo === 'ofertas' ? t.tituloOfertas : t.tituloDemandas;
-  cargarListado();
-}
-
-function cargarListado() {
-  const idioma = localStorage.getItem('idiomaDimon') || 'es';
-  const t = traducciones[idioma] || traducciones.es;
-  const lista = document.getElementById('lista-servicios');
-  lista.innerHTML = '';
-  const rubros = obtenerRubros();
-  const clave = modoActual === 'ofertas' ? 'ofertasDimon' : 'demandasDimon';
-  const datos = JSON.parse(localStorage.getItem(clave) || '[]');
-  let hayPublicaciones = false;
-
-  rubros.forEach(servicio => {
-    const cantidad = datos.filter(d => d.servicio === servicio).length;
-    if (cantidad > 0) hayPublicaciones = true;
-    lista.innerHTML += `
-      <div class="item-servicio" onclick="irADetalle('${servicio}')">
-        <span class="rombo">◆</span>
-        <span class="nombre-servicio">${servicio}</span>
-        <span class="cantidad">(${cantidad})</span>
-      </div>
-    `;
-  });
-
-  if (!hayPublicaciones) {
-    lista.innerHTML = `<p class="vacio">${t.vacio}</p>`;
-  }
-}
-
-function irADetalle(servicio) {
-  sessionStorage.setItem('servicioSeleccionado', servicio);
-  sessionStorage.setItem('modoDetalle', modoActual);
-  window.location.href = 'servicio-detalle.html';
-}
-
-document.addEventListener('DOMContentLoaded', aplicarIdioma);
-</script>
-
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Oferta y Demanda — Dimon Connect</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-    html, body {
-      width: 100%; min-height: 100vh;
-      background: linear-gradient(135deg, #0f172a, #1e3a8a, #3b82f6);
-      color: #fff; padding: 1.5rem;
-    }
-    .contenedor { max-width: 800px; margin: 0 auto; }
-
-    .volver {
-      display: inline-block; color: #bfdbfe; text-decoration: none;
-      margin-bottom: 1.2rem; padding: 0.6rem 1.2rem;
-      background: rgba(96, 165, 250, 0.15); border-radius: 10px;
-      border: 1px solid rgba(147, 197, 253, 0.3);
-    }
-
-    .botones-anotarse {
-      display: flex; gap: 0.8rem; margin-bottom: 1.5rem; flex-wrap: wrap;
-    }
-    .btn-ofrecer, .btn-pedir {
-      flex: 1; min-width: 180px; padding: 1rem; border-radius: 10px;
-      text-decoration: none; font-weight: 600; text-align: center;
-      transition: transform 0.2s; border: none; cursor: pointer; font-size: 1rem;
-    }
-    .btn-ofrecer { background: linear-gradient(135deg, #22c55e, #16a34a); color: #fff; }
-    .btn-pedir { background: linear-gradient(135deg, #3b82f6, #2563eb); color: #fff; }
-    .btn-ofrecer:hover, .btn-pedir:hover { transform: scale(1.03); }
-
-    .botones-modo {
-      display: flex; gap: 0.8rem; margin-bottom: 1.5rem;
-    }
-    .btn-modo {
-      flex: 1; padding: 1rem; border-radius: 10px; border: none;
-      background: rgba(255,255,255,0.1); color: #fff;
-      font-size: 1rem; font-weight: 500; cursor: pointer;
-      transition: all 0.2s;
-    }
-    .btn-modo.activo {
-      background: linear-gradient(135deg, #3b82f6, #2563eb);
-      font-weight: 600; transform: scale(1.02);
-    }
-
-    h1 { font-size: 1.3rem; margin-bottom: 1.5rem; color: #fef08a; text-align: center; }
-
-    .lista-servicios {
-      background: rgba(255,255,255,0.05); border-radius: 14px;
-      padding: 1.2rem; margin-bottom: 1.5rem;
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-    .item-servicio {
-      display: flex; align-items: center; gap: 0.8rem;
-      padding: 1rem; margin-bottom: 0.5rem;
-      background: rgba(96, 165, 250, 0.15); border-radius: 10px;
-      cursor: pointer; transition: all 0.2s;
-      font-size: 1.05rem;
-    }
-    .item-servicio:hover {
-      background: rgba(96, 165, 250, 0.3); transform: translateX(5px);
-    }
-    .rombo { color: #60a5fa; font-weight: bold; font-size: 1.2rem; }
-    .nombre-servicio { flex: 1; }
-    .cantidad { color: #94a3b8; font-size: 0.9rem; }
-
-    .vacio { text-align: center; color: #93c5fd; padding: 3rem 1rem; }
-
-    .explicacion {
-      background: rgba(250, 204, 21, 0.1); border-left: 4px solid #facc15;
-      padding: 1rem; border-radius: 8px; color: #fef08a; line-height: 1.5;
-    }
-
-    @media (max-width: 480px) {
-      .botones-anotarse, .botones-modo { flex-direction: column; }
-    }
-  </style>
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/responsivo.css">
 </head>
 <body>
-  <div class="contenedor">
-    <a href="index.html" class="volver">← <span data-txt="volver">Volver al inicio</span></a>
 
-    <!-- BOTONES DE ANOTARSE — ARRIBA, SIEMPRE VISIBLES -->
-    <div class="botones-anotarse">
-      <a href="brindar-servicio.html" class="btn-ofrecer" data-txt="btnOfrecer">📋 Ofrecer mi servicio</a>
-      <a href="solicitar-servicio.html" class="btn-pedir" data-txt="btnPedir">📝 Solicitar un servicio</a>
+  <header>
+    <button class="boton-volver" onclick="window.location.href='index.html'" data-txt="volver">← Volver</button>
+    <h2 data-txt="ofertaDemanda">Oferta y Demanda</h2>
+  </header>
+
+  <div class="selector-listas">
+    <button class="boton-lista activo" id="boton-ofertas" data-txt="serviciosOfertados">Servicios Ofrecidos</button>
+    <button class="boton-lista" id="boton-demandas" data-txt="serviciosSolicitados">Servicios Solicitados</button>
+  </div>
+
+  <div class="contenedor-lista">
+    <div class="acciones-lista">
+      <a href="ofrecer-servicio.html" class="boton-secundario" data-txt="brindarServicio">Brindar mi Servicio</a>
+      <a href="solicitar-servicio.html" class="boton-secundario" data-txt="solicitarServicio">Solicitar un Servicio</a>
     </div>
 
-    <!-- BOTONES PARA CAMBIAR EL LISTADO -->
-    <div class="botones-modo">
-      <button id="btn-ofertas" class="btn-modo activo" onclick="cambiarModo('ofertas')" data-txt="btnOfertas">🛒 Servicios ofrecidos</button>
-      <button id="btn-demandas" class="btn-modo" onclick="cambiarModo('demandas')" data-txt="btnDemandas">📋 Servicios solicitados</button>
+    <div id="lista-ofertas" class="lista-servicios">
+      <!-- Se llena automáticamente con JavaScript -->
     </div>
 
-    <h1 id="titulo-pagina" data-txt="tituloOfertas">Tocá un servicio para ver quién lo ofrece</h1>
-
-    <!-- LISTADO DE SERVICIOS CON ROMBO AZUL -->
-    <div class="lista-servicios" id="lista-servicios"></div>
-
-    <!-- EXPLICACIÓN -->
-    <div class="explicacion" data-txt="explicacion">
-      💡 No encontrás el servicio que buscás? Anotate igual. Los servicios nuevos se incorporan automáticamente.
+    <div id="lista-demandas" class="lista-servicios" style="display:none;">
+      <!-- Se llena automáticamente con JavaScript -->
     </div>
   </div>
+
+  <script src="js/idioma.js"></script>
+  <script src="js/almacenamiento.js"></script>
+  <script src="js/validacion.js"></script>
+  <script src="js/trato.js"></script>
+  <script src="js/flujos.js"></script>
 </body>
 </html>
