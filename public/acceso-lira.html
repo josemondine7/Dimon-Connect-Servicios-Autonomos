@@ -2,92 +2,62 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Acceso Lira — Dimon Connect</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-    html, body {
-      width: 100%; min-height: 100vh;
-      background: url('17.884.486.1479.2.png') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
-      position: relative;
-      display: flex; align-items: center; justify-content: center;
-      padding: 1.5rem;
-    }
-    .capa-fondo {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.15); z-index: 1; pointer-events: none;
-    }
-    .caja-acceso {
-      position: relative; z-index: 2;
-      width: 100%; max-width: 420px;
-      background: rgba(0,0,0,0.4); backdrop-filter: blur(12px);
-      padding: 2.5rem 2rem; border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-    }
-    .boton-volver {
-      color: #fcd34d; text-decoration: none; font-size: 0.95rem;
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      margin-bottom: 1.5rem;
-    }
-    h1 { font-size: 1.6rem; color: #a855f7; margin-bottom: 0.5rem; text-align: center; }
-    .subtitulo { color: #e5e7eb; text-align: center; margin-bottom: 2rem; font-size: 0.95rem; }
-    label { display: block; margin-bottom: 0.5rem; color: #c4b5fd; font-weight: 500; }
-    input {
-      width: 100%; padding: 1rem 1.2rem; border-radius: 12px;
-      border: 2px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.08); color: #fff;
-      font-size: 1rem; outline: none; margin-bottom: 1.5rem;
-    }
-    input:focus { border-color: #a855f7; }
-    .boton-ingresar {
-      width: 100%; padding: 1rem; border-radius: 12px; border: none;
-      background: linear-gradient(135deg, #a855f7, #7c3aed);
-      color: #fff; font-size: 1.1rem; font-weight: 600;
-      cursor: pointer; transition: transform 0.2s;
-    }
-    .boton-ingresar:hover { transform: translateY(-2px); }
-    .mensaje-error {
-      color: #f87171; margin-top: 1rem; text-align: center;
-      display: none; font-size: 0.9rem;
-    }
-    .info-acceso {
-      margin-top: 1.5rem; font-size: 0.8rem; color: #9ca3af; text-align: center;
-      line-height: 1.5;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Acceso a Lira — Dimon Connect</title>
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/responsivo.css">
 </head>
 <body>
-  <div class="capa-fondo"></div>
-  <div class="caja-acceso">
-    <a href="index.html" class="boton-volver">← Volver al inicio</a>
-    <h1>🤖 Acceso a Lira</h1>
-    <p class="subtitulo">Asistente interno de Dimon Connect — Acceso restringido</p>
-    <label for="clave-lira">Clave de acceso</label>
-    <input type="password" id="clave-lira" placeholder="Ingresá la clave..." autocomplete="off" onkeydown="if(event.key==='Enter')verificarClave()" />
-    <button class="boton-ingresar" onclick="verificarClave()">Ingresar</button>
-    <div class="mensaje-error" id="mensaje-error">Clave incorrecta. Volvé a intentarlo.</div>
-    <div class="info-acceso">
-      Solo personal autorizado.<br>
-      La clave es confidencial y no se comparte.
+
+  <header>
+    <button class="boton-volver" onclick="window.location.href='index.html'" data-txt="volver">← Volver</button>
+  </header>
+
+  <main class="contenedor-central">
+    <div class="caja-acceso">
+      <h2>🔐 Acceso a Lira</h2>
+      <p class="subtitulo">Ingresá la clave para continuar</p>
+      
+      <div class="grupo-formulario">
+        <label>Clave de acceso</label>
+        <input type="password" id="clave-lira" placeholder="Escribí la clave...">
+      </div>
+
+      <button id="boton-ingresar-lira" class="boton-principal">Ingresar</button>
+      <p id="mensaje-error" class="mensaje-error" style="display:none;">Clave incorrecta. Intentá nuevamente.</p>
     </div>
-  </div>
+  </main>
 
   <script>
+    const CLAVE_CORRECTA = "mondine5781lira"; // todo minúscula
+    const boton = document.getElementById('boton-ingresar-lira');
+    const input = document.getElementById('clave-lira');
+    const error = document.getElementById('mensaje-error');
+
     function verificarClave() {
-      const clave = document.getElementById('clave-lira').value;
-      const claveCorrecta = 'Prometeo_Atenas_Ades';
-      if (clave === claveCorrecta) {
-        sessionStorage.setItem('accesoLira', 'concedido');
-        window.location.href = 'chat-lira.html';
+      if (input.value.trim().toLowerCase() === CLAVE_CORRECTA) {
+        localStorage.setItem('lira-autorizada', 'true');
+        window.location.href = 'lira.html';
       } else {
-        document.getElementById('mensaje-error').style.display = 'block';
-        document.getElementById('clave-lira').value = '';
-        setTimeout(() => document.getElementById('mensaje-error').style.display = 'none', 3000);
+        error.style.display = 'block';
+        input.value = '';
+        input.focus();
       }
     }
+
+    boton.addEventListener('click', verificarClave);
+    input.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') verificarClave();
+    });
   </script>
+
+  <script src="js/idioma.js"></script>
+  <script src="js/almacenamiento.js"></script>
+  <script src="js/validacion.js"></script>
+  <script src="js/trato.js"></script>
+  <script src="js/flujos.js"></script>
 </body>
 </html>
