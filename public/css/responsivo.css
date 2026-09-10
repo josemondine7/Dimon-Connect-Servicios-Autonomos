@@ -1,0 +1,37 @@
+@import url('variables.css');
+
+@media (max-width: 480px) {
+  body {
+    padding: var(--espacio-medio);
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .tarjeta {
+    padding: var(--espacio-medio);
+  }
+
+  .botones {
+    flex-direction: column;
+    gap: var(--espacio-medio);
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .contenedor {
+    padding: 0 var(--espacio-medio);
+  }
+}
+
+@media (min-width: 769px) {
+  .contenedor {
+    max-width: var(--ancho-maximo);
+    margin: 0 auto;
+  }
+}
