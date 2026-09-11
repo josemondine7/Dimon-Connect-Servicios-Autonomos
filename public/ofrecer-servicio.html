@@ -3,79 +3,76 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Brindar un Servicio — Dimon Connect</title>
-  
+  <title data-txt="brindarServicio">Brindar mi Servicio</title>
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/componentes.css">
   <link rel="stylesheet" href="css/responsivo.css">
+  <script src="js/idioma.js"></script>
 </head>
 <body>
 
-  <header>
-    <button class="boton-volver" onclick="window.location.href='oferta-demanda.html'" data-txt="volver">← Volver</button>
-    <h2 data-txt="brindarServicio">Brindar mi Servicio</h2>
-  </header>
+  <div class="barra-superior-pagina">
+    <a href="oferta-demanda.html" class="boton-volver" style="margin:0" data-txt="volver">Volver</a>
+    <h1 class="titulo-pagina" data-txt="brindarServicio">Brindar mi Servicio</h1>
+    <button class="boton-cambiar-idioma" id="boton-idioma" onclick="cambiarIdioma(idiomaActual === 'es' ? 'en' : 'es')">ES</button>
+  </div>
 
-  <main class="contenedor-formulario">
-    <form id="formulario-oferente" class="formulario">
-      <div class="grupo-formulario">
-        <label data-txt="nombreCompleto">Nombre Completo</label>
-        <input type="text" id="oferente-nombre" required>
-      </div>
+  <main class="pagina-contenedor pagina-centrada">
+    <div class="tarjeta">
+      <form id="form-brindar">
+        <div class="form-grupo">
+          <label data-txt="nombreCompleto">Nombre completo *</label>
+          <input type="text" name="nombre" required data-txt-placeholder="campoObligatorio" placeholder="">
+        </div>
 
-      <div class="grupo-formulario">
-        <label data-txt="correo">Correo Electrónico</label>
-        <input type="email" id="oferente-correo" required>
-      </div>
+        <div class="form-grupo-doble">
+          <div class="form-grupo">
+            <label data-txt="correoElectronico">Correo electrónico *</label>
+            <input type="email" name="correo" required>
+          </div>
+          <div class="form-grupo">
+            <label data-txt="telefono">Teléfono / WhatsApp *</label>
+            <input type="tel" name="telefono" required>
+          </div>
+        </div>
 
-      <div class="grupo-formulario">
-        <label data-txt="telefono">Teléfono / WhatsApp</label>
-        <input type="tel" id="oferente-telefono" required>
-      </div>
+        <div class="form-grupo">
+          <label data-txt="tipoServicio">Tipo de servicio *</label>
+          <input type="text" name="servicio" required>
+        </div>
 
-      <div class="grupo-formulario">
-        <label data-txt="tipoServicio">Tipo de Servicio</label>
-        <select id="oferente-servicio" required>
-          <option value="" data-txt="seleccionarOpcion">Seleccionar...</option>
-          <!-- Se llena dinámicamente -->
-        </select>
-      </div>
+        <div class="form-grupo">
+          <label data-txt="precioEstimado">Precio estimado</label>
+          <input type="text" name="precio" placeholder="Ej: $50 / hora">
+        </div>
 
-      <div class="grupo-formulario">
-        <label data-txt="descripcionServicio">Descripción del Servicio</label>
-        <textarea id="oferente-descripcion" rows="4" required></textarea>
-      </div>
+        <div class="form-grupo">
+          <label data-txt="descripcion">Descripción breve</label>
+          <textarea name="descripcion" rows="4"></textarea>
+        </div>
 
-      <div class="grupo-formulario">
-        <label data-txt="precioEstimado">Precio Estimado</label>
-        <input type="number" id="oferente-precio" step="0.01" min="0">
-        <select id="oferente-moneda">
-          <option value="USD">USD $</option>
-          <option value="UYU">UYU $</option>
-          <option value="ARS">ARS $</option>
-          <option value="EUR">EUR €</option>
-        </select>
-      </div>
+        <div class="form-grupo">
+          <label data-txt="horariosDisponibles">Horarios disponibles</label>
+          <input type="text" name="horarios" placeholder="Ej: Lunes a Viernes de 9 a 18 hs">
+        </div>
 
-      <div class="grupo-formulario">
-        <label data-txt="ubicacion">Ubicación / Zona</label>
-        <input type="text" id="oferente-ubicacion">
-      </div>
+        <div class="checkbox-grupo">
+          <input type="checkbox" id="acepto" required>
+          <label for="acepto" data-txt="aceptoNormas">Acepto las normas y condiciones *</label>
+        </div>
 
-      <div class="grupo-formulario checkbox">
-        <input type="checkbox" id="acepto-normas" required>
-        <label for="acepto-normas" data-txt="aceptoNormas">Acepto las Normas y el Acuerdo del Trato</label>
-      </div>
+        <div class="contenedor-mensaje"></div>
 
-      <button type="submit" class="boton-principal" data-txt="registrarOferta">Registrar mi Servicio</button>
-    </form>
+        <button type="submit" class="boton-enviar" data-txt="enviarRegistro">Enviar registro</button>
+      </form>
+    </div>
   </main>
 
-  <script src="js/idioma.js"></script>
   <script src="js/almacenamiento.js"></script>
-  <script src="js/validacion.js"></script>
-  <script src="js/trato.js"></script>
   <script src="js/flujos.js"></script>
+  <script>
+    aplicarTraducciones();
+  </script>
 </body>
 </html>
