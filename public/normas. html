@@ -2,56 +2,60 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Normas y Seguridad — Dimon Connect</title>
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
-    html,body{background:url('fondo-Dimon.png') no-repeat center center fixed;background-size:cover;color:#fff;padding:1.5rem;line-height:1.6}
-    .capa-sombra{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(5,16,64,.5);z-index:-1}
-    .contenedor{max-width:800px;margin:0 auto;position:relative;z-index:1}
-    h1{color:#00ccff;text-align:center;margin-bottom:2rem}
-    h2{color:#00ccff;margin:1.5rem 0 1rem}
-    section{background:rgba(5,20,60,.7);padding:1.5rem;border-radius:12px;margin-bottom:1.5rem}
-    .volver{display:inline-block;color:#00ccff;text-decoration:none;margin-bottom:1.5rem}
-  </style>
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/responsivo.css">
 </head>
 <body>
-  <div class="capa-sombra"></div>
-  <div class="contenedor">
-    <a href="index.html" class="volver">← Volver al inicio</a>
-    <h1>Normas y Seguridad</h1>
 
-    <section id="comisiones">
-      <h2>Comisiones del Servicio</h2>
-      <p>Dimon Connect cobra una comisión del <strong>5%</strong> sobre el valor del servicio a quien lo solicita, y descuenta un <strong>5%</strong> a quien lo presta. El total de la comisión es del <strong>10%</strong> por operación.</p>
-      <p>Estos fondos se destinan al funcionamiento, mantenimiento, mejora y gestión de la plataforma, así como a cubrir los costos operativos, tecnológicos y administrativos del servicio.</p>
-    </section>
+  <header>
+    <button class="boton-volver" onclick="window.location.href='index.html'" data-txt="volver">← Volver</button>
+    <h2 data-txt="normas">Normas y Seguridad</h2>
+  </header>
 
-    <section id="legal">
-      <h2>Marco Legal</h2>
-      <p>Los acuerdos celebrados entre las partes a través de esta plataforma tienen valor de contrato legal, conforme al <strong>Artículo 1257 del Código Civil de Uruguay</strong>: "Los contratos legalmente celebrados tienen fuerza de ley entre las partes que los otorgan."</p>
-      <p>La plataforma opera con alcance internacional, respetando las normativas de protección al consumidor y comercio electrónico aplicables en cada jurisdicción.</p>
-    </section>
+  <main class="contenedor-texto">
+    <h3>📜 Normas Generales de Uso</h3>
+    <p>Bienvenido a Dimon Connect. Esta plataforma existe para conectar personas que ofrecen servicios con personas que los necesitan, en un marco de respeto, legalidad y seguridad mutua.</p>
 
-    <section id="privacidad">
-      <h2>Privacidad</h2>
-      <p>La información personal se protege y solo se utiliza para el funcionamiento del servicio. No se comparte con terceros sin consentimiento, salvo obligación legal.</p>
-    </section>
+    <h4>1. Conducta de los Usuarios</h4>
+    <ul>
+      <li>Tratar con respeto y honestidad a todas las personas</li>
+      <li>No publicar contenido ilegal, ofensivo o fraudulento</li>
+      <li>Cumplir con los acuerdos pactados entre las partes</li>
+      <li>Proporcionar información veraz y actualizada</li>
+    </ul>
 
-    <section id="terminos">
-      <h2>Términos de Servicio</h2>
-      <p>Solo se ofrecen y solicitan servicios lícitos. Las partes se comprometen a actuar de buena fe y cumplir lo acordado.</p>
-    </section>
+    <h4>2. Seguridad</h4>
+    <ul>
+      <li>No compartir contraseñas ni datos de acceso</li>
+      <li>Verificar la identidad de la otra parte antes de concretar trabajos</li>
+      <li>Reportar cualquier actividad sospechosa inmediatamente</li>
+      <li>Los pagos se recomienda realizarlos dentro de la plataforma cuando esté disponible</li>
+    </ul>
 
-    <section id="cookies">
-      <h2>Cookies</h2>
-      <p>Este sitio utiliza cookies para mejorar la experiencia de navegación y recordar preferencias de idioma y configuración.</p>
-    </section>
+    <h4>3. Del Servicio</h4>
+    <ul>
+      <li>Dimon Connect actúa como intermediario y no es responsable del incumplimiento de las partes</li>
+      <li>Cada usuario asume la responsabilidad de los servicios que ofrece o solicita</li>
+      <li>Se aplica el Acuerdo del Trato en cada operación</li>
+    </ul>
 
-    <section id="contacto">
-      <h2>Contacto</h2>
-      <p>Para consultas: contacto@dimonconnect.com</p>
-    </section>
-  </div>
+    <h4>4. Sanciones</h4>
+    <p>El incumplimiento de estas normas puede derivar en la suspensión o eliminación definitiva de la cuenta, sin derecho a reclamo alguno.</p>
+
+    <div class="centrar-boton">
+      <a href="acuerdo-trato.html" class="boton-secundario">📄 Ver Acuerdo del Trato</a>
+    </div>
+  </main>
+
+  <script src="js/idioma.js"></script>
+  <script src="js/almacenamiento.js"></script>
+  <script src="js/validacion.js"></script>
+  <script src="js/trato.js"></script>
+  <script src="js/flujos.js"></script>
 </body>
 </html>
