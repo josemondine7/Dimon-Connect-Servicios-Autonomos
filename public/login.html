@@ -2,153 +2,85 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Iniciar Sesión — Dimon Connect</title>
-  <link rel="stylesheet" href="styles.css" />
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-    html, body {
-      width: 100%; min-height: 100vh;
-      background: linear-gradient(135deg, #1a2a6c, #0f4c81);
-      color: #fff;
-      padding: 2rem 1.5rem;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .contenedor { width: 100%; max-width: 420px; }
-    .volver {
-      display: inline-block; color: #93c5fd; text-decoration: none;
-      margin-bottom: 2rem; padding: 0.5rem 1rem;
-      background: rgba(59, 130, 246, 0.15); border-radius: 8px;
-      border: 1px solid rgba(96, 165, 250, 0.3);
-    }
-    h1 { font-size: 1.8rem; margin-bottom: 0.5rem; color: #93c5fd; text-align: center; }
-    .subtitulo { text-align: center; color: #bae6fd; margin-bottom: 2rem; }
-    .caja {
-      background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-    }
-    .pestañas { display: flex; gap: 0.5rem; margin-bottom: 2rem; }
-    .pestaña {
-      flex: 1; padding: 0.8rem; border: none; border-radius: 10px;
-      background: rgba(255,255,255,0.08); color: #93c5fd;
-      font-size: 1rem; cursor: pointer; transition: all 0.25s;
-    }
-    .pestaña.activa {
-      background: linear-gradient(135deg, #f97316, #ea580c);
-      color: #fff; font-weight: 600;
-    }
-    .form-grupo { margin-bottom: 1.25rem; }
-    label { display: block; margin-bottom: 0.5rem; color: #7dd3fc; font-weight: 500; font-size: 0.95rem; }
-    input, select {
-      width: 100%; padding: 0.9rem 1rem; border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.08);
-      color: #fff; font-size: 1rem; outline: none;
-      transition: border 0.2s;
-    }
-    input:focus, select:focus { border-color: #38bdf8; }
-    .boton {
-      width: 100%; padding: 1rem;
-      background: linear-gradient(135deg, #f97316, #ea580c);
-      color: #fff; border: none; border-radius: 10px;
-      font-size: 1.05rem; font-weight: 600; cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      margin-top: 0.5rem;
-    }
-    .boton:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(249, 115, 22, 0.35); }
-    .oculto { display: none !important; }
-    .enlace { text-align: center; margin-top: 1.5rem; font-size: 0.95rem; color: #93c5fd; }
-    .enlace a { color: #fcd34d; text-decoration: none; }
-  </style>
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/responsivo.css">
 </head>
 <body>
-  <div class="contenedor">
-    <a href="index.html" class="volver">← Volver al inicio</a>
 
-    <h1>Dimon Connect</h1>
-    <p class="subtitulo">Ingresá o creá tu cuenta para empezar</p>
+  <header>
+    <button class="boton-volver" onclick="window.location.href='index.html'" data-txt="volver">← Volver</button>
+  </header>
 
-    <div class="caja">
-      <div class="pestañas">
-        <button class="pestaña activa" onclick="cambiarFormulario('login')">Ingresar</button>
-        <button class="pestaña" onclick="cambiarFormulario('registro')">Registrarse</button>
+  <main class="contenedor-central">
+    <div class="caja-login">
+      <h2>🔑 Iniciar Sesión</h2>
+      <p class="subtitulo">Ingresá tus datos para acceder</p>
+
+      <form id="formulario-login" class="formulario">
+        <div class="grupo-formulario">
+          <label>Correo Electrónico</label>
+          <input type="email" id="login-correo" required placeholder="tu@email.com">
+        </div>
+
+        <div class="grupo-formulario">
+          <label>Contraseña</label>
+          <input type="password" id="login-clave" required placeholder="••••••••">
+        </div>
+
+        <button type="submit" class="boton-principal">Ingresar</button>
+      </form>
+
+      <div class="enlaces-auth">
+        <p>¿No tenés cuenta aún? <a href="#" id="link-registrarse">Crear cuenta</a></p>
+        <p><a href="#" id="link-recuperar">¿Olvidaste tu contraseña?</a></p>
       </div>
 
-      <!-- FORMULARIO: INICIAR SESIÓN -->
-      <form id="form-login" onsubmit="iniciarSesion(event)">
-        <div class="form-grupo">
-          <label for="correo-login">Correo Electrónico</label>
-          <input type="email" id="correo-login" placeholder="tu@email.com" required />
-        </div>
-        <div class="form-grupo">
-          <label for="pass-login">Contraseña</label>
-          <input type="password" id="pass-login" placeholder="Tu contraseña" required />
-        </div>
-        <button type="submit" class="boton">✅ Ingresar</button>
-      </form>
+      <hr>
 
-      <!-- FORMULARIO: REGISTRO -->
-      <form id="form-registro" class="oculto" onsubmit="registrarse(event)">
-        <div class="form-grupo">
-          <label for="nombre-reg">Nombre Completo</label>
-          <input type="text" id="nombre-reg" placeholder="Tu nombre y apellido" required />
-        </div>
-        <div class="form-grupo">
-          <label for="correo-reg">Correo Electrónico</label>
-          <input type="email" id="correo-reg" placeholder="tu@email.com" required />
-        </div>
-        <div class="form-grupo">
-          <label for="pais-reg">País</label>
-          <select id="pais-reg" required>
-            <option value="">Seleccioná tu país</option>
-            <option value="UY">Uruguay</option>
-            <option value="AR">Argentina</option>
-            <option value="BR">Brasil</option>
-            <option value="CL">Chile</option>
-            <option value="US">Estados Unidos</option>
-            <option value="ES">España</option>
-            <option value="MX">México</option>
-            <option value="OT">Otro</option>
-          </select>
-        </div>
-        <div class="form-grupo">
-          <label for="ciudad-reg">Ciudad</label>
-          <input type="text" id="ciudad-reg" placeholder="Tu ciudad" required />
-        </div>
-        <div class="form-grupo">
-          <label for="pass-reg">Contraseña</label>
-          <input type="password" id="pass-reg" placeholder="Mínimo 6 caracteres" required minlength="6" />
-        </div>
-        <button type="submit" class="boton">✅ Crear Cuenta</button>
-      </form>
+      <div class="opcion-anonima">
+        <p class="pequeño">O simplemente navegá sin registrarte:</p>
+        <button id="boton-continuar-sesion" class="boton-secundario">Continuar sin sesión</button>
+      </div>
     </div>
-
-    <p class="enlace">Al registrarte, aceptás los <a href="terminos-servicio.html">Términos</a> y la <a href="politica-privacidad.html">Privacidad</a>.</p>
-  </div>
+  </main>
 
   <script>
-    function cambiarFormulario(tipo) {
-      document.querySelectorAll('.pestaña').forEach(p => p.classList.remove('activa'));
-      event.target.classList.add('activa');
-      if (tipo === 'login') {
-        document.getElementById('form-login').classList.remove('oculto');
-        document.getElementById('form-registro').classList.add('oculto');
+    document.getElementById('boton-continuar-sesion').addEventListener('click', function() {
+      window.location.href = 'index.html';
+    });
+
+    document.getElementById('formulario-login').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const correo = document.getElementById('login-correo').value;
+      const clave = document.getElementById('login-clave').value;
+      
+      // Búsqueda simple en usuarios registrados
+      const usuarios = JSON.parse(localStorage.getItem('usuarios-registrados') || '[]');
+      const encontrado = usuarios.find(u => u.correo === correo && u.clave === clave);
+      
+      if (encontrado) {
+        localStorage.setItem('usuario-actual', JSON.stringify(encontrado));
+        window.location.href = 'perfil-usuario.html';
       } else {
-        document.getElementById('form-login').classList.add('oculto');
-        document.getElementById('form-registro').classList.remove('oculto');
+        alert('Correo o contraseña incorrectos. Si no estás registrado, creá una cuenta primero.');
       }
-    }
-    function iniciarSesion(e) {
-      e.preventDefault();
-      alert('✅ ¡Bienvenido a Dimon Connect!\n\nIngreso confirmado. Ya podés ofrecer y solicitar servicios.');
-      window.location.href = 'index.html';
-    }
-    function registrarse(e) {
-      e.preventDefault();
-      alert('✅ ¡Cuenta creada con éxito!\n\nTe enviamos un correo de confirmación. Bienvenido a Dimon Connect.');
-      window.location.href = 'index.html';
-    }
+    });
+
+    document.getElementById('link-registrarse').addEventListener('click', function() {
+      alert('Función de registro disponible al completar un servicio. Por ahora completá tu primer formulario de oferta o demanda para quedar registrado automáticamente.');
+      window.location.href = 'oferta-demanda.html';
+    });
   </script>
+
+  <script src="js/idioma.js"></script>
+  <script src="js/almacenamiento.js"></script>
+  <script src="js/validacion.js"></script>
+  <script src="js/trato.js"></script>
+  <script src="js/flujos.js"></script>
 </body>
 </html>
