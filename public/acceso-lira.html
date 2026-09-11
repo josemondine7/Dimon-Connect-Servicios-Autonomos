@@ -3,61 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Acceso a Lira — Dimon Connect</title>
-  
+  <title>Lira — Acceso</title>
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/componentes.css">
   <link rel="stylesheet" href="css/responsivo.css">
+  <script src="js/idioma.js"></script>
 </head>
 <body>
 
-  <header>
-    <button class="boton-volver" onclick="window.location.href='index.html'" data-txt="volver">← Volver</button>
-  </header>
+  <div class="volver-arriba">
+    <a href="index.html" class="boton-volver" data-txt="volver">Volver</a>
+  </div>
 
-  <main class="contenedor-central">
-    <div class="caja-acceso">
-      <h2>🔐 Acceso a Lira</h2>
-      <p class="subtitulo">Ingresá la clave para continuar</p>
+  <main class="pagina-contenedor pagina-centrada">
+    <div class="tarjeta texto-centrado" style="margin-top: 80px;">
+      <h2 style="color: var(--color-blanco); font-size: 24px; margin-bottom: 8px;">Lira</h2>
+      <p style="color: var(--color-gris-claro); margin-bottom: 24px;" data-txt="ingresarContrasenaLira">Ingresá la contraseña de acceso</p>
       
-      <div class="grupo-formulario">
-        <label>Clave de acceso</label>
-        <input type="password" id="clave-lira" placeholder="Escribí la clave...">
+      <div class="contenedor-mensaje"></div>
+      
+      <div class="form-grupo">
+        <label data-txt="contraseña">Contraseña</label>
+        <input type="password" id="contrasena-lira" placeholder="••••••••••••">
       </div>
-
-      <button id="boton-ingresar-lira" class="boton-principal">Ingresar</button>
-      <p id="mensaje-error" class="mensaje-error" style="display:none;">Clave incorrecta. Intentá nuevamente.</p>
+      
+      <button id="boton-acceder-lira" class="boton-enviar" data-txt="acceder">Acceder</button>
     </div>
   </main>
 
-  <script>
-    const CLAVE_CORRECTA = "mondine5781lira"; // todo minúscula
-    const boton = document.getElementById('boton-ingresar-lira');
-    const input = document.getElementById('clave-lira');
-    const error = document.getElementById('mensaje-error');
-
-    function verificarClave() {
-      if (input.value.trim().toLowerCase() === CLAVE_CORRECTA) {
-        localStorage.setItem('lira-autorizada', 'true');
-        window.location.href = 'lira.html';
-      } else {
-        error.style.display = 'block';
-        input.value = '';
-        input.focus();
-      }
-    }
-
-    boton.addEventListener('click', verificarClave);
-    input.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') verificarClave();
-    });
-  </script>
-
-  <script src="js/idioma.js"></script>
-  <script src="js/almacenamiento.js"></script>
-  <script src="js/validacion.js"></script>
-  <script src="js/trato.js"></script>
   <script src="js/flujos.js"></script>
+  <script>
+    aplicarTraducciones();
+  </script>
 </body>
 </html>
