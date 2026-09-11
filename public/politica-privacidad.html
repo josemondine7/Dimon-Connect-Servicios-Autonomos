@@ -1,130 +1,48 @@
 <!DOCTYPE html>
 <html lang="es">
-<head><!-- === SISTEMA DE IDIOMA GLOBAL — PEGAR EN TODAS LAS PÁGINAS === -->
-<script>
-const traducciones = {
-  es: { volver:"Volver", inicio:"Inicio", buscar:"Buscar", ofertaDemanda:"Oferta y Demanda", solicitarServicio:"Solicitar un servicio", iniciarSesion:"Iniciar sesión", inscribirse:"Inscribirse", descargarApp:"Descargar aplicación", normas:"Normas y Seguridad", privacidad:"Privacidad", terminos:"Términos de Servicio", cookies:"Cookies", contacto:"Contacto", buscarPlaceholder:"Buscar servicios, personas, ayuda..." },
-  en: { volver:"Back", inicio:"Home", buscar:"Search", ofertaDemanda:"Offer & Demand", solicitarServicio:"Request a service", iniciarSesion:"Log in", inscribirse:"Sign up", descargarApp:"Download app", normas:"Rules & Security", privacidad:"Privacy", terminos:"Terms of Service", cookies:"Cookies", contacto:"Contact", buscarPlaceholder:"Search services, people, help..." },
-  pt: { volver:"Voltar", inicio:"Início", buscar:"Buscar", ofertaDemanda:"Oferta e Demanda", solicitarServicio:"Solicitar serviço", iniciarSesion:"Entrar", inscribirse:"Cadastrar-se", descargarApp:"Baixar aplicativo", normas:"Regras e Segurança", privacidad:"Privacidade", terminos:"Termos de Serviço", cookies:"Cookies", contacto:"Contato", buscarPlaceholder:"Buscar serviços, pessoas, ajuda..." },
-  zh: { volver:"返回", inicio:"首页", buscar:"搜索", ofertaDemanda:"供应与需求", solicitarServicio:"请求服务", iniciarSesion:"登录", inscribirse:"注册", descargarApp:"下载应用", normas:"规则与安全", privacidad:"隐私", terminos:"服务条款", cookies:"Cookie", contacto:"联系我们", buscarPlaceholder:"搜索服务、人员、帮助..." },
-  fr: { volver:"Retour", inicio:"Accueil", buscar:"Rechercher", ofertaDemanda:"Offres et Demandes", solicitarServicio:"Demander un service", iniciarSesion:"Se connecter", inscribirse:"S'inscrire", descargarApp:"Télécharger l'appli", normas:"Règles et Sécurité", privacidad:"Confidentialité", terminos:"Conditions d'utilisation", cookies:"Cookies", contacto:"Contact", buscarPlaceholder:"Rechercher services, personnes, aide..." },
-  de: { volver:"Zurück", inicio:"Startseite", buscar:"Suchen", ofertaDemanda:"Angebot & Nachfrage", solicitarServicio:"Dienst anfordern", iniciarSesion:"Anmelden", inscribirse:"Registrieren", descargarApp:"App herunterladen", normas:"Regeln & Sicherheit", privacidad:"Datenschutz", terminos:"Nutzungsbedingungen", cookies:"Cookies", contacto:"Kontakt", buscarPlaceholder:"Dienste, Personen, Hilfe suchen..." },
-  ja: { volver:"戻る", inicio:"ホーム", buscar:"検索", ofertaDemanda:"オファーと需要", solicitarServicio:"サービスを依頼", iniciarSesion:"ログイン", inscribirse:"新規登録", descargarApp:"アプリをダウンロード", normas:"規則と安全性", privacidad:"プライバシー", terminos:"利用規約", cookies:"クッキー", contacto:"お問い合わせ", buscarPlaceholder:"サービス、人物、ヘルプを検索..." },
-  ar: { volver:"رجوع", inicio:"الرئيسية", buscar:"بحث", ofertaDemanda:"العرض والطلب", solicitarServicio:"طلب خدمة", iniciarSesion:"تسجيل الدخول", inscribirse:"اشتراك", descargarApp:"تحميل التطبيق", normas:"القواعد والأمان", privacidad:"الخصوصية", terminos:"شروط الخدمة", cookies:"ملفات تعريف الارتباط", contacto:"اتصل بنا", buscarPlaceholder:"البحث عن خدمات، أشخاص، مساعدة..." },
-  hi: { volver:"वापस", inicio:"होम", buscar:"खोजें", ofertaDemanda:"ऑफ़र और मांग", solicitarServicio:"सेवा का अनुरोध करें", iniciarSesion:"लॉग इन", inscribirse:"पंजीकरण करें", descargarApp:"ऐप डाउनलोड करें", normas:"नियम और सुरक्षा", privacidad:"गोपनीयता", terminos:"सेवा की शर्तें", cookies:"कुकीज़", contacto:"संपर्क करें", buscarPlaceholder:"सेवाएं, लोग, मददूं खोजें..." },
-  bn: { volver:"ফিরে যান", inicio:"হোম", buscar:"খুঁজুন", ofertaDemanda:"অফার ও চাহিদা", solicitarServicio:"সেবা অনুরোধ করুন", iniciarSesion:"লগ ইন", inscribirse:"নিবন্ধন করুন", descargarApp:"অ্যাপ ডাউনলোড করুন", normas:"নিয়ম ও নিরাপত্তা", privacidad:"গোপনীয়তা", terminos:"সেবার শর্তাবলী", cookies:"কুকিজ", contacto:"যোগাযোগ করুন", buscarPlaceholder:"সেবা, ব্যক্তি, সাহায্য খুঁজুন..." },
-  ur: { volver:"واپس", inicio:"ہوم", buscar:"تلاش کریں", ofertaDemanda:"پیشکش اور طلب", solicitarServicio:"سروس کی درخواست کریں", iniciarSesion:"لاگ ان", inscribirse:"رجسٹر ہوں", descargarApp:"ایپ ڈاؤن لوڈ کریں", normas:"قواعد اور سیکیورٹی", privacidad:"رازداری", terminos:"سروس کی شرائط", cookies:"کوکیز", contacto:"رابطہ کریں", buscarPlaceholder:"سروسز، لوگ، مدد تلاش کریں..." },
-  id: { volver:"Kembali", inicio:"Beranda", buscar:"Cari", ofertaDemanda:"Penawaran & Permintaan", solicitarServicio:"Minta layanan", iniciarSesion:"Masuk", inscribirse:"Daftar", descargarApp:"Unduh aplikasi", normas:"Aturan & Keamanan", privacidad:"Privasi", terminos:"Ketentuan Layanan", cookies:"Cookie", contacto:"Kontak", buscarPlaceholder:"Cari layanan, orang, bantuan..." },
-  tr: { volver:"Geri", inicio:"Ana Sayfa", buscar:"Ara", ofertaDemanda:"Teklif & Talep", solicitarServicio:"Hizmet talep et", iniciarSesion:"Giriş yap", inscribirse:"Kayıt ol", descargarApp:"Uygulamayı indir", normas:"Kurallar ve Güvenlik", privacidad:"Gizlilik", terminos:"Hizmet Şartları", cookies:"Çerezler", contacto:"İletişim", buscarPlaceholder:"Hizmet, kişi, yardım ara..." },
-  ru: { volver:"Назад", inicio:"Главная", buscar:"Поиск", ofertaDemanda:"Предложения и Спрос", solicitarServicio:"Запросить услугу", iniciarSesion:"Войти", inscribirse:"Регистрация", descargarApp:"Скачать приложение", normas:"Правила и безопасность", privacidad:"Конфиденциальность", terminos:"Условия использования", cookies:"Файлы cookie", contacto:"Контакты", buscarPlaceholder:"Поиск услуг, людей, помощи..." }
-};
-function aplicarIdioma() {
-  const idioma = localStorage.getItem('idiomaDimon') || 'es';
-  const t = traducciones[idioma] || traducciones.es;
-  document.documentElement.lang = idioma;
-  document.querySelectorAll('[data-txt]').forEach(el => { const c=el.dataset.txt; if(t[c])el.textContent=t[c]; });
-  document.querySelectorAll('[data-txt-ph]').forEach(el => { const c=el.dataset.txtPh; if(t[c])el.placeholder=t[c]; });
-}
-document.addEventListener('DOMContentLoaded', aplicarIdioma);
-</script>
-
+<head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Política de Privacidad — Dimon Connect</title>
-  <link rel="stylesheet" href="styles.css" />
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-    html, body {
-      width: 100%; min-height: 100vh;
-      background: linear-gradient(135deg, #1a2a6c, #0f4c81);
-      color: #fff;
-      padding: 2rem 1.5rem;
-      line-height: 1.7;
-    }
-    .contenedor { max-width: 800px; margin: 0 auto; }
-    .volver {
-      display: inline-block; color: #93c5fd; text-decoration: none;
-      margin-bottom: 2rem; padding: 0.6rem 1.2rem;
-      background: rgba(59, 130, 246, 0.15); border-radius: 8px;
-      border: 1px solid rgba(96, 165, 250, 0.3);
-      transition: all 0.25s ease;
-    }
-    .volver:hover { background: rgba(59, 130, 246, 0.25); }
-    h1 { font-size: 1.8rem; margin-bottom: 2rem; color: #93c5fd; text-align: center; }
-    h2 { font-size: 1.25rem; margin: 2rem 0 1rem; color: #7dd3fc; }
-    p { margin-bottom: 1rem; color: #e0f2fe; }
-    ul { margin: 1rem 0 1.5rem 2rem; color: #e0f2fe; }
-    li { margin-bottom: 0.75rem; }
-    .caja {
-      background: rgba(255,255,255,0.05); padding: 1.25rem; border-radius: 12px;
-      margin: 1.5rem 0; border: 1px solid rgba(255,255,255,0.1);
-    }
-    .boton {
-      display: inline-block; padding: 0.85rem 1.5rem;
-      background: linear-gradient(135deg, #f97316, #ea580c);
-      color: #fff; text-decoration: none; border-radius: 10px;
-      font-weight: 600; text-align: center; margin: 0.5rem;
-      border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .boton:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3); }
-    .boton-verde { background: linear-gradient(135deg, #10b981, #059669); }
-    .boton-verde:hover { box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
-    .botones-centro { text-align: center; margin-top: 2.5rem; }
-    .separador { height: 1px; background: rgba(255,255,255,0.15); margin: 2.5rem 0; }
-  </style>
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/responsivo.css">
 </head>
 <body>
-  <div class="contenedor">
-    <a href="index.html" class="volver">← Volver al inicio</a>
 
-    <h1>Política de Privacidad</h1>
+  <header>
+    <button class="boton-volver" onclick="window.location.href='index.html'" data-txt="volver">← Volver</button>
+    <h2 data-txt="privacidad">Política de Privacidad</h2>
+  </header>
 
-    <h2>1. Información que recopilamos</h2>
-    <p>Recopilamos únicamente la información necesaria para el funcionamiento de la plataforma:</p>
+  <main class="contenedor-texto">
+    <h3>🔒 Información que Recopilamos</h3>
+    <p>Recopilamos únicamente los datos necesarios para el funcionamiento de la plataforma: nombre, correo electrónico, teléfono y los datos propios de los servicios ofrecidos o solicitados.</p>
+
+    <h3>📥 Uso de la Información</h3>
+    <p>Tu información personal se utiliza exclusivamente para:</p>
     <ul>
-      <li>Datos de registro: nombre, correo electrónico, país y ciudad de residencia</li>
-      <li>Información de los servicios publicados y los tratos realizados</li>
-      <li>Datos de contacto entre usuarios dentro de la plataforma</li>
+      <li>Permitir el contacto entre las partes interesadas</li>
+      <li>Mejorar el funcionamiento de la plataforma</li>
+      <li>Enviar notificaciones relacionadas con tus servicios</li>
     </ul>
 
-    <h2>2. Uso de la información</h2>
-    <p>Utilizamos la información para:</p>
-    <ul>
-      <li>Permitir el funcionamiento del servicio de intermediación entre usuarios</li>
-      <li>Administrar cuentas, servicios y transacciones</li>
-      <li>Enviar notificaciones relacionadas con el servicio</li>
-      <li>Mejorar la plataforma y su funcionamiento</li>
-    </ul>
+    <h3>🔐 Protección de los Datos</h3>
+    <p>Los datos se almacenan de forma segura y no se comparten con terceros con fines comerciales. Solo se comparten los datos estrictamente necesarios para concretar el contacto entre oferente y demandante.</p>
 
-    <h2>3. Protección de la información</h2>
-    <div class="caja">
-      <p>Dimon Connect implementa medidas de seguridad técnicas y organizacionales para proteger la información personal contra acceso no autorizado, pérdida o alteración.</p>
-    </div>
+    <h3>🗑️ Derecho de Eliminación</h3>
+    <p>Podés solicitar la eliminación de tu cuenta y todos tus datos en cualquier momento, contactándonos a través de la página de Contacto.</p>
 
-    <h2>4. Compartir información con terceros</h2>
-    <p>No vendemos, intercambiamos ni transferimos información personal a terceros sin consentimiento expreso del usuario, salvo requerimiento de autoridad legal competente.</p>
+    <h3>📞 Contacto</h3>
+    <p>Ante cualquier duda sobre esta política, escribinos a: contacto@dimonconnect.com</p>
+  </main>
 
-    <h2>5. Derechos del usuario</h2>
-    <p>El usuario tiene derecho a:</p>
-    <ul>
-      <li>Acceder a su información personal almacenada</li>
-      <li>Solicitar la corrección de datos inexactos</li>
-      <li>Solicitar la eliminación de su cuenta y sus datos, salvo obligaciones legales de conservación</li>
-      <li>Retirar su consentimiento en cualquier momento</li>
-    </ul>
-
-    <h2>6. Uso de cookies</h2>
-    <p>La plataforma utiliza cookies para mejorar la experiencia de navegación y recordar preferencias del usuario, como el idioma seleccionado. No se utilizan cookies de seguimiento externo.</p>
-
-    <h2>7. Contacto</h2>
-    <p>Para cualquier consulta sobre privacidad: <a href="contacto.html" style="color: #fcd34d;">Contactá con nosotros</a>.</p>
-
-    <div class="separador"></div>
-
-    <div class="botones-centro">
-      <a href="normas-seguridad.html" class="boton">⚖️ Normas y Seguridad</a>
-      <a href="terminos-servicio.html" class="boton boton-verde">📋 Términos de Servicio</a>
-    </div>
-  </div>
+  <script src="js/idioma.js"></script>
+  <script src="js/almacenamiento.js"></script>
+  <script src="js/validacion.js"></script>
+  <script src="js/trato.js"></script>
+  <script src="js/flujos.js"></script>
 </body>
 </html>
