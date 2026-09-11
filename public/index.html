@@ -9,27 +9,84 @@
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/componentes.css">
   <link rel="stylesheet" href="css/responsivo.css">
+  
+  <script>
+    const traducciones = {
+      es: { 
+        volver:"Volver", inicio:"Inicio", buscarPlaceholder:"Buscar servicios...", 
+        ofertaDemanda:"Oferta y Demanda", brindarServicio:"Brindar mi Servicio", 
+        solicitarServicio:"Solicitar un Servicio", normas:"Normas y Seguridad", 
+        privacidad:"Privacidad", terminos:"Términos de Servicio", 
+        descargarApp:"Descargar Aplicación", contacto:"Contacto"
+      },
+      en: { 
+        volver:"Back", inicio:"Home", buscarPlaceholder:"Search services...", 
+        ofertaDemanda:"Offer & Demand", brindarServicio:"Offer my Service", 
+        solicitarServicio:"Request a Service", normas:"Rules & Security", 
+        privacidad:"Privacy", terminos:"Terms of Service", 
+        descargarApp:"Download App", contacto:"Contact"
+      }
+    };
+    let idiomaActual = localStorage.getItem('idioma') || 'es';
+    
+    function cambiarIdioma(codigo) {
+      idiomaActual = codigo;
+      localStorage.setItem('idioma', codigo);
+      aplicarTraducciones();
+      document.getElementById('boton-idioma').textContent = codigo.toUpperCase();
+    }
+    
+    function aplicarTraducciones() {
+      document.querySelectorAll('[data-txt]').forEach(el => {
+        const clave = el.getAttribute('data-txt');
+        if (traducciones[idiomaActual][clave]) {
+          el.textContent = traducciones[idiomaActual][clave];
+        }
+      });
+      document.querySelectorAll('[data-placeholder]').forEach(el => {
+        const clave = el.getAttribute('data-placeholder');
+        if (traducciones[idiomaActual][clave]) {
+          el.placeholder = traducciones[idiomaActual][clave];
+        }
+      });
+    }
+  </script>
+  
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: fixed;
+    }
+    body {
+      background: url('1788448614792.png') no-repeat center center;
+      background-size: cover;
+      background-attachment: fixed;
+      margin: 0;
+    }
+    .contenedor-central {
+      padding-top: 100px !important;
+    }
+    .enlaces-inferiores a {
+      color: inherit !important;
+      text-shadow: none !important;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- CONTENIDO DE PÁGINA PRINCIPAL -->
   <header>
     <div class="barra-superior">
-      <button class="boton-idioma" id="boton-idioma">🌐 ES</button>
+      <button class="boton-idioma" id="boton-idioma" onclick="cambiarIdioma(idiomaActual === 'es' ? 'en' : 'es')">ES</button>
       <div class="buscador-pequeno">
-        <input type="text" data-txt="buscarPlaceholder" placeholder="Buscar servicios...">
+        <input type="text" data-placeholder="buscarPlaceholder" placeholder="Buscar servicios...">
       </div>
       <a href="acceso-lira.html" class="boton-lira">Lira</a>
     </div>
   </header>
 
   <main class="contenedor-central">
-    <div class="logo-central">
-      <img src="assets/logo_dimon_connect.png" alt="Dimon Connect">
-      <h1>Dimon Connect</h1>
-      <p>Servicios Autónomos</p>
-    </div>
-
     <div class="botones-principales">
       <a href="oferta-demanda.html" class="boton-principal" data-txt="ofertaDemanda">Oferta y Demanda</a>
       <a href="ofrecer-servicio.html" class="boton-principal" data-txt="brindarServicio">Brindar mi Servicio</a>
@@ -45,10 +102,13 @@
     </footer>
   </main>
 
+  <script>
+    aplicarTraducciones();
+    document.getElementById('boton-idioma').textContent = idiomaActual.toUpperCase();
+  </script>
+
   <script src="js/idioma.js"></script>
   <script src="js/almacenamiento.js"></script>
-  <script src="js/validacion.js"></script>
-  <script src="js/trato.js"></script>
   <script src="js/flujos.js"></script>
 </body>
 </html>
