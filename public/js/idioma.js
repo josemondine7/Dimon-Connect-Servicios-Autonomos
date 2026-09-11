@@ -1,177 +1,139 @@
-const traducciones = {
+const traduccionesComunes = {
   es: {
     volver: "Volver",
     inicio: "Inicio",
     buscar: "Buscar",
+    buscarPlaceholder: "Buscar servicios...",
     ofertaDemanda: "Oferta y Demanda",
-    solicitarServicio: "Solicitar un servicio",
-    brindarServicio: "Brindar mi servicio",
-    iniciarSesion: "Iniciar sesión",
-    inscribirse: "Inscribirse",
-    descargarApp: "Descargar aplicación",
+    brindarServicio: "Brindar mi Servicio",
+    solicitarServicio: "Solicitar un Servicio",
     normas: "Normas y Seguridad",
     privacidad: "Privacidad",
     terminos: "Términos de Servicio",
-    cookies: "Cookies",
+    descargarApp: "Descargar Aplicación",
     contacto: "Contacto",
-    buscarPlaceholder: "Buscar servicios, personas, ayuda...",
-    miPerfil: "Mi Perfil",
-    notificaciones: "Notificaciones",
-    cerrarSesion: "Cerrar sesión",
-    guardar: "Guardar cambios",
-    cancelar: "Cancelar",
-    confirmar: "Confirmar",
-    enviar: "Enviar",
-    publicar: "Publicar servicio",
-    contactar: "Contactar",
-    mensajeExito: "Operación realizada con éxito",
-    mensajeCampos: "Completar todos los campos obligatorios",
-    mensajeCorreoInvalido: "Ingresar un correo válido",
-    señaExplicacion: "La seña queda protegida en la plataforma hasta la confirmación del servicio",
-    comisionTitulo: "Desglose de costos",
-    comisionDimon: "4% Dimon Connect",
-    comisionReserva: "1% Fondo de Reserva",
-    comisionInversion: "1% Fondo de Inversión Comunitaria",
-    gananciaTotal: "8% Ganancia total de plataforma",
-    porcentajePrestador: "92% para el prestador del servicio",
-    acuerdoTitulo: "Acuerdo del Trato y Garantía",
-    acuerdoPunto1: "La seña se deposita en la plataforma al aceptar el trato",
-    acuerdoPunto2: "El prestador confirma la aceptación del trabajo",
-    acuerdoPunto3: "Al finalizar el servicio, el solicitante confirma",
-    acuerdoPunto4: "La seña más el resto del pago se liberan al prestador",
-    acuerdoPunto5: "Si el prestador no cumple: seña devuelta al solicitante",
-    acuerdoPunto6: "Si el solicitante no cumple: seña liberada al prestador como compensación",
-    aceptoAcuerdo: "He leído y acepto las condiciones del trato y las reglas de la plataforma",
-    campoObligatorio: "Campo obligatorio",
-    moneda: "Moneda",
-    metodoPago: "Método de cobro",
-    paypal: "PayPal",
-    transferencia: "Transferencia bancaria",
-    efectivo: "Efectivo",
-    pais: "País",
-    localidad: "Localidad / Ciudad",
+    serviciosQueSeBrindan: "Servicios que se brindan",
+    serviciosQueSeSolicitan: "Servicios que se solicitan",
+    anotarseBrindar: "Ofrecer mi servicio",
+    anotarseSolicitar: "Solicitar un servicio",
     nombreCompleto: "Nombre completo",
     correoElectronico: "Correo electrónico",
-    telefono: "Teléfono",
-    servicio: "Servicio que ofrece o solicita",
-    descripcion: "Descripción detallada",
-    precio: "Precio del servicio",
-    presupuesto: "Presupuesto disponible",
-    mensaje: "Tu mensaje",
-    sinPublicaciones: "No hay publicaciones todavía. Sé el primero en anotarse.",
-    servicioNuevo: "No encontrás el servicio que buscás? Anotate igual. Los servicios nuevos se incorporan automáticamente.",
-    cambiarIdioma: "Idioma",
-    cuentaAdmin: "Panel de Administración",
-    liraAcceso: "Acceso Lira Administradora",
+    telefono: "Teléfono / WhatsApp",
+    tipoServicio: "Tipo de servicio",
+    precioEstimado: "Precio estimado",
+    descripcion: "Descripción breve",
+    horariosDisponibles: "Horarios disponibles",
+    dondeRealizar: "¿Dónde hay que realizar el trabajo?",
+    cuandoNecesita: "¿Cuándo lo necesita?",
+    detallesAdicionales: "Detalles adicionales",
+    aceptoNormas: "Acepto las normas y condiciones",
+    enviarRegistro: "Enviar registro",
+    graciasPorRegistrarte: "¡Registrado con éxito! Ya aparecés en el listado.",
+    errorCampos: "Completá todos los campos obligatorios.",
+    errorCorreo: "Ingresá un correo electrónico válido.",
+    noHayServicios: "No hay servicios publicados todavía.",
+    mensajeSiNoEncontraste: "Si no encontrás lo que buscás, dejá tus datos igual — si alguien se suma te avisa.",
+    anotarseIgual: "Dejar mis datos igual",
+    contactar: "Contactar",
+    volverAlInicio: "Volver al inicio",
+    ingresarContrasenaLira: "Ingresá la contraseña de acceso",
+    contrasenaIncorrecta: "Contraseña incorrecta. Intentá de nuevo.",
+    acceder: "Acceder",
+    enviarMensaje: "Enviar",
+    escribeTuMensaje: "Escribí tu mensaje...",
+    mensajeEnviado: "Mensaje enviado",
     contraseña: "Contraseña",
-    ingresar: "Ingresar",
-    contraseñaIncorrecta: "Contraseña incorrecta. Intentar nuevamente."
+    campoObligatorio: "Este campo es obligatorio",
+    presupuestoEstimado: "Presupuesto estimado"
   },
   en: {
     volver: "Back",
     inicio: "Home",
     buscar: "Search",
+    buscarPlaceholder: "Search services...",
     ofertaDemanda: "Offer & Demand",
-    solicitarServicio: "Request a service",
-    brindarServicio: "Offer my service",
-    iniciarSesion: "Log in",
-    inscribirse: "Sign up",
-    descargarApp: "Download App",
+    brindarServicio: "Offer my Service",
+    solicitarServicio: "Request a Service",
     normas: "Rules & Security",
     privacidad: "Privacy",
     terminos: "Terms of Service",
-    cookies: "Cookies",
+    descargarApp: "Download App",
     contacto: "Contact",
-    buscarPlaceholder: "Search services, people, help...",
-    miPerfil: "My Profile",
-    notificaciones: "Notifications",
-    cerrarSesion: "Log out",
-    guardar: "Save changes",
-    cancelar: "Cancel",
-    confirmar: "Confirm",
-    enviar: "Send",
-    publicar: "Publish service",
-    contactar: "Contact",
-    mensajeExito: "Operation completed successfully",
-    mensajeCampos: "Fill in all required fields",
-    mensajeCorreoInvalido: "Enter a valid email address",
-    señaExplicacion: "The deposit remains protected on the platform until service completion",
-    comisionTitulo: "Cost breakdown",
-    comisionDimon: "4% Dimon Connect",
-    comisionReserva: "4% Reserve Fund",
-    comisionInversion: "1% Community Investment Fund",
-    gananciaTotal: "8% platform total revenue",
-    porcentajePrestador: "92% to the service provider",
-    acuerdoTitulo: "Service Agreement and Guarantee",
-    acuerdoPunto1: "Deposit is held on the platform when the deal is accepted",
-    acuerdoPunto2: "Provider confirms acceptance of the work",
-    acuerdoPunto3: "Upon completion, the requester confirms",
-    acuerdoPunto4: "Deposit plus remaining payment are released to the provider",
-    acuerdoPunto5: "If provider fails: deposit returned to requester",
-    acuerdoPunto6: "If requester cancels: deposit released to provider as compensation",
-    aceptoAcuerdo: "I have read and agree to the service terms and platform rules",
-    campoObligatorio: "Required field",
-    moneda: "Currency",
-    metodoPago: "Payment method",
-    paypal: "PayPal",
-    transferencia: "Bank transfer",
-    efectivo: "Cash",
-    pais: "Country",
-    localidad: "City / Location",
+    serviciosQueSeBrindan: "Services offered",
+    serviciosQueSeSolicitan: "Services requested",
+    anotarseBrindar: "Offer a service",
+    anotarseSolicitar: "Request a service",
     nombreCompleto: "Full name",
     correoElectronico: "Email address",
-    telefono: "Phone number",
-    servicio: "Service offered or requested",
-    descripcion: "Detailed description",
-    precio: "Service price",
-    presupuesto: "Available budget",
-    mensaje: "Your message",
-    sinPublicaciones: "No posts yet. Be the first one to sign up.",
-    servicioNuevo: "Can't find the service you're looking for? Sign up anyway. New services are added automatically.",
-    cambiarIdioma: "Language",
-    cuentaAdmin: "Administration Panel",
-    liraAcceso: "Lira Administrator Access",
+    telefono: "Phone / WhatsApp",
+    tipoServicio: "Type of service",
+    precioEstimado: "Estimated price",
+    descripcion: "Brief description",
+    horariosDisponibles: "Available hours",
+    dondeRealizar: "Where does the work need to be done?",
+    cuandoNecesita: "When do you need it?",
+    detallesAdicionales: "Additional details",
+    aceptoNormas: "I accept the rules and terms",
+    enviarRegistro: "Submit registration",
+    graciasPorRegistrarte: "Registered successfully! You now appear in the list.",
+    errorCampos: "Please fill in all required fields.",
+    errorCorreo: "Enter a valid email address.",
+    noHayServicios: "No services published yet.",
+    mensajeSiNoEncontraste: "If you don't find what you're looking for, leave your details anyway — someone may contact you.",
+    anotarseIgual: "Leave my details anyway",
+    contactar: "Contact",
+    volverAlInicio: "Back to Home",
+    ingresarContrasenaLira: "Enter access password",
+    contrasenaIncorrecta: "Incorrect password. Try again.",
+    acceder: "Access",
+    enviarMensaje: "Send",
+    escribeTuMensaje: "Type your message...",
+    mensajeEnviado: "Message sent",
     contraseña: "Password",
-    ingresar: "Enter",
-    contraseñaIncorrecta: "Incorrect password. Try again."
+    campoObligatorio: "This field is required",
+    presupuestoEstimado: "Estimated budget"
   }
 };
 
-function obtenerIdioma() {
-  return localStorage.getItem('idiomaDimon') || 'es';
+let idiomaActual = localStorage.getItem('idioma') || 'es';
+
+function cambiarIdioma(codigo) {
+  idiomaActual = codigo;
+  localStorage.setItem('idioma', codigo);
+  aplicarTraducciones();
+  const boton = document.getElementById('boton-idioma');
+  if (boton) boton.textContent = codigo.toUpperCase();
 }
 
-function cambiarIdioma(nuevoIdioma) {
-  localStorage.setItem('idiomaDimon', nuevoIdioma);
-  aplicarIdioma();
-}
+function aplicarTraducciones() {
+  const traducciones = traduccionesComunes[idiomaActual];
+  if (!traducciones) return;
 
-function aplicarIdioma() {
-  const idioma = obtenerIdioma();
-  const t = traducciones[idioma] || traducciones.es;
-  document.documentElement.lang = idioma;
-  
-  document.querySelectorAll('[data-txt]').forEach(elemento => {
-    const clave = elemento.dataset.txt;
-    if (t[clave]) {
-      elemento.textContent = t[clave];
+  document.querySelectorAll('[data-txt]').forEach(el => {
+    const clave = el.getAttribute('data-txt');
+    if (traducciones[clave]) {
+      el.textContent = traducciones[clave];
     }
   });
-  
-  document.querySelectorAll('[data-txt-placeholder]').forEach(elemento => {
-    const clave = elemento.dataset.txtPlaceholder;
-    if (t[clave]) {
-      elemento.placeholder = t[clave];
+
+  document.querySelectorAll('[data-placeholder]').forEach(el => {
+    const clave = el.getAttribute('data-placeholder');
+    if (traducciones[clave]) {
+      el.placeholder = traducciones[clave];
     }
   });
-  
-  const evento = new CustomEvent('idiomaCambiado', { detail: { idioma } });
-  document.dispatchEvent(evento);
+
+  document.documentElement.lang = idiomaActual;
 }
 
 function t(clave) {
-  const idioma = obtenerIdioma();
-  return traducciones[idioma]?.[clave] || traducciones.es[clave] || clave;
+  return traduccionesComunes[idiomaActual][clave] || clave;
 }
 
-document.addEventListener('DOMContentLoaded', aplicarIdioma);
+if (typeof aplicarTraducciones === 'function') {
+  document.addEventListener('DOMContentLoaded', () => {
+    aplicarTraducciones();
+    const boton = document.getElementById('boton-idioma');
+    if (boton) boton.textContent = idiomaActual.toUpperCase();
+  });
+}
