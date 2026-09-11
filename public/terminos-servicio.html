@@ -1,128 +1,57 @@
 <!DOCTYPE html>
 <html lang="es">
-<head><!-- === SISTEMA DE IDIOMA GLOBAL — PEGAR EN TODAS LAS PÁGINAS === -->
-<script>
-const traducciones = {
-  es: { volver:"Volver", inicio:"Inicio", buscar:"Buscar", ofertaDemanda:"Oferta y Demanda", solicitarServicio:"Solicitar un servicio", iniciarSesion:"Iniciar sesión", inscribirse:"Inscribirse", descargarApp:"Descargar aplicación", normas:"Normas y Seguridad", privacidad:"Privacidad", terminos:"Términos de Servicio", cookies:"Cookies", contacto:"Contacto", buscarPlaceholder:"Buscar servicios, personas, ayuda..." },
-  en: { volver:"Back", inicio:"Home", buscar:"Search", ofertaDemanda:"Offer & Demand", solicitarServicio:"Request a service", iniciarSesion:"Log in", inscribirse:"Sign up", descargarApp:"Download app", normas:"Rules & Security", privacidad:"Privacy", terminos:"Terms of Service", cookies:"Cookies", contacto:"Contact", buscarPlaceholder:"Search services, people, help..." },
-  pt: { volver:"Voltar", inicio:"Início", buscar:"Buscar", ofertaDemanda:"Oferta e Demanda", solicitarServicio:"Solicitar serviço", iniciarSesion:"Entrar", inscribirse:"Cadastrar-se", descargarApp:"Baixar aplicativo", normas:"Regras e Segurança", privacidad:"Privacidade", terminos:"Termos de Serviço", cookies:"Cookies", contacto:"Contato", buscarPlaceholder:"Buscar serviços, pessoas, ajuda..." },
-  zh: { volver:"返回", inicio:"首页", buscar:"搜索", ofertaDemanda:"供应与需求", solicitarServicio:"请求服务", iniciarSesion:"登录", inscribirse:"注册", descargarApp:"下载应用", normas:"规则与安全", privacidad:"隐私", terminos:"服务条款", cookies:"Cookie", contacto:"联系我们", buscarPlaceholder:"搜索服务、人员、帮助..." },
-  fr: { volver:"Retour", inicio:"Accueil", buscar:"Rechercher", ofertaDemanda:"Offres et Demandes", solicitarServicio:"Demander un service", iniciarSesion:"Se connecter", inscribirse:"S'inscrire", descargarApp:"Télécharger l'appli", normas:"Règles et Sécurité", privacidad:"Confidentialité", terminos:"Conditions d'utilisation", cookies:"Cookies", contacto:"Contact", buscarPlaceholder:"Rechercher services, personnes, aide..." },
-  de: { volver:"Zurück", inicio:"Startseite", buscar:"Suchen", ofertaDemanda:"Angebot & Nachfrage", solicitarServicio:"Dienst anfordern", iniciarSesion:"Anmelden", inscribirse:"Registrieren", descargarApp:"App herunterladen", normas:"Regeln & Sicherheit", privacidad:"Datenschutz", terminos:"Nutzungsbedingungen", cookies:"Cookies", contacto:"Kontakt", buscarPlaceholder:"Dienste, Personen, Hilfe suchen..." },
-  ja: { volver:"戻る", inicio:"ホーム", buscar:"検索", ofertaDemanda:"オファーと需要", solicitarServicio:"サービスを依頼", iniciarSesion:"ログイン", inscribirse:"新規登録", descargarApp:"アプリをダウンロード", normas:"規則と安全性", privacidad:"プライバシー", terminos:"利用規約", cookies:"クッキー", contacto:"お問い合わせ", buscarPlaceholder:"サービス、人物、ヘルプを検索..." },
-  ar: { volver:"رجوع", inicio:"الرئيسية", buscar:"بحث", ofertaDemanda:"العرض والطلب", solicitarServicio:"طلب خدمة", iniciarSesion:"تسجيل الدخول", inscribirse:"اشتراك", descargarApp:"تحميل التطبيق", normas:"القواعد والأمان", privacidad:"الخصوصية", terminos:"شروط الخدمة", cookies:"ملفات تعريف الارتباط", contacto:"اتصل بنا", buscarPlaceholder:"البحث عن خدمات، أشخاص، مساعدة..." },
-  hi: { volver:"वापस", inicio:"होम", buscar:"खोजें", ofertaDemanda:"ऑफ़र और मांग", solicitarServicio:"सेवा का अनुरोध करें", iniciarSesion:"लॉग इन", inscribirse:"पंजीकरण करें", descargarApp:"ऐप डाउनलोड करें", normas:"नियम और सुरक्षा", privacidad:"गोपनीयता", terminos:"सेवा की शर्तें", cookies:"कुकीज़", contacto:"संपर्क करें", buscarPlaceholder:"सेवाएं, लोग, मददूं खोजें..." },
-  bn: { volver:"ফিরে যান", inicio:"হোম", buscar:"খুঁজুন", ofertaDemanda:"অফার ও চাহিদা", solicitarServicio:"সেবা অনুরোধ করুন", iniciarSesion:"লগ ইন", inscribirse:"নিবন্ধন করুন", descargarApp:"অ্যাপ ডাউনলোড করুন", normas:"নিয়ম ও নিরাপত্তা", privacidad:"গোপনীয়তা", terminos:"সেবার শর্তাবলী", cookies:"কুকিজ", contacto:"যোগাযোগ করুন", buscarPlaceholder:"সেবা, ব্যক্তি, সাহায্য খুঁজুন..." },
-  ur: { volver:"واپس", inicio:"ہوم", buscar:"تلاش کریں", ofertaDemanda:"پیشکش اور طلب", solicitarServicio:"سروس کی درخواست کریں", iniciarSesion:"لاگ ان", inscribirse:"رجسٹر ہوں", descargarApp:"ایپ ڈاؤن لوڈ کریں", normas:"قواعد اور سیکیورٹی", privacidad:"رازداری", terminos:"سروس کی شرائط", cookies:"کوکیز", contacto:"رابطہ کریں", buscarPlaceholder:"سروسز، لوگ، مدد تلاش کریں..." },
-  id: { volver:"Kembali", inicio:"Beranda", buscar:"Cari", ofertaDemanda:"Penawaran & Permintaan", solicitarServicio:"Minta layanan", iniciarSesion:"Masuk", inscribirse:"Daftar", descargarApp:"Unduh aplikasi", normas:"Aturan & Keamanan", privacidad:"Privasi", terminos:"Ketentuan Layanan", cookies:"Cookie", contacto:"Kontak", buscarPlaceholder:"Cari layanan, orang, bantuan..." },
-  tr: { volver:"Geri", inicio:"Ana Sayfa", buscar:"Ara", ofertaDemanda:"Teklif & Talep", solicitarServicio:"Hizmet talep et", iniciarSesion:"Giriş yap", inscribirse:"Kayıt ol", descargarApp:"Uygulamayı indir", normas:"Kurallar ve Güvenlik", privacidad:"Gizlilik", terminos:"Hizmet Şartları", cookies:"Çerezler", contacto:"İletişim", buscarPlaceholder:"Hizmet, kişi, yardım ara..." },
-  ru: { volver:"Назад", inicio:"Главная", buscar:"Поиск", ofertaDemanda:"Предложения и Спрос", solicitarServicio:"Запросить услугу", iniciarSesion:"Войти", inscribirse:"Регистрация", descargarApp:"Скачать приложение", normas:"Правила и безопасность", privacidad:"Конфиденциальность", terminos:"Условия использования", cookies:"Файлы cookie", contacto:"Контакты", buscarPlaceholder:"Поиск услуг, людей, помощи..." }
-};
-function aplicarIdioma() {
-  const idioma = localStorage.getItem('idiomaDimon') || 'es';
-  const t = traducciones[idioma] || traducciones.es;
-  document.documentElement.lang = idioma;
-  document.querySelectorAll('[data-txt]').forEach(el => { const c=el.dataset.txt; if(t[c])el.textContent=t[c]; });
-  document.querySelectorAll('[data-txt-ph]').forEach(el => { const c=el.dataset.txtPh; if(t[c])el.placeholder=t[c]; });
-}
-document.addEventListener('DOMContentLoaded', aplicarIdioma);
-</script>
-
+<head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Términos de Servicio — Dimon Connect</title>
-  <link rel="stylesheet" href="styles.css" />
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-    html, body {
-      width: 100%; min-height: 100vh;
-      background: linear-gradient(135deg, #1a2a6c, #0f4c81);
-      color: #fff;
-      padding: 2rem 1.5rem;
-      line-height: 1.7;
-    }
-    .contenedor { max-width: 800px; margin: 0 auto; }
-    .volver {
-      display: inline-block; color: #93c5fd; text-decoration: none;
-      margin-bottom: 2rem; padding: 0.6rem 1.2rem;
-      background: rgba(59, 130, 246, 0.15); border-radius: 8px;
-      border: 1px solid rgba(96, 165, 250, 0.3);
-      transition: all 0.25s ease;
-    }
-    .volver:hover { background: rgba(59, 130, 246, 0.25); }
-    h1 { font-size: 1.8rem; margin-bottom: 2rem; color: #93c5fd; text-align: center; }
-    h2 { font-size: 1.25rem; margin: 2rem 0 1rem; color: #7dd3fc; }
-    p { margin-bottom: 1rem; color: #e0f2fe; }
-    ul { margin: 1rem 0 1.5rem 2rem; color: #e0f2fe; }
-    li { margin-bottom: 0.75rem; }
-    .caja {
-      background: rgba(255,255,255,0.05); padding: 1.25rem; border-radius: 12px;
-      margin: 1.5rem 0; border: 1px solid rgba(255,255,255,0.1);
-    }
-    .boton {
-      display: inline-block; padding: 0.85rem 1.5rem;
-      background: linear-gradient(135deg, #f97316, #ea580c);
-      color: #fff; text-decoration: none; border-radius: 10px;
-      font-weight: 600; text-align: center; margin: 0.5rem;
-      border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .boton:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3); }
-    .boton-verde { background: linear-gradient(135deg, #10b981, #059669); }
-    .boton-verde:hover { box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
-    .botones-centro { text-align: center; margin-top: 2.5rem; }
-    .separador { height: 1px; background: rgba(255,255,255,0.15); margin: 2.5rem 0; }
-    .destacado { font-weight: 600; color: #fcd34d; }
-  </style>
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/responsivo.css">
 </head>
 <body>
-  <div class="contenedor">
-    <a href="index.html" class="volver">← Volver al inicio</a>
 
-    <h1>Términos de Servicio</h1>
+  <header>
+    <button class="boton-volver" onclick="window.location.href='index.html'" data-txt="volver">← Volver</button>
+    <h2 data-txt="terminos">Términos de Servicio</h2>
+  </header>
 
-    <h2>1. Aceptación de los términos</h2>
-    <p>Al registrarse y utilizar Dimon Connect, el usuario acepta íntegramente estos Términos de Servicio, así como las Normas de Seguridad y la Política de Privacidad. Si no está de acuerdo, no debe utilizar la plataforma.</p>
+  <main class="contenedor-texto">
+    <h3>📋 Aceptación de los Términos</h3>
+    <p>Al utilizar Dimon Connect, aceptás estos Términos de Servicio en su totalidad. Si no estás de acuerdo, no debés utilizar la plataforma.</p>
 
-    <h2>2. Naturaleza del servicio</h2>
-    <p>Dimon Connect actúa exclusivamente como intermediario entre personas que solicitan un servicio y personas que lo brindan. No es parte del contrato que se celebra entre los usuarios, ni asume responsabilidad por la calidad, seguridad o legalidad de los servicios ofrecidos, salvo lo expresamente establecido en las Normas de Seguridad.</p>
+    <h3>👥 Descripción del Servicio</h3>
+    <p>Dimon Connect es una plataforma de intermediación que pone en contacto a personas que ofrecen servicios con personas que los solicitan. No somos empleadores ni contratantes directos.</p>
 
-    <h2>3. Requisitos de uso</h2>
+    <h3>⚖️ Obligaciones del Usuario</h3>
     <ul>
-      <li>Tener al menos 18 años de edad o mayoría de edad legal en el país de residencia</li>
-      <li>Proporcionar información veraz, completa y actualizada al registrarse</li>
-      <li>Mantener la confidencialidad de su cuenta y contraseña</li>
-      <li>Utilizar la plataforma únicamente para fines lícitos y legales</li>
+      <li>Ser mayor de edad o contar con autorización legal</li>
+      <li>Utilizar la plataforma solo para fines lícitos</li>
+      <li>No suplantar la identidad de terceros</li>
+      <li>No utilizar la plataforma para envío de spam o publicidad no solicitada</li>
     </ul>
 
-    <h2>4. Comisiones y pagos</h2>
-    <div class="caja">
-      <p>La comisión total de la plataforma es del <span class="destacado">10%</span> sobre el valor del servicio: 5% a cargo del solicitante y 5% a cargo del prestador. Estas condiciones se aceptan al confirmar cada trato.</p>
-    </div>
-
-    <h2>5. Prohibiciones</h2>
+    <h3>🚫 Prohibiciones</h3>
+    <p>Queda expresamente prohibido utilizar la plataforma para:</p>
     <ul>
-      <li>Ofrecer o solicitar servicios ilícitos, ilegales o que violen derechos de terceros</li>
-      <li>Suplantar identidad o proporcionar información falsa</li>
-      <li>Comunicarse fuera de la plataforma para evadir comisiones sin consentimiento mutuo</li>
-      <li>Publicar contenido ofensivo, discriminatorio o que viole derechos de autor</li>
-      <li>Realizar conductas que dañen el funcionamiento de la plataforma</li>
+      <li>Actividades ilegales o delictivas</li>
+      <li>Publicar contenido dañino, amenazante u ofensivo</li>
+      <li>Transmitir virus o código malicioso</li>
+      <li>Extraer información de otros usuarios con fines comerciales</li>
     </ul>
 
-    <h2>6. Modificaciones al servicio</h2>
-    <p>Dimon Connect se reserva el derecho de modificar, suspender o interrumpir el servicio o estos términos en cualquier momento, notificando con antelación razonable a los usuarios.</p>
+    <h3>📌 Modificaciones</h3>
+    <p>Nos reservamos el derecho de modificar estos términos en cualquier momento. Las modificaciones entran en vigor desde su publicación en la plataforma.</p>
 
-    <h2>7. Ley aplicable y jurisdicción</h2>
-    <p>Estos términos se rigen por las leyes de la República Oriental del Uruguay, sin perjuicio de las normas de protección del consumidor que correspondan según el país de residencia del usuario.</p>
+    <h3>🏛️ Legislación Aplicable</h3>
+    <p>Estos términos se rigen por las leyes vigentes en el país de operación. Cualquier disputa se resolverá en los tribunales correspondientes.</p>
+  </main>
 
-    <h2>8. Contacto</h2>
-    <p>Consultas sobre estos términos: <a href="contacto.html" style="color: #fcd34d;">Contactá con nosotros</a>.</p>
-
-    <div class="separador"></div>
-
-    <div class="botones-centro">
-      <a href="normas-seguridad.html" class="boton">⚖️ Normas y Seguridad</a>
-      <a href="politica-privacidad.html" class="boton boton-verde">🔒 Política de Privacidad</a>
-    </div>
-  </div>
+  <script src="js/idioma.js"></script>
+  <script src="js/almacenamiento.js"></script>
+  <script src="js/validacion.js"></script>
+  <script src="js/trato.js"></script>
+  <script src="js/flujos.js"></script>
 </body>
 </html>
