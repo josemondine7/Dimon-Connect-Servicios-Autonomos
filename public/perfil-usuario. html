@@ -1,114 +1,101 @@
 <!DOCTYPE html>
 <html lang="es">
-<head><!-- === SISTEMA DE IDIOMA GLOBAL — PEGAR EN TODAS LAS PÁGINAS === -->
-<script>
-const traducciones = {
-  es: { volver:"Volver", inicio:"Inicio", buscar:"Buscar", ofertaDemanda:"Oferta y Demanda", solicitarServicio:"Solicitar un servicio", iniciarSesion:"Iniciar sesión", inscribirse:"Inscribirse", descargarApp:"Descargar aplicación", normas:"Normas y Seguridad", privacidad:"Privacidad", terminos:"Términos de Servicio", cookies:"Cookies", contacto:"Contacto", buscarPlaceholder:"Buscar servicios, personas, ayuda..." },
-  en: { volver:"Back", inicio:"Home", buscar:"Search", ofertaDemanda:"Offer & Demand", solicitarServicio:"Request a service", iniciarSesion:"Log in", inscribirse:"Sign up", descargarApp:"Download app", normas:"Rules & Security", privacidad:"Privacy", terminos:"Terms of Service", cookies:"Cookies", contacto:"Contact", buscarPlaceholder:"Search services, people, help..." },
-  pt: { volver:"Voltar", inicio:"Início", buscar:"Buscar", ofertaDemanda:"Oferta e Demanda", solicitarServicio:"Solicitar serviço", iniciarSesion:"Entrar", inscribirse:"Cadastrar-se", descargarApp:"Baixar aplicativo", normas:"Regras e Segurança", privacidad:"Privacidade", terminos:"Termos de Serviço", cookies:"Cookies", contacto:"Contato", buscarPlaceholder:"Buscar serviços, pessoas, ajuda..." },
-  zh: { volver:"返回", inicio:"首页", buscar:"搜索", ofertaDemanda:"供应与需求", solicitarServicio:"请求服务", iniciarSesion:"登录", inscribirse:"注册", descargarApp:"下载应用", normas:"规则与安全", privacidad:"隐私", terminos:"服务条款", cookies:"Cookie", contacto:"联系我们", buscarPlaceholder:"搜索服务、人员、帮助..." },
-  fr: { volver:"Retour", inicio:"Accueil", buscar:"Rechercher", ofertaDemanda:"Offres et Demandes", solicitarServicio:"Demander un service", iniciarSesion:"Se connecter", inscribirse:"S'inscrire", descargarApp:"Télécharger l'appli", normas:"Règles et Sécurité", privacidad:"Confidentialité", terminos:"Conditions d'utilisation", cookies:"Cookies", contacto:"Contact", buscarPlaceholder:"Rechercher services, personnes, aide..." },
-  de: { volver:"Zurück", inicio:"Startseite", buscar:"Suchen", ofertaDemanda:"Angebot & Nachfrage", solicitarServicio:"Dienst anfordern", iniciarSesion:"Anmelden", inscribirse:"Registrieren", descargarApp:"App herunterladen", normas:"Regeln & Sicherheit", privacidad:"Datenschutz", terminos:"Nutzungsbedingungen", cookies:"Cookies", contacto:"Kontakt", buscarPlaceholder:"Dienste, Personen, Hilfe suchen..." },
-  ja: { volver:"戻る", inicio:"ホーム", buscar:"検索", ofertaDemanda:"オファーと需要", solicitarServicio:"サービスを依頼", iniciarSesion:"ログイン", inscribirse:"新規登録", descargarApp:"アプリをダウンロード", normas:"規則と安全性", privacidad:"プライバシー", terminos:"利用規約", cookies:"クッキー", contacto:"お問い合わせ", buscarPlaceholder:"サービス、人物、ヘルプを検索..." },
-  ar: { volver:"رجوع", inicio:"الرئيسية", buscar:"بحث", ofertaDemanda:"العرض والطلب", solicitarServicio:"طلب خدمة", iniciarSesion:"تسجيل الدخول", inscribirse:"اشتراك", descargarApp:"تحميل التطبيق", normas:"القواعد والأمان", privacidad:"الخصوصية", terminos:"شروط الخدمة", cookies:"ملفات تعريف الارتباط", contacto:"اتصل بنا", buscarPlaceholder:"البحث عن خدمات، أشخاص، مساعدة..." },
-  hi: { volver:"वापस", inicio:"होम", buscar:"खोजें", ofertaDemanda:"ऑफ़र और मांग", solicitarServicio:"सेवा का अनुरोध करें", iniciarSesion:"लॉग इन", inscribirse:"पंजीकरण करें", descargarApp:"ऐप डाउनलोड करें", normas:"नियम और सुरक्षा", privacidad:"गोपनीयता", terminos:"सेवा की शर्तें", cookies:"कुकीज़", contacto:"संपर्क करें", buscarPlaceholder:"सेवाएं, लोग, मददूं खोजें..." },
-  bn: { volver:"ফিরে যান", inicio:"হোম", buscar:"খুঁজুন", ofertaDemanda:"অফার ও চাহিদা", solicitarServicio:"সেবা অনুরোধ করুন", iniciarSesion:"লগ ইন", inscribirse:"নিবন্ধন করুন", descargarApp:"অ্যাপ ডাউনলোড করুন", normas:"নিয়ম ও নিরাপত্তা", privacidad:"গোপনীয়তা", terminos:"সেবার শর্তাবলী", cookies:"কুকিজ", contacto:"যোগাযোগ করুন", buscarPlaceholder:"সেবা, ব্যক্তি, সাহায্য খুঁজুন..." },
-  ur: { volver:"واپس", inicio:"ہوم", buscar:"تلاش کریں", ofertaDemanda:"پیشکش اور طلب", solicitarServicio:"سروس کی درخواست کریں", iniciarSesion:"لاگ ان", inscribirse:"رجسٹر ہوں", descargarApp:"ایپ ڈاؤن لوڈ کریں", normas:"قواعد اور سیکیورٹی", privacidad:"رازداری", terminos:"سروس کی شرائط", cookies:"کوکیز", contacto:"رابطہ کریں", buscarPlaceholder:"سروسز، لوگ، مدد تلاش کریں..." },
-  id: { volver:"Kembali", inicio:"Beranda", buscar:"Cari", ofertaDemanda:"Penawaran & Permintaan", solicitarServicio:"Minta layanan", iniciarSesion:"Masuk", inscribirse:"Daftar", descargarApp:"Unduh aplikasi", normas:"Aturan & Keamanan", privacidad:"Privasi", terminos:"Ketentuan Layanan", cookies:"Cookie", contacto:"Kontak", buscarPlaceholder:"Cari layanan, orang, bantuan..." },
-  tr: { volver:"Geri", inicio:"Ana Sayfa", buscar:"Ara", ofertaDemanda:"Teklif & Talep", solicitarServicio:"Hizmet talep et", iniciarSesion:"Giriş yap", inscribirse:"Kayıt ol", descargarApp:"Uygulamayı indir", normas:"Kurallar ve Güvenlik", privacidad:"Gizlilik", terminos:"Hizmet Şartları", cookies:"Çerezler", contacto:"İletişim", buscarPlaceholder:"Hizmet, kişi, yardım ara..." },
-  ru: { volver:"Назад", inicio:"Главная", buscar:"Поиск", ofertaDemanda:"Предложения и Спрос", solicitarServicio:"Запросить услугу", iniciarSesion:"Войти", inscribirse:"Регистрация", descargarApp:"Скачать приложение", normas:"Правила и безопасность", privacidad:"Конфиденциальность", terminos:"Условия использования", cookies:"Файлы cookie", contacto:"Контакты", buscarPlaceholder:"Поиск услуг, людей, помощи..." }
-};
-function aplicarIdioma() {
-  const idioma = localStorage.getItem('idiomaDimon') || 'es';
-  const t = traducciones[idioma] || traducciones.es;
-  document.documentElement.lang = idioma;
-  document.querySelectorAll('[data-txt]').forEach(el => { const c=el.dataset.txt; if(t[c])el.textContent=t[c]; });
-  document.querySelectorAll('[data-txt-ph]').forEach(el => { const c=el.dataset.txtPh; if(t[c])el.placeholder=t[c]; });
-}
-document.addEventListener('DOMContentLoaded', aplicarIdioma);
-</script>
-
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Perfil de Usuario — Dimon Connect</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    html, body {
-      width: 100%; min-height: 100vh; background-color: #0066FF;
-      background-image: url('./1788448614792.png'); background-repeat: no-repeat;
-      background-position: center center; background-size: cover; background-attachment: fixed;
-      color: #ffffff; padding: 1.5rem; padding-bottom: 3rem;
-    }
-    .volver { margin-bottom: 1.5rem; }
-    .volver a { color: #00ccff; text-decoration: none; font-size: 1rem; font-weight: 600; }
-    .volver a:hover { text-decoration: underline; }
-    .tarjeta {
-      background: rgba(0, 51, 102, 0.7); border: 2px solid #00ccff; border-radius: 16px;
-      padding: 2rem; max-width: 600px; margin: 0 auto; backdrop-filter: blur(10px);
-    }
-    .cabecera-perfil { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-    .avatar {
-      width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #ffd700, #ff8800);
-      display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; color: #000;
-    }
-    .nombre { font-size: 1.6rem; font-weight: 700; color: #ffd700; margin-bottom: 0.3rem; }
-    .ubicacion { color: #80c8ff; font-size: 0.95rem; }
-    .etiqueta {
-      display: inline-block; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem;
-      margin-left: 0.5rem;
-    }
-    .etiqueta-disponible { background: rgba(0,255,68,0.15); color: #00ff44; border: 1px solid #00ff44; }
-    .seccion { margin-top: 1.8rem; }
-    h3 { font-size: 1.1rem; color: #00ccff; margin-bottom: 0.8rem; }
-    p { line-height: 1.6; color: #e0f0ff; margin-bottom: 0.5rem; }
-    .precio { font-size: 1.3rem; color: #ffd700; font-weight: 600; margin: 1rem 0; }
-    .caja-pago {
-      background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.4); border-radius: 10px;
-      padding: 1.2rem; margin-top: 1.5rem;
-    }
-    .caja-pago h4 { color: #ffd700; margin-bottom: 0.8rem; font-size: 1rem; }
-    .boton-contactar {
-      width: 100%; padding: 1.1rem; margin-top: 1.8rem; border: none; border-radius: 12px;
-      background: linear-gradient(135deg, #00cc44, #009933); color: #fff;
-      font-size: 1.05rem; font-weight: 600; cursor: pointer; transition: all 0.25s;
-    }
-    .boton-contactar:hover { transform: translateY(-2px); }
-    @media (max-width: 600px) {
-      .tarjeta { padding: 1.5rem; }
-      .cabecera-perfil { flex-direction: column; text-align: center; }
-    }
-  </style>
+  <title>Mi Perfil — Dimon Connect</title>
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/responsivo.css">
 </head>
 <body>
 
-  <div class="volver"><a href="oferta-demanda.html">← Volver al listado</a></div>
+  <header>
+    <button class="boton-volver" onclick="window.location.href='index.html'" data-txt="volver">← Volver</button>
+    <h2>👤 Mi Perfil</h2>
+  </header>
 
-  <div class="tarjeta">
-    <div class="cabecera-perfil">
-      <div class="avatar">C</div>
-      <div>
-        <div class="nombre">Carlos M.<span class="etiqueta etiqueta-disponible">Disponible ahora</span></div>
-        <div class="ubicacion">Montevideo, Uruguay</div>
-      </div>
+  <main class="contenedor-perfil">
+    <div class="tarjeta-perfil">
+      <div class="avatar-grande">👤</div>
+      <h3 id="perfil-nombre">Usuario Anónimo</h3>
+      <p id="perfil-correo" class="correo-perfil">Sin correo registrado</p>
+      <span class="estado-perfil">● No ha iniciado sesión</span>
     </div>
 
-    <div class="seccion">
-      <h3>Servicio que ofrece</h3>
-      <p>Pintura de interiores y exteriores, restauración de frentes, impermeabilización, trabajos en altura, acabados de calidad y preparación completa de superficies.</p>
+    <div class="acciones-perfil">
+      <button id="boton-iniciar" class="boton-principal">🔑 Iniciar Sesión</button>
+      <button id="boton-registrar" class="boton-secundario">📝 Registrarse</button>
+      <button id="boton-mis-ofertas" class="boton-secundario" style="display:none;">📋 Mis Servicios Ofrecidos</button>
+      <button id="boton-mis-solicitudes" class="boton-secundario" style="display:none;">📋 Mis Solicitudes</button>
+      <button id="boton-cerrar-sesion" class="boton-peligro" style="display:none;">🚪 Cerrar Sesión</button>
     </div>
 
-    <div class="precio">Valor estimado: 25 USD por día</div>
-
-    <div class="caja-pago">
-      <h3>Forma de pago y cobro</h3>
-      <p><strong>Plataforma de pago:</strong> PayPal. Funciona en todo el mundo.</p>
-      <p>Quien paga envía el monto total más el 5% de comisión de la plataforma.</p>
-      <p>Quien cobra recibe el monto acordado menos el 5% de comisión de la plataforma.</p>
-      <p>Se necesita cuenta de PayPal para pagar y para cobrar. Si no tenés, se puede crear gratuitamente.</p>
+    <div class="seccion-datos" id="seccion-datos-personales" style="display:none;">
+      <h4>📝 Mis Datos</h4>
+      <form id="formulario-perfil">
+        <div class="grupo-formulario">
+          <label>Nombre Completo</label>
+          <input type="text" id="editar-nombre">
+        </div>
+        <div class="grupo-formulario">
+          <label>Correo Electrónico</label>
+          <input type="email" id="editar-correo">
+        </div>
+        <div class="grupo-formulario">
+          <label>Teléfono / WhatsApp</label>
+          <input type="tel" id="editar-telefono">
+        </div>
+        <button type="submit" class="boton-principal">💾 Guardar Cambios</button>
+      </form>
     </div>
+  </main>
 
-    <button class="boton-contactar" onclick="window.location.href='chat-usuario.html'">Contactar y coordinar servicio</button>
-  </div>
+  <script>
+    function actualizarPerfil() {
+      const usuario = JSON.parse(localStorage.getItem('usuario-actual') || 'null');
+      if (usuario) {
+        document.getElementById('perfil-nombre').textContent = usuario.nombre || 'Usuario';
+        document.getElementById('perfil-correo').textContent = usuario.correo || '';
+        document.querySelector('.estado-perfil').textContent = '● Conectado';
+        document.getElementById('boton-iniciar').style.display = 'none';
+        document.getElementById('boton-registrar').style.display = 'none';
+        document.getElementById('boton-cerrar-sesion').style.display = 'block';
+        document.getElementById('boton-mis-ofertas').style.display = 'block';
+        document.getElementById('boton-mis-solicitudes').style.display = 'block';
+        document.getElementById('seccion-datos-personales').style.display = 'block';
+        
+        document.getElementById('editar-nombre').value = usuario.nombre || '';
+        document.getElementById('editar-correo').value = usuario.correo || '';
+        document.getElementById('editar-telefono').value = usuario.telefono || '';
+      }
+    }
 
+    document.getElementById('boton-cerrar-sesion').addEventListener('click', function() {
+      localStorage.removeItem('usuario-actual');
+      location.reload();
+    });
+
+    document.getElementById('formulario-perfil').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const usuario = JSON.parse(localStorage.getItem('usuario-actual') || '{}');
+      usuario.nombre = document.getElementById('editar-nombre').value;
+      usuario.correo = document.getElementById('editar-correo').value;
+      usuario.telefono = document.getElementById('editar-telefono').value;
+      localStorage.setItem('usuario-actual', JSON.stringify(usuario));
+      alert('✅ Datos guardados correctamente');
+      actualizarPerfil();
+    });
+
+    actualizarPerfil();
+  </script>
+
+  <script src="js/idioma.js"></script>
+  <script src="js/almacenamiento.js"></script>
+  <script src="js/validacion.js"></script>
+  <script src="js/trato.js"></script>
+  <script src="js/flujos.js"></script>
 </body>
 </html>
