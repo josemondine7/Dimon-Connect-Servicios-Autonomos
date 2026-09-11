@@ -2,30 +2,104 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Panel de Administración — Lira</title>
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
-    html,body{background:url('fondo-Dimon.png') no-repeat center center fixed;background-size:cover;color:#fff;padding:1.5rem}
-    .capa-sombra{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(5,16,64,.6);z-index:-1}
-    .contenedor{max-width:600px;margin:0 auto;position:relative;z-index:1;text-align:center;padding-top:3rem}
-    h1{color:#00ccff;margin-bottom:2rem}
-    .tarjeta{background:rgba(5,20,60,.8);padding:2rem;border-radius:16px;border:2px solid #00ccff}
-    input{width:100%;padding:1rem;margin:1rem 0;border-radius:8px;border:none;font-size:1rem;background:rgba(255,255,255,.9);color:#051040}
-    button{padding:1rem 2rem;border-radius:8px;border:none;background:#00ccff;color:#051040;font-size:1rem;font-weight:700;cursor:pointer}
-    .volver{display:inline-block;color:#00ccff;text-decoration:none;margin-top:2rem}
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Chat con Lira — Dimon Connect</title>
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/responsivo.css">
 </head>
 <body>
-  <div class="capa-sombra"></div>
-  <div class="contenedor">
-    <h1>⚙️ Asistente Lira — Administración</h1>
-    <div class="tarjeta">
-      <p>Área restringida. Solo para uso interno de Dimon Connect.</p>
-      <input type="password" placeholder="Ingresar contraseña de administración..." />
-      <button onclick="alert('Acceso concedido — Bienvenido, José')">Ingresar</button>
+
+  <header class="cabecera-chat">
+    <button class="boton-volver" id="boton-volver-chat">← Salir</button>
+    <div class="info-asistente">
+      <span class="nombre-asistente">🤖 Lira — Asistente de Dimon Connect</span>
     </div>
-    <a href="index.html" class="volver">← Volver al inicio</a>
+    <div class="estado-en-linea">● En línea</div>
+  </header>
+
+  <div id="caja-mensajes" class="caja-mensajes">
+    <!-- Mensajes van acá -->
+    <div class="mensaje lira">
+      <div class="avatar-mensaje">🤖</div>
+      <div class="contenido-mensaje">
+        <p>¡Hola! Soy Lira, tu asistente de Dimon Connect. ¿En qué puedo ayudarte hoy?</p>
+        <span class="hora-mensaje">Ahora</span>
+      </div>
+    </div>
   </div>
+
+  <div class="barra-entrada">
+    <input type="file" id="subir-imagen" accept="image/*" style="display:none;">
+    <button class="boton-adjuntar" id="boton-adjuntar">📎</button>
+    <input type="text" id="entrada-mensaje" placeholder="Escribí tu mensaje..." class="entrada-texto">
+    <button id="boton-enviar" class="boton-enviar">➤</button>
+  </div>
+
+  <script>
+    // Verificar acceso
+    if (localStorage.getItem('lira-autorizada') !== 'true') {
+      window.location.href = 'acceso-lira.html';
+    }
+
+    document.getElementById('boton-volver-chat').addEventListener('click', function() {
+      localStorage.removeItem('lira-autorizada');
+      window.location.href = 'index.html';
+    });
+
+    // Chat básico
+    const cajaMensajes = document.getElementById('caja-mensajes');
+    const entradaMensaje = document.getElementById('entrada-mensaje');
+    const botonEnviar = document.getElementById('boton-enviar');
+    const botonAdjuntar = document.getElementById('boton-adjuntar');
+    const subirImagen = document.getElementById('subir-imagen');
+
+    function agregarMensaje(texto, esUsuario, hora = 'Ahora') {
+      const clase = esUsuario ? 'usuario' : 'lira';
+      const avatar = esUsuario ? '👤' : '🤖';
+      const div = document.createElement('div');
+      div.className = `mensaje ${clase}`;
+      div.innerHTML = `
+        <div class="avatar-mensaje">${avatar}</div>
+        <div class="contenido-mensaje">
+          <p>${texto}</p>
+          <span class="hora-mensaje">${hora}</span>
+        </div>
+      `;
+      cajaMensajes.appendChild(div);
+      cajaMensajes.scrollTop = cajaMensajes.scrollHeight;
+    }
+
+    function enviarMensaje() {
+      const texto = entradaMensaje.value.trim();
+      if (!texto) return;
+      
+      agregarMensaje(texto, true);
+      entradaMensaje.value = '';
+      
+      setTimeout(() => {
+        agregarMensaje('Recibí tu mensaje. Estoy procesando tu consulta...', false);
+      }, 600);
+    }
+
+    botonEnviar.addEventListener('click', enviarMensaje);
+    entradaMensaje.addEventListener('keypress', e => e.key === 'Enter' && enviarMensaje());
+    
+    botonAdjuntar.addEventListener('click', () => subirImagen.click());
+    subirImagen.addEventListener('change', function(e) {
+      if (e.target.files.length > 0) {
+        agregarMensaje('📷 Imagen adjuntada', true);
+        setTimeout(() => agregarMensaje('Recibí la imagen. ¿En qué te ayudo con ella?', false), 600);
+      }
+    });
+  </script>
+
+  <script src="js/idioma.js"></script>
+  <script src="js/almacenamiento.js"></script>
+  <script src="js/validacion.js"></script>
+  <script src="js/trato.js"></script>
+  <script src="js/flujos.js"></script>
 </body>
 </html>
