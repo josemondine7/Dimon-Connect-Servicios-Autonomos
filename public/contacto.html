@@ -1,131 +1,69 @@
 <!DOCTYPE html>
 <html lang="es">
-<head><!-- === SISTEMA DE IDIOMA GLOBAL — PEGAR EN TODAS LAS PÁGINAS === -->
-<script>
-const traducciones = {
-  es: { volver:"Volver", inicio:"Inicio", buscar:"Buscar", ofertaDemanda:"Oferta y Demanda", solicitarServicio:"Solicitar un servicio", iniciarSesion:"Iniciar sesión", inscribirse:"Inscribirse", descargarApp:"Descargar aplicación", normas:"Normas y Seguridad", privacidad:"Privacidad", terminos:"Términos de Servicio", cookies:"Cookies", contacto:"Contacto", buscarPlaceholder:"Buscar servicios, personas, ayuda...", volverInicio:"Volver al inicio", tituloContacto:"Contacto", tuNombre:"Tu Nombre", correoElectronico:"Correo Electrónico", asunto:"Asunto", seleccionarMotivo:"Seleccioná un motivo", consultaGeneral:"Consulta general", problemaServicio:"Problema con el servicio", consultaLegal:"Consulta legal o normativa", sugerencia:"Sugerencia", otro:"Otro", tuMensaje:"Tu Mensaje", placeholderMensaje:"Escribinos tu consulta. Te respondemos a la brevedad.", enviarMensaje:"✅ Enviar Mensaje", infoContacto:"Información de Contacto", correoLabel:"Correo:", sitioLabel:"Sitio:", ubicacion:"República Oriental del Uruguay", horarioRespuesta:"Horario de respuesta: Lunes a Viernes, 9:00 a 18:00 (UTC-3)", mensajeExito:"✅ ¡Mensaje enviado con éxito!\n\nTe responderemos a la brevedad. ¡Gracias por contactarnos!" },
-  en: { volver:"Back", inicio:"Home", buscar:"Search", ofertaDemanda:"Offer & Demand", solicitarServicio:"Request a service", iniciarSesion:"Log in", inscribirse:"Sign up", descargarApp:"Download app", normas:"Rules & Security", privacidad:"Privacy", terminos:"Terms of Service", cookies:"Cookies", contacto:"Contact", buscarPlaceholder:"Search services, people, help...", volverInicio:"Back to home", tituloContacto:"Contact", tuNombre:"Your Name", correoElectronico:"Email Address", asunto:"Subject", seleccionarMotivo:"Select a reason", consultaGeneral:"General inquiry", problemaServicio:"Service issue", consultaLegal:"Legal or regulatory inquiry", sugerencia:"Suggestion", otro:"Other", tuMensaje:"Your Message", placeholderMensaje:"Write your inquiry here. We'll reply as soon as possible.", enviarMensaje:"✅ Send Message", infoContacto:"Contact Information", correoLabel:"Email:", sitioLabel:"Website:", ubicacion:"Eastern Republic of Uruguay", horarioRespuesta:"Response hours: Monday to Friday, 9:00 AM to 6:00 PM (UTC-3)", mensajeExito:"✅ Message sent successfully!\n\nWe will reply as soon as possible. Thank you for contacting us!" },
-  pt: { volver:"Voltar", inicio:"Início", buscar:"Buscar", ofertaDemanda:"Oferta e Demanda", solicitarServicio:"Solicitar serviço", iniciarSesion:"Entrar", inscribirse:"Cadastrar-se", descargarApp:"Baixar aplicativo", normas:"Regras e Segurança", privacidad:"Privacidade", terminos:"Termos de Serviço", cookies:"Cookies", contacto:"Contato", buscarPlaceholder:"Buscar serviços, pessoas, ajuda...", volverInicio:"Voltar ao início", tituloContacto:"Contato", tuNombre:"Seu Nome", correoElectronico:"E-mail", asunto:"Assunto", seleccionarMotivo:"Selecione um motivo", consultaGeneral:"Consulta geral", problemaServicio:"Problema com o serviço", consultaLegal:"Consulta jurídica ou normativa", sugerencia:"Sugestão", otro:"Outro", tuMensaje:"Sua Mensagem", placeholderMensaje:"Escreva sua mensagem. Responderemos em breve.", enviarMensaje:"✅ Enviar Mensagem", infoContacto:"Informações de Contato", correoLabel:"E-mail:", sitioLabel:"Site:", ubicacion:"República Oriental do Uruguai", horarioRespuesta:"Horário de atendimento: Segunda a Sexta, 9h às 18h (UTC-3)", mensajeExito:"✅ Mensagem enviada com sucesso!\n\nResponderemos em breve. Obrigado por entrar em contato!" },
-  zh: { volver:"返回", inicio:"首页", buscar:"搜索", ofertaDemanda:"供应与需求", solicitarServicio:"请求服务", iniciarSesion:"登录", inscribirse:"注册", descargarApp:"下载应用", normas:"规则与安全", privacidad:"隐私", terminos:"服务条款", cookies:"Cookie", contacto:"联系我们", buscarPlaceholder:"搜索服务、人员、帮助...", volverInicio:"返回首页", tituloContacto:"联系我们", tuNombre:"您的姓名", correoElectronico:"电子邮箱", asunto:"主题", seleccionarMotivo:"请选择原因", consultaGeneral:"一般咨询", problemaServicio:"服务问题", consultaLegal:"法律或规范咨询", sugerencia:"建议", otro:"其他", tuMensaje:"您的留言", placeholderMensaje:"请写下您的问题，我们将尽快回复您。", enviarMensaje:"✅ 发送消息", infoContacto:"联系方式", correoLabel:"邮箱：", sitioLabel："网站：", ubicacion:"乌拉圭东岸共和国", horarioRespuesta:"回复时间：周一至周五 9:00–18:00 (UTC-3)", mensajeExito:"✅ 消息发送成功！\n\n我们将尽快回复您。感谢您的联系！" },
-  fr: { volver:"Retour", inicio:"Accueil", buscar:"Rechercher", ofertaDemanda:"Offres et Demandes", solicitarServicio:"Demander un service", iniciarSesion:"Se connecter", inscribirse:"S'inscrire", descargarApp:"Télécharger l'appli", normas:"Règles et Sécurité", privacidad:"Confidentialité", terminos:"Conditions d'utilisation", cookies:"Cookies", contacto:"Contact", buscarPlaceholder:"Rechercher services, personnes, aide...", volverInicio:"Retour à l'accueil", tituloContacto:"Contact", tuNombre:"Votre Nom", correoElectronico:"Adresse e-mail", asunto:"Sujet", seleccionarMotivo:"Choisissez un motif", consultaGeneral:"Demande générale", problemaServicio:"Problème avec le service", consultaLegal:"Question juridique ou réglementaire", sugerencia:"Suggestion", otro:"Autre", tuMensaje:"Votre Message", placeholderMensaje:"Écrivez votre message. Nous vous répondrons rapidement.", enviarMensaje:"✅ Envoyer le message", infoContacto:"Informations de contact", correoLabel:"E-mail :", sitioLabel:"Site web :", ubicacion:"République Orientale de l'Uruguay", horarioRespuesta:"Horaires de réponse : Lundi au Vendredi, 9h-18h (UTC-3)", mensajeExito:"✅ Message envoyé avec succès !\n\nNous vous répondrons dans les meilleurs délais. Merci de nous avoir contactés !" },
-  de: { volver:"Zurück", inicio:"Startseite", buscar:"Suchen", ofertaDemanda:"Angebot & Nachfrage", solicitarServicio:"Dienst anfordern", iniciarSesion:"Anmelden", inscribirse:"Registrieren", descargarApp:"App herunterladen", normas:"Regeln & Sicherheit", privacidad:"Datenschutz", terminos:"Nutzungsbedingungen", cookies:"Cookies", contacto:"Kontakt", buscarPlaceholder:"Dienste, Personen, Hilfe suchen...", volverInicio:"Zurück zur Startseite", tituloContacto:"Kontakt", tuNombre:"Ihr Name", correoElectronico:"E-Mail-Adresse", asunto:"Betreff", seleccionarMotivo:"Grund auswählen", consultaGeneral:"Allgemeine Anfrage", problemaServicio:"Problem mit dem Dienst", consultaLegal:"Rechtliche oder behördliche Anfrage", sugerencia:"Vorschlag", otro:"Sonstiges", tuMensaje:"Ihre Nachricht", placeholderMensaje:"Schreiben Sie uns. Wir antworten so schnell wie möglich.", enviarMensaje:"✅ Nachricht senden", infoContacto:"Kontaktinformationen", correoLabel:"E-Mail:", sitioLabel:"Webseite:", ubicacion:"Orientalische Republik Uruguay", horarioRespuesta:"Antwortzeiten: Montag bis Freitag, 9:00–18:00 Uhr (UTC-3)", mensajeExito:"✅ Nachricht erfolgreich gesendet!\n\nWir antworten Ihnen umgehend. Vielen Dank für Ihre Kontaktaufnahme!" },
-  ja: { volver:"戻る", inicio:"ホーム", buscar:"検索", ofertaDemanda:"オファーと需要", solicitarServicio:"サービスを依頼", iniciarSesion:"ログイン", inscribirse:"新規登録", descargarApp:"アプリをダウンロード", normas:"規則と安全性", privacidad:"プライバシー", terminos:"利用規約", cookies:"クッキー", contacto:"お問い合わせ", buscarPlaceholder:"サービス、人物、ヘルプを検索...", volverInicio:"ホームに戻る", tituloContacto:"お問い合わせ", tuNombre:"お名前", correoElectronico:"メールアドレス", asunto:"件名", seleccionarMotivo:"理由を選択してください", consultaGeneral:"一般的なお問い合わせ", problemaServicio:"サービスに関する問題", consultaLegal:"法律・規制に関するお問い合わせ", sugerencia:"ご提案", otro:"その他", tuMensaje:"メッセージ", placeholderMensaje:"ご質問・ご用件をお書きください。なるべく早くお返事いたします。", enviarMensaje:"✅ 送信", infoContacto:"連絡先情報", correoLabel:"メール：", sitioLabel:"ウェブサイト：", ubicacion:"ウルグアイ東方共和国", horarioRespuesta:"回答時間：月曜～金曜 9:00～18:00（UTC-3）", mensajeExito:"✅ メッセージを送信しました！\n\nできるだけ早くご返信いたします。お問い合わせありがとうございます！" },
-  ar: { volver:"رجوع", inicio:"الرئيسية", buscar:"بحث", ofertaDemanda:"العرض والطلب", solicitarServicio:"طلب خدمة", iniciarSesion:"تسجيل الدخول", inscribirse:"اشتراك", descargarApp:"تحميل التطبيق", normas:"القواعد والأمان", privacidad:"الخصوصية", terminos:"شروط الخدمة", cookies:"ملفات تعريف الارتباط", contacto:"اتصل بنا", buscarPlaceholder:"البحث عن خدمات، أشخاص، مساعدة...", volverInicio:"العودة للرئيسية", tituloContacto:"اتصل بنا", tuNombre:"الاسم الكامل", correoElectronico:"البريد الإلكتروني", asunto:"الموضوع", seleccionarMotivo:"اختر السبب", consultaGeneral:"استفسار عام", problemaServicio:"مشكلة في الخدمة", consultaLegal:"استفسار قانوني أو تنظيمي", sugerencia:"اقتراح", otro:"أخرى", tuMensaje:"رسالتك", placeholderMensaje:"اكتب استفسارك. سنجيبك في أقرب وقت.", enviarMensaje:"✅ إرسال الرسالة", infoContacto:"معلومات الاتصال", correoLabel:"البريد الإلكتروني:", sitioLabel:"الموقع الإلكتروني:", ubicacion:"الجمهورية الشرقية لأوروغواي", horarioRespuesta:"ساعات الرد: من الاثنين إلى الجمعة، 9:00–18:00 (UTC-3)", mensajeExito:"✅ تم إرسال الرسالة بنجاح!\n\nسنتواصل معك قريباً. شكراً لتواصلك معنا!" },
-  hi: { volver:"वापस", inicio:"होम", buscar:"खोजें", ofertaDemanda:"ऑफ़र और मांग", solicitarServicio:"सेवा का अनुरोध करें", iniciarSesion:"लॉग इन", inscribirse:"पंजीकरण करें", descargarApp:"ऐप डाउनलोड करें", normas:"नियम और सुरक्षा", privacidad:"गोपनीयता", terminos:"सेवा की शर्तें", cookies:"कुकीज़", contacto:"संपर्क करें", buscarPlaceholder:"सेवाएं, लोग, मददूं खोजें...", volverInicio:"होम पर वापस", tituloContacto:"संपर्क करें", tuNombre:"आपका नाम", correoElectronico:"ईमेल पता", asunto:"विषय", seleccionarMotivo:"कारण चुनें", consultaGeneral:"सामान्य पूछताछ", problemaServicio:"सेवा में समस्या", consultaLegal:"कानूनी या नियामक पूछताछ", sugerencia:"सुझाव", otro:"अन्य", tuMensaje:"आपका संदेश", placeholderMensaje:"अपनी बात लिखें। हम जल्द ही जवाब देंगे।", enviarMensaje:"✅ संदेश भेजें", infoContacto:"संपर्क जानकारी", correoLabel:"ईमेल:", sitioLabel:"वेबसाइट:", ubicacion:"उरुग्वे पूर्वी गणराज्य", horarioRespuesta:"जवाब का समय: सोमवार से शुक्रवार, सुबह 9 से शाम 6 बजे (UTC-3)", mensajeExito:"✅ संदेश सफलतापूर्वक भेजा गया!\n\nहम जल्द ही जवाब देंगे। हमसे संपर्क करने के लिए धन्यवाद!" },
-  bn: { volver:"ফিরে যান", inicio:"হোম", buscar:"খুঁজুন", ofertaDemanda:"অফার ও চাহিদা", solicitarServicio:"সেবা অনুরোধ করুন", iniciarSesion:"লগ ইন", inscribirse:"নিবন্ধন করুন", descargarApp:"অ্যাপ ডাউনলোড করুন", normas:"নিয়ম ও নিরাপত্তা", privacidad:"গোপনীয়তা", terminos:"সেবার শর্তাবলী", cookies:"কুকিজ", contacto:"যোগাযোগ করুন", buscarPlaceholder:"সেবা, ব্যক্তি, সাহায্য খুঁজুন...", volverInicio:"হোমে ফিরে যান", tituloContacto:"যোগাযোগ", tuNombre:"আপনার নাম", correoElectronico:"ইমেইল ঠিকানা", asunto:"বিষয়", seleccionarMotivo:"কারণ নির্বাচন করুন", consultaGeneral:"সাধারণ জিজ্ঞাসা", problemaServicio:"সেবা সম্পর্কিত সমস্যা", consultaLegal:"আইনি বা নিয়ম সম্পর্কিত জিজ্ঞাসা", sugerencia:"পরামর্শ", otro:"অন্যান্য", tuMensaje:"আপনার বার্তা", placeholderMensaje:"আপনার কথা লিখুন। আমরা শীঘ্রই উত্তর দেব।", enviarMensaje:"✅ বার্তা পাঠান", infoContacto:"যোগাযোগের তথ্য", correoLabel:"ইমেইল:", sitioLabel:"ওয়েবসাইট:", ubicacion:"উরুগুয়ে পূর্ব প্রজাতন্ত্র", horarioRespuesta:"উত্তরের সময়: সোম থেকে শুক্র, সকাল ৯টা থেকে সন্ধ্যা ৬টা (UTC-3)", mensajeExito:"✅ বার্তা সফলভাবে পাঠানো হয়েছে!\n\nআমরা শীঘ্রই উত্তর দেব। আমাদের সাথে যোগাযোগ করার জন্য ধন্যবাদ!" },
-  ur: { volver:"واپس", inicio:"ہوم", buscar:"تلاش کریں", ofertaDemanda:"پیشکش اور طلب", solicitarServicio:"سروس کی درخواست کریں", iniciarSesion:"لاگ ان", inscribirse:"رجسٹر ہوں", descargarApp:"ایپ ڈاؤن لوڈ کریں", normas:"قواعد اور سیکیورٹی", privacidad:"رازداری", terminos:"سروس کی شرائط", cookies:"کوکیز", contacto:"رابطہ کریں", buscarPlaceholder:"سروسز، لوگ، مدد تلاش کریں...", volverInicio:"ہوم پر واپس", tituloContacto:"رابطہ", tuNombre:"آپ کا نام", correoElectronico:"ای میل پتہ", asunto:"موضوع", seleccionarMotivo:"وجہ منتخب کریں", consultaGeneral:"عام پوچھ گچھ", problemaServicio:"سروس میں مسئلہ", consultaLegal:"قانونی یا ضابطے سے متعلق پوچھ گچھ", sugerencia:"تجویز", otro:"دیگر", tuMensaje:"آپ کا پیغام", placeholderMensaje:"اپنی بات لکھیں۔ ہم جلد ہی جواب دیں گے۔", enviarMensaje:"✅ پیغام بھیجیں", infoContacto:"رابطے کی معلومات", correoLabel:"ای میل:", sitioLabel:"ویب سائٹ:", ubicacion:"جمہوریہ مشرقی یوروگوئے", horarioRespuesta:"جواب کا وقت: پیر سے جمعہ، صبح 9 سے شام 6 بجے (UTC-3)", mensajeExito:"✅ پیغام کامیابی سے بھیج دیا گیا!\n\nہم جلد ہی جواب دیں گے۔ ہم سے رابطہ کرنے کا شکریہ!" },
-  id: { volver:"Kembali", inicio:"Beranda", buscar:"Cari", ofertaDemanda:"Penawaran & Permintaan", solicitarServicio:"Minta layanan", iniciarSesion:"Masuk", inscribirse:"Daftar", descargarApp:"Unduh aplikasi", normas:"Aturan & Keamanan", privacidad:"Privasi", terminos:"Ketentuan Layanan", cookies:"Cookie", contacto:"Kontak", buscarPlaceholder:"Cari layanan, orang, bantuan...", volverInicio:"Kembali ke beranda", tituloContacto:"Kontak", tuNombre:"Nama Anda", correoElectronico:"Alamat Email", asunto:"Subjek", seleccionarMotivo:"Pilih alasan", consultaGeneral:"Pertanyaan umum", problemaServicio:"Masalah layanan", consultaLegal:"Pertanyaan hukum atau peraturan", sugerencia:"Saran", otro:"Lainnya", tuMensaje:"Pesan Anda", placeholderMensaje:"Tulis pesan Anda. Kami akan segera membalas.", enviarMensaje:"✅ Kirim Pesan", infoContacto:"Informasi Kontak", correoLabel:"Email:", sitioLabel:"Situs web:", ubicacion:"Republik Oriental Uruguay", horarioRespuesta:"Jam balasan: Senin–Jumat, 09.00–18.00 (UTC-3)", mensajeExito:"✅ Pesan berhasil dikirim!\n\nKami akan segera membalas. Terima kasih telah menghubungi kami!" },
-  tr: { volver:"Geri", inicio:"Ana Sayfa", buscar:"Ara", ofertaDemanda:"Teklif & Talep", solicitarServicio:"Hizmet talep et", iniciarSesion:"Giriş yap", inscribirse:"Kayıt ol", descargarApp:"Uygulamayı indir", normas:"Kurallar ve Güvenlik", privacidad:"Gizlilik", terminos:"Hizmet Şartları", cookies:"Çerezler", contacto:"İletişim", buscarPlaceholder:"Hizmet, kişi, yardım ara...", volverInicio:"Ana Sayfaya Dön", tituloContacto:"İletişim", tuNombre:"Adınız", correoElectronico:"E-posta Adresi", asunto:"Konu", seleccionarMotivo:"Bir neden seçin", consultaGeneral:"Genel soru", problemaServicio:"Hizmet sorunu", consultaLegal:"Yasal veya düzenleyici soru", sugerencia:"Öneri", otro:"Diğer", tuMensaje:"Mesajınız", placeholderMensaje:"Mesajınızı yazın. En kısa sürede dönüş yapacağız.", enviarMensaje:"✅ Mesaj Gönder", infoContacto:"İletişim Bilgileri", correoLabel:"E-posta:", sitioLabel:"Web sitesi:", ubicacion:"Uruguay Doğu Cumhuriyeti", horarioRespuesta:"Yanıt süresi: Pazartesi–Cuma, 09.00–18.00 (UTC-3)", mensajeExito:"✅ Mesaj başarıyla gönderildi!\n\nEn kısa sürede dönüş yapacağız. Bize ulaştığınız için teşekkürler!" },
-  ru: { volver:"Назад", inicio:"Главная", buscar:"Поиск", ofertaDemanda:"Предложения и Спрос", solicitarServicio:"Запросить услугу", iniciarSesion:"Войти", inscribirse:"Регистрация", descargarApp:"Скачать приложение", normas:"Правила и безопасность", privacidad:"Конфиденциальность", terminos:"Условия использования", cookies:"Файлы cookie", contacto:"Контакты", buscarPlaceholder:"Поиск услуг, людей, помощи...", volverInicio:"Вернуться на главную", tituloContacto:"Контакты", tuNombre:"Ваше имя", correoElectronico:"Электронная почта", asunto:"Тема", seleccionarMotivo:"Выберите причину", consultaGeneral:"Общий вопрос", problemaServicio:"Проблема с услугой", consultaLegal:"Юридический или нормативный вопрос", sugerencia:"Предложение", otro:"Другое", tuMensaje:"Ваше сообщение", placeholderMensaje:"Напишите ваше сообщение. Мы ответим как можно скорее.", enviarMensaje:"✅ Отправить сообщение", infoContacto:"Контактная информация", correoLabel:"E-mail:", sitioLabel:"Веб-сайт:", ubicacion:"Восточная Республика Уругвай", horarioRespuesta:"Время ответа: Понедельник–Пятница, 9:00–18:00 (UTC-3)", mensajeExito:"✅ Сообщение успешно отправлено!\n\nМы ответим вам в ближайшее время. Спасибо за обращение!" }
-};
-function aplicarIdioma() {
-  const idioma = localStorage.getItem('idiomaDimon') || 'es';
-  const t = traducciones[idioma] || traducciones.es;
-  document.documentElement.lang = idioma;
-  document.querySelectorAll('[data-txt]').forEach(el => { const c=el.dataset.txt; if(t[c])el.textContent=t[c]; });
-  document.querySelectorAll('[data-txt-ph]').forEach(el => { const c=el.dataset.txtPh; if(t[c])el.placeholder=t[c]; });
-}
-document.addEventListener('DOMContentLoaded', aplicarIdioma);
-</script>
-
+<head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-txt="contacto">Contacto — Dimon Connect</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-    html, body {
-      width: 100%; min-height: 100vh;
-      background: linear-gradient(135deg, #1a2a6c, #0f4c81);
-      color: #fff;
-      padding: 2rem 1.5rem;
-      line-height: 1.7;
-    }
-    .contenedor { max-width: 600px; margin: 0 auto; }
-    .volver {
-      display: inline-block; color: #93c5fd; text-decoration: none;
-      margin-bottom: 2rem; padding: 0.5rem 1rem;
-      background: rgba(59, 130, 246, 0.15); border-radius: 8px;
-      border: 1px solid rgba(96, 165, 250, 0.3);
-    }
-    h1 { font-size: 1.8rem; margin-bottom: 2rem; color: #93c5fd; text-align: center; }
-    .form-grupo { margin-bottom: 1.5rem; }
-    label { display: block; margin-bottom: 0.5rem; color: #7dd3fc; font-weight: 500; }
-    input, textarea, select {
-      width: 100%; padding: 0.9rem 1rem; border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.08);
-      color: #fff; font-size: 1rem; outline: none;
-      transition: border 0.2s;
-    }
-    input:focus, textarea:focus, select:focus { border-color: #38bdf8; }
-    textarea { min-height: 140px; resize: vertical; }
-    .boton {
-      width: 100%; padding: 1rem;
-      background: linear-gradient(135deg, #f97316, #ea580c);
-      color: #fff; border: none; border-radius: 10px;
-      font-size: 1.1rem; font-weight: 600; cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .boton:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(249, 115, 22, 0.35); }
-    .info {
-      margin-top: 2.5rem; padding: 1.5rem;
-      background: rgba(255,255,255,0.05); border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-    .info h3 { color: #fcd34d; margin-bottom: 1rem; }
-    .info p { margin-bottom: 0.5rem; color: #bae6fd; }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Contacto — Dimon Connect</title>
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/masglobal.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/responsivo.css">
 </head>
 <body>
-  <div class="contenedor">
-    <a href="index.html" class="volver" data-txt="volverInicio">← Volver al inicio</a>
 
-    <h1 data-txt="tituloContacto">📬 Contacto</h1>
+  <header>
+    <button class="boton-volver" onclick="window.location.href='index.html'" data-txt="volver">← Volver</button>
+    <h2 data-txt="contacto">Contacto</h2>
+  </header>
 
-    <form id="form-contacto" onsubmit="enviarContacto(event)">
-      <div class="form-grupo">
-        <label for="nombre" data-txt="tuNombre">Tu Nombre</label>
-        <input type="text" id="nombre" required />
+  <main class="contenedor-formulario">
+    <div class="info-contacto">
+      <h3>📬 Escribinos</h3>
+      <p>¿Tenés alguna duda, sugerencia o necesitás ayuda? Estamos acá para vos.</p>
+    </div>
+
+    <form id="formulario-contacto" class="formulario">
+      <div class="grupo-formulario">
+        <label>Tu Nombre</label>
+        <input type="text" id="contacto-nombre" required>
       </div>
-      <div class="form-grupo">
-        <label for="correo" data-txt="correoElectronico">Correo Electrónico</label>
-        <input type="email" id="correo" required />
+
+      <div class="grupo-formulario">
+        <label>Tu Correo Electrónico</label>
+        <input type="email" id="contacto-correo" required>
       </div>
-      <div class="form-grupo">
-        <label for="asunto" data-txt="asunto">Asunto</label>
-        <select id="asunto" required>
-          <option value="" data-txt="seleccionarMotivo">Seleccioná un motivo</option>
-          <option data-txt="consultaGeneral">Consulta general</option>
-          <option data-txt="problemaServicio">Problema con el servicio</option>
-          <option data-txt="consultaLegal">Consulta legal o normativa</option>
-          <option data-txt="sugerencia">Sugerencia</option>
-          <option data-txt="otro">Otro</option>
+
+      <div class="grupo-formulario">
+        <label>Asunto</label>
+        <select id="contacto-asunto" required>
+          <option value="">Seleccionar...</option>
+          <option value="consulta">Consulta General</option>
+          <option value="soporte">Soporte Técnico</option>
+          <option value="reportar">Reportar un Problema</option>
+          <option value="sugerencia">Sugerencia</option>
+          <option value="otro">Otro</option>
         </select>
       </div>
-      <div class="form-grupo">
-        <label for="mensaje" data-txt="tuMensaje">Tu Mensaje</label>
-        <textarea id="mensaje" required data-txt-ph="placeholderMensaje" placeholder="Escribinos tu consulta. Te respondemos a la brevedad."></textarea>
+
+      <div class="grupo-formulario">
+        <label>Tu Mensaje</label>
+        <textarea id="contacto-mensaje" rows="5" required></textarea>
       </div>
-      <button type="submit" class="boton" data-txt="enviarMensaje">✅ Enviar Mensaje</button>
+
+      <button type="submit" class="boton-principal">Enviar Mensaje</button>
     </form>
 
-    <div class="info">
-      <h3 data-txt="infoContacto">Información de Contacto</h3>
-      <p>📧 <span data-txt="correoLabel">Correo:</span> contacto@dimonconnect.com</p>
-      <p>🌐 <span data-txt="sitioLabel">Sitio:</span> www.dimonconnect.com</p>
-      <p>📍 <span data-txt="ubicacion">República Oriental del Uruguay</span></p>
-      <p>🕒 <span data-txt="horarioRespuesta">Horario de respuesta: Lunes a Viernes, 9:00 a 18:00 (UTC-3)</span></p>
+    <div class="correo-directo">
+      <p>O escribinos directamente a:</p>
+      <a href="mailto:contacto@dimonconnect.com" class="enlace-correo">📧 contacto@dimonconnect.com</a>
     </div>
-  </div>
+  </main>
 
-  <script>
-    function enviarContacto(e) {
-      e.preventDefault();
-      const idioma = localStorage.getItem('idiomaDimon') || 'es';
-      const t = traducciones[idioma]?.mensajeExito || traducciones.es.mensajeExito;
-      alert(t);
-      e.target.reset();
-    }
-  </script>
+  <script src="js/idioma.js"></script>
+  <script src="js/almacenamiento.js"></script>
+  <script src="js/validacion.js"></script>
+  <script src="js/trato.js"></script>
+  <script src="js/flujos.js"></script>
 </body>
 </html>
