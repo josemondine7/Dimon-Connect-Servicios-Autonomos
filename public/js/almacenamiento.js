@@ -1,169 +1,91 @@
-const CLAVES = {
-  USUARIO: 'usuarioDimon',
-  OFERTAS: 'ofertasDimon',
-  DEMANDAS: 'demandasDimon',
-  NOTIFICACIONES: 'notificacionesDimon',
-  TRANSACCIONES: 'transaccionesDimon',
-  CONFIGURACION: 'configDimon'
-};
+const CLAVE_SERVICIOS = 'dimon_servicios';
+const CLAVE_SOLICITUDES = 'dimon_solicitudes';
+const CLAVE_PERFIL = 'dimon_perfil';
+const CLAVE_IDIOMA = 'idioma';
+const CLAVE_NOTIFICACIONES = 'dimon_notificaciones';
+const CLAVE_CHATS = 'dimon_chats';
 
-function generarId() {
-  return Date.now().toString(36) + Math.random().toString(36).substr(2);
+function guardarServicio(datos) {
+  const servicios = JSON.parse(localStorage.getItem(CLAVE_SERVICIOS) || '[]');
+  datos.id = Date.now();
+  datos.fecha = new Date().toISOString();
+  servicios.unshift(datos);
+  localStorage.setItem(CLAVE_SERVICIOS, JSON.stringify(servicios));
+  return datos;
 }
 
-function guardarDato(clave, valor) {
-  try {
-    localStorage.setItem(clave, JSON.stringify(valor));
-    return true;
-  } catch (error) {
-    console.error('Error al guardar:', error);
-    return false;
+function guardarSolicitud(datos) {
+  const solicitudes = JSON.parse(localStorage.getItem(CLAVE_SOLICITUDES) || '[]');
+  datos.id = Date.now();
+  datos.fecha = new Date().toISOString();
+  solicitudes.unshift(datos);
+  localStorage.setItem(CLAVE_SOLICITUDES, JSON.stringify(solicitudes));
+  return datos;
+}
+
+function obtenerServicios() {
+  return JSON.parse(localStorage.getItem(CLAVE_SERVICIOS) || '[]');
+}
+
+function obtenerSolicitudes() {
+  return JSON.parse(localStorage.getItem(CLAVE_SOLICITUDES) || '[]');
+}
+
+function guardarPerfil(datos) {
+  localStorage.setItem(CLAVE_PERFIL, JSON.stringify(datos));
+}
+
+function obtenerPerfil() {
+  return JSON.parse(localStorage.getItem(CLAVE_PERFIL) || 'null');
+}
+
+function agregarNotificacion(notificacion) {
+  const notificaciones = JSON.parse(localStorage.getItem(CLAVE_NOTIFICACIONES) || '[]');
+  notificacion.id = Date.now();
+  notificacion.leida = false;
+  notificacion.fecha = new Date().toISOString();
+  notificaciones.unshift(notificacion);
+  localStorage.setItem(CLAVE_NOTIFICACIONES, JSON.stringify(notificaciones));
+}
+
+function obtenerNotificaciones() {
+  return JSON.parse(localStorage.getItem(CLAVE_NOTIFICACIONES) || '[]');
+}
+
+function marcarNotificacionLeida(id) {
+  const notificaciones = obtenerNotificaciones();
+  const actualizadas = notificaciones.map(n => 
+    n.id === parseInt(id) ? { ...n, leida: true } : n
+  );
+  localStorage.setItem(CLAVE_NOTIFICACIONES, JSON.stringify(actualizadas));
+}
+
+function iniciarChat(otroUsuario) {
+  const chats = JSON.parse(localStorage.getItem(CLAVE_CHATS) || '[]');
+  const chatExistente = chats.find(c => c.usuarioId === otroUsuario.id);
+  
+  if (!chatExistente) {
+    chats.unshift({
+      id: Date.now(),
+      usuarioId: otroUsuario.id,
+      usuarioNombre: otroUsuario.nombre,
+      usuarioCorreo: otroUsuario.correo,
+      mensajes: [],
+      fechaInicio: new Date().toISOString()
+    });
+    localStorage.setItem(CLAVE_CHATS, JSON.stringify(chats));
   }
 }
 
-function obtenerDato(clave, valorPorDefecto = null) {
-  try {
-    const dato = localStorage.getItem(clave);
-    return dato ? JSON.parse(dato) : valorPorDefecto;
-  } catch (error) {
-    console.error('Error al leer:', error);
-    return valorPorDefecto;
-  }
+function validarCorreo(correo) {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(correo);
 }
 
-function borrarDato(clave) {
-  localStorage.removeItem(clave);
+function limpiarDatos() {
+  localStorage.removeItem(CLAVE_SERVICIOS);
+  localStorage.removeItem(CLAVE_SOLICITUDES);
+  localStorage.removeItem(CLAVE_PERFIL);
+  localStorage.removeItem(CLAVE_NOTIFICACIONES);
+  localStorage.removeItem(CLAVE_CHATS);
 }
-
-const Almacenamiento = {
-  usuario: {
-    guardar(datos) {
-      return guardarDato(CLAVES.USUARIO, { ...datos, fechaRegistro: new Date().toISOString() });
-    },
-    obtener() {
-      return obtenerDato(CLAVES.USUARIO, null);
-    },
-    actualizar(campos) {
-      const actual = this.obtener() || {};
-      return this.guardar({ ...actual, ...campos });
-    },
-    borrar() {
-      borrarDato(CLAVES.USUARIO);
-    }
-  },
-
-  ofertas: {
-    todas() {
-      return obtenerDato(CLAVES.OFERTAS, []);
-    },
-    agregar(datos) {
-      const lista = this.todas();
-      const nueva = {
-        id: generarId(),
-        ...datos,
-        fechaCreacion: new Date().toISOString(),
-        activa: true
-      };
-      lista.unshift(nueva);
-      guardarDato(CLAVES.OFERTAS, lista);
-      return nueva;
-    },
-    eliminar(id) {
-      const lista = this.todas().filter(item => item.id !== id);
-      guardarDato(CLAVES.OFERTAS, lista);
-    },
-    porServicio(nombreServicio) {
-      return this.todas().filter(item => item.servicio === nombreServicio);
-    },
-    porUsuario(correoUsuario) {
-      return this.todas().filter(item => item.correo === correoUsuario);
-    }
-  },
-
-  demandas: {
-    todas() {
-      return obtenerDato(CLAVES.DEMANDAS, []);
-    },
-    agregar(datos) {
-      const lista = this.todas();
-      const nueva = {
-        id: generarId(),
-        ...datos,
-        fechaCreacion: new Date().toISOString(),
-        activa: true
-      };
-      lista.unshift(nueva);
-      guardarDato(CLAVES.DEMANDAS, lista);
-      return nueva;
-    },
-    eliminar(id) {
-      const lista = this.todas().filter(item => item.id !== id);
-      guardarDato(CLAVES.DEMANDAS, lista);
-    },
-    porServicio(nombreServicio) {
-      return this.todas().filter(item => item.servicio === nombreServicio);
-    },
-    porUsuario(correoUsuario) {
-      return this.todas().filter(item => item.correo === correoUsuario);
-    }
-  },
-
-  notificaciones: {
-    todas() {
-      return obtenerDato(CLAVES.NOTIFICACIONES, []);
-    },
-    agregar(datos) {
-      const lista = this.todas();
-      const nueva = {
-        id: generarId(),
-        ...datos,
-        fecha: new Date().toISOString(),
-        leida: false
-      };
-      lista.unshift(nueva);
-      guardarDato(CLAVES.NOTIFICACIONES, lista);
-      return nueva;
-    },
-    marcarLeida(id) {
-      const lista = this.todas();
-      const item = lista.find(n => n.id === id);
-      if (item) {
-        item.leida = true;
-        guardarDato(CLAVES.NOTIFICACIONES, lista);
-      }
-    },
-    noLeidas() {
-      return this.todas().filter(n => !n.leida);
-    }
-  },
-
-  transacciones: {
-    todas() {
-      return obtenerDato(CLAVES.TRANSACCIONES, []);
-    },
-    registrar(datos) {
-      const lista = this.todas();
-      const nueva = {
-        id: generarId(),
-        ...datos,
-        fecha: new Date().toISOString()
-      };
-      lista.unshift(nueva);
-      guardarDato(CLAVES.TRANSACCIONES, lista);
-      return nueva;
-    }
-  },
-
-  configuracion: {
-    obtener() {
-      return obtenerDato(CLAVES.CONFIGURACION, {
-        monedaPredeterminada: 'USD',
-        paisPredeterminado: 'Uruguay'
-      });
-    },
-    actualizar(campos) {
-      const actual = this.obtener();
-      return guardarDato(CLAVES.CONFIGURACION, { ...actual, ...campos });
-    }
-  }
-};
