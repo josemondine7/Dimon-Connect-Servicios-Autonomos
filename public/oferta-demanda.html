@@ -3,44 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Oferta y Demanda — Dimon Connect</title>
-  
+  <title data-txt="ofertaDemanda">Oferta y Demanda</title>
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/componentes.css">
   <link rel="stylesheet" href="css/responsivo.css">
+  <script src="js/idioma.js"></script>
 </head>
 <body>
 
-  <header>
-    <button class="boton-volver" onclick="window.location.href='index.html'" data-txt="volver">← Volver</button>
-    <h2 data-txt="ofertaDemanda">Oferta y Demanda</h2>
-  </header>
-
-  <div class="selector-listas">
-    <button class="boton-lista activo" id="boton-ofertas" data-txt="serviciosOfertados">Servicios Ofrecidos</button>
-    <button class="boton-lista" id="boton-demandas" data-txt="serviciosSolicitados">Servicios Solicitados</button>
+  <div class="barra-superior-pagina">
+    <a href="index.html" class="boton-volver" style="margin:0" data-txt="volver">Volver</a>
+    <h1 class="titulo-pagina" data-txt="ofertaDemanda">Oferta y Demanda</h1>
+    <button class="boton-cambiar-idioma" id="boton-idioma" onclick="cambiarIdioma(idiomaActual === 'es' ? 'en' : 'es')">ES</button>
   </div>
 
-  <div class="contenedor-lista">
-    <div class="acciones-lista">
-      <a href="ofrecer-servicio.html" class="boton-secundario" data-txt="brindarServicio">Brindar mi Servicio</a>
-      <a href="solicitar-servicio.html" class="boton-secundario" data-txt="solicitarServicio">Solicitar un Servicio</a>
+  <main class="pagina-contenedor" style="padding-bottom: 100px;">
+    <div class="filtros-botones">
+      <button class="filtro-boton activo" data-filtro="brindan" data-txt="serviciosQueSeBrindan">Servicios que se brindan</button>
+      <button class="filtro-boton" data-filtro="solicitan" data-txt="serviciosQueSeSolicitan">Servicios que se solicitan</button>
     </div>
 
-    <div id="lista-ofertas" class="lista-servicios">
-      <!-- Se llena automáticamente con JavaScript -->
-    </div>
+    <div id="lista-contenedor" class="lista-elementos"></div>
+  </main>
 
-    <div id="lista-demandas" class="lista-servicios" style="display:none;">
-      <!-- Se llena automáticamente con JavaScript -->
-    </div>
+  <div class="acciones-abajo">
+    <a href="ofrecer-servicio.html" class="boton-enviar" style="text-align:center;text-decoration:none" data-txt="anotarseBrindar">Ofrecer mi servicio</a>
+    <a href="solicitar-servicio.html" class="boton-enviar" style="text-align:center;text-decoration:none;background:var(--color-exito)" data-txt="anotarseSolicitar">Solicitar un servicio</a>
   </div>
 
-  <script src="js/idioma.js"></script>
   <script src="js/almacenamiento.js"></script>
-  <script src="js/validacion.js"></script>
-  <script src="js/trato.js"></script>
   <script src="js/flujos.js"></script>
+  <script>
+    aplicarTraducciones();
+  </script>
 </body>
 </html>
