@@ -1,0 +1,35 @@
+DimonConnect/
+├── public/
+│   ├── assets/
+│   │   ├── 1788448614792.png
+│   │   └── icono-dimon.png
+│   ├── css/
+│   │   ├── variables.css
+│   │   ├── global.css
+│   │   ├── componentes.css
+│   │   └── responsivo.css
+│   ├── js/
+│   │   ├── idioma.js
+│   │   ├── monedas.js
+│   │   ├── base-datos.js
+│   │   ├── lira.js
+│   │   ├── pagos.js
+│   │   └── app.js
+│   ├── index.html
+│   ├── oferta-demanda.html
+│   ├── brindar-servicio.html
+│   ├── solicitar-servicio.html
+│   ├── acuerdo-trato.html
+│   ├── lira-acceso.html
+│   ├── normas.html
+│   ├── privacidad.html
+│   ├── terminos.html
+│   ├── cookies.html
+│   └── descarga.html
+└── documentacion-legal/
+    ├── acta-de-propiedad.txt
+    ├── acta-de-sucesion-taina.txt
+    ├── distribucion-comisiones.txt
+    ├── claves-y-accesos.txt
+    ├── paypal-config.txt
+    └── README.txt
