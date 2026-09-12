@@ -1,52 +1,128 @@
+/* ==============================================
+   DIMON CONNECT — Diseño Responsivo
+   Versión: 1.0 | Fecha: 2026
+============================================== */
+
+/* Tablets y pantallas medianas */
 @media (max-width: 768px) {
-  .form-grupo-doble {
-    grid-template-columns: 1fr;
+  .logo-central {
+    font-size: 32px;
   }
-
-  .filtros-botones {
-    justify-content: center;
+  
+  .logo-subtitulo {
+    font-size: 15px;
   }
-
-  .acciones-abajo {
-    flex-direction: column;
-    gap: 10px;
+  
+  .boton-inicio {
+    width: 220px;
+    font-size: 16px;
+    padding: 15px 24px;
   }
-
-  .pagina-contenedor {
-    padding: 70px 16px 100px;
+  
+  .buscador {
+    width: 150px;
   }
-
+  
   .tarjeta {
-    padding: 16px;
+    padding: 20px;
   }
-
-  .elemento-tarjeta {
-    padding: 14px;
+  
+  .contenedor-chat {
+    height: 75vh;
+    width: 98%;
   }
 }
 
+/* Celulares */
 @media (max-width: 480px) {
-  .titulo-pagina {
-    font-size: 16px;
+  .logo-central {
+    font-size: 26px;
+    margin-bottom: 20px;
   }
-
-  .filtro-boton {
+  
+  .logo-subtitulo {
+    font-size: 13px;
+  }
+  
+  .boton-inicio {
+    width: 90%;
+    font-size: 15px;
+    padding: 14px 20px;
+    margin: 8px 0;
+  }
+  
+  .barra-superior {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  .buscador {
+    width: 100%;
+    order: 3;
+    margin-top: 8px;
+  }
+  
+  .selector-idioma {
+    font-size: 13px;
+  }
+  
+  .lista-servicios {
+    width: 98%;
+  }
+  
+  .item-servicio {
+    padding: 12px 14px;
+  }
+  
+  .contenido-documento {
+    padding: 18px;
+    width: 95%;
+  }
+  
+  .filtros-cabecera {
+    gap: 6px;
+  }
+  
+  .boton-filtro {
     padding: 8px 14px;
     font-size: 13px;
   }
-
-  .boton-enviar {
-    padding: 12px 16px;
-    font-size: 15px;
-  }
-
-  .barra-superior-pagina {
-    padding: 10px 16px;
+  
+  .mensaje {
+    max-width: 90%;
   }
 }
 
-@media (min-width: 769px) {
-  .pagina-contenedor {
-    padding-top: 100px;
+/* Pantallas muy chicas */
+@media (max-width: 360px) {
+  .logo-central {
+    font-size: 22px;
+  }
+  
+  .boton-inicio {
+    font-size: 14px;
+    padding: 12px 16px;
+  }
+}
+
+/* Orientación horizontal en celular */
+@media (max-height: 500px) and (orientation: landscape) {
+  .logo-central {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+  
+  .boton-inicio {
+    padding: 10px 20px;
+    margin: 5px 0;
+  }
+  
+  .lista-servicios {
+    max-height: 50vh;
+  }
+  
+  .contenedor-chat {
+    height: 60vh;
   }
 }
