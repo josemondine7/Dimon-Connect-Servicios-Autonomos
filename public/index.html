@@ -5,11 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Dimon Connect — Servicios Autónomos</title>
 
-  <!-- ✅ SISTEMA DE IDIOMA y MONEDAS — RUTAS CORRECTAS -->
   <script src="js/idioma.js"></script>
   <script src="js/monedas.js"></script>
 
-  <!-- ✅ ESTILOS — Todo acá, no falta nada -->
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     html, body { 
@@ -19,7 +17,6 @@
       position: fixed;
     }
     body {
-      /* ✅ Imagen de fondo con ruta correcta + color de respaldo */
       background: url('assets/1788448614792.png') no-repeat center center;
       background-size: cover;
       background-attachment: fixed;
@@ -29,127 +26,144 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
+      padding-bottom: 60px;
       color: white;
     }
 
-    .top-bar-right {
+    /* ✅ Idioma arriba a la derecha — letra chica, clicable */
+    .top-lang {
       position: fixed;
       top: 20px;
       right: 20px;
       z-index: 100;
     }
 
-    .top-bar-left {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      z-index: 100;
+    .lang-link {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      opacity: 0.8;
     }
 
-    .lang-btn, .lira-btn, .main-btn, .download-btn {
-      border-radius: 50px;
+    .lang-link:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    /* ✅ Barra de búsqueda */
+    .search-bar {
+      width: 100%;
+      max-width: 420px;
+      margin: 40px 0 35px 0;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 12px 20px;
+      border-radius: 25px;
       border: none;
+      background: rgba(255,255,255,0.08);
+      color: white;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .search-bar input::placeholder {
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ✅ Botones principales — más chicos y más transparentes */
+    .buttons-container {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .main-btn {
+      padding: 16px 20px;
+      border-radius: 14px;
+      border: none;
+      background: rgba(255,255,255,0.08);
+      color: white;
+      font-size: 18px;
       cursor: pointer;
       transition: background 0.2s;
     }
 
-    .lang-btn {
-      padding: 10px 24px;
-      background: rgba(255,255,255,0.2);
-      color: white;
-      font-size: 16px;
-      font-weight: 500;
+    .main-btn:hover {
+      background: rgba(255,255,255,0.15);
     }
 
-    /* ✅ Botón Lira: escudo gris con cruz, arriba a la izquierda */
+    /* ✅ Pie de página completo */
+    .footer {
+      position: fixed;
+      bottom: 12px;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 15px;
+      font-size: 11px;
+      opacity: 0.7;
+      z-index: 100;
+    }
+
+    /* ✅ Botón Lira — abajo izquierda */
     .lira-btn {
-      width: 46px;
-      height: 46px;
+      width: 32px;
+      height: 32px;
       background: #6b7280;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
+      font-size: 16px;
       color: white;
-      border-radius: 12px;
+      border: none;
+      border-radius: 8px;
       clip-path: polygon(15% 0%, 85% 0%, 100% 15%, 100% 85%, 50% 100%, 0% 85%, 0% 15%);
+      cursor: pointer;
+      flex-shrink: 0;
     }
 
     .lira-btn:hover {
       background: #4b5563;
     }
 
-    .search-bar {
-      width: 100%;
-      max-width: 500px;
-      margin: 60px 0 50px 0;
+    .footer-middle {
+      text-align: center;
+      flex: 1;
+      padding: 0 10px;
     }
 
-    .search-bar input {
-      width: 100%;
-      padding: 16px 24px;
-      border-radius: 30px;
-      border: none;
-      background: rgba(255,255,255,0.15);
+    .footer-middle a {
       color: white;
-      font-size: 16px;
-      outline: none;
+      text-decoration: none;
+      margin: 0 4px;
     }
 
-    .search-bar input::placeholder {
-      color: rgba(255,255,255,0.6);
+    .footer-middle a:hover {
+      text-decoration: underline;
     }
 
-    .buttons-container {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      width: 100%;
-      max-width: 450px;
-    }
-
-    .main-btn {
-      padding: 22px;
-      background: rgba(255,255,255,0.15);
-      color: white;
-      font-size: 20px;
-    }
-
-    .main-btn:hover {
-      background: rgba(255,255,255,0.25);
-    }
-
-    /* ✅ Botón Descargar Aplicación */
+    /* ✅ Botón Descargar — abajo derecha, verde, chiquito */
     .download-btn {
-      padding: 16px 22px;
-      background: rgba(37, 99, 235, 0.7);
+      padding: 6px 12px;
+      background: #16a34a;
       color: white;
-      font-size: 17px;
-      margin-top: 10px;
+      font-size: 11px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      white-space: nowrap;
     }
 
     .download-btn:hover {
-      background: rgba(37, 99, 235, 0.9);
-    }
-
-    .footer-links {
-      position: fixed;
-      bottom: 15px;
-      left: 0;
-      right: 0;
-      text-align: center;
-      font-size: 12px;
-      opacity: 0.75;
-    }
-
-    .footer-links a {
-      color: white;
-      text-decoration: none;
-      margin: 0 6px;
-    }
-
-    .footer-links a:hover {
-      text-decoration: underline;
+      background: #15803d;
     }
 
     #selector-idioma {
@@ -159,22 +173,17 @@
 </head>
 <body>
 
-  <!-- ✅ Botón Lira — arriba izquierda -->
-  <div class="top-bar-left">
-    <button class="lira-btn" onclick="window.location.href='pantallas/lira-chat.html'">✚</button>
-  </div>
-
-  <!-- ✅ Botón de idioma — arriba derecha -->
-  <div class="top-bar-right">
+  <!-- ✅ Idioma — arriba derecha, solo texto -->
+  <div class="top-lang">
     <select id="selector-idioma" onchange="cambiarIdioma(this.value)">
-      <option value="es">ES</option>
-      <option value="en">EN</option>
-      <option value="pt">PT</option>
+      <option value="es">Español</option>
+      <option value="en">English</option>
+      <option value="pt">Português</option>
       <option value="zh">中文</option>
       <option value="ar">العربية</option>
     </select>
-    <button class="lang-btn" onclick="document.getElementById('selector-idioma').click()">
-      <span id="idioma-actual">ES</span>
+    <button class="lang-link" onclick="document.getElementById('selector-idioma').click()">
+      <span id="idioma-actual">Español</span>
     </button>
   </div>
 
@@ -188,28 +197,33 @@
     <button class="main-btn" onclick="window.location.href='pantallas/oferta-demanda.html'" data-txt="ofertaDemanda"></button>
     <button class="main-btn" onclick="window.location.href='pantallas/brindar-servicio.html'" data-txt="brindarServicio"></button>
     <button class="main-btn" onclick="window.location.href='pantallas/solicitar-servicio.html'" data-txt="solicitarServicio"></button>
-    
-    <!-- ✅ Botón Descargar Aplicación -->
+  </div>
+
+  <!-- ✅ Pie de página completo -->
+  <div class="footer">
+    <!-- Lira — abajo izquierda -->
+    <button class="lira-btn" onclick="window.location.href='pantallas/lira-chat.html'">✚</button>
+
+    <!-- Links legales — centro -->
+    <div class="footer-middle">
+      <a href="pantallas/normas-seguridad.html" data-txt="normas"></a> ·
+      <a href="pantallas/privacidad.html" data-txt="privacidad"></a> ·
+      <a href="pantallas/terminos-servicio.html" data-txt="terminos"></a> ·
+      <a href="pantallas/cookies.html" data-txt="cookies"></a>
+    </div>
+
+    <!-- Descargar aplicación — abajo derecha, verde -->
     <button class="download-btn" onclick="window.location.href='pantallas/descarga-app.html'" data-txt="descargarApp"></button>
   </div>
 
-  <!-- ✅ Links legales al pie -->
-  <div class="footer-links">
-    <a href="pantallas/normas-seguridad.html" data-txt="normas"></a> ·
-    <a href="pantallas/privacidad.html" data-txt="privacidad"></a> ·
-    <a href="pantallas/terminos-servicio.html" data-txt="terminos"></a> ·
-    <a href="pantallas/cookies.html" data-txt="cookies"></a>
-  </div>
-
-  <!-- ✅ Actualizar indicador de idioma -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const selector = document.getElementById('selector-idioma');
       const indicador = document.getElementById('idioma-actual');
       
       const actualizarIndicadorIdioma = () => {
-        const abreviaturas = { es: 'ES', en: 'EN', pt: 'PT', zh: '中文', ar: 'عربي' };
-        indicador.textContent = abreviaturas[idiomaActual] || 'ES';
+        const nombres = { es: 'Español', en: 'English', pt: 'Português', zh: '中文', ar: 'العربية' };
+        indicador.textContent = nombres[idiomaActual] || 'Español';
       };
       
       setTimeout(actualizarIndicadorIdioma, 100);
