@@ -1,31 +1,61 @@
 ═════════════════════════════════════════════════════════
-⚠️  REGLAS IMPORTANTES — NO OLVIDAR
+ESTRUCTURA - CARPETAS Y ARCHIVOS — DIMON CONNECT
 ═════════════════════════════════════════════════════════
 
-🔤 EN TODOS LOS ARCHIVOS .html:
-   - Arriba del TODO, dentro del <head> SIEMPRE poner:
-     <script src="js/idioma.js"></script>
-     <script src="js/monedas.js"></script>
-   
-   - Los textos NUNCA van directos. Usar SIEMPRE:
-     ✅ <button data-txt="brindarServicio"></button>
-     ❌ <button>Brindar mi servicio</button>
-   
-   - Los campos de búsqueda:
-     ✅ <input data-txt-placeholder="buscarPlaceholder" type="text">
-     ❌ <input placeholder="Buscar...">
+📦 RAÍZ DEL REPOSITORIO
+│
+├── 📁 activos/
+├── 📁 documentación-legal/
+│
+├── 📁 público/                              ✅ TODO LO QUE VE EL USUARIO
+│   │
+│   ├── 📁 assets/                           ← Imágenes e íconos
+│   │   └── 1788448614792.png
+│   │
+│   ├── 📁 css/                              ← Estilos visuales
+│   │   └── estilos.css
+│   │
+│   ├── 📁 js/                               ← Lógica y traducción
+│   │   ├── idioma.js
+│   │   ├── monedas.js
+│   │   ├── almacenamiento.js
+│   │   ├── flujos.js
+│   │   └── lira-chat.js
+│   │
+│   ├── 📁 pantallas/                        ← Todas las pantallas secundarias
+│   │   ├── oferta-demanda.html
+│   │   ├── brindar-servicio.html
+│   │   ├── solicitar-servicio.html
+│   │   ├── acuerdo-trato.html
+│   │   ├── lira-chat.html
+│   │   ├── normas-seguridad.html
+│   │   ├── privacidad.html
+│   │   ├── terminos-servicio.html
+│   │   ├── cookies.html
+│   │   └── descarga-app.html
+│   │
+│   ├── index.html                           ← 🏠 Página principal
+│   └── Servicio-detalle.html
+│
+├── 📁 sistema/                               ⚙️ BACKEND — Servidor y base de datos
+│   ├── server.js
+│   ├── base-datos.js
+│   ├── autenticacion.js
+│   ├── notificaciones.js
+│   ├── pagos-comisiones.js
+│   └── lira-admin.js
+│
+├── 📁 src/pantallas/
+├── 📄 .env
+├── 📄 .env.ejemplo
+├── 📄 .gitignore
+├── 📄 App.js
+├── 📄 acta-sucesión
+├── 📄 aplicación.json
+├── 📄 declaración-propiedad
+│
+└── 📄 ESTRUCTURA - CARPETAS Y ARCHIVOS.md   ✅ TU GUÍA — ¡AQUÍ ESTÁS!
 
-🎨 EN TODOS LOS ARCHIVOS .css:
-   - La imagen de fondo: url('../assets/1788448614792.png')
-   - El fondo queda FIJO, no se mueve: background-attachment: fixed;
-   - Todo centrado y adaptado a celular y computadora
-
-📁 DÓNDE VA CADA COSA:
-   - .html  → van directo dentro de /public/
-   - .css   → van dentro de /public/css/
-   - .js    → van dentro de /public/js/
-   - imágenes → van dentro de /public/assets/
-
-🔐 BACKEND → carpeta /backend/ (en la RAÍZ, NO dentro de public)
-   - Esto se sube al servidor (Render)
-   - Acá vive la base de datos, usuarios, pagos, notificaciones
+═════════════════════════════════════════════════════════
+✅ TODO LISTO — ESTRUCTURA COMPLETA Y CONFIRMADA
+═════════════════════════════════════════════════════════
