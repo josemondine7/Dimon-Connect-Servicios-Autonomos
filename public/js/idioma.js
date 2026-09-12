@@ -1,139 +1,166 @@
-const traduccionesComunes = {
+// ==============================================
+// DIMON CONNECT — Sistema de Traducción Global
+// Versión: 1.0 | Fecha: 2026
+// ==============================================
+
+const traducciones = {
   es: {
     volver: "Volver",
     inicio: "Inicio",
     buscar: "Buscar",
-    buscarPlaceholder: "Buscar servicios...",
     ofertaDemanda: "Oferta y Demanda",
-    brindarServicio: "Brindar mi Servicio",
-    solicitarServicio: "Solicitar un Servicio",
+    solicitarServicio: "Solicitar un servicio",
+    brindarServicio: "Brindar mi servicio",
+    inscribirse: "Inscribirse",
+    descargarApp: "Descargar aplicación",
     normas: "Normas y Seguridad",
     privacidad: "Privacidad",
     terminos: "Términos de Servicio",
-    descargarApp: "Descargar Aplicación",
+    cookies: "Cookies",
     contacto: "Contacto",
-    serviciosQueSeBrindan: "Servicios que se brindan",
-    serviciosQueSeSolicitan: "Servicios que se solicitan",
+    buscarPlaceholder: "Buscar servicios, personas, ayuda...",
+    todosLosServicios: "Todos los Servicios",
+    serviciosQueBrindan: "Servicios que brindan",
+    serviciosQueSolicitan: "Servicios que solicitan",
     anotarseBrindar: "Ofrecer mi servicio",
-    anotarseSolicitar: "Solicitar un servicio",
-    nombreCompleto: "Nombre completo",
-    correoElectronico: "Correo electrónico",
+    anotarseSolicitar: "Pedir un servicio",
+    nombreCompleto: "Nombre Completo",
+    correoElectronico: "Correo Electrónico",
     telefono: "Teléfono / WhatsApp",
-    tipoServicio: "Tipo de servicio",
+    tipoServicio: "Tipo de Servicio",
+    descripcion: "Descripción",
     precioEstimado: "Precio estimado",
-    descripcion: "Descripción breve",
-    horariosDisponibles: "Horarios disponibles",
-    dondeRealizar: "¿Dónde hay que realizar el trabajo?",
-    cuandoNecesita: "¿Cuándo lo necesita?",
-    detallesAdicionales: "Detalles adicionales",
-    aceptoNormas: "Acepto las normas y condiciones",
-    enviarRegistro: "Enviar registro",
-    graciasPorRegistrarte: "¡Registrado con éxito! Ya aparecés en el listado.",
-    errorCampos: "Completá todos los campos obligatorios.",
-    errorCorreo: "Ingresá un correo electrónico válido.",
-    noHayServicios: "No hay servicios publicados todavía.",
-    mensajeSiNoEncontraste: "Si no encontrás lo que buscás, dejá tus datos igual — si alguien se suma te avisa.",
-    anotarseIgual: "Dejar mis datos igual",
-    contactar: "Contactar",
-    volverAlInicio: "Volver al inicio",
-    ingresarContrasenaLira: "Ingresá la contraseña de acceso",
+    enviar: "Enviar",
+    cancelar: "Cancelar",
+    graciasRegistrado: "¡Gracias! Quedaste registrado correctamente",
+    noEncontrasServicio: "¿No encontrás el servicio que buscás? Anotate igual y dejá tus datos.",
+    liraSaludo: "¡Hola! Soy Lira, tu asistente. ¿En qué puedo ayudarte hoy?",
+    enviarMensaje: "Escribí tu mensaje...",
+    enviarBtn: "Enviar",
+    bienvenidoLira: "Bienvenido al sistema de administración",
+    ingreseContrasena: "Ingresá la contraseña para acceder a Lira",
+    contrasena: "Contraseña",
+    ingresar: "Ingresar",
     contrasenaIncorrecta: "Contraseña incorrecta. Intentá de nuevo.",
-    acceder: "Acceder",
-    enviarMensaje: "Enviar",
-    escribeTuMensaje: "Escribí tu mensaje...",
-    mensajeEnviado: "Mensaje enviado",
-    contraseña: "Contraseña",
-    campoObligatorio: "Este campo es obligatorio",
-    presupuestoEstimado: "Presupuesto estimado"
+    derechosReservados: "Todos los derechos reservados",
+    acuerdoTrato: "Acuerdo del Trato",
+    valorServicio: "Valor del Servicio",
+    comisionSolicitante: "Comisión — Solicitante (5%)",
+    comisionPrestador: "Comisión — Prestador (5%)",
+    total: "Total a pagar",
+    confirmoLeido: "Confirmo haber leído y acepto las normas",
+    confirmar: "Confirmar y Continuar",
+    moneda: "Moneda",
+    pesosUruguayos: "Pesos Uruguayos",
+    dolares: "Dólares USD",
+    pesosArgentinos: "Pesos Argentinos",
+    euros: "Euros"
   },
   en: {
     volver: "Back",
     inicio: "Home",
     buscar: "Search",
-    buscarPlaceholder: "Search services...",
     ofertaDemanda: "Offer & Demand",
-    brindarServicio: "Offer my Service",
-    solicitarServicio: "Request a Service",
+    solicitarServicio: "Request a service",
+    brindarServicio: "Offer my service",
+    inscribirse: "Sign up",
+    descargarApp: "Download App",
     normas: "Rules & Security",
     privacidad: "Privacy",
     terminos: "Terms of Service",
-    descargarApp: "Download App",
+    cookies: "Cookies",
     contacto: "Contact",
-    serviciosQueSeBrindan: "Services offered",
-    serviciosQueSeSolicitan: "Services requested",
-    anotarseBrindar: "Offer a service",
+    buscarPlaceholder: "Search services, people, help...",
+    todosLosServicios: "All Services",
+    serviciosQueBrindan: "Services available",
+    serviciosQueSolicitan: "Services requested",
+    anotarseBrindar: "Offer my service",
     anotarseSolicitar: "Request a service",
-    nombreCompleto: "Full name",
-    correoElectronico: "Email address",
+    nombreCompleto: "Full Name",
+    correoElectronico: "Email",
     telefono: "Phone / WhatsApp",
-    tipoServicio: "Type of service",
+    tipoServicio: "Type of Service",
+    descripcion: "Description",
     precioEstimado: "Estimated price",
-    descripcion: "Brief description",
-    horariosDisponibles: "Available hours",
-    dondeRealizar: "Where does the work need to be done?",
-    cuandoNecesita: "When do you need it?",
-    detallesAdicionales: "Additional details",
-    aceptoNormas: "I accept the rules and terms",
-    enviarRegistro: "Submit registration",
-    graciasPorRegistrarte: "Registered successfully! You now appear in the list.",
-    errorCampos: "Please fill in all required fields.",
-    errorCorreo: "Enter a valid email address.",
-    noHayServicios: "No services published yet.",
-    mensajeSiNoEncontraste: "If you don't find what you're looking for, leave your details anyway — someone may contact you.",
-    anotarseIgual: "Leave my details anyway",
-    contactar: "Contact",
-    volverAlInicio: "Back to Home",
-    ingresarContrasenaLira: "Enter access password",
+    enviar: "Submit",
+    cancelar: "Cancel",
+    graciasRegistrado: "Thank you! Registered successfully",
+    noEncontrasServicio: "Can't find what you're looking for? Leave your info anyway.",
+    liraSaludo: "Hello! I'm Lira, your assistant. How can I help you today?",
+    enviarMensaje: "Type your message...",
+    enviarBtn: "Send",
+    bienvenidoLira: "Welcome to the administration system",
+    ingreseContrasena: "Enter password to access Lira",
+    contrasena: "Password",
+    ingresar: "Enter",
     contrasenaIncorrecta: "Incorrect password. Try again.",
-    acceder: "Access",
-    enviarMensaje: "Send",
-    escribeTuMensaje: "Type your message...",
-    mensajeEnviado: "Message sent",
-    contraseña: "Password",
-    campoObligatorio: "This field is required",
-    presupuestoEstimado: "Estimated budget"
+    derechosReservados: "All rights reserved",
+    acuerdoTrato: "Service Agreement",
+    valorServicio: "Service Value",
+    comisionSolicitante: "Fee — Requester (5%)",
+    comisionPrestador: "Fee — Provider (5%)",
+    total: "Total to pay",
+    confirmoLeido: "I have read and agree to the terms",
+    confirmar: "Confirm & Continue",
+    moneda: "Currency",
+    pesosUruguayos: "UYU",
+    dolares: "USD",
+    pesosArgentinos: "ARS",
+    euros: "EUR"
   }
 };
 
+// Idioma por defecto
 let idiomaActual = localStorage.getItem('idioma') || 'es';
 
-function cambiarIdioma(codigo) {
-  idiomaActual = codigo;
-  localStorage.setItem('idioma', codigo);
+// Cambiar idioma
+function cambiarIdioma(nuevoIdioma) {
+  idiomaActual = nuevoIdioma;
+  localStorage.setItem('idioma', nuevoIdioma);
   aplicarTraducciones();
-  const boton = document.getElementById('boton-idioma');
-  if (boton) boton.textContent = codigo.toUpperCase();
 }
 
+// Aplicar traducciones a todos los elementos
 function aplicarTraducciones() {
-  const traducciones = traduccionesComunes[idiomaActual];
-  if (!traducciones) return;
-
-  document.querySelectorAll('[data-txt]').forEach(el => {
+  const elementos = document.querySelectorAll('[data-txt]');
+  elementos.forEach(el => {
     const clave = el.getAttribute('data-txt');
-    if (traducciones[clave]) {
-      el.textContent = traducciones[clave];
+    if (traducciones[idiomaActual] && traducciones[idiomaActual][clave]) {
+      el.textContent = traducciones[idiomaActual][clave];
     }
   });
-
-  document.querySelectorAll('[data-placeholder]').forEach(el => {
-    const clave = el.getAttribute('data-placeholder');
-    if (traducciones[clave]) {
-      el.placeholder = traducciones[clave];
+  
+  // Placeholders
+  const placeholders = document.querySelectorAll('[data-txt-placeholder]');
+  placeholders.forEach(el => {
+    const clave = el.getAttribute('data-txt-placeholder');
+    if (traducciones[idiomaActual] && traducciones[idiomaActual][clave]) {
+      el.placeholder = traducciones[idiomaActual][clave];
     }
   });
-
-  document.documentElement.lang = idiomaActual;
 }
 
+// Obtener texto traducido
 function t(clave) {
-  return traduccionesComunes[idiomaActual][clave] || clave;
+  if (traducciones[idiomaActual] && traducciones[idiomaActual][clave]) {
+    return traducciones[idiomaActual][clave];
+  }
+  return clave;
 }
 
-if (typeof aplicarTraducciones === 'function') {
-  document.addEventListener('DOMContentLoaded', () => {
-    aplicarTraducciones();
-    const boton = document.getElementById('boton-idioma');
-    if (boton) boton.textContent = idiomaActual.toUpperCase();
-  });
-}
+// Inicializar al cargar
+document.addEventListener('DOMContentLoaded', () => {
+  aplicarTraducciones();
+  
+  const selector = document.getElementById('selector-idioma');
+  if (selector) {
+    selector.value = idiomaActual;
+    selector.addEventListener('change', (e) => {
+      cambiarIdioma(e.target.value);
+      // Recargar moneda si corresponde
+      if (typeof actualizarSimboloMoneda === 'function') {
+        actualizarSimboloMoneda();
+      }
+    });
+  }
+});
