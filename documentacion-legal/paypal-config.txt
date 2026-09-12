@@ -1,0 +1,36 @@
+====================================================================
+              CONFIGURACIÓN DE PAGOS — PAYPAL
+               Dimon Connect · Servicios Autónomos
+====================================================================
+
+⚠️  COMPLETÁ CON TUS DATOS REALES. NO COMPARTIR.
+NO SUBIR A GITHUB.
+
+MODO: [ ] Sandbox (pruebas)   [ ] Producción (real)
+
+DATOS DE CUENTA:
+  Correo electrónico de negocio: ___________________________
+  País: Uruguay
+  Moneda predeterminada: USD / UYU / ARS / EUR
+
+CREDENCIALES DE API:
+  Cliente ID: ____________________________________________
+  Clave Secreta: __________________________________________
+  ⚠️  La clave secreta NUNCA se sube a repositorios públicos
+
+WEBHOOK:
+  URL de notificaciones: ____________________________
+  ID de Webhook: ____________________________________
+
+CONFIGURACIÓN DE RETENCIÓN:
+  Comisión Dimon Connect: 10% sobre mano de obra
+  5% paga el solicitante, 5% paga el proveedor
+  Los materiales NO llevan comisión
+
+CUENTAS DESTINO DE FONDOS:
+  Propietario: ___________________________________________
+  Taina (fondo bloqueado): _______________________________
+
+====================================================================
+  GUARDAR EN LUGAR SEGURO. NO SUBIR A GITHUB.
+====================================================================
