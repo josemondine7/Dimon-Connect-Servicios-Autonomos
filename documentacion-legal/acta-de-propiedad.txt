@@ -1,0 +1,66 @@
+====================================================================
+                    ACTA DE PROPIEDAD
+               Dimon Connect · Servicios Autónomos
+====================================================================
+
+NÚMERO DE ACTA: DC-PROP-001/2026
+FECHA: _______________
+LUGAR: Montevideo, República Oriental del Uruguay
+
+====================================================================
+OTORGANTE:
+====================================================================
+
+Nombre Completo: ___________________________________________
+Documento de Identidad: ___________________________________
+Domicilio: _________________________________________________
+Correo Electrónico: _________________________________________
+Teléfono: _________________________________________________
+País: Uruguay
+
+====================================================================
+DECLARACIÓN DE PROPIEDAD
+====================================================================
+
+El abajo firmante declara ser el único y legítimo propietario
+exclusivo del sistema denominado: "Dimon Connect · Servicios Autónomos".
+
+Esta propiedad comprende:
+
+  — Código fuente completo del sitio web y aplicación
+  — Diseños, logotipos, imágenes y marca
+  — Sistema interno de funcionamiento y lógica de negocio
+  — Lira, asistente inteligente del sistema
+  — Documentación legal y normativa interna
+  — Integración con servicios de pago y plataformas externas
+
+No comprende: el servidor externo ni la infraestructura física
+de alojamiento, los cuales son utilizados bajo régimen de
+alquiler o servicio.
+
+====================================================================
+FACULTADES DEL PROPIETARIO
+====================================================================
+
+El Propietario tiene plenas facultades para:
+
+  — Administrar, modificar y actualizar la plataforma
+  — Establecer normas, comisiones y precios
+  — Administrar accesos, cuentas y configuraciones
+  — Disponer libremente de sus derechos e ingresos
+  — Tomar toda decisión presente y futura sobre el sistema
+
+====================================================================
+FIRMA Y ACEPTACIÓN
+====================================================================
+
+Declaro que la información consignada es correcta y asumo
+la responsabilidad total sobre este proyecto.
+
+Firma: _____________________________________  Fecha: ___________
+C.I.: _____________________________________
+
+====================================================================
+                 DOCUMENTO CON VALOR LEGAL
+            REPÚBLICA ORIENTAL DEL URUGUAY
+====================================================================
