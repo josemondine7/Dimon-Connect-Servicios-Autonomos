@@ -1,3 +1,8 @@
+/* ==============================================
+   DIMON CONNECT — Estilos Globales
+   Versión: 1.0 | Fecha: 2026
+============================================== */
+
 * {
   margin: 0;
   padding: 0;
@@ -7,155 +12,188 @@
 
 html, body {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
   position: fixed;
 }
 
 body {
-  background: url('1788448614792.png') no-repeat center center;
+  background: url('../assets/1788448614792.png') no-repeat center center;
   background-size: cover;
   background-attachment: fixed;
-  margin: 0;
+  color: var(--color-texto);
 }
 
-body::before {
-  content: "";
+/* Contenedor principal */
+.contenedor {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Capa oscura semitransparente */
+.capa-fondo {
   position: fixed;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(10, 25, 47, 0.70), rgba(10, 25, 47, 0.82));
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-transparente);
   z-index: 0;
 }
 
-.volver-arriba {
-  position: fixed;
-  top: 16px;
-  left: 20px;
-  z-index: 20;
-}
-
-.boton-volver {
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--color-blanco);
+/* Botones generales */
+button, .boton {
+  padding: 14px 28px;
   border: none;
-  border-radius: 999px;
-  padding: 10px 20px;
-  font-size: 14px;
+  border-radius: var(--borde-redondo);
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
-  transition: var(--transicion);
-  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  text-align: center;
   text-decoration: none;
   display: inline-block;
 }
 
-.boton-volver:hover {
-  background: var(--color-azul);
+.boton-primario {
+  background-color: var(--color-primario);
+  color: var(--color-texto);
 }
 
-.pagina-contenedor {
-  position: relative;
-  z-index: 5;
-  width: 100%;
-  height: 100vh;
-  overflow-y: auto;
-  padding: 80px 24px 40px;
+.boton-primario:hover {
+  background-color: #2a3a7c;
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-suave);
 }
 
-.pagina-centrada {
-  max-width: 700px;
-  margin: 0 auto;
+.boton-secundario {
+  background-color: var(--color-secundario);
+  color: var(--color-texto);
 }
 
-.tarjeta {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid var(--color-gris-oscuro);
-  border-radius: var(--borde);
-  padding: 24px;
-  margin-bottom: 20px;
-  backdrop-filter: blur(10px);
-}
-
-.tarjeta h2 {
-  color: var(--color-blanco);
-  font-size: 20px;
-  margin-bottom: 16px;
-}
-
-.tarjeta p {
-  color: var(--color-gris-claro);
-  font-size: 15px;
-  line-height: 1.6;
-  margin-bottom: 12px;
-}
-
-label {
-  display: block;
-  color: var(--color-blanco);
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 8px;
-}
-
-input, select, textarea {
-  width: 100%;
-  border: 1px solid var(--color-gris-oscuro);
-  border-radius: var(--borde-chico);
-  padding: 12px 16px;
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--color-blanco);
-  outline: none;
-  font-size: 15px;
-  transition: var(--transicion);
-}
-
-input:focus, select:focus, textarea:focus {
-  border-color: var(--color-azul);
-  background: rgba(255, 255, 255, 0.1);
-}
-
-input::placeholder, textarea::placeholder {
-  color: var(--color-gris);
-}
-
-button.boton-enviar {
-  width: 100%;
-  background: var(--color-azul);
-  color: var(--color-blanco);
-  border: none;
-  border-radius: var(--borde);
-  padding: 14px 20px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transicion);
-  margin-top: 10px;
-}
-
-button.boton-enviar:hover {
-  background: var(--color-azul-claro);
+.boton-secundario:hover {
+  background-color: #c22f76;
   transform: translateY(-2px);
 }
 
-.mensaje-exito {
-  background: rgba(16, 185, 129, 0.15);
-  border: 1px solid var(--color-exito);
-  color: var(--color-exito);
-  border-radius: var(--borde-chico);
-  padding: 14px;
-  margin-top: 16px;
-  display: none;
+.boton-acento {
+  background-color: var(--color-acento);
+  color: var(--color-oscuro);
 }
 
-.mensaje-error {
-  background: rgba(239, 68, 68, 0.15);
-  border: 1px solid var(--color-error);
-  color: var(--color-error);
-  border-radius: var(--borde-chico);
-  padding: 14px;
-  margin-top: 16px;
-  display: none;
+.boton-acento:hover {
+  background-color: #fdc04e;
+  transform: translateY(-2px);
 }
 
+/* Barra de navegación superior */
+.barra-superior {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: var(--espacio-medio);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-texto);
+  text-decoration: none;
+}
+
+/* Selector de idioma */
+.selector-idioma {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: var(--color-texto);
+  cursor: pointer;
+}
+
+.selector-idioma option {
+  background-color: var(--color-oscuro);
+  color: var(--color-texto);
+}
+
+/* Barra de búsqueda */
+.buscador {
+  padding: 10px 16px;
+  border-radius: 20px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: var(--color-texto);
+  width: 220px;
+  font-size: 14px;
+}
+
+.buscador::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Botón volver */
+.boton-volver {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  z-index: 100;
+  font-size: 14px;
+}
+
+.boton-volver:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Tarjetas */
+.tarjeta {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: var(--color-oscuro);
+  border-radius: var(--borde-redondo-grande);
+  padding: var(--espacio-grande);
+  box-shadow: var(--sombra-fuerte);
+  max-width: 500px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+/* Inputs de formulario */
+input, select, textarea {
+  width: 100%;
+  padding: 12px 16px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+/* Grupo de botones */
+.grupo-botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Ocultar elementos */
 .oculto {
   display: none !important;
 }
