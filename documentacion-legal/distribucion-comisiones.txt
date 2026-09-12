@@ -1,0 +1,49 @@
+====================================================================
+            DISTRIBUCIÓN DE COMISIONES — ESTRUCTura FIJA
+               Dimon Connect · Servicios Autónomos
+====================================================================
+
+FECHA: 12 de septiembre de 2026
+VERSIÓN: 1.0
+
+REGLA PRINCIPAL:
+  Comisión calculada ÚNICAMENTE sobre MANO DE OBRA.
+  LOS MATERIALES NO GENERAN COMISIÓN.
+
+COMISIÓN TOTAL POR TRATO CONFIRMADO: 10% sobre mano de obra
+
+  ┌──────────────────────────────────────────────────────┐
+  │  5% → PAGA LA PERSONA QUE SOLICITA EL SERVICIO       │
+  │  5% → PAGA LA PERSONA QUE BRINDA EL SERVICIO         │
+  └──────────────────────────────────────────────────────┘
+
+DISTRIBUCIÓN INTERNA DEL 10%:
+
+  Del 10% total recaudado:
+  ├── 4% → Ingreso del Propietario (50% disponible / 50% Taina)
+  ├── 1% → Fondo de Plataforma (mantenimiento, mejoras, operación)
+  ├── 1% → Fondo de Inversión (administrado por el Propietario)
+  └── 4% → Directo al sistema — operativo y reservas
+
+DETALLE DEL 4% DEL PROPIETARIO:
+  ├── 2% → Disponible libremente para el Propietario
+  └── 2% → Fondo Taina — Bloqueado hasta los 18 años
+
+  → Al cumplir Taina 18 años: el 2% pasa a pago directo
+  → Al fallecer el Propietario: TODO pasa a Taina
+
+CÁLCULO DE EJEMPLO:
+  Si el valor de la mano de obra = $100
+  Comisión total (10%) = $10
+    → $5 paga quien solicita
+    → $5 paga quien brinda
+
+  Distribución interna de esos $10:
+    $4 → Propietario → $2 para vos / $2 para Taina
+    $1 → Fondo Plataforma
+    $1 → Fondo Inversión
+    $4 → Sistema y reservas
+
+====================================================================
+                 DOCUMENTO INTERNO — VERSIÓN 1.0
+====================================================================
