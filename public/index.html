@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Dimon Connect — Servicios Autónomos</title>
 
-  <!-- ✅ SISTEMA DE IDIOMA -->
+  <!-- ✅ SISTEMA DE IDIOMA y MONEDAS — RUTAS CORRECTAS -->
   <script src="js/idioma.js"></script>
   <script src="js/monedas.js"></script>
 
+  <!-- ✅ ESTILOS — Todo acá, no falta nada -->
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     html, body { 
@@ -18,9 +19,11 @@
       position: fixed;
     }
     body {
+      /* ✅ Imagen de fondo con ruta correcta + color de respaldo */
       background: url('assets/1788448614792.png') no-repeat center center;
       background-size: cover;
       background-attachment: fixed;
+      background-color: #1a2a6c;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -58,7 +61,7 @@
       font-weight: 500;
     }
 
-    /* ✅ Botón Lira: escudo con cruz, gris, izquierda arriba */
+    /* ✅ Botón Lira: escudo gris con cruz, arriba a la izquierda */
     .lira-btn {
       width: 46px;
       height: 46px;
@@ -116,7 +119,7 @@
       background: rgba(255,255,255,0.25);
     }
 
-    /* ✅ Botón de descargar aplicación */
+    /* ✅ Botón Descargar Aplicación */
     .download-btn {
       padding: 16px 22px;
       background: rgba(37, 99, 235, 0.7);
@@ -175,12 +178,12 @@
     </button>
   </div>
 
-  <!-- Barra de búsqueda -->
+  <!-- ✅ Barra de búsqueda -->
   <div class="search-bar">
     <input type="text" data-txt-placeholder="buscarPlaceholder">
   </div>
 
-  <!-- Botones principales -->
+  <!-- ✅ Botones principales -->
   <div class="buttons-container">
     <button class="main-btn" onclick="window.location.href='pantallas/oferta-demanda.html'" data-txt="ofertaDemanda"></button>
     <button class="main-btn" onclick="window.location.href='pantallas/brindar-servicio.html'" data-txt="brindarServicio"></button>
@@ -190,7 +193,7 @@
     <button class="download-btn" onclick="window.location.href='pantallas/descarga-app.html'" data-txt="descargarApp"></button>
   </div>
 
-  <!-- Links legales al pie -->
+  <!-- ✅ Links legales al pie -->
   <div class="footer-links">
     <a href="pantallas/normas-seguridad.html" data-txt="normas"></a> ·
     <a href="pantallas/privacidad.html" data-txt="privacidad"></a> ·
@@ -198,6 +201,7 @@
     <a href="pantallas/cookies.html" data-txt="cookies"></a>
   </div>
 
+  <!-- ✅ Actualizar indicador de idioma -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const selector = document.getElementById('selector-idioma');
