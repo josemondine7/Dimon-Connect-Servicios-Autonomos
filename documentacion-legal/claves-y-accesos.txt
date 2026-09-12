@@ -1,0 +1,38 @@
+====================================================================
+                    CLAVES Y ACCESOS
+               Dimon Connect · Servicios Autónomos
+====================================================================
+
+⚠️  COMPLETÁ ESTE ARCHIVO CON TUS DATOS REALES.
+NO lo compartas con nadie. Guardalo en lugar seguro.
+NO lo subas a GitHub — solo lo tenés vos.
+
+FECHA: _______________
+
+GITHUB:
+  Usuario: _____________________________________
+  Repositorio: _________________________________
+  Rama principal: main
+
+RENDER:
+  URL del sitio: ________________________________
+  URL Base de Datos 1: __________________________
+  URL Base de Datos 2: __________________________
+  Correo vinculado: ____________________________
+
+PAYPAL:
+  Correo de negocio: ___________________________
+  Cliente ID: __________________________________
+  ⚠️  Clave secreta: anotada en lugar seguro
+
+CORREO DE CONTACTO:
+  Correo principal: ____________________________
+  WhatsApp: ___________________________________
+
+LIRA — ACCESO DEL SISTEMA:
+  Contraseña maestra: mondine5781taina
+  ⚠️  Cambiar la primera vez que ingresás
+
+====================================================================
+  GUARDAR EN LUGAR SEGURO. NO SUBIR A GITHUB.
+====================================================================
