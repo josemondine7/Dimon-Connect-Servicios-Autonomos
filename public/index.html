@@ -3,37 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Dimon Connect — Servicios Autónomos</title>
+  <title>Dimon Connect</title>
 
   <script src="js/idioma.js"></script>
   <script src="js/monedas.js"></script>
 
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    html, body { 
-      width: 100%; 
-      height: 100vh; 
-      overflow: hidden; 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
       position: fixed;
     }
+
     body {
       background: url('../1788448614792.png') no-repeat center center;
       background-size: cover;
-      background-attachment: fixed;
       background-color: #1a2a6c;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      padding-bottom: 60px;
       color: white;
     }
 
     .top-lang {
       position: fixed;
-      top: 20px;
-      right: 20px;
+      top: 18px;
+      right: 18px;
       z-index: 100;
     }
 
@@ -51,11 +51,17 @@
       text-decoration: underline;
     }
 
+    #selector-idioma {
+      display: none;
+    }
+
     .search-bar {
-      width: 100%;
-      max-width: 300px;
-      margin-bottom: 60px;
-      margin-top: 20px;
+      position: absolute;
+      top: 110px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      z-index: 10;
     }
 
     .search-bar input {
@@ -75,11 +81,15 @@
     }
 
     .buttons-container {
+      position: absolute;
+      top: 260px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 340px;
       display: flex;
       flex-direction: column;
       gap: 14px;
-      width: 100%;
-      max-width: 400px;
+      z-index: 10;
     }
 
     .main-btn {
@@ -162,10 +172,6 @@
     .download-btn:hover {
       background: #15803d;
     }
-
-    #selector-idioma {
-      display: none;
-    }
   </style>
 </head>
 <body>
@@ -183,7 +189,6 @@
     </button>
   </div>
 
-  <!-- Buscador arriba, nada de logo extra — todo está en el fondo -->
   <div class="search-bar">
     <input type="text" data-txt-placeholder="buscarPlaceholder">
   </div>
@@ -209,14 +214,20 @@
     document.addEventListener('DOMContentLoaded', () => {
       const selector = document.getElementById('selector-idioma');
       const indicador = document.getElementById('idioma-actual');
-      
+
       const actualizarIndicadorIdioma = () => {
-        const nombres = { es: 'Español', en: 'English', pt: 'Português', zh: '中文', ar: 'العربية' };
+        const nombres = {
+          es: 'Español',
+          en: 'English',
+          pt: 'Português',
+          zh: '中文',
+          ar: 'العربية'
+        };
         indicador.textContent = nombres[idiomaActual] || 'Español';
       };
-      
+
       setTimeout(actualizarIndicadorIdioma, 100);
-      
+
       const idiomaOriginal = window.cambiarIdioma;
       window.cambiarIdioma = function(nuevoIdioma) {
         if (idiomaOriginal) idiomaOriginal(nuevoIdioma);
