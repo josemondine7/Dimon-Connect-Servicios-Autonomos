@@ -17,7 +17,8 @@
       position: fixed;
     }
     body {
-      background: url('assets/1788448614792.png') no-repeat center center;
+      /* ✅ Imagen afuera de la carpeta público — ruta corregida */
+      background: url('../1788448614792.png') no-repeat center center;
       background-size: cover;
       background-attachment: fixed;
       background-color: #1a2a6c;
@@ -30,7 +31,6 @@
       color: white;
     }
 
-    /* ✅ Idioma arriba a la derecha — letra chica, clicable */
     .top-lang {
       position: fixed;
       top: 20px;
@@ -52,7 +52,6 @@
       text-decoration: underline;
     }
 
-    /* ✅ Barra de búsqueda */
     .search-bar {
       width: 100%;
       max-width: 420px;
@@ -74,7 +73,6 @@
       color: rgba(255,255,255,0.5);
     }
 
-    /* ✅ Botones principales — más chicos y más transparentes */
     .buttons-container {
       display: flex;
       flex-direction: column;
@@ -98,7 +96,6 @@
       background: rgba(255,255,255,0.15);
     }
 
-    /* ✅ Pie de página completo */
     .footer {
       position: fixed;
       bottom: 12px;
@@ -113,7 +110,6 @@
       z-index: 100;
     }
 
-    /* ✅ Botón Lira — abajo izquierda */
     .lira-btn {
       width: 32px;
       height: 32px;
@@ -150,7 +146,6 @@
       text-decoration: underline;
     }
 
-    /* ✅ Botón Descargar — abajo derecha, verde, chiquito */
     .download-btn {
       padding: 6px 12px;
       background: #16a34a;
@@ -173,7 +168,6 @@
 </head>
 <body>
 
-  <!-- ✅ Idioma — arriba derecha, solo texto -->
   <div class="top-lang">
     <select id="selector-idioma" onchange="cambiarIdioma(this.value)">
       <option value="es">Español</option>
@@ -187,32 +181,24 @@
     </button>
   </div>
 
-  <!-- ✅ Barra de búsqueda -->
   <div class="search-bar">
     <input type="text" data-txt-placeholder="buscarPlaceholder">
   </div>
 
-  <!-- ✅ Botones principales -->
   <div class="buttons-container">
     <button class="main-btn" onclick="window.location.href='pantallas/oferta-demanda.html'" data-txt="ofertaDemanda"></button>
     <button class="main-btn" onclick="window.location.href='pantallas/brindar-servicio.html'" data-txt="brindarServicio"></button>
     <button class="main-btn" onclick="window.location.href='pantallas/solicitar-servicio.html'" data-txt="solicitarServicio"></button>
   </div>
 
-  <!-- ✅ Pie de página completo -->
   <div class="footer">
-    <!-- Lira — abajo izquierda -->
     <button class="lira-btn" onclick="window.location.href='pantallas/lira-chat.html'">✚</button>
-
-    <!-- Links legales — centro -->
     <div class="footer-middle">
       <a href="pantallas/normas-seguridad.html" data-txt="normas"></a> ·
       <a href="pantallas/privacidad.html" data-txt="privacidad"></a> ·
       <a href="pantallas/terminos-servicio.html" data-txt="terminos"></a> ·
       <a href="pantallas/cookies.html" data-txt="cookies"></a>
     </div>
-
-    <!-- Descargar aplicación — abajo derecha, verde -->
     <button class="download-btn" onclick="window.location.href='pantallas/descarga-app.html'" data-txt="descargarApp"></button>
   </div>
 
