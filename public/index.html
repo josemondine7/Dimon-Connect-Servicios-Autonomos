@@ -30,7 +30,6 @@
       color: white;
     }
 
-    /* ✅ Idioma arriba derecha */
     .top-lang {
       position: fixed;
       top: 20px;
@@ -52,17 +51,16 @@
       text-decoration: underline;
     }
 
-    /* ✅ Buscador ARRIBA del logo, más chico */
     .search-bar {
       width: 100%;
-      max-width: 320px;
-      margin-bottom: 25px;
+      max-width: 300px;
+      margin-bottom: 60px;
       margin-top: 20px;
     }
 
     .search-bar input {
       width: 100%;
-      padding: 10px 18px;
+      padding: 10px 16px;
       border-radius: 20px;
       border: none;
       background: rgba(255,255,255,0.08);
@@ -76,35 +74,6 @@
       color: rgba(255,255,255,0.5);
     }
 
-    /* ✅ Logo */
-    .logo-container {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .logo-img {
-      width: 100px;
-      height: auto;
-      margin-bottom: 10px;
-    }
-
-    .logo-text-main {
-      font-size: 26px;
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-
-    .logo-text-main span {
-      color: #4ade80;
-    }
-
-    .logo-text-sub {
-      font-size: 14px;
-      opacity: 0.7;
-      margin-top: 4px;
-    }
-
-    /* ✅ Botones principales */
     .buttons-container {
       display: flex;
       flex-direction: column;
@@ -128,7 +97,6 @@
       background: rgba(255,255,255,0.15);
     }
 
-    /* ✅ Pie de página */
     .footer {
       position: fixed;
       bottom: 12px;
@@ -202,7 +170,6 @@
 </head>
 <body>
 
-  <!-- ✅ Idioma arriba derecha -->
   <div class="top-lang">
     <select id="selector-idioma" onchange="cambiarIdioma(this.value)">
       <option value="es">Español</option>
@@ -216,25 +183,17 @@
     </button>
   </div>
 
-  <!-- ✅ Buscador ARRIBA del logo -->
+  <!-- Buscador arriba, nada de logo extra — todo está en el fondo -->
   <div class="search-bar">
     <input type="text" data-txt-placeholder="buscarPlaceholder">
   </div>
 
-  <!-- ✅ Logo -->
-  <div class="logo-container">
-    <div class="logo-text-main">Dimon <span>Connect</span></div>
-    <div class="logo-text-sub" data-txt="serviciosAutonomos">Servicios Autónomos</div>
-  </div>
-
-  <!-- ✅ Botones principales — TODOS CONECTADOS -->
   <div class="buttons-container">
     <button class="main-btn" onclick="window.location.href='pantallas/oferta-demanda.html'" data-txt="ofertaDemanda"></button>
     <button class="main-btn" onclick="window.location.href='pantallas/brindar-servicio.html'" data-txt="brindarServicio"></button>
     <button class="main-btn" onclick="window.location.href='pantallas/solicitar-servicio.html'" data-txt="solicitarServicio"></button>
   </div>
 
-  <!-- ✅ Pie de página -->
   <div class="footer">
     <button class="lira-btn" onclick="window.location.href='pantallas/lira-chat.html'">✚</button>
     <div class="footer-middle">
