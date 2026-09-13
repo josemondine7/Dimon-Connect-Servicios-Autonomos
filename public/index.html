@@ -3,70 +3,134 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Dimon Connect</title>
-
-  <script src="js/idioma.js"></script>
-  <script src="js/monedas.js"></script>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  <title>Dimon Connect — Servicios Autónomos</title>
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/responsivo.css">
+  
+  <script>
+    const traducciones = {
+      es: { 
+        volver:"Volver", inicio:"Inicio", buscarPlaceholder:"Buscar servicios, personas, ayuda...", 
+        ofertaDemanda:"Oferta y Demanda", brindarServicio:"Brindar mi Servicio", 
+        solicitarServicio:"Solicitar un Servicio", normas:"Normas y Seguridad", 
+        privacidad:"Privacidad", terminos:"Términos de Servicio", cookies:"Cookies",
+        descargarApp:"Descargar Aplicación", contacto:"Contacto", serviciosAutonomos:"Servicios Autónomos"
+      },
+      en: { 
+        volver:"Back", inicio:"Home", buscarPlaceholder:"Search services, people, help...", 
+        ofertaDemanda:"Offer & Demand", brindarServicio:"Offer my Service", 
+        solicitarServicio:"Request a Service", normas:"Rules & Security", 
+        privacidad:"Privacy", terminos:"Terms of Service", cookies:"Cookies",
+        descargarApp:"Download App", contacto:"Contact", serviciosAutonomos:"Autonomous Services"
+      },
+      pt: { 
+        volver:"Voltar", inicio:"Início", buscarPlaceholder:"Procurar serviços, pessoas, ajuda...", 
+        ofertaDemanda:"Oferta e Procura", brindarServicio:"Oferecer meu Serviço", 
+        solicitarServicio:"Solicitar um Serviço", normas:"Regras e Segurança", 
+        privacidad:"Privacidade", terminos:"Termos de Serviço", cookies:"Cookies",
+        descargarApp:"Baixar Aplicação", contacto:"Contacto", serviciosAutonomos:"Serviços Autônomos"
+      },
+      zh: { 
+        volver:"返回", inicio:"首页", buscarPlaceholder:"搜索服务、人员、帮助...", 
+        ofertaDemanda:"供需信息", brindarServicio:"提供我的服务", 
+        solicitarServicio:"请求服务", normas:"安全规则", 
+        privacidad:"隐私", terminos:"服务条款", cookies:"Cookie政策",
+        descargarApp:"下载应用", contacto:"联系我们", serviciosAutonomos:"自主服务"
+      },
+      ar: { 
+        volver:"العودة", inicio:"الرئيسية", buscarPlaceholder:"البحث عن خدمات، أشخاص، مساعدة...", 
+        ofertaDemanda:"العرض والطلب", brindarServicio:"تقديم خدمتي", 
+        solicitarServicio:"طلب خدمة", normas:"الأمان والقواعد", 
+        privacidad:"الخصوصية", terminos:"شروط الخدمة", cookies:"ملفات تعريف الارتباط",
+        descargarApp:"تحميل التطبيق", contacto:"اتصل بنا", serviciosAutonomos:"الخدمات المستقلة"
+      }
+    };
+    let idiomaActual = localStorage.getItem('idioma') || 'es';
+    
+    function cambiarIdioma(codigo) {
+      idiomaActual = codigo;
+      localStorage.setItem('idioma', codigo);
+      aplicarTraducciones();
+      actualizarBotonIdioma();
+    }
+    
+    function aplicarTraducciones() {
+      document.querySelectorAll('[data-txt]').forEach(el => {
+        const clave = el.getAttribute('data-txt');
+        if (traducciones[idiomaActual][clave]) {
+          el.textContent = traducciones[idiomaActual][clave];
+        }
+      });
+      document.querySelectorAll('[data-placeholder]').forEach(el => {
+        const clave = el.getAttribute('data-placeholder');
+        if (traducciones[idiomaActual][clave]) {
+          el.placeholder = traducciones[idiomaActual][clave];
+        }
+      });
     }
 
+    function actualizarBotonIdioma() {
+      const nombres = { es: 'ES', en: 'EN', pt: 'PT', zh: '中文', ar: 'عربي' };
+      document.getElementById('boton-idioma').textContent = nombres[idiomaActual] || 'ES';
+    }
+  </script>
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
       width: 100%;
-      height: 100vh;
+      height: 100%;
       overflow: hidden;
       position: fixed;
     }
-
     body {
       background: url('../1788448614792.png') no-repeat center center;
       background-size: cover;
-      background-color: #1a2a6c;
+      background-attachment: fixed;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: white;
     }
 
-    .top-lang {
+    /* Barra superior: Idioma — Buscador — Lira */
+    header {
       position: fixed;
-      top: 18px;
-      right: 18px;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       z-index: 100;
     }
 
-    .lang-link {
+    .boton-idioma {
       background: none;
       border: none;
       color: white;
-      font-size: 16px;
+      font-size: 15px;
       cursor: pointer;
-      opacity: 0.8;
+      opacity: 0.85;
+      padding: 5px 10px;
     }
 
-    .lang-link:hover {
+    .boton-idioma:hover {
       opacity: 1;
-      text-decoration: underline;
     }
 
-    #selector-idioma {
-      display: none;
+    .buscador-pequeno {
+      flex: 1;
+      max-width: 300px;
+      margin: 0 15px;
     }
 
-    .search-bar {
-      position: absolute;
-      top: 110px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 300px;
-      z-index: 10;
-    }
-
-    .search-bar input {
+    .buscador-pequeno input {
       width: 100%;
-      padding: 10px 16px;
+      padding: 9px 16px;
       border-radius: 20px;
       border: none;
       background: rgba(255,255,255,0.08);
@@ -76,38 +140,63 @@
       text-align: center;
     }
 
-    .search-bar input::placeholder {
+    .buscador-pequeno input::placeholder {
       color: rgba(255,255,255,0.5);
     }
 
-    .buttons-container {
+    .boton-lira {
+      width: 34px;
+      height: 34px;
+      background: #6b7280;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      clip-path: polygon(15% 0%, 85% 0%, 100% 15%, 100% 85%, 50% 100%, 0% 85%, 0% 15%);
+    }
+
+    .boton-lira:hover {
+      background: #4b5563;
+    }
+
+    /* Contenido central — Botones principales */
+    .contenedor-central {
       position: absolute;
-      top: 260px;
+      top: 50%;
       left: 50%;
-      transform: translateX(-50%);
-      width: 340px;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      max-width: 400px;
+      padding: 0 20px;
+    }
+
+    .botones-principales {
       display: flex;
       flex-direction: column;
       gap: 14px;
-      z-index: 10;
+      width: 100%;
     }
 
-    .main-btn {
+    .boton-principal {
       padding: 16px 20px;
       border-radius: 14px;
-      border: none;
       background: rgba(255,255,255,0.08);
       color: white;
       font-size: 18px;
-      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
       transition: background 0.2s;
     }
 
-    .main-btn:hover {
+    .boton-principal:hover {
       background: rgba(255,255,255,0.15);
     }
 
-    .footer {
+    /* Pie de página — Enlaces inferiores */
+    .enlaces-inferiores {
       position: fixed;
       bottom: 12px;
       left: 0;
@@ -117,66 +206,50 @@
       justify-content: space-between;
       padding: 0 15px;
       font-size: 11px;
-      opacity: 0.7;
+      opacity: 0.75;
       z-index: 100;
     }
 
-    .lira-btn {
-      width: 32px;
-      height: 32px;
-      background: #6b7280;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      clip-path: polygon(15% 0%, 85% 0%, 100% 15%, 100% 85%, 50% 100%, 0% 85%, 0% 15%);
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-
-    .lira-btn:hover {
-      background: #4b5563;
-    }
-
-    .footer-middle {
-      text-align: center;
-      flex: 1;
-      padding: 0 10px;
-      line-height: 1.5;
-    }
-
-    .footer-middle a {
+    .enlaces-inferiores a {
       color: white;
       text-decoration: none;
-      margin: 0 4px;
     }
 
-    .footer-middle a:hover {
+    .enlaces-inferiores a:hover {
       text-decoration: underline;
     }
 
-    .download-btn {
-      padding: 6px 12px;
+    .enlaces-centro {
+      text-align: center;
+      flex: 1;
+      padding: 0 10px;
+      line-height: 1.6;
+    }
+
+    .boton-descarga {
+      padding: 6px 14px;
       background: #16a34a;
       color: white;
       font-size: 11px;
-      border: none;
       border-radius: 12px;
-      cursor: pointer;
+      text-decoration: none;
       white-space: nowrap;
     }
 
-    .download-btn:hover {
+    .boton-descarga:hover {
       background: #15803d;
+    }
+
+    /* Selector de idioma oculto */
+    #selector-idioma {
+      display: none;
     }
   </style>
 </head>
 <body>
 
-  <div class="top-lang">
+  <header>
+    <button class="boton-idioma" id="boton-idioma" onclick="document.getElementById('selector-idioma').click()">ES</button>
     <select id="selector-idioma" onchange="cambiarIdioma(this.value)">
       <option value="es">Español</option>
       <option value="en">English</option>
@@ -184,57 +257,39 @@
       <option value="zh">中文</option>
       <option value="ar">العربية</option>
     </select>
-    <button class="lang-link" onclick="document.getElementById('selector-idioma').click()">
-      <span id="idioma-actual">Español</span>
-    </button>
-  </div>
+    <div class="buscador-pequeno">
+      <input type="text" data-placeholder="buscarPlaceholder">
+    </div>
+    <a href="pantallas/lira-chat.html" class="boton-lira" title="Asistente Lira">✚</a>
+  </header>
 
-  <div class="search-bar">
-    <input type="text" data-txt-placeholder="buscarPlaceholder">
-  </div>
+  <main class="contenedor-central">
+    <div class="botones-principales">
+      <a href="pantallas/oferta-demanda.html" class="boton-principal" data-txt="ofertaDemanda"></a>
+      <a href="pantallas/brindar-servicio.html" class="boton-principal" data-txt="brindarServicio"></a>
+      <a href="pantallas/solicitar-servicio.html" class="boton-principal" data-txt="solicitarServicio"></a>
+    </div>
+  </main>
 
-  <div class="buttons-container">
-    <button class="main-btn" onclick="window.location.href='pantallas/oferta-demanda.html'" data-txt="ofertaDemanda"></button>
-    <button class="main-btn" onclick="window.location.href='pantallas/brindar-servicio.html'" data-txt="brindarServicio"></button>
-    <button class="main-btn" onclick="window.location.href='pantallas/solicitar-servicio.html'" data-txt="solicitarServicio"></button>
-  </div>
-
-  <div class="footer">
-    <button class="lira-btn" onclick="window.location.href='pantallas/lira-chat.html'">✚</button>
-    <div class="footer-middle">
+  <footer class="enlaces-inferiores">
+    <div></div>
+    <div class="enlaces-centro">
       <a href="pantallas/normas-seguridad.html" data-txt="normas"></a> ·
       <a href="pantallas/privacidad.html" data-txt="privacidad"></a> ·
       <a href="pantallas/terminos-servicio.html" data-txt="terminos"></a> ·
       <a href="pantallas/cookies.html" data-txt="cookies"></a>
     </div>
-    <button class="download-btn" onclick="window.location.href='pantallas/descarga-app.html'" data-txt="descargarApp"></button>
-  </div>
+    <a href="pantallas/descarga-app.html" class="boton-descarga" data-txt="descargarApp"></a>
+  </footer>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const selector = document.getElementById('selector-idioma');
-      const indicador = document.getElementById('idioma-actual');
-
-      const actualizarIndicadorIdioma = () => {
-        const nombres = {
-          es: 'Español',
-          en: 'English',
-          pt: 'Português',
-          zh: '中文',
-          ar: 'العربية'
-        };
-        indicador.textContent = nombres[idiomaActual] || 'Español';
-      };
-
-      setTimeout(actualizarIndicadorIdioma, 100);
-
-      const idiomaOriginal = window.cambiarIdioma;
-      window.cambiarIdioma = function(nuevoIdioma) {
-        if (idiomaOriginal) idiomaOriginal(nuevoIdioma);
-        setTimeout(actualizarIndicadorIdioma, 50);
-      };
-    });
+    aplicarTraducciones();
+    actualizarBotonIdioma();
   </script>
 
+  <script src="js/idioma.js"></script>
+  <script src="js/monedas.js"></script>
+  <script src="js/almacenamiento.js"></script>
+  <script src="js/flujos.js"></script>
 </body>
 </html>
